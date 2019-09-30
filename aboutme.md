@@ -1,16 +1,18 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Hire me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+# Education
+-----
+* **KAIST 전기및전자공학부 & 로봇학제전공** - 2019.01~
+* **KAIST 건설및환경공학과 & 로봇학제전공** - 2018.03~2018.12
+* **KAIST 기계공학과** - 2013.03~2018.02
+* **부산고등학교** - 2010.03~2013.02
 
-What else do you need?
+# Contact
+-----
+shapelim@kaist.ac.kr
 
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
