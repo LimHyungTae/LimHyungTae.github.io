@@ -5,16 +5,16 @@ title: About me
 
 
 # Education
-* **M.S Electrical Engineering(also complete Robotics Program) / KAIST** - 2018.03~
+* **M.S Electrical Engineering(also complete Robotics Program) / KAIST** - 2018.03~2020.02
 * **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
 
 # Honors
-* **Received Han Cheolhui Augustine Scholarship, from EE, KAIST** - 2018.04
+* **Received Han Cheolhui Augustine Scholarship, from EE, KAIST** - 2019.04
 * **Listed on _Dean's list_ (GPA 4.23/4.3)** - Fall semester, 2015
 
 # Awards
-* **Hitachi-LG LiDAR application Competition, Grand Prize ($ 5,000)** - 2018.03~
-* **2018 Smart City Service and Start-up Competition, Excellence Prize** - 2013.03~2018.02
+* **Hitachi-LG LiDAR application Competition, Grand Prize ($ 5,000)** - 2019.08
+* **2018 Smart City Service and Start-up Competition, Excellence Prize** - 2018.09
 
 # Fun Facts
 
