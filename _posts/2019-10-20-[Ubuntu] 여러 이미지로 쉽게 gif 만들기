@@ -1,0 +1,37 @@
+# Ubuntu에서 image list들로 gif 쉽게 만드는 법
+
+ImageMagick이라는 패키지를 활용하면 된다
+
+<code><pre>convert -delay 20 viz*.png -loop 0 movie.gif</code></pre>
+
+하지만 그럴 경우에는 순서가 무작위가 되기 때문에, 많은 장수의 image를 gif로 만들기 위해서는 txt파일을 작성하는 것이 편하다.
+
+gif를 만들기 위한 순서가 써져있는 txt를 viz.txt라 하면
+
+<code><pre>convert -delay 20 @viz.txt -loop 0 test.gif</code></pre>
+
+과 같은 명령어로 손쉽게 test라는 이름을 가진 gif를 만들 수 있다
+
+여기서 loop는 몇 번 반복재생할 지를 나타내는데, 0을 하면 영구적으로 반복된다.
+
+
+viz.txt는 gif를 만들고 싶은 순서대로 작성해두면 된다!
+
+**예시:**
+```ruby
+viz2.png
+viz4.png
+viz6.png
+viz8.png
+viz10.png
+viz12.png
+viz14.png
+viz16.png
+viz18.png
+viz20.png
+viz22.png
+viz24.png
+viz26.png
+```
+
+
