@@ -10,7 +10,7 @@ title: About me
 
 # Honors
 * **Received Han Cheolhui Augustine Scholarship, from EE, KAIST** - 2019.04
-* **Listed on _Dean's list_ (GPA 4.23/4.3)** - Fall semester, 2015
+* **Listed on _Dean's list_ of ME, KAIST (GPA 4.23/4.3 at the semester)** - Fall semester, 2015
 
 # Awards
 * **Hitachi-LG LiDAR application Competition, Grand Prize ($ 5,000)** - 2019.08
