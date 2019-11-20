@@ -14,6 +14,8 @@ title: Projects
 
 ![title](./_materials/for_projects/19_icra20_overview.PNG){: width="300" height="300"){: .center}
 
+<center><img src="./_materials/for_projects/19_icra20_overview.PNG" width="300" height="300"></center>
+
 Developed SLAM algorithm applied to mobile robots. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
 
 Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
@@ -22,6 +24,7 @@ Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
 
 *Supported by IITP, which is a government-affiliated organization*
 
+![cd1](./_materials/for_projects/18_complex_disaster.gif)
 
 Was in charge of the task of a drone passing through windows. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve the Odometry of UAV.
 
