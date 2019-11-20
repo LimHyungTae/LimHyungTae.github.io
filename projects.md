@@ -8,7 +8,7 @@ title: Projects
 
 *Supported by Samsung Electronics Co., Ltd.*
 
-![sa_depth](./_materials/for_projects/19_icra20_overview.PNG)
+<center><img src="./_materials/for_projects/19_icra20_overview.PNG" width="300" height="300"></center>
 
 Developed SLAM algorithm applied to mobile robots. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
 
