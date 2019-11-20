@@ -8,7 +8,7 @@ title: projects
 
 *Supported by Samsung Electronics Co., Ltd.*
 
-Developed SLAM algorithm applied to robot cleaners. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
+Developed SLAM algorithm applied to mobile robots. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
 
 Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
 
