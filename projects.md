@@ -3,18 +3,12 @@ layout: page
 title: Projects
 ---
 
-.center {
-  display: block;
-  margin: auto;
-}
-
 ## Indoor Navigation of Mobile Robots using Deep Learning-based Object Recognition
 
 *Supported by Samsung Electronics Co., Ltd.*
 
-![title](./_materials/for_projects/19_icra20_overview.PNG){: width="300" height="300"){: .center}
+![title](./_materials/for_projects/19_icra20_overview.PNG){: width="300" height="300"){: .center-block :}
 
-<center><img src="./_materials/for_projects/19_icra20_overview.PNG" width="300" height="300"></center>
 
 Developed SLAM algorithm applied to mobile robots. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
 
