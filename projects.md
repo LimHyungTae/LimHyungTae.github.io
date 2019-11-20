@@ -12,11 +12,11 @@ Developed SLAM algorithm applied to mobile robots. Was in charge of depth predic
 
 Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
 
-## IITP Artifcial Intelligence R&D Grand Challenge: Track 4, Intelligent Control
+## IITP Artificial Intelligence R&D Grand Challenge: Track 4, Intelligent Control
 
 *Supported by IITP, which is a government-affiliated organization*
 
-Was in charge of the task of a drone passing through windows. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve Odometry of UAV.
+Was in charge of the task of a drone passing through windows. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve the Odometry of UAV.
 
 Keywords: VIO, Path Planning and Following, Camera Geometry, OpenCV, ROS
 
@@ -28,10 +28,10 @@ Implemented Monte Carlo Localization (MCL) using range measurements by Ultra-wid
 
 Keywords: MCL, Beacon-based Localization, UWB sensors, NLOS, ROS
 
-## Machine Learning-based Classifcation of Small Object captured by Unmanned Aerial Vehicle
+## Machine Learning-based Classification of Small Object captured by Unmanned Aerial Vehicle
 
 *Outsourced by Pixoneer Geomatics and Agency for Defense Development*
 
 Developed both SVM-based and Deep Learning-based classification algorithm. Implemented HOG-LBP for input to SVM and engaged in designing novel Deep Learning architecture.
 
-Keywords: Deep Learning, SVM, HOG-LBP, Classication of Small Image patches, Python, PyTorch
+Keywords: Deep Learning, SVM, HOG-LBP, Classification of Small Image patches, Python, PyTorch
