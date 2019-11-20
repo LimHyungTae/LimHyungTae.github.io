@@ -40,7 +40,7 @@ Keywords: MCL, Beacon-based Localization, UWB sensors, NLOS, ROS
 
 *Outsourced by Pixoneer Geomatics and Agency for Defense Development*
 
-![svm](./_materials/for_projects/18_svm_classification.png)
+![svm](./img/18_svm_classification.png)
 
 Developed both SVM-based and Deep Learning-based classification algorithm. Implemented HOG-LBP for input to SVM and engaged in designing novel Deep Learning architecture.
 
