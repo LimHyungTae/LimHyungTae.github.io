@@ -4,22 +4,34 @@ title: projects
 ---
 
 
-# Education
-* **M.S Electrical Engineering(also complete Robotics Program) / KAIST** - 2018.03~
-* **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
+## Indoor Navigation of Mobile Robots using Deep Learning-based Object Recognition
 
-# Honors
-* **Received Han Cheolhui Augustine Scholarship, from EE, KAIST** - 2018.04
-* **Listed on _Dean's list_ (GPA 4.23/4.3)** - Fall semester, 2015
+*Supported by Samsung Electronics Co., Ltd.*
 
-# Awards
-* **Hitachi-LG LiDAR application Competition, Grand Prize ($ 5,000)** - 2018.03~
-* **2018 Smart City Service and Start-up Competition, Excellence Prize** - 2013.03~2018.02
+Developed SLAM algorithm applied to robot cleaners. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
 
-# Fun Facts
+Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
 
-I won the grand prize at Taeul Singing Competition, which is the largest singing competition of Chungcheong four years in a row!
+## IITP Artifcial Intelligence R&D Grand Challenge: Track 4, Intelligent Control
 
-# Contact
------
-shapelim@kaist.ac.kr
+*Supported by IITP, which is a government-affiliated organization*
+
+Was in charge of the task of a drone passing through windows. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve Odometry of UAV.
+
+Keywords: VIO, Path Planning and Following, Camera Geometry, OpenCV, ROS
+
+## Range-only SLAM in Complex Disaster Situation
+
+*Supported by Ministry of Trade, Industry, and Energy*
+
+Implemented Monte Carlo Localization (MCL) using range measurements by Ultra-wideband (UWB) sensors for UAV from scratch single-handed. Struggled to cover None-line-of-sight (NLOS) issues.
+
+Keywords: MCL, Beacon-based Localization, UWB sensors, NLOS, ROS
+
+## Machine Learning-based Classifcation of Small Object captured by Unmanned Aerial Vehicle
+
+*Outsourced by Pixoneer Geomatics and Agency for Defense Development*
+
+Developed both SVM-based and Deep Learning-based classification algorithm. Implemented HOG-LBP for input to SVM and engaged in designing novel Deep Learning architecture.
+
+Keywords: Deep Learning, SVM, HOG-LBP, Classication of Small Image patches, Python, PyTorch
