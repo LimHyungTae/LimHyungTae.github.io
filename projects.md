@@ -7,7 +7,7 @@ title: Projects
 
 *Supported by Samsung Electronics Co., Ltd.*
 
-![title](./_materials/for_projects/19_icra20_overview.PNG)
+![title](./img/projects_19_icra20_overview.PNG)
 
 
 Developed SLAM algorithm applied to mobile robots. Was in charge of depth prediction using a 2D LiDAR sensor and a monocular camera for collision avoidance of mobile robots via Deep Learning.
@@ -18,7 +18,7 @@ Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
 
 *Supported by IITP, which is a government-affiliated organization*
 
-![cd1](./_materials/for_projects/19_drone_challengecompressed.gif)
+![cd1](./img/projects_19_drone_challengecompressed.gif)
 
 Was in charge of the task of a drone passing through windows. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve the Odometry of UAV.
 
@@ -28,8 +28,8 @@ Keywords: VIO, Path Planning and Following, Camera Geometry, OpenCV, ROS
 
 *Supported by Ministry of Trade, Industry, and Energy*
 
-![cd9](./_materials/for_projects/18_complex_disaster_drone.png)
-![cd1](./_materials/for_projects/18_complex_disaster.gif)
+![cd9](./img/projects_18_complex_disaster_drone.png)
+![cd1](./img/projects_18_complex_disaster.gif)
 
 
 Implemented Monte Carlo Localization (MCL) using range measurements by Ultra-wideband (UWB) sensors for UAV from scratch single-handed. Struggled to cover None-line-of-sight (NLOS) issues.
@@ -40,7 +40,7 @@ Keywords: MCL, Beacon-based Localization, UWB sensors, NLOS, ROS
 
 *Outsourced by Pixoneer Geomatics and Agency for Defense Development*
 
-![svm](./img/18_svm_classification.png)
+![svm](./img/projects_18_svm_classification.png)
 
 Developed both SVM-based and Deep Learning-based classification algorithm. Implemented HOG-LBP for input to SVM and engaged in designing novel Deep Learning architecture.
 
