@@ -20,7 +20,7 @@ Keywords: 2D LiDAR, Sensor Fusion, Deep Learning, Mobile Robots, PyTorch, ROS
 
 ![cd1](./img/projects_19_drone_challengecompressed.gif)
 
-Was in charge of the task of a drone passing through windows. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve the Odometry of UAV.
+Was in charge of the task of a drone passing through a window. Implemented RGB-D camera-based path planning&following. Participated in applying VIO to achieve the Odometry of UAV.
 
 Keywords: VIO, Path Planning and Following, Camera Geometry, OpenCV, ROS
 
