@@ -1,6 +1,15 @@
 #PCL cheat sheet
 
-## pcl::PointXYZ 선언
+## pcl type 선언
+
+pcl type 종류: http://www.pointclouds.org/documentation/tutorials/adding_custom_ptype.php#adding-custom-ptype
+```cpp
+pcl::PointCloud<pcl::PointXYZ> cloud;
+pcl::PointCloud<pcl::PointXYZI> cloud;
+pcl::PointCloud<pcl::PointNormal> cloud;
+```
+
+
 **input: foo**</br>
 **output: var**
 ```cpp
