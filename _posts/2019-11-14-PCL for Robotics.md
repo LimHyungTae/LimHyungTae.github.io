@@ -1,6 +1,6 @@
 #PCL cheat sheet
 
-## pcl
+## pcl::PointXYZ 선언
 **input: foo**</br>
 **output: var**
 ```cpp
@@ -9,6 +9,7 @@ var foo = function(x) {
 }
 foo(3)
 ```
+## pcl::PointXYZ ptr 선언
 
 ## sensor_msgs::Pointcloud2 in ROS to pcl::PointCloud
 
