@@ -56,8 +56,10 @@ pcl::transformPointCloud(cloud_src, *ptr_transformed, trans);
 pc_transformed = *ptr_transformed
 ```
 
-## Filtering
+## Filtering using a PassThrough Filter
 ```cpp
+#include <pcl/filters/passthrough.h>
+
 //Input: pcl::PointCloud source, cloud_src
 //Output: Filtered pcl::PointCloud, pc_filtered along z axis, from 0.5m to 100.0m
 
@@ -82,6 +84,8 @@ pc_filtered = *ptr_filtered;
 ## Downsampling to a Voxel Grid
 
 ```cpp
+#include <pcl/filters/voxel_grid.h>
+
 //Input: pcl::PointCloud source, cloud_src
 //Output: voxelized pcl::PointCloud, pc_voxelized 
 
@@ -103,9 +107,6 @@ pc_voxelized = *ptr_filtered;
 
 The number of neighbors to analyze for each point is set to 10, and the standard deviation multiplier to 1.0
 ```cpp
-#include <iostream>
-#include <pcl/io/pcd_io.h>
-#include <pcl/point_types.h>
 #include <pcl/filters/statistical_outlier_removal.h>
 
 //Input: pcl::PointCloud source, cloud_src
