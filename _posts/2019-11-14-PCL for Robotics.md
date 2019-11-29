@@ -49,3 +49,98 @@ pcl::fromROSMsg(pose_vec.back().pc2, cloud_t);
 ```
 
 ## Hey
+
+   std::cout<<"Receiving " <<msg->idx<<"th synced data!"<<std::endl;
+////For scan0 data
+   pcl::PointCloud<pcl::PointXYZ> scan0_pc;
+   pcl::fromROSMsg(msg->scan0, scan0_pc);
+   std::cout<<"[MERGER]: scan0 - "<<scan0_pc.points.size()<<std::endl;
+////For scan1 data
+   pcl::PointCloud<pcl::PointXYZ> scan1_pc;
+   pcl::PointCloud<pcl::PointXYZ>::Ptr filtered(new pcl::PointCloud<pcl::PointXYZ>);
+   pcl::fromROSMsg(msg->scan1, scan1_pc);
+
+   Eigen::Matrix4f trans;
+   //// Case 1 trasformation
+//   trans<<      1,        0,  0,   -0.1,
+//                0,        1,  0,   1.76,
+//                0,        0,  1,      0,
+//                0,        0,  0,      1;
+
+   //// Case 2 trasformation - In CARPE
+   trans<<      0,        1,  0,   1.54,
+               -1,        0,  0,   1.54,
+                0,        0,  1,      0,
+                0,        0,  0,      1;
+
+   //// Case 3 trasformation - In Lab
+//   trans<<     -1,        0,  0,   3.08,
+//                0,       -1,  0,      0,
+//                0,        0,  1,      0,
+//                0,        0,  0,      1;
+
+```cpp
+   pcl::transformPointCloud(scan1_pc,*filtered,trans);
+   // For debugging
+   std::cout<<"[MERGER]: scan1 - "<<filtered->points.size()<<std::endl;
+   pcl::PointCloud<pcl::PointXYZ> merged_pc;
+   merged_pc = scan0_pc;
+   merged_pc += *filtered;
+
+   m_pub_bf_filtered_debug.publish(cvt::cloud2msg(merged_pc));
+
+   //// Filtering using statistical outlier removal
+   pcl::PointCloud<pcl::PointXYZ>::Ptr sor_filtered(new pcl::PointCloud<pcl::PointXYZ>);
+   *sor_filtered = merged_pc;
+
+   //// Filter wall pts
+   pcl::PassThrough<pcl::PointXYZ> filter;
+   filter.setInputCloud(sor_filtered);
+   filter.setFilterFieldName("x");
+   filter.setFilterLimits(-2.0, 3.3);
+   filter.filter(*sor_filtered);
+
+   filter.setInputCloud(sor_filtered);
+   filter.setFilterFieldName("y");
+   filter.setFilterLimits(-3, 100);
+   filter.filter(*sor_filtered);
+
+
+   pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
+   sor.setInputCloud (sor_filtered);
+   // Set neighbors to analyze for each point
+   sor.setMeanK (10);
+   sor.setStddevMulThresh (1.0);
+   sor.filter(*sor_filtered);
+
+   m_pub_after_filtered_debug.publish(cvt::cloud2msg(*sor_filtered));
+
+   //// Segment points
+   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_f(new pcl::PointCloud<pcl::PointXYZ>);
+   pcl::SACSegmentation<pcl::PointXYZ> seg;
+   pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
+   pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
+   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZ> ());
+   seg.setOptimizeCoefficients (true);
+   seg.setModelType (pcl::SACMODEL_PLANE);
+   seg.setMethodType (pcl::SAC_RANSAC);
+   seg.setMaxIterations (100);
+   seg.setDistanceThreshold (0.02);
+
+   // Creating the KdTree object for the search method of the extraction
+   pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
+   tree->setInputCloud (sor_filtered);
+
+   std::vector<pcl::PointIndices> cluster_indices;
+   pcl::EuclideanClusterExtraction<pcl::PointXYZ> ec;
+
+   //  If too small, it can happen that an actual object can be seen as multiple clusters
+   //  multiple objects are seen as one cluster.
+   ec.setClusterTolerance (0.28); // 2cm
+   ec.setMinClusterSize (5);
+   ec.setMaxClusterSize (100);
+   ec.setSearchMethod (tree);
+   ec.setInputCloud (sor_filtered);
+
+   ec.extract (cluster_indices);
+```
