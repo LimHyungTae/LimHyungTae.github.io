@@ -1,7 +1,7 @@
 #PCL cheat sheet
 
 ## pcl
-**input: foo**
+**input: foo**</br>
 **output: var**
 ```cpp
 var foo = function(x) {
