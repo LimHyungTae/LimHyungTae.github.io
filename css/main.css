@@ -674,10 +674,10 @@ pre {
   margin: 0;
 }
 .highlight > pre {
-  background-image: rgba(0.964706, 0.972549, 0.980392, 1.0);
+  background-image: rgba(246, 248, 250, 1.0);
   background-size: auto 3em;
   background-position-y: 10px;
-  border: 1px solid rgba(0.964706, 0.972549, 0.980392, 1.0);
+  border: 1px solid rgba(246, 248, 250, 1.0);
   border-left: 7px solid #444;
 }
 .highlight > pre:not([class~="highlight"]) { /* code block with line number */
