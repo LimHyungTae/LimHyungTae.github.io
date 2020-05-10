@@ -11,6 +11,7 @@ ur tensor is tensor.cuda.FloatTensor, converting using tensor.
 your DoubleTensor removes cuda. Better to use tensor.double() because it works for both cpu and gpu tensors.
 
 
+to(device) : 무조건 float이 됨??
 
 # rather than
 # xyz_pred = xyz_pred.type(torch.DoubleTensor)
