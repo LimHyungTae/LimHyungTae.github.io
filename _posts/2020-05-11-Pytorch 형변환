@@ -1,0 +1,25 @@
+---
+layout: post
+title: pytorch 형변환할 때 주의점
+subtitle: Each post also has a subtitle
+tags: [test]
+comments: true
+---
+
+ur tensor is tensor.cuda.FloatTensor, converting using tensor.
+
+your DoubleTensor removes cuda. Better to use tensor.double() because it works for both cpu and gpu tensors.
+
+
+
+
+# xyz_pred = xyz_pred.type(torch.DoubleTensor)
+# ypr_pred = ypr_pred.type(torch.DoubleTensor)
+
+xyz_pred = xyz_pred.type(torch.cuda.DoubleTensor)
+ypr_pred = ypr_pred.type(torch.cuda.DoubleTensor)
+
+## Reference
+
+
+
