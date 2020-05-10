@@ -23,5 +23,6 @@ ypr_pred = ypr_pred.type(torch.cuda.DoubleTensor)
 
 ## Reference
 
+cpu().detach().numpy()
 
 
