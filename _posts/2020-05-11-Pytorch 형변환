@@ -13,13 +13,15 @@ your DoubleTensor removes cuda. Better to use tensor.double() because it works f
 
 to(device) : 무조건 float이 됨??
 
+```
 # rather than
-# xyz_pred = xyz_pred.type(torch.DoubleTensor)
-# ypr_pred = ypr_pred.type(torch.DoubleTensor)
+xyz_pred = xyz_pred.type(torch.DoubleTensor)
+ypr_pred = ypr_pred.type(torch.DoubleTensor)
 
 # better
 xyz_pred = xyz_pred.type(torch.cuda.DoubleTensor)
 ypr_pred = ypr_pred.type(torch.cuda.DoubleTensor)
+```
 
 ## Reference
 
