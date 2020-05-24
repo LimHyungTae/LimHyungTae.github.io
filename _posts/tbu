@@ -1,0 +1,3 @@
+RuntimeError: cuDNN error: CUDNN_STATUS_NOT_SUPPORTED. This error may appear if you passed in a non-contiguous input.
+
+1. batch size 줄임 => 돌아감!
