@@ -4,3 +4,6 @@ RuntimeError: cuDNN error: CUDNN_STATUS_NOT_SUPPORTED. This error may appear if 
 
 원래 2000 => 100으로 줄였더니 에러 없이 돌아가는 것을 발견 (in case of VGG16)
 
+https://komputervision.wordpress.com/2016/03/21/intrinsic-camera-parameters-for-resized-images-set-of-a-chessboard/
+
+ratio가 바뀌어도 distortion은 바뀌지 않는다!
