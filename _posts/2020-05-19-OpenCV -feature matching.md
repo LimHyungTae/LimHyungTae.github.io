@@ -23,3 +23,7 @@ ORB에 피라미드 이미지 + 가우시안 적용하면 성능이 꽤 올라�
 PROSAC?
 
 https://github.com/willGuimont/PROSAC
+
+https://reader.elsevier.com/reader/sd/pii/S1110866513000248?token=9D93713A8703F09FE591D32CD920E120A5A47313E78FB147CF501223A5F46EC2F088EB1CB9EAE29E890381F5E7C8F951
+
+SURF가 transformation / scaling에서 더 잘 됨!
