@@ -1,0 +1,34 @@
+---
+layout: post
+title: 수식없이 이해하는 Graph SLAM (3)-Covariance의 이해
+subtitle: Introduction
+tags: [graph slam]
+comments: true
+---
+
+# 입문의 바이블, 하지만 개발과의 괴리
+
+SLAM이나 로보틱스 분야에 관심이 있으신 분이라면, 다들 한번쯤 Probabilistic Robotics를 정독해라고 추천받으셨을 것이고, Probabilistic Robotics를 구매하신 분들도 꽤나 많으실 겁니다. ~샀지만 다 읽어본다곤 안 했다~ 그런데 읽기에 앞서 왜 *Probabilistic*인지에 대한 고민을 해보셨나요? 왜 확률이 쓰인다는 게 뭘까?
+
+# 내분 a:b = m:n에서 가져오는 insight
+
+몸무게
+
+
+
+# 센서의 값을 믿는다고요?
+
+# Sigma 값
+
+# 다변수로 가면
+
+키, 몸무게, 허벅지 두께, 발 크기
+
+
+
+## Reference
+[1] Probabilistic Analysis와 Stochastic Analysis의 차이, https://snoopy0505.tistory.com/87  <br/>
+[2] Filtering a PointCloud using a PassThrough filter, http://pointclouds.org/documentation/tutorials/passthrough.php <br/>
+[3] Downsampling a PointCloud using a VoxelGrid filter, http://pointclouds.org/documentation/tutorials/voxel_grid.php <br/>
+[4] Removing outliers using a StatisticalOutlierRemoval filter, http://pointclouds.org/documentation/tutorials/statistical_outlier.php <br/>
+
