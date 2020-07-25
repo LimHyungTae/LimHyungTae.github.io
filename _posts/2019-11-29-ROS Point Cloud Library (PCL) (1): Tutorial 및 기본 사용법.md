@@ -2,12 +2,11 @@
 
 ---
 layout: post
-title: 수식없이 이해하는 Graph SLAM (1)
+title: ROS Point Cloud Library (PCL) (1): Tutorial 및 기본 사용법
 subtitle: ROS PCL Tutorial
 tags: [PCL]
 comments: true
 ---
-----------------
 
 ## PCL 선언하는 법 & T Type
 
