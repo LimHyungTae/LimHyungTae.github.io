@@ -1,8 +1,8 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) (2): sensor_msgs::PointCloud2 to pcl::PointCloud and vise versa
-subtitle: Each post also has a subtitle
-tags: [Point Cloud Library, PCL, ROS, sensors_msgs::PointCloud2, pcl::PointCloud]
+title: ROS Point Cloud Library (PCL) (2) - toROSMsg, fromROSMsg
+subtitle: ROS와 PCL 간의 형 
+tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
@@ -153,10 +153,13 @@ pc_sor_filtered = *ptr_sor_filtered;
 ```
 
 ## Reference
-[1] Using a matrix to transform a point cloud, http://pointclouds.org/documentation/tutorials/matrix_transform.php <br/>
-[2] Filtering a PointCloud using a PassThrough filter, http://pointclouds.org/documentation/tutorials/passthrough.php <br/>
-[3] Downsampling a PointCloud using a VoxelGrid filter, http://pointclouds.org/documentation/tutorials/voxel_grid.php <br/>
-[4] Removing outliers using a StatisticalOutlierRemoval filter, http://pointclouds.org/documentation/tutorials/statistical_outlier.php <br/>
+[1] [Using a matrix to transform a point cloud](http://pointclouds.org/documentation/tutorials/matrix_transform.php)
+
+[2] [Filtering a PointCloud using a PassThrough filter](http://pointclouds.org/documentation/tutorials/passthrough.php)
+
+[3] [Downsampling a PointCloud using a VoxelGrid filter](http://pointclouds.org/documentation/tutorials/voxel_grid.php)
+
+[4] [Removing outliers using a StatisticalOutlierRemoval filter](http://pointclouds.org/documentation/tutorials/statistical_outlier.php)
 
 
 
