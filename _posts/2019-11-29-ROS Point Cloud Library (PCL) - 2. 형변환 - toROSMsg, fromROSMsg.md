@@ -8,7 +8,7 @@ comments: true
 
 ### 형변환을 해야 하는 이유
 
-ROS나 로봇 분야에서 처음 입문을 하면 형 변환을 하는 게 낯설어서 굉장히 힘듭니다. 그런데 이 형 변환을 왜 해야할까요? 정답은 ROS에서 master를 통해 통신할 때 주고 받는 sensor_msgs::PointCloud2 메세지를 subscribe한 후 그 pointcloud를 후처리할 때는 PCL을 사용해야 하기 때문입니다! 이렇게 분리해서 쓰는 이유는 물론 ROS와 PCL을 개발한 사람들이 다른 이유도 있겠지만, 통신을 빠르게 하기 위함이라고 생각합니다 (저의 100% 견해입니다). 왜냐하면 [ROS sensors_msgs::PointCloud2 공식 안내 페이지](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/PointCloud2.html)를 살펴보면 range data가 uint8로 encoding되어 있는데, 이렇게 data를 담아서 publish/subscribe하는 게 3개의 float64로 구성되있는 수 만개의 `pcl::PointXYZ`를 직접 publish/subscribe하는 것보다 훨씰 메모리를 절약할 수 있기 때문입니다.  
+ROS나 로봇 분야에서 처음 입문을 하면 형 변환을 하는 게 낯설어서 굉장히 힘듭니다. 그런데 이 형 변환을 왜 해야할까요? 정답은 ROS에서 master를 통해 통신할 때 주고 받는 `sensor_msgs::PointCloud2` 메세지를 subscribe한 후 그 pointcloud를 후처리할 때는 PCL을 사용해야 하기 때문입니다! 이렇게 분리해서 쓰는 이유는 물론 ROS와 PCL을 개발한 사람들이 다른 이유도 있겠지만, 통신을 빠르게 하기 위함이라고 생각합니다 (저의 100% 견해입니다). 왜냐하면 [ROS sensors_msgs::PointCloud2 공식 안내 페이지](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/PointCloud2.html)를 살펴보면 range data가 uint8로 encoding되어 있는데, 이렇게 1차원의 range 정보를 `data`를 담아서 publish/subscribe하는 게 3개의 float64로 구성되있는 수 만개의 `pcl::PointXYZ`를 직접 publish/subscribe하는 것보다 훨씰 메모리를 절약할 수 있기 때문입니다.  
 
 ---
 
@@ -54,6 +54,15 @@ sensor_msgs::PointCloud2 laser2cloudmsg(sensor_msgs::LaserScan laser)
       return pc2_dst;
     }
 ```
+
+---
+
+
+Point Cloud Library Tutorial 시리즈입니다.
+
+1. **ROS Point Cloud Library (PCL) - 1. Tutorial 및 기본 사용법**
+
+2. **ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg**
 
 
 
