@@ -17,6 +17,9 @@ Hyungjin Kim (hjkim86@kaist.ac.kr)
 -----------
 
 ### sensor_msgs::PointCloud2 :arrow_right: pcl::PointCloud
+
+→
+
 ```cpp
 pcl::PointCloud<pcl::PointXYZ> cloudmsg2cloud(sensor_msgs::PointCloud2 cloudmsg)
   {
