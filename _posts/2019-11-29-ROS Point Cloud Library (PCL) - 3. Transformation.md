@@ -27,6 +27,8 @@ pcl::transformPointCloud(cloud_src, *ptr_transformed, trans);
 pc_transformed = *ptr_transformed
 ```
 
+<script src="https://gist.github.com/LimHyungTae/ddd6f5cd6c2507a86388bd1b703e0cbb.js"></script>
+
 [1] [Using a matrix to transform a point cloud](http://pointclouds.org/documentation/tutorials/matrix_transform.php)
 
 [2] [Filtering a PointCloud using a PassThrough filter](http://pointclouds.org/documentation/tutorials/passthrough.php)
