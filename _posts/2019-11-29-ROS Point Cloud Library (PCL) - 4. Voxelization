@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 4. Voxelization
-subtitle: ROS와 PCL 간의 형 변환
+subtitle: Voxelization
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
