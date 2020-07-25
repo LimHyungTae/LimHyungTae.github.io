@@ -1,8 +1,8 @@
 ---
 layout: post
-title: ROS - PCL 자주 쓰이는 것 정리
+title: ROS Point Cloud Library (PCL) (2): sensor_msgs::PointCloud2 to pcl::PointCloud and vise versa
 subtitle: Each post also has a subtitle
-tags: [test]
+tags: [Point Cloud Library, PCL, ROS, sensors_msgs::PointCloud2, pcl::PointCloud]
 comments: true
 ---
 
