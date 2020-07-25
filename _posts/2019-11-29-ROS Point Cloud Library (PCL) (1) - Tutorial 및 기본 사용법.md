@@ -11,7 +11,6 @@ comments: true
 Point Cloud Library(사이트는 [여기](https://pointclouds.org/)) LiDAR나 RGB-D 카메라를 통해 취득한 pointcloud를 후처리하는데 사용되는 알고리즘을 구현해둔 라이브러리입니다. 특히, SLAM등이나 navigation을 할 때 써야하는 filter 알고리즘, voxelization, registration (i.e. ICP나 NDT 등) 등이 이미 구현되어 있어서 알고리즘을 개발할 때 편리합니다. 특히, 연구레벨에서도 PCL 자체가 깔끔한 상속으로 구성되어 있어서 자기만의 수정된 알고리즘을 구현할 때에도 PCL의 부분부분을 상속받아서 쉽게 수정하여 사용가능한 것으로 알고 있습니다.
 ![centroid](/img/pcl_contents.JPG)
 
-**test**
 
 # 기초적인 사용법
 
@@ -19,13 +18,13 @@ Point Cloud Library(사이트는 [여기](https://pointclouds.org/)) LiDAR나 RG
 
 ### T Type
 
-pcl상의 PointCloud pcl::PointCloud<T>에는 다양한 type을 담을 수 있는데,
+pcl에서 구현되어 있는 Pointcloud 타입 `pcl::PointCloud<T>`에는 다양한 type을 담을 수 있는데,
 
-주로 **LiDAR**를 사용할 때는 `pcl::PointXYZ`, `pcl::PointXYZI`를 많이 사용한다.
+주로 **LiDAR**를 사용할 때는 `pcl::PointXYZ`, `pcl::PointXYZI`를 많이 사용합니다.
 
-**RGB-D나 스테레오 카메라**는 depth를 image에 align시키면 point의 색깔도 알 수 있기 때문에 `pcl::PointXYZRGB(A)`를 사용하는 경우도 있다.
+**RGB-D나 스테레오 카메라**는 depth를 image에 align시키면 point의 색깔도 알 수 있기 때문에 `pcl::PointXYZRGB(A)`를 사용하기도 합니다.
 
-더 다양한 type은 원래 [pcl tutorial 페이지](http://www.pointclouds.org/documentation/tutorials/adding_custom_ptype.php#adding-custom-ptype)에서 확인할 수 있다. 
+더 다양한 type은 원래 [pcl tutorial 페이지](http://www.pointclouds.org/documentation/tutorials/adding_custom_ptype.php#adding-custom-ptype)에서 확인 가능합니다. 
 
 ```cpp
 pcl::PointCloud<pcl::PointXYZ> cloud;
@@ -45,7 +44,7 @@ point_xyz.x = 1;
 point_xyz.y = 2;
 point_xyz.z = 3;
 ```
-혹은 아래와 같이 한 줄로 선언할 수도 있다.
+혹은 아래와 같이 한 줄로 선언이 가능합니다.
 ```cpp 
 
 pcl::PointXYZ point_xyz = {1, 2, 3}; // 1, 2, 3이 각각 x, y, z로 지정된다.
@@ -63,9 +62,9 @@ using namespace std;
 
 ### pcl::PointCloud 선언해서 Points에 Point 넣는 법
 
-기본적으로 pcl은 std::vector의 사용법과 유사하다.
+기본적으로 pcl은 std::vector의 사용법과 유사합니다.
 
-왜냐하면 pcl의 내부를 살펴보면 std::vector로 구성되어 있기 때문이다 (http://docs.pointclouds.org/trunk/classpcl_1_1_point_cloud.html 참조)
+왜냐하면 pcl의 내부를 살펴보면 std::vector로 구성되어 있기 때문입니다 :) ([여기](http://docs.pointclouds.org/trunk/classpcl_1_1_point_cloud.html)를 참조하시면 알 수 있습니다)
 
 ```cpp
 pcl::PointCloud<pcl::PointXYZ> cloud;
@@ -113,7 +112,7 @@ cloud.push_back(pcl::PointXYZ(4, 5, 6));
 cloud.push_back(pcl::PointXYZ(7, 8, 9));
 ```
 
-출력을 하면 아래와 같은 결과를 볼 수 있다.
+출력을 하면 아래와 같은 결과가 출력됩니다.
 ```cpp
 for (int i = 0 ; i < cloud.size(); ++i){
       cout << i << ": ";
@@ -141,7 +140,7 @@ cout << cloud.begin()->y << ", ";
 cout << cloud.begin()->z << endl;
 ```
 
-->의 의미는 옆 사이트에 설명되어 있다. https://ianuarias.tistory.com/16 
+->의 의미는 [이 블로그 글](https://ianuarias.tistory.com/16)에 잘 설명돼있습니다. 
 
 ->의 의미 한 줄 요약: return 값이 주소값이기 때문에, 주소값이 가르키는 객체의 멤버변수/멤버함수는 ->로 지칭함.
 
@@ -159,9 +158,9 @@ cout << cloud.end()->z << endl;
 ##### Result: <br/>
 end(): 0, 0, 0
 
-????? 왜 0, 0, 0?: vector의 end()처럼 마지막 요소의 다음 부분을 가르키는 iterator를 리턴하기 때문.
+????? 왜 0, 0, 0?: vector의 end()처럼 마지막 요소의 다음 부분을 가르키는 iterator를 리턴하기 때문!
 
-따라서 우리가 원하는 pcl::PointCloud의 제일 뒷쪽의 요소를 가르키는 iterator를 뜻하려면 다음과 같이 -1을 빼주면 된다.
+따라서 우리가 원하는 pcl::PointCloud의 제일 뒷쪽의 요소를 가르키는 iterator를 뜻하려면 다음과 같이 -1을 빼주어 사용해야 합니다.
 
 ```cpp
 cout << "end() -1: ";
@@ -194,8 +193,7 @@ cout << cloud.back().z << endl;
 ##### Result: <br/>
 back(): 7, 8, 9
 
-### at(int index)
-pcl::PointCloud 상의 index에 해당하는 요소를 반환함.
+### at(int index) pcl::PointCloud 상의 index에 해당하는 요소를 반환함.
 
 ```cpp
 cout << "at(1): ";
@@ -255,9 +253,9 @@ size: 4 <br/>
 
 ## PCL pointer Ptr 선언
 
-### 사용하는 이유
+### Pointer를 사용하는 이유
 
-pcl::PointCloud의 pointer는 아래와 같이 선언할 수 있다.
+pcl::PointCloud의 pointer는 아래와 같이 선언할 수 있습니다.
 
 ```cpp
 pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>);
