@@ -6,8 +6,6 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
-# ROS Point Cloud Library (PCL) (1) - Tutorial 및 기본 사용법
-
 ## PCL 선언하는 법 & T Type
 
 ### T Type
