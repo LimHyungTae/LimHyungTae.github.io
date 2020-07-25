@@ -269,16 +269,13 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>
 그럼, 기존의 reference 기반의 pointer처럼 `pcl::PointCloud`의 주소를 Ptr로 할당시키려면 아래와 같이 하면 될까요?
 
 ```cpp
-ptr_cloud = &cloud2;
+ptr_cloud = &cloud2; # Wrong :(
 ```
 
 정답은 아닙니다!! 자세히 wiki를 살펴보시면 boost::shared_ptr로 구성되어 있기때문에, 아래와 같이 사용해야 pointcloud를 참조할 수 있습니다.
 
-
-아래와 같이 하면 pcl::PointCloud를 Ptr에 할당할 수 있다.
-
 ```cpp
-*ptr_cloud = cloud2;
+*ptr_cloud = cloud2; # Right :)
 ```
 
 ### 사용법
