@@ -342,6 +342,6 @@ After: <br/>
 
 Point Cloud Library Tutorial 시리즈입니다.
 
-1. [ROS Point Cloud Library (PCL) (1) - Tutorial 및 기본 사용법](2019-11-29-ROS Point Cloud Library (PCL) (1) - Tutorial 및 기본 사용법)
-2. **GoF의 디자인 패턴 (Summary) - 2. 추상 팩토리(Abstract Factory)**
-3. [ROS Point Cloud Library (PCL) (2) - 형변환 - toROSMsg, fromROSMsg](2019-11-29-ROS Point Cloud Library (PCL) (2) - 형변환 - toROSMsg, fromROSMsg)
+1. **ROS Point Cloud Library (PCL) - 1. Tutorial 및 기본 사용법**
+
+2. [ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg](2019-11-29-ROS Point Cloud Library (PCL) (2) - 형변환 - toROSMsg, fromROSMsg)
