@@ -158,9 +158,9 @@ cout << cloud.end()->z << endl;
 ##### Result: <br/>
 end(): 0, 0, 0
 
-????? 왜 0, 0, 0?: vector의 end()처럼 마지막 요소의 다음 부분을 가르키는 iterator를 리턴하기 때문!
+왜 0, 0, 0?: vector의 end()처럼 마지막 요소의 다음 부분을 가르키는 iterator를 리턴하기 때문! 즉 (0, 0, 0)은 메모리 상 값이 할당되지 않은 부분을 가르켜 값을 가져왔기 때문에 뜨는 숫자들입니다.
 
-따라서 우리가 원하는 pcl::PointCloud의 제일 뒷쪽의 요소를 가르키는 iterator를 뜻하려면 다음과 같이 -1을 빼주어 사용해야 합니다.
+따라서 `pcl::PointCloud`의 제일 뒷쪽의 요소를 가르키는 iterator를 뜻하려면 `std::vector`와 마찬가지로 -1을 빼주어 사용해야 합니다.
 
 ```cpp
 cout << "end() -1: ";
@@ -261,18 +261,19 @@ pcl::PointCloud의 pointer는 아래와 같이 선언할 수 있습니다.
 pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>);
 ```
 
-기존에 우리가 알던 &로 pointer를 선언하는 것과 다르다.
+우선 `pcl::PointCloud<T>::Ptr`를 사용하는 이유는 제가 생각하기에 아래 두 요인이 큰 것 같습니다.
 
-하지만 pcl에 구현되어있는 함수들이 대부분 Ptr을 매개체로 하여 출력값을 저장하기 때문에, 사용해야 한다.
+1. PCL 상에서 poincloud를 처리할 때 값들을 통째로 복사한 후 처리하기에는 point들이 너무 많음 (3D LiDAR는 적어도 한 번 스캔에 10000개의 point가 측정되는데, 크기가 10000인 vector를 계속 메모리에 통째로 복사한다고 생각하면 이해가 쉽게 될 것 같습니다) 
+2. Sensor data를 처리함에 있어서 그때그때 data를 받아서 처리해야 하므로, 동적할당을 통해 메모리를 좀 더 효율적으로 사용함
 
-https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/_posts/2019-11-29-%5BROS%5D%20PCL%20%EC%9E%90%EC%A3%BC%20%EC%93%B0%EC%9D%B4%EB%8A%94%20%EA%B2%83%20%EC%A0%95%EB%A6%AC.md
+그럼, 기존의 reference 기반의 pointer처럼 `pcl::PointCloud`의 주소를 Ptr로 할당시키려면 아래와 같이 하면 될까요?
 
-그럼 pcl::PointCloud의 주소를 Ptr로 할당시키려면 아래와 같이 해야할까?
 ```cpp
 ptr_cloud = &cloud2;
 ```
 
-아님!! ~~boost::shared_ptr랑 관련 있는 거 같은데 c++ 고수님들 왜 그런건지 아시는 분 가르쳐주세요...~~
+정답은 아닙니다!! 자세히 wiki를 살펴보시면 boost::shared_ptr로 구성되어 있기때문에, 아래와 같이 사용해야 pointcloud를 참조할 수 있습니다.
+
 
 아래와 같이 하면 pcl::PointCloud를 Ptr에 할당할 수 있다.
 
@@ -335,7 +336,7 @@ After: <br/>
 2: 7, 8, 9 <br/>
 3: 10, 11, 12
 
-그대로임을 알 수 있다. 즉, 주소를 할당받아 link되어 있지 않고, points들을 통째로 복사해오는 것임.
+결과가 그대로임을 알 수 있다. 즉, **+=** operation은 주소를 할당받아 link되어 있지 않고, points들을 통째로 복사해온다는 것을 알 수 있습니다.
 
 
 
