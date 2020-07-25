@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) (1): Tutorial 및 기본 사용법
+title: ROS Point Cloud Library (PCL) (1) - Tutorial 및 기본 사용법
 subtitle: Introduction
 tags: [Graph SLAM]
 comments: true
