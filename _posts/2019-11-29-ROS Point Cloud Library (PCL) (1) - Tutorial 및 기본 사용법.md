@@ -6,6 +6,12 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
+# Point Cloud Library를 사용해야 하는 이유 
+
+[Point Cloud Library](https://pointclouds.org/) LiDAR나 RGB-D 카메라를 통해 취득한 pointcloud를 처리하는데 사용하는 filter 알고리즘, voxelization, registration (i.e. ICP나 NDT 등) 등이 이미 구현되어 있어서 개발을 용이하게 해주는 라이브러리입니다. 특히나 후에 익숙해지면 library가 상속이 굉장히 잘 되어 있어서 자기만의 수정된 알고리즘을 구현하는 데에도 원활히 사용가능한 것으로 알고 있습니다.
+
+# 기초적인 사용법
+
 ## PCL 선언하는 법 & T Type
 
 ### T Type
