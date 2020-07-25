@@ -12,12 +12,11 @@ comments: true
 
 pcl상의 PointCloud pcl::PointCloud<T>에는 다양한 type을 담을 수 있는데,
 
-주로 **LiDAR**를 사용할 때는 *pcl::PointXYZ, pcl::PointXYZI*를 많이 사용한다.
+주로 **LiDAR**를 사용할 때는 `pcl::PointXYZ`, `pcl::PointXYZI`를 많이 사용한다.
 
-**RGB-D나 스테레오 카메라**는 depth를 image에 align시키면 point의 색깔도 알 수 있기 때문에 *pcl::PointXYZRGB(A)*를 사용하는 경우도 있다.
+**RGB-D나 스테레오 카메라**는 depth를 image에 align시키면 point의 색깔도 알 수 있기 때문에 `pcl::PointXYZRGB(A)`를 사용하는 경우도 있다.
 
-더 다양한 type은 원래 pcl tutorial 페이지에서 확인할 수 있다. <br/>
-http://www.pointclouds.org/documentation/tutorials/adding_custom_ptype.php#adding-custom-ptype
+더 다양한 type은 원래 [pcl tutorial 페이지](http://www.pointclouds.org/documentation/tutorials/adding_custom_ptype.php#adding-custom-ptype)에서 확인할 수 있다. 
 
 ```cpp
 pcl::PointCloud<pcl::PointXYZ> cloud;
