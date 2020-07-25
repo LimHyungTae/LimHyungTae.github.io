@@ -6,15 +6,7 @@ tags: [test]
 comments: true
 ---
 
-## PCL cheat sheet(2/2)
-
-Original author: Hyungtae Lim (shapelim@kaist.ac.kr)
-
-I really want to thank Seungwon and Hyungjin for their codes. <br/> 
-Seungwon Song (sswan55@kaist.ac.kr) <br/>
-Hyungjin Kim (hjkim86@kaist.ac.kr)
-
------------
+### 형변환을 해야 하는 이유
 
 ### sensor_msgs::PointCloud2 :arrow_right: pcl::PointCloud
 
