@@ -1,0 +1,60 @@
+---
+layout: post
+title: ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg
+subtitle: ROS와 PCL 간의 형 변환
+tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
+comments: true
+---
+
+### 형변환을 해야 하는 이유
+
+ROS나 로봇 분야에서 처음 입문을 하면 형 변환을 하는 게 낯설어서 굉장히 힘듭니다. 그런데 이 형 변환을 왜 해야할까요? 정답은 ROS에서 master를 통해 통신할 때 주고 받는 sensor_msgs::PointCloud2 메세지를 subscribe한 후 그 pointcloud를 후처리할 때는 PCL을 사용해야 하기 때문입니다! 이렇게 분리해서 쓰는 이유는 물론 ROS와 PCL을 개발한 사람들이 다른 이유도 있겠지만, 통신을 빠르게 하기 위함이라고 생각합니다 (저의 100% 견해입니다). 왜냐하면 [ROS sensors_msgs::PointCloud2 공식 안내 페이지](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/PointCloud2.html)를 살펴보면 range data가 uint8로 encoding되어 있는데, 이렇게 data를 담아서 publish/subscribe하는 게 3개의 float으로 구성되있는 Point를 직접 publish/subscribe하는 것보다 훨씰 메모리를 절약할 수 있기 때문입니다.  
+
+---
+
+메세지 변환은 아래와 같이 `pcl::fromROSMsg`와 `pcl::toROSMsg`를 사용하면 쉽게 변환할 수 있습니다. 
+
+### sensor_msgs::PointCloud2 → pcl::PointCloud
+
+```cpp
+pcl::PointCloud<pcl::PointXYZ> cloudmsg2cloud(sensor_msgs::PointCloud2 cloudmsg)
+  {
+    pcl::PointCloud<pcl::PointXYZ> cloud_dst;
+    pcl::fromROSMsg(cloudmsg, cloud_dst);
+    return cloud_dst;
+  }
+```
+### pcl::PointCloud → sensor_msgs::PointCloud2
+```cpp
+sensor_msgs::PointCloud2 cloud2cloudmsg(pcl::PointCloud<pcl::PointXYZ> cloud_src)
+  {
+    sensor_msgs::PointCloud2 cloudmsg;
+    pcl::toROSMsg(cloudsrc, cloudmsg);
+    cloudmsg.header.frame_id = "map";
+    return cloudmsg;
+  }
+```
+
+---
+
+2D LiDAR를 사용하시는 분도 계실텐데, 2D LiDAR는 `sensor_msgs::PointCloud2`가 아닌 `sensor_msgs::LaserScan`이기 때문에, 아래와 같이 laser_geometry header를 통해 변환해줄 수 있습니다.
+
+### sensor_msgs::LaserScan → sensor_msgs::PointCloud2
+```cpp
+
+#include "laser_geometry/laser_geometry.h"
+
+sensor_msgs::PointCloud2 laser2cloudmsg(sensor_msgs::LaserScan laser)
+    {
+      static laser_geometry::LaserProjection projector;
+      sensor_msgs::PointCloud2 pc2_dst;
+      projector.projectLaser(laser, pc2_dst,-1,laser_geometry::channel_option::Intensity | laser_geometry::channel_option::Distance);
+      pc2_dst.header.frame_id = "map";
+
+      return pc2_dst;
+    }
+```
+
+
+
+
