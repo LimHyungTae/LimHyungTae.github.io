@@ -1,7 +1,12 @@
 # PCL cheat sheet(1/2)
 
-Original author: Hyungtae Lim (shapelim@kaist.ac.kr)   
-
+---
+layout: post
+title: ROS - PCL 자주 쓰이는 것 정리
+subtitle: Each post also has a subtitle
+tags: [test]
+comments: true
+---
 
 ----------------
 
