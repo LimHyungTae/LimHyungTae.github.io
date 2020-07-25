@@ -261,7 +261,7 @@ pcl::PointCloud의 pointer는 아래와 같이 선언할 수 있습니다.
 pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>);
 ```
 
-기존에 우리가 알던 &#42로 pointer를 선언하는 것과 다르다.
+기존에 우리가 알던 &로 pointer를 선언하는 것과 다르다.
 
 하지만 pcl에 구현되어있는 함수들이 대부분 Ptr을 매개체로 하여 출력값을 저장하기 때문에, 사용해야 한다.
 
