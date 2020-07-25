@@ -11,6 +11,7 @@ comments: true
 Point Cloud Library(사이트는 [여기](https://pointclouds.org/)) LiDAR나 RGB-D 카메라를 통해 취득한 pointcloud를 후처리하는데 사용되는 알고리즘을 구현해둔 라이브러리입니다. 특히, SLAM등이나 navigation을 할 때 써야하는 filter 알고리즘, voxelization, registration (i.e. ICP나 NDT 등) 등이 이미 구현되어 있어서 알고리즘을 개발할 때 편리합니다. 특히, 연구레벨에서도 PCL 자체가 깔끔한 상속으로 구성되어 있어서 자기만의 수정된 알고리즘을 구현할 때에도 PCL의 부분부분을 상속받아서 쉽게 수정하여 사용가능한 것으로 알고 있습니다.
 ![centroid](/img/pcl_contents.JPG)
 
+---
 
 # 기초적인 사용법
 
@@ -251,6 +252,8 @@ size: 4 <br/>
 2: 7, 8, 9 <br/>
 3: 10, 11, 12
 
+---
+
 ## PCL pointer Ptr 선언
 
 ### Pointer를 사용하는 이유
@@ -335,5 +338,10 @@ After: <br/>
 
 결과가 그대로임을 알 수 있습니다. 즉, **+=** operation은 주소를 할당받아 link되어 있지 않고, points들을 통째로 복사해온다는 것을 알 수 있습니다.
 
+---
 
+Point Cloud Library Tutorial 시리즈입니다.
 
+1. [ROS Point Cloud Library (PCL) (1) - Tutorial 및 기본 사용법](2019-11-29-ROS Point Cloud Library (PCL) (1) - Tutorial 및 기본 사용법)
+2. **GoF의 디자인 패턴 (Summary) - 2. 추상 팩토리(Abstract Factory)**
+3. [ROS Point Cloud Library (PCL) (2) - 형변환 - toROSMsg, fromROSMsg](2019-11-29-ROS Point Cloud Library (PCL) (2) - 형변환 - toROSMsg, fromROSMsg)
