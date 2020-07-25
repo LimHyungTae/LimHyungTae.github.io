@@ -8,9 +8,9 @@ comments: true
 
 ### 형변환을 해야 하는 이유
 
-### sensor_msgs::PointCloud2 :arrow_right: pcl::PointCloud
+### sensor_msgs::PointCloud2 → pcl::PointCloud
 
-→
+
 
 ```cpp
 pcl::PointCloud<pcl::PointXYZ> cloudmsg2cloud(sensor_msgs::PointCloud2 cloudmsg)
@@ -20,7 +20,7 @@ pcl::PointCloud<pcl::PointXYZ> cloudmsg2cloud(sensor_msgs::PointCloud2 cloudmsg)
     return cloud_dst;
   }
 ```
-### pcl::PointCloud :arrow_right: sensor_msgs::PointCloud2
+### pcl::PointCloud → sensor_msgs::PointCloud2
 ```cpp
 sensor_msgs::PointCloud2 cloud2cloudmsg(pcl::PointCloud<pcl::PointXYZ> cloud_src)
   {
@@ -31,7 +31,7 @@ sensor_msgs::PointCloud2 cloud2cloudmsg(pcl::PointCloud<pcl::PointXYZ> cloud_src
   }
 ```
 
-### sensor_msgs::LaserScan :arrow_right: sensor_msgs::PointCloud2
+### sensor_msgs::LaserScan → sensor_msgs::PointCloud2
 ```cpp
 
 #include "laser_geometry/laser_geometry.h"
