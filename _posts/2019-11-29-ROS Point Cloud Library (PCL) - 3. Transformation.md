@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 3. Transformation
-subtitle: ROS Point Cloud Library (PCL) - 3. Transformation
+subtitle: PCL Transformation
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
