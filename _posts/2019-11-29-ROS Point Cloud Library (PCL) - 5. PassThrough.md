@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 3. Transformation
+title: ROS Point Cloud Library (PCL) - 5. PassThrough
 subtitle: 축을 기준으로하는 pointcloud filtering
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
@@ -31,5 +31,5 @@ filter.filter(*ptr_filtered);
 pc_filtered = *ptr_filtered;
 ```
 
-
+<script src="https://gist.github.com/LimHyungTae/1235dcdbe293133079c359f11906be24.js"></script>
 
