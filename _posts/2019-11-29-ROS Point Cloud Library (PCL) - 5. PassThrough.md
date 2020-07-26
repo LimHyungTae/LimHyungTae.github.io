@@ -16,8 +16,29 @@ PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 �
 
 # How to use PassThrough Filter
 
+아래의 snippet은 로봇 pointcloud로 앞 방향(+x)쪽으로 0.5m~100m에 있는 point들만 걸러내는 예제입니다. 만약 `setFilterLimitsNegative(true)`로 설정을 하게 되면 x축 기준 음의 무한대(-Inf)~0.5m에 있는 point만 filtering됩니다.
+
 <script src="https://gist.github.com/LimHyungTae/e64164994be190b6a3638f6b770f9485.js"></script>
+
+---
+추가로, 제가 실제로 짰던 코드 snippet도 공유드립니다. 주로 Robot에 3D LiDAR를 부착하게 되면 Sensor로 취득한 뒷 부분을 아래와 같이 filtering해야 합니다. 이 때 `setFilterLimitsNegative(true)`를 사용하면 손쉽게 filtering할 수 있습니다. (물론 for문으로 포인트마다 영역을 확인해줘서 filtering해주는 방법도 가능합니다 :)
+
+![real](/img/passthrough_real_case.JPG)
 
 
 <script src="https://gist.github.com/LimHyungTae/aa538935ec8a5c8a482a8eb3002b6407.js"></script>
 
+
+---
+
+Point Cloud Library Tutorial 시리즈입니다.
+
+1. **ROS Point Cloud Library (PCL) - 1. Tutorial 및 기본 사용법**
+
+2. **ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg**
+
+3. **ROS Point Cloud Library (PCL) - 3. Transformation**
+
+4. **ROS Point Cloud Library (PCL) - 4. Voxelization**
+
+5. **ROS Point Cloud Library (PCL) - 5. PassThrough**
