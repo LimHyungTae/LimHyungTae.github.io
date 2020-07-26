@@ -33,7 +33,7 @@ Robotics 분야에서 개발/연구를 하다보면 밥먹듯이 해야하는 �
 
 간혹 0.165와 0.320이 +인지 -인지 부호가 헷갈리는 경우가 있습니다. 그럴때는 저는 (0,0,0,1), (1,0,0,1), (0,1,0,1), (0,0,1,1) 등과 transformation matrix를 곱했을 때의 결과가 Body 기준으로 맞는 위치로 표현되었는지 확인해봅니다.  
 
-* 수학적 표현에 대해서는 저는 개인적으로 [Introduction to Robotics chapter 2](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)가 많이 도움되었습니다.
+* 수학적 표현에 대해서는 저는 개인적으로 [*Introduction to Robotics*의 chapter 2](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)가 많이 도움되었습니다.
 
 * ROS에서는 pose의 orientation이 quaternion으로 표현이 되는데, 이걸 어떻게 rotation matrix로 표현할 수 있을까요? 정답은 ROS의 `tf::Quaternion`을 사용하면 쉽게 변환할 수 있습니다. 코드는 [여기](https://gist.github.com/LimHyungTae/2499a68ea8ee4d8a876a149858a5b08e)를 참조하세요 ;)
 
