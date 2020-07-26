@@ -10,7 +10,7 @@ comments: true
 
 ![centroid](/img/pcl_centroid.PNG)
 
-Voxelization은 pointcloud를 말그대로 voxel화해주는 기능입니다. 위의 그림처럼 여러 개의 point들이 있을 때 공간을 `Leaf`의 크기로 나누어서 그 크기 내의 점들의 평균을 내어 pointcloud를 재 기술해줍니다. 따라서 원래 한 `Leaf`에 N개의 point가 있었으면 이 N개의 point를 1개의 point로 나타내주기 때문에 효율적으로 pointcloud를 관리할 수 있습니다. 정리하자면 Voxelization을 하면 아래와 같은 두 효과를 볼 수 있습니다.
+Voxelization은 pointcloud를 말그대로 voxel화해주는 기능입니다. 위의 그림처럼 여러 개의 point들이 있을 때 공간을 `Leaf` (혹은 Cell, grid 등 여러 표현이 있으나 PCL에서는 `setLeafSize`를 통해 voxel size를 지정해주기 때문에 편의 상 Leaf이라고 기술하였습니다)의 크기로 나누어서 그 크기 내의 점들의 평균을 내어 pointcloud를 재 기술해줍니다. 따라서 원래 한 `Leaf`에 N개의 point가 있었으면 이 N개의 point를 1개의 point로 나타내주기 때문에 효율적으로 pointcloud를 관리할 수 있습니다. 정리하자면 Voxelization을 하면 아래와 같은 두 효과를 볼 수 있습니다.
 
 * memory-efficient하게 pointcloud를 저장 가능
 * Registration, Filtering 등을 할 때 연산 대상(point)의 수가 줄어들기 때문에, 연산 속도가 굉장히 올라감
