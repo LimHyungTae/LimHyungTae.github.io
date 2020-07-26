@@ -18,6 +18,13 @@ Robotics 분야에서 개발/연구를 하다보면 밥먹듯이 해야하는 �
 
 따라서 sensor를 통해 기술되는 data를 로봇의 움직임을 기술하는 축으로 transform해주어야 하고(**Sensor Frame → Body Frame**), 최종적으로 전체 pointcloud를 map 기준으로 취합해야 하기 때문에 (**Body Frame → Global Frame**) transformation이 필요한 것입니다. 
 
+
+[![](http://img.youtube.com/vi/Sn_Ot3TiCyQ/0.jpg)](http://www.youtube.com/watch?v=Sn_Ot3TiCyQ "pose_correction")
+
+*위의 video처럼 map을 만들 때 transformation은 필수입니다!*
+
+---
+
 # How to use
 
 만약 위의 그림에서 LiDAR 센서가 로봇 Body 기준 x축으로 +0.165m, z축으로 + 0.320m에 놓여져 있다고 하면 어떻게 transformation을 하면 될까요? 코드는 아래와 같습니다. 
