@@ -1,41 +1,39 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 3. Voxelization
-subtitle: ROS와 PCL 간의 형 변환
+title: ROS Point Cloud Library (PCL) - 3. Transformation
+subtitle: ROS Point Cloud Library (PCL) - 3. Transformation
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
+# Transformation이 필요한 이유
 
-## Transformation
 ![tf](/img/pcl_robot_sensor.PNG)
 
-```cpp
-//Input: pcl::PointCloud source, cloud_src
-//Output: Transformed pcl::PointCloud, pc_transformed via 4x4 transformation matrix
+Robotics 분야에서 2D, 혹은 3D 상의 Transformation을 왜 해야할까요? 그 이유는 바로 수많은 좌표축(frame)이 존재하기 때문입니다. 위의 그림과 같이 LiDAR sensor가 하나만 달려있는 로봇이어도 최소 3가지 축이 존재합니다.
 
-pcl::PointCloud<pcl::PointXYZ> pc_transformed;
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_transformed(new pcl::PointCloud<pcl::PointXYZ>);
+* Global Frame: Navigation Frame, Map Frame이라고 불리기도 하며, 맵의 (0,0,0)과 방향을 나타냄 
+* Body Frame: Robot이 움직일 때 움직인 정도의 기준이 되는 축. 로봇이 모터 등으로 움직였을 때, 그 움직임을 나타내는 위치를 지칭함 
+* Sensor Frame: Sensor의 data가 들어올 때, 센서의 상이 맺히는 부분의 위치와 방향을 나타냄
 
-Eigen::Matrix4f trans;
-trans<< 1,   0,  0, 0.165,
-        0,   1,  0, 0.000,
-        0,   0,  1, 0.320,
-        0,   0,  0,     1;
-pcl::transformPointCloud(cloud_src, *ptr_transformed, trans);
+위의 이미지도 
 
-pc_transformed = *ptr_transformed
-```
+# How to use
 
 <script src="https://gist.github.com/LimHyungTae/ddd6f5cd6c2507a86388bd1b703e0cbb.js"></script>
 
-[1] [Using a matrix to transform a point cloud](http://pointclouds.org/documentation/tutorials/matrix_transform.php)
+* 수학적 표현에 대해서는 저는 개인적으로 [Introduction to Robotics chapter 2](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)가 많이 도움되었습니다.
 
-[2] [Filtering a PointCloud using a PassThrough filter](http://pointclouds.org/documentation/tutorials/passthrough.php)
-
-[3] [Downsampling a PointCloud using a VoxelGrid filter](http://pointclouds.org/documentation/tutorials/voxel_grid.php)
-
-[4] [Removing outliers using a StatisticalOutlierRemoval filter](http://pointclouds.org/documentation/tutorials/statistical_outlier.php)
+* ROS에서는 pose의 orientation이 quaternion으로 표현이 되는데, 이걸 어떻게 rotation matrix로 표현할 수 있을까요? 정답은 ROS의 `tf::Quaternion`을 사용하면 쉽게 변환할 수 있습니다. 코드는 [여기](https://gist.github.com/LimHyungTae/2499a68ea8ee4d8a876a149858a5b08e)를 참조하세요 ;)
 
 
+---
 
+
+Point Cloud Library Tutorial 시리즈입니다.
+
+1. **ROS Point Cloud Library (PCL) - 1. Tutorial 및 기본 사용법**
+
+2. **ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg**
+
+3. **ROS Point Cloud Library (PCL) - 3. Transformation**
