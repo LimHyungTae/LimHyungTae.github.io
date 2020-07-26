@@ -1,58 +1,10 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 4. Voxelization
-subtitle: Voxelization
+subtitle: Reduction of Computation
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
-
-
-## Transformation
-
-![tf](/img/pcl_robot_sensor.PNG)
-
-```cpp
-//Input: pcl::PointCloud source, cloud_src
-//Output: Transformed pcl::PointCloud, pc_transformed via 4x4 transformation matrix
-
-pcl::PointCloud<pcl::PointXYZ> pc_transformed;
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_transformed(new pcl::PointCloud<pcl::PointXYZ>);
-
-Eigen::Matrix4f trans;
-trans<< 1,   0,  0, 0.165,
-        0,   1,  0, 0.000,
-        0,   0,  1, 0.320,
-        0,   0,  0,     1;
-pcl::transformPointCloud(cloud_src, *ptr_transformed, trans);
-
-pc_transformed = *ptr_transformed
-```
-
-## Filtering using a PassThrough Filter
-
-```cpp
-#include <pcl/filters/passthrough.h>
-
-//Input: pcl::PointCloud source, cloud_src
-//Output: Filtered pcl::PointCloud, pc_filtered along z axis, from 0.5m to 100.0m
-
-pcl::PointCloud<pcl::PointXYZ> pc_filtered;
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_filtered(new pcl::PointCloud<pcl::PointXYZ>);
-pcl::PassThrough<pcl::PointXYZ> filter;
-
-double min_range = 0.5;
-double max_range = 100.0;
-*ptr_filtered = cloud_src;
-
-filter.setInputCloud(ptr_filtered);
-filter.setFilterFieldName("z");
-filter.setFilterLimits(min_range, max_range);
-// filter.setFilterLimitsNegative(true);
-filter.filter(*ptr_filtered);
-
-pc_filtered = *ptr_filtered;
-```
-
 
 ## Downsampling to a Voxel Grid
 ![centroid](/img/pcl_centroid.PNG)
@@ -86,6 +38,35 @@ void mapgen::voxelize(pcl::PointCloud<pcl::PointXYZ>::Ptr pc_src, pcl::PointClou
 
 }
 ```
+
+
+## Filtering using a PassThrough Filter
+
+```cpp
+#include <pcl/filters/passthrough.h>
+
+//Input: pcl::PointCloud source, cloud_src
+//Output: Filtered pcl::PointCloud, pc_filtered along z axis, from 0.5m to 100.0m
+
+pcl::PointCloud<pcl::PointXYZ> pc_filtered;
+pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_filtered(new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PassThrough<pcl::PointXYZ> filter;
+
+double min_range = 0.5;
+double max_range = 100.0;
+*ptr_filtered = cloud_src;
+
+filter.setInputCloud(ptr_filtered);
+filter.setFilterFieldName("z");
+filter.setFilterLimits(min_range, max_range);
+// filter.setFilterLimitsNegative(true);
+filter.filter(*ptr_filtered);
+
+pc_filtered = *ptr_filtered;
+```
+
+
+
 
 ## Statistical Outlier Removal
 ![sor](/img/pcl_sor.PNG)
