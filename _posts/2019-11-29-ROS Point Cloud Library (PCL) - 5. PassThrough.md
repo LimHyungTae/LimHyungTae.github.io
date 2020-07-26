@@ -23,7 +23,7 @@ PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 �
 ---
 추가로, 제가 실제로 짰던 코드 snippet도 공유드립니다. 주로 Robot에 3D LiDAR를 부착하게 되면 Sensor로 취득한 뒷 부분을 아래와 같이 filtering해야 합니다. 이 때 `setFilterLimitsNegative(true)`를 사용하면 손쉽게 filtering할 수 있습니다. (물론 for문으로 포인트마다 영역을 확인해줘서 filtering해주는 방법도 가능합니다 :)
 
-![real](/img/passthrough_real_case.JPG)
+![real](/img/passthrough_real_case.JPG){: .center-block :}
 
 
 <script src="https://gist.github.com/LimHyungTae/aa538935ec8a5c8a482a8eb3002b6407.js"></script>
