@@ -23,7 +23,7 @@ Statistical Outlier Removal는 outlier를 제거하는 알고리즘입니다. n=
 
 ---
 
-하지만, 저의 경험으로는 **3D LiDAR로 얻은 pointcloud에서는 잘 안 씁니다.** 왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 떄문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, voxelization은 Leaf 내부의 여러 point의 평균을 내기 떄문에, 이 과정에서 outlier의 영향을 줄일 수 있습니다. 따라서 SOR을 굳이 사용하지 않아도 SLAM을 하는데 큰 무리가 없습니다. (100% 저의 견해입니다. 부족한 점이 있으면 언제든 코멘트 부탁드립니다. 감사합니다.)
+하지만, 저의 경험으로는 **3D LiDAR로 얻은 pointcloud에서는 SOR을 잘 안 씁니다.** 왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 떄문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, voxelization은 Leaf 내부의 여러 point의 평균을 내기 떄문에, 이 과정에서 outlier의 영향을 줄일 수 있습니다. 따라서 SOR을 굳이 사용하지 않아도 SLAM을 하는데 큰 무리가 없습니다. (100% 저의 견해입니다. 부족한 점이 있으면 언제든 코멘트 부탁드립니다. 감사합니다.)
 
 ![sor_real_case](/img/hitach_sor.JPG)
 
