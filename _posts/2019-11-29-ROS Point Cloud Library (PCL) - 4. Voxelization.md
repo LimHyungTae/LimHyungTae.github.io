@@ -6,75 +6,35 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
-## Downsampling to a Voxel Grid
+# Voxelization이 필요한 이유
+
 ![centroid](/img/pcl_centroid.PNG)
-```cpp
-#include <pcl/filters/voxel_grid.h>
 
-//Input: pcl::PointCloud source, cloud_src
-//Output: voxelized pcl::PointCloud, pc_voxelized 
+Voxelization은 pointcloud를 말그대로 voxel화해주는 기능입니다. 위의 그림처럼 여러 개의 point들이 있을 때 공간을 `Leaf`의 크기로 나누어서 그 크기 내의 점들의 평균을 내어 pointcloud를 재 기술해줍니다. 따라서 원래 한 `Leaf`에 N개의 point가 있었으면 이 N개의 point를 1개의 point로 나타내주기 때문에 효율적으로 pointcloud를 관리할 수 있습니다. 정리하자면 Voxelization을 하면 아래와 같은 두 효과를 볼 수 있습니다.
 
-pcl::PointCloud<pcl::PointXYZ> pc_voxelized;
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_filtered(new pcl::PointCloud<pcl::PointXYZ>);
-pcl::VoxelGrid<pcl::PointXYZ> voxel_filter;
+* memory-efficient하게 pointcloud를 저장 가능
+* Registration, Filtering 등을 할 때 연산 대상(point)의 수가 줄어들기 때문에, 연산 속도가 굉장히 올라감
 
-double var_voxelsize = 0.05;
+![ndt](/img/according_to_voxel2.png)
 
-*ptr_filtered = cloud_src;
-voxel_filter.setInputCloud(ptr_filtered);
-voxel_filter.setLeafSize(var_voxelsize, var_voxelsize, var_voxelsize);
-voxel_filter.filter(*ptr_filtered);
+실제로 50x50m 크기의 map과 현재 pointcloud를 Normal Distribution Transform (NDT)로 registration을 할 때 voxel 크기를 어떻게 주냐에 따라서 연산 속도가 어떻게 변하는 지 알 수 있습니다. 하지만 주의하실 점은 *Voxel size를 적절히 세팅해주어야 한다*는 것입니다. 왜냐하면 voxel size가 크다는 것은 그만큼 map을 간단히 표현하는 것이기 때문에, registration 자체가 부정확해질 수 있기 때문입니다.
 
-pc_voxelized = *ptr_filtered;
-```
-그런데 굳이 filter()함수에 ptr을 넣지 않고 직접적으로 pcl::PointCloud<pcl::PointXYZ>로 받아도 된다.
-```cpp
-void mapgen::voxelize(pcl::PointCloud<pcl::PointXYZ>::Ptr pc_src, pcl::PointCloud<pcl::PointXYZ>& pc_dst, double var_voxel_size){
+# How to Downsample via VoxelGrid header
 
-  static pcl::VoxelGrid<pcl::PointXYZ> voxel_filter;
-  voxel_filter.setInputCloud(pc_src);
-  voxel_filter.setLeafSize(var_voxel_size, var_voxel_size, var_voxel_size);
-  voxel_filter.filter(pc_dst);
+Voxelization을 하는 방법은 아래와 같습니다.
 
-}
-```
 
 <script src="https://gist.github.com/LimHyungTae/1235dcdbe293133079c359f11906be24.js"></script>
 
-## Statistical Outlier Removal
-![sor](/img/pcl_sor.PNG)
+---
 
-The number of neighbors to analyze for each point is set to 10, and the standard deviation multiplier to 1.0
-```cpp
-#include <pcl/filters/statistical_outlier_removal.h>
+Point Cloud Library Tutorial 시리즈입니다.
 
-//Input: pcl::PointCloud source, cloud_src
-//Output: voxelized pcl::PointCloud, pc_sor_filtered 
+1. **ROS Point Cloud Library (PCL) - 1. Tutorial 및 기본 사용법**
 
-pcl::PointCloud<pcl::PointXYZ> pc_sor_filtered;
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_sor_filtered(new pcl::PointCloud<pcl::PointXYZ>);
-*ptr_sor_filtered = cloud_src;
+2. **ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg**
 
-int num_neigbor_points = 10;
-double std_multiplier = 1.0;
+3. **ROS Point Cloud Library (PCL) - 3. Transformation**
 
-pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
-sor.setInputCloud (ptr_sor_filtered);
-sor.setMeanK (num_neigbor_points);
-sor.setStddevMulThresh (std_multiplier);
-sor.filter(*ptr_sor_filtered);
-
-pc_sor_filtered = *ptr_sor_filtered;
-```
-
-## Reference
-[1] [Using a matrix to transform a point cloud](http://pointclouds.org/documentation/tutorials/matrix_transform.php)
-
-[2] [Filtering a PointCloud using a PassThrough filter](http://pointclouds.org/documentation/tutorials/passthrough.php)
-
-[3] [Downsampling a PointCloud using a VoxelGrid filter](http://pointclouds.org/documentation/tutorials/voxel_grid.php)
-
-[4] [Removing outliers using a StatisticalOutlierRemoval filter](http://pointclouds.org/documentation/tutorials/statistical_outlier.php)
-
-
+4. **ROS Point Cloud Library (PCL) - 4. Voxelization**
 
