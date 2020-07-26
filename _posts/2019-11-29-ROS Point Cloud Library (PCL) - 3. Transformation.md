@@ -16,11 +16,14 @@ Robotics 분야에서 2D, 혹은 3D 상의 Transformation을 왜 해야할까요
 * Body Frame: Robot이 움직일 때 움직인 정도의 기준이 되는 축. 로봇이 모터 등으로 움직였을 때, 그 움직임을 나타내는 위치를 지칭함 
 * Sensor Frame: Sensor의 data가 들어올 때, 센서의 상이 맺히는 부분의 위치와 방향을 나타냄
 
-위의 이미지도 
 
 # How to use
 
+만약 위의 그림에서 LiDAR 센서가 로봇 Body 기준 x축으로 +0.165m, z축으로 + 0.320m에 놓여져 있다고 하면 어떻게 transformation을 하면 될까요? 코드는 아래와 같습니다. 
+
 <script src="https://gist.github.com/LimHyungTae/ddd6f5cd6c2507a86388bd1b703e0cbb.js"></script>
+
+간혹 0.165와 0.320이 +인지 -인지 헷갈리는 경우가 있습니다. 그럴때는 저는 (0,0,0,1), (1,0,0,1), (0,1,0,1), (0,0,1,1) 등과 transformation matrix를 곱했을 때의 결과가 Body 기준의 점이 되었는지 확인해봅니다.  
 
 * 수학적 표현에 대해서는 저는 개인적으로 [Introduction to Robotics chapter 2](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)가 많이 도움되었습니다.
 
