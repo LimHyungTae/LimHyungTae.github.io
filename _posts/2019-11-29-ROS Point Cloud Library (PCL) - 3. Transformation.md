@@ -23,7 +23,7 @@ Robotics 분야에서 2D, 혹은 3D 상의 Transformation을 왜 해야할까요
 
 <script src="https://gist.github.com/LimHyungTae/ddd6f5cd6c2507a86388bd1b703e0cbb.js"></script>
 
-간혹 0.165와 0.320이 +인지 -인지 헷갈리는 경우가 있습니다. 그럴때는 저는 (0,0,0,1), (1,0,0,1), (0,1,0,1), (0,0,1,1) 등과 transformation matrix를 곱했을 때의 결과가 Body 기준의 점이 되었는지 확인해봅니다.  
+간혹 0.165와 0.320이 +인지 -인지 부호가 헷갈리는 경우가 있습니다. 그럴때는 저는 (0,0,0,1), (1,0,0,1), (0,1,0,1), (0,0,1,1) 등과 transformation matrix를 곱했을 때의 결과가 Body 기준으로 맞는 위치로 표현되었는지 확인해봅니다.  
 
 * 수학적 표현에 대해서는 저는 개인적으로 [Introduction to Robotics chapter 2](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)가 많이 도움되었습니다.
 
