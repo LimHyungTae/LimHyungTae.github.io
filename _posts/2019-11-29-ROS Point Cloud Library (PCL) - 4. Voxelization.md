@@ -17,7 +17,7 @@ Voxelization은 pointcloud를 말그대로 voxel화해주는 기능입니다. �
 
 ![ndt](/img/according_to_voxel2.png)
 
-실제로 50x50m 크기의 map과 현재 pointcloud를 Normal Distribution Transform (NDT)로 registration을 할 때 voxel 크기를 어떻게 주냐에 따라서 연산 속도가 어떻게 변하는 지 알 수 있습니다. 하지만 주의하실 점은 *Voxel size를 적절히 세팅해주어야 한다*는 것입니다. 왜냐하면 voxel size가 크다는 것은 그만큼 map을 간단히 표현하는 것이기 때문에, registration 자체가 부정확해질 수 있기 때문입니다.
+실제로 50x50m 크기의 map과 현재 pointcloud를 Normal Distribution Transform (NDT)로 registration을 할 때 voxel 크기를 어떻게 주냐에 따라서 연산 속도가 어떻게 변하는 지 알 수 있습니다. 하지만 주의하실 점은 ***Voxel size를 적절히 세팅해주어야 한다***는 것입니다. 왜냐하면 voxel size가 크다는 것은 그만큼 map을 간단히 표현하는 것이기 때문에, registration 자체가 부정확해질 수 있기 때문입니다.
 
 # How to Downsample via VoxelGrid header
 
