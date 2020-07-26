@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 4. Voxelization
+title: ROS Point Cloud Library (PCL) - 6. Statistical Outlier Removal
 subtitle: Reduction of Computation
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
@@ -67,11 +67,4 @@ sor.filter(*ptr_sor_filtered);
 pc_sor_filtered = *ptr_sor_filtered;
 ```
 
-## Reference
-[1] [Using a matrix to transform a point cloud](http://pointclouds.org/documentation/tutorials/matrix_transform.php)
-
-[2] [Filtering a PointCloud using a PassThrough filter](http://pointclouds.org/documentation/tutorials/passthrough.php)
-
-[3] [Downsampling a PointCloud using a VoxelGrid filter](http://pointclouds.org/documentation/tutorials/voxel_grid.php)
-
-[4] [Removing outliers using a StatisticalOutlierRemoval filter](http://pointclouds.org/documentation/tutorials/statistical_outlier.php)
+<script src="https://gist.github.com/LimHyungTae/180795d280fdc091d2798c2b7e215fa6.js"></script>
