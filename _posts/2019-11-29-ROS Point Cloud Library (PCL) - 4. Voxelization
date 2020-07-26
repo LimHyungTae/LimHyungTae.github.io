@@ -39,6 +39,7 @@ void mapgen::voxelize(pcl::PointCloud<pcl::PointXYZ>::Ptr pc_src, pcl::PointClou
 }
 ```
 
+<script src="https://gist.github.com/LimHyungTae/1235dcdbe293133079c359f11906be24.js"></script>
 
 ## Statistical Outlier Removal
 ![sor](/img/pcl_sor.PNG)
