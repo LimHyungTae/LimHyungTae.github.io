@@ -6,16 +6,17 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
-# Transformation이 필요한 이유
+# Transformation을 하는 이유?
 
 ![tf](/img/pcl_robot_sensor.PNG)
 
-Robotics 분야에서 2D, 혹은 3D 상의 Transformation을 왜 해야할까요? 그 이유는 바로 수많은 좌표축(frame)이 존재하기 때문입니다. 위의 그림과 같이 LiDAR sensor가 하나만 달려있는 로봇이어도 최소 3가지 축이 존재합니다.
+Robotics 분야에서 개발/연구를 하다보면 밥먹듯이 해야하는 것이 transformation입니다. 왜냐하면 그 이유는 robot의 system에서 기술해야 하는 수많은 좌표축(frame)이 존재하기 때문입니다. 위의 그림과 같이 LiDAR sensor가 하나만 달려있는 로봇이어도 최소 3가지 축이 존재합니다.
 
-* Global Frame: Navigation Frame, Map Frame이라고 불리기도 하며, 맵의 (0,0,0)과 방향을 나타냄 
-* Body Frame: Robot이 움직일 때 움직인 정도의 기준이 되는 축. 로봇이 모터 등으로 움직였을 때, 그 움직임을 나타내는 위치를 지칭함 
-* Sensor Frame: Sensor의 data가 들어올 때, 센서의 상이 맺히는 부분의 위치와 방향을 나타냄
+* **Global Frame**: Navigation Frame, Map Frame이라고 불리기도 하며, 맵의 (0,0,0)과 방향을 나타냄 
+* **Body Frame**: Robot이 움직일 때 움직인 정도의 기준이 되는 축. 로봇이 모터 등으로 움직였을 때, 그 움직임을 나타내는 위치를 지칭함 
+* **Sensor Frame**: Sensor의 data가 들어올 때, 센서의 상이 맺히는 부분의 위치와 방향을 나타냄
 
+따라서 sensor를 통해 기술되는 data를 로봇의 움직임을 기술하는 축으로 transform해주어야 하고(**Sensor Frame → Body Frame**), 최종적으로 전체 pointcloud를 map 기준으로 취합해야 하기 때문에 (**Body Frame → Global Frame**) transformation이 필요한 것입니다. 
 
 # How to use
 
