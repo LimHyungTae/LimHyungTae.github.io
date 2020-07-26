@@ -8,7 +8,7 @@ comments: true
 
 # Point Cloud Library를 사용해야 하는 이유 
 
-Point Cloud Library(사이트는 [여기](https://pointclouds.org/)) LiDAR나 RGB-D 카메라를 통해 취득한 pointcloud를 후처리하는데 사용되는 알고리즘을 구현해둔 라이브러리입니다. 특히, SLAM등이나 navigation을 할 때 써야하는 filter 알고리즘, voxelization, registration (i.e. ICP나 NDT 등) 등이 이미 구현되어 있어서 알고리즘을 개발할 때 편리합니다. 특히, 연구레벨에서도 PCL 자체가 깔끔한 상속으로 구성되어 있어서 자기만의 수정된 알고리즘을 구현할 때에도 PCL의 부분부분을 상속받아서 쉽게 수정하여 사용가능한 것으로 알고 있습니다.
+Point Cloud Library(사이트는 [여기](https://pointclouds.org/)) LiDAR나 RGB-D 카메라를 통해 취득한 pointcloud를 후처리하는데 사용되는 알고리즘을 구현해둔 라이브러리입니다. 특히, SLAM등이나 navigation을 할 때 써야하는 filter 알고리즘, voxelization, registration (i.e. ICP나 NDT 등) 등이 이미 구현되어 있어서 pointcloud를 후처리하거나 SLAM 알고리즘을 개발할 때 편리합니다. 특히, 연구레벨에서도 PCL 자체가 깔끔한 상속으로 구성되어 있어서 자기만의 수정된 알고리즘을 구현할 때에도 PCL의 부분부분을 상속받아서 쉽게 수정하여 사용가능한 것으로 알고 있습니다.
 ![centroid](/img/pcl_contents.JPG)
 
 ---
@@ -23,7 +23,7 @@ pcl에서 구현되어 있는 Pointcloud 타입 `pcl::PointCloud<T>`에는 다�
 
 주로 **LiDAR**를 사용할 때는 `pcl::PointXYZ`, `pcl::PointXYZI`를 많이 사용합니다.
 
-**RGB-D나 스테레오 카메라**는 depth를 image에 align시키면 point의 색깔도 알 수 있기 때문에 `pcl::PointXYZRGB(A)`를 사용하기도 합니다.
+**RGB-D나 스테레오 카메라**는 depth를 image에 align시키면 point의 색깔도 알 수 있기 때문에 `pcl::PointXYZRGB`를 사용하기도 합니다.
 
 더 다양한 type은 원래 [pcl tutorial 페이지](http://www.pointclouds.org/documentation/tutorials/adding_custom_ptype.php#adding-custom-ptype)에서 확인 가능합니다. 
 
