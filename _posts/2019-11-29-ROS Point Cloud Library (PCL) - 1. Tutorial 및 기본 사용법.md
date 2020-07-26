@@ -33,12 +33,6 @@ pcl::PointCloud<pcl::PointXYZI> cloud;
 pcl::PointCloud<pcl::PointNormal> cloud;
 ```
 
-{% highlight ruby %}
-pcl::PointCloud<pcl::PointXYZ> cloud;
-pcl::PointCloud<pcl::PointXYZI> cloud;
-pcl::PointCloud<pcl::PointNormal> cloud;
-{% endhighlight %}
-
 ```cpp
 pcl::PointXYZ point_xyz;
 point_xyz.x = 1;
@@ -47,9 +41,10 @@ point_xyz.z = 3;
 ```
 혹은 아래와 같이 한 줄로 선언이 가능합니다.
 ```cpp 
-
 pcl::PointXYZ point_xyz = {1, 2, 3}; // 1, 2, 3이 각각 x, y, z로 지정된다.
 ```
+
+### pcl::PointCloud 선언해서 Points에 Point 넣는 법
 
 아래의 예시들은 다음과 같이 header file과 namespace가 선언되어 있다고 가정한다.
 ```cpp
@@ -60,8 +55,6 @@ pcl::PointXYZ point_xyz = {1, 2, 3}; // 1, 2, 3이 각각 x, y, z로 지정된�
 
 using namespace std;
 ```
-
-### pcl::PointCloud 선언해서 Points에 Point 넣는 법
 
 기본적으로 pcl은 std::vector의 사용법과 유사합니다.
 
@@ -86,6 +79,7 @@ cloud.points[2].z = 9;
 ```
 
 or
+
 ```cpp
 pcl::PointCloud<pcl::PointXYZ> cloud;
 pcl::PointXYZ point_xyz; // pcl::PointXYZ이라는 type에 data를 담는다.
