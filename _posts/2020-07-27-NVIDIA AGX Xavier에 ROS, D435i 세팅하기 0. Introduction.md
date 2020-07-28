@@ -26,6 +26,6 @@ Step은 크게 3가지로 구성되어 있습니다.
 
 레퍼런스만 잘 읽어도 누구나 쉽게 설치하실 수 있습니다 :)
 
-1. [용산동 쌍가락지의 NVIDIA Setting 바이블](https://github.com/engcang/vins-application)
+1. [용산동 쌍가락지의 NVIDIA 플랫폼 Setting 바이블](https://github.com/engcang/vins-application)
 
 2. [https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html)
