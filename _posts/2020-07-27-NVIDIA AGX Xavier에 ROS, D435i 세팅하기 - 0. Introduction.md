@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NVIDIA AGX Xavier에 ROS, D435i 세팅하기 0. Introduction
+title: NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 0. Introduction
 subtitle: NVIDIA AGX Xavier with Interl Realsense D435i
 tags: [NVIDIA, Jetson, AGX, Xavier, ROS, D435i]
 comments: true
