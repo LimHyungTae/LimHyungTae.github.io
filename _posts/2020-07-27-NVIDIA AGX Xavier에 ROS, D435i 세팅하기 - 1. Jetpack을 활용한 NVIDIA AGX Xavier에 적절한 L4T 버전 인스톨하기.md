@@ -6,9 +6,22 @@ tags: [NVIDIA, Jetson, AGX, Xavier, ROS, D435i]
 comments: true
 
 ---
+1. Developer Kit 16GB여야 함! Jetpack 8GB에는 Jetpack 4.2.1못 까는 듯
 
-# Introduction
+# Jetpack을 통한 설치
 
+1. [Jetpack 공식 사이트](https://developer.nvidia.com/embedded/jetpack)에 들어가서 
+
+[Jetpack Archive](https://developer.nvidia.com/embedded/jetpack-archive)
+
+[이 블로그](https://m.blog.naver.com/PostView.nhn?blogId=ambidext&logNo=221560535815&categoryNo=23&proxyReferer=https:%2F%2Fwww.google.com%2F)
+
+
+Ubuntu 18.04 NVIDIA Jetson AGX Xavier [16GB]
+
+```
+L4T 32.1.0 [Jetpack 4.2]
+```
 
 
 1. Jetpack을 활용한 NVIDIA AGX Xavier에 적절한 L4T 버전 인스톨하기
