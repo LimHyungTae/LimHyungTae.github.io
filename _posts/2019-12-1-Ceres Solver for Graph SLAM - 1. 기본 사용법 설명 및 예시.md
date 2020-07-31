@@ -10,9 +10,9 @@ comments: true
 
 ![ceres](/img/ceres_cmake_CMakeLists.png)
 
-![install](/img/ceres_install.png)
 
-![make](/img/make.png)
+
+![make](/img/ceres_make.png)
 
 ![hello_world](/img/ceres_hello_world.png)
 
