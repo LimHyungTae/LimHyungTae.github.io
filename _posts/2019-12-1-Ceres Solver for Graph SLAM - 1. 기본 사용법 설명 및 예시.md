@@ -6,5 +6,15 @@ tags: [SLAM, Optimization, Ceres Solver, C++]
 comments: true
 ---
 
+# Introduction
+
+![ceres](/img/ceres_cmake_CMakeLists.png)
+
+![install](/img/ceres_install.png)
+
+![make](/img/make.png)
+
+![hello_world](/img/ceres_hello_world.png)
+
 # Ceres Solver Tutorial
 
