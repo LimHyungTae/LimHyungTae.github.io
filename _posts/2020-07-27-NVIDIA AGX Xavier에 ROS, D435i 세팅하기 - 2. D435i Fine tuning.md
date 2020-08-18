@@ -92,4 +92,6 @@ $ run rqt_reconfigure rqt_reconfigure
 
 ![after2](/img/d435i_side_after.gif){: .center-block :}
 
-그리고 temporal filter의 gain들을 조정하면 *After2*처럼 좀 느려지는 느낌(?)이 들게 되는데, pointcloud들은 확실히 smooth해짐을 확인할 수 있습니다.
+그리고 temporal filter의 gain들을 조정하면 *After2*처럼 좀 느려지는 느낌(?)이 들게 되는데,이는 temporal filter의 영향으로 보입니다.
+
+pointcloud들은 확실히 smooth해짐을 확인할 수 있습니다.
