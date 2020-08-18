@@ -16,3 +16,11 @@ realsense_viewer를 통해 보면 d435i의 데이터를 좀
 # 3. Set High Accuracy mode
 
 
+![before](/img/d435i_before.gif){: .center-block :}
+
+![after](/img/d435i_after.gif){: .center-block :}
+
+![before2](/img/d435i_side_before.gif){: .center-block :}
+
+![after2](/img/d435i_side_after.gif){: .center-block :}
+
