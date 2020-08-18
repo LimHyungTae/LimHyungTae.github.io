@@ -70,6 +70,10 @@ $ run rqt_reconfigure rqt_reconfigure
 
 # 결과 
 
+![img](/img/d435i_img.jpg){: .center-block :}
+
+로봇은 위와 같은 scene에서 약간 더 오른쪽을 보게 배치된 상태입니다.
+
 #### Before1
 
 ![before](/img/d435i_before.gif){: .center-block :}
