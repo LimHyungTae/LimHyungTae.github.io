@@ -5,6 +5,7 @@ title: About Me
 
 
 # Education
+* **Ph.D candidate Electrical Engineering / KAIST** - 2020.03~ 
 * **M.S Electrical Engineering(also complete Robotics Program) / KAIST** - 2018.03~2020.02
 * **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
 
