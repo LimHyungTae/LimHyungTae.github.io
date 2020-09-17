@@ -12,6 +12,11 @@ comments: true
 
 링크는 [여기](https://github.com/jsk-ros-pkg/jsk_visualization)를 확인해보시면 됩니다.
 
+jsk_visualization을 설치하면 아래와 같이 기존에 없던 visualization msg들을 추가적으로 사용할 수 있습니다.
+
+![example](/img/jsk_viz.png){: .center-block :}
+
+*polygon array로 visualization한 것. Original Rviz에는 적합한 msg가 없어서 plugin을 추가해보았습니다 :)*
 
 
 ## Install 
@@ -46,7 +51,7 @@ using namespace cv;
 writer_.open(file_name_, CV_FOURCC_DEFAULT, fps_, cv::Size(width_, height_));
 ```
 
-을 아래와 같이 고치면 된다.
+to
 
 ```
 int videowriter = VideoWriter::fourcc('I', 'Y', 'U', 'V');
@@ -54,7 +59,7 @@ int videowriter = VideoWriter::fourcc('I', 'Y', 'U', 'V');
 writer_.open(file_name_, videowriter, fps_, cv::Size(width_, height_));
 ```
 
-### `video_capture_display.cpp`의 235번 줄
+* 3. `video_capture_display.cpp`의 235번 줄
 ```
 cv::cvtColor(image, image, CV_RGB2BGR);  // RGB -> BGR
 ```
@@ -63,3 +68,4 @@ to
 ```
 cv::cvtColor(image, image, COLOR_RGB2BGR);  // RGB -> BGR
 ```
+
