@@ -16,7 +16,7 @@ jsk_visualization을 설치하면 아래와 같이 기존에 없던 visualizatio
 
 ![example](/img/jsk_viz.png){: .center-block :}
 
-*polygon array로 visualization한 것. Original Rviz에는 적합한 msg가 없어서 plugin을 추가해보았습니다 :)*
+*polygon array로 visualization한 것. Original Rviz에는 적합한 msg가 없어서 plugin을 추가해보았습니다 :) 이 외에도 3D bounding box등 여러가지 용이한 msg들이 있습니다*
 
 
 ## Install 
@@ -60,6 +60,7 @@ writer_.open(file_name_, videowriter, fps_, cv::Size(width_, height_));
 ```
 
 * 3. `video_capture_display.cpp`의 235번 줄
+
 ```
 cv::cvtColor(image, image, CV_RGB2BGR);  // RGB -> BGR
 ```
