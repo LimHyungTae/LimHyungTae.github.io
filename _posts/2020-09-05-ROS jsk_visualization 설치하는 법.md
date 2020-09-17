@@ -39,7 +39,7 @@ rosdep install jsk_rviz_plugins
 
 해결하기 위해서는 video library과 관련된 코드를 조금 수정하면 되는데 아래와 같이 두 부분을 고치면 됩니다.
 
-`video_capture_display.h`와 `video_capture_display.cpp`
+`jsk_visualization/jsk_rviz_plugins/src/video_capture_display.h`와 `jsk_visualization/jsk_rviz_plugins/src/video_capture_display.cpp`
 
 * 1. 편의를 위해 namespace 설정
 
