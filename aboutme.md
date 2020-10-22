@@ -10,10 +10,12 @@ title: About Me
 * **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
 
 # Honors
+* **Received Kim Sung-bue Creative Activity Award, from KAIST** - 2020.07
 * **Received Han Cheolhui Augustine Scholarship, from EE, KAIST** - 2019.04
 * **Listed on _Dean's list_ of ME, KAIST (GPA 4.23/4.3 at the semester)** - Fall semester, 2015
 
 # Awards
+* **Student Best Paper Award in ICCAS 2020** - 2020.10
 * **Hitachi-LG LiDAR application Competition, Grand Prize ($ 5,000)** - 2019.08
 * **2018 Smart City Service and Start-up Competition, Excellence Prize** - 2018.09
 
