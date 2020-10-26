@@ -1,8 +1,8 @@
 ---
 layout: post
-title: OpenCV를 활용한 RGB-D 카메라의 depth data png로 저장하기
+title: OpenCV를 활용한 Azure Kinect RGB-D 카메라의 depth data png로 저장하기
 subtitle: OpenCV로 RGB-D data parsing하기
-tags: [OpenCV, RGB-D, png, imwrite]
+tags: [OpenCV, RGB-D, png, imwrite, Azure, Kinect]
 comments: true
 
 ---
