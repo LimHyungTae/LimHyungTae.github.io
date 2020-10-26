@@ -31,7 +31,7 @@ data를 `cv::Mat`으로 기술할 때는 CV_32FC1로 저장하는 방법, CV_16U
 
 [위 레포지토리](https://github.com/LimHyungTae/rgbdsaver)의 *node/src/RGBDSaver.cpp*의 65 번 째 줄을 보면, 처음 Azure kinect의 depth를 decode하면 type이 **CV_32FC1**로 되어 있습니다.
 
-하지만, 이 depth를 `cv::write()` 함수를 통해 png로 저장한 후, `cv::imread()` 함수로 다시 불러와보면 data type이 강제로 **8UC1**로 되는 것을 확인할 수 있습니다.
+하지만, 이 depth를 `cv::write()` 함수를 통해 png로 저장한 후, `cv::imread()` 함수로 다시 불러와보면 data type이 강제로 **8UC1**로 되는 것을 확인할 수 있습니다. (Note: `cv::imread($filename$, -1)`로 image를 부르면 이미지 타입을 건드리기 않고 raw한 값을 불러오는데, 그렇게 불러도 강제로 **8UC1**로 강제로 cast되는 것을 확인했습니다.
 
 따라서 depth data를 png로 저장하기 위해서는 **CV_16UC1**로 변환을 한 후, `cv::write()`를 해주어야 합니다.
 
