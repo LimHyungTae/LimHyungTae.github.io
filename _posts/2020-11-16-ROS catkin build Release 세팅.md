@@ -14,11 +14,17 @@ debug 모드로 컴파일 했을 때와 Release로 ROS를 컴파일했을 때의
 
 (Window에서 Visual Studio개발할 때 Release로 내보내는 것과 비슷한 느낌이지 않을까 싶다.)
 
+# catkin build할 때 명령어
 ```
 $ catkin build --save-config --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
 ![cb](/img/catkinbuild_release.png)
 
+# 결과
+
+위의 명령어는 한 번 세팅해주면 BUILD_TYPE을 계속 Release로 유지해준다.
+
+**Additional CMake Args**에 `-DCMAKE_BUILD_TYPE=Release`가 추가 된것을 볼 수 있다. (근데 왜 2개지...?? 원래 그런건지 확인이 필요하다.)
 
 ![cb_raw](/img/catkinbuild_release_raw.png)
