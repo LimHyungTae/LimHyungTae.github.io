@@ -40,31 +40,20 @@ ptr_cloud = &cloud2; # Wrong :(
 
 ### 사용법
 
+#### pcl::PointCloud<T>::Ptr <-> pcl::PointCloud<T>
 ```cpp
 pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud2(new pcl::PointCloud<pcl::PointXYZ>);
 *ptr_cloud = cloud2;
 
-cout<<"Original: "<<endl;
-for (int i = 0 ; i < cloud3.size(); ++i){
-cout << i << ": ";
-cout << cloud3.points[i].x << ", ";
-cout << cloud3.points[i].y << ", ";
-cout << cloud3.points[i].z << endl;
-}
-
+cout<<"Before: "<<endl;
+print_pc(cloud3);
 cloud3 = *ptr_cloud;
-
 cout << "After: " << endl;
-//  cout<<"size: " << cloud3.size() << endl;
-for (int i = 0 ; i < cloud3.size(); ++i){
-cout << i << ": ";
-cout << cloud3.points[i].x << ", ";
-cout << cloud3.points[i].y << ", ";
-cout << cloud3.points[i].z << endl;
-}
+print_pc(cloud3);
 ```
 ##### Result: <br/>
-Original: <br/>
+Before: <br/>
 0: 7, 8, 9 <br/>
 1: 10, 11, 12 <br/>
 After: <br/> 
@@ -72,6 +61,12 @@ After: <br/>
 1: 4, 5, 6 <br/>
 2: 7, 8, 9 <br/>
 3: 10, 11, 12
+
+#### pcl::PointCloud<T>::Ptr 간의 할당
+
+TBU
+
+#### pcl::PointCloud<T>::ConstPtr
 
 ---
 
