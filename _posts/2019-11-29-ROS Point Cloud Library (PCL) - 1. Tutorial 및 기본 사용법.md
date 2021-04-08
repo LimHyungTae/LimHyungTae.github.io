@@ -227,6 +227,31 @@ size: 4 <br/>
 
 ---
 
+### +=는 값을 할당하는 걸까, 복사하는 걸까?
+
+```cpp
+cloud3.push_back(pcl::PointXYZ(12, 13, 14));
+cout<<"After: "<<endl;
+  for (int i = 0 ; i < cloud2.size(); ++i){
+  cout<<i<<": ";
+  cout<<cloud2.points[i].x<<", ";
+  cout<<cloud2.points[i].y<<", ";
+  cout<<cloud2.points[i].z<<endl;
+  }
+}
+```
+##### Result: <br/>
+After: <br/> 
+0: 1, 2, 3 <br/>
+1: 4, 5, 6 <br/>
+2: 7, 8, 9 <br/>
+3: 10, 11, 12
+
+결과가 그대로임을 알 수 있습니다. 즉, **+=** operation은 주소를 할당받아 link되어 있지 않고, points들을 통째로 복사해온다는 것을 알 수 있습니다.
+
+---
+
+
 ## PCL pointer Ptr 선언
 
 ### Pointer를 사용하는 이유
@@ -288,28 +313,6 @@ After: <br/>
 1: 4, 5, 6 <br/>
 2: 7, 8, 9 <br/>
 3: 10, 11, 12
-
-### +=는 값을 할당하는 걸까, 복사하는 걸까?
-
-```cpp
-cloud3.push_back(pcl::PointXYZ(12, 13, 14));
-cout<<"After: "<<endl;
-  for (int i = 0 ; i < cloud2.size(); ++i){
-  cout<<i<<": ";
-  cout<<cloud2.points[i].x<<", ";
-  cout<<cloud2.points[i].y<<", ";
-  cout<<cloud2.points[i].z<<endl;
-  }
-}
-```
-##### Result: <br/>
-After: <br/> 
-0: 1, 2, 3 <br/>
-1: 4, 5, 6 <br/>
-2: 7, 8, 9 <br/>
-3: 10, 11, 12
-
-결과가 그대로임을 알 수 있습니다. 즉, **+=** operation은 주소를 할당받아 link되어 있지 않고, points들을 통째로 복사해온다는 것을 알 수 있습니다.
 
 ---
 
