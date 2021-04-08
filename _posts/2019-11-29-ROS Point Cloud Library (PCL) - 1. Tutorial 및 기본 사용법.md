@@ -46,15 +46,9 @@ pcl::PointXYZ point_xyz = {1, 2, 3}; // 1, 2, 3이 각각 x, y, z로 지정된�
 
 ### pcl::PointCloud 선언해서 Points에 Point 넣는 법
 
-아래의 예시들은 다음과 같이 header file과 namespace가 선언되어 있다고 가정한다.
-```cpp
-#include <pcl_conversions/pcl_conversions.h>
-#include <pcl/point_types.h>
-#include <pcl/PCLPointCloud2.h>
-#include <pcl/conversions.h>
+전문 코드는 아래와 같습니다.
 
-using namespace std;
-```
+<script src="https://gist.github.com/LimHyungTae/4e620ac9195f63423ab206e5070811a1.js"></script>
 
 기본적으로 pcl은 std::vector의 사용법과 유사합니다.
 
