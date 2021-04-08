@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr
+title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해
 subtitle: PCL의 Ptr, ConstPtr 사용법 및 정리
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
