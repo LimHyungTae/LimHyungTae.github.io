@@ -203,7 +203,6 @@ pcl::PointCloud<pcl::PointXYZ> cloud2;
 cloud2.push_back(pcl::PointXYZ(1, 2, 3));
 cloud2.push_back(pcl::PointXYZ(4, 5, 6));
 
-
 pcl::PointCloud<pcl::PointXYZ> cloud3;
 cloud3.push_back(pcl::PointXYZ(7, 8, 9));
 cloud3.push_back(pcl::PointXYZ(10, 11, 12));
@@ -211,12 +210,7 @@ cloud3.push_back(pcl::PointXYZ(10, 11, 12));
 cloud2 += cloud3;
 
 cout <<"size: " << cloud2.size() << endl;
-for (int i = 0 ; i < cloud2.size(); ++i){
-   cout << i << ": ";
-   cout << cloud2.points[i].x << ", ";
-   cout << cloud2.points[i].y << ", ";
-   cout << cloud2.points[i].z << endl;
-}
+print_pc(cloud2);
 ```
 ##### Result: <br/>
 size: 4 <br/>
@@ -227,25 +221,27 @@ size: 4 <br/>
 
 ---
 
+`std::vector`의 특성상 무조건 뒤쪽으로 쌓이는 것을 확인할 수 있습니다.
+
 ### +=는 값을 할당하는 걸까, 복사하는 걸까?
 
 ```cpp
 cloud3.push_back(pcl::PointXYZ(12, 13, 14));
 cout<<"After: "<<endl;
-  for (int i = 0 ; i < cloud2.size(); ++i){
-  cout<<i<<": ";
-  cout<<cloud2.points[i].x<<", ";
-  cout<<cloud2.points[i].y<<", ";
-  cout<<cloud2.points[i].z<<endl;
-  }
-}
+print_pc(cloud2);
+cout<<"cloud3?: "<<endl;
+print_pc(cloud3);
 ```
 ##### Result: <br/>
 After: <br/> 
 0: 1, 2, 3 <br/>
 1: 4, 5, 6 <br/>
-2: 7, 8, 9 <br/>
-3: 10, 11, 12
+2: 7, 8, 9 <br/> 
+3: 10, 11, 12 <br/>
+cloud3?: <br/> 
+0: 7, 8, 9 <br/>
+1: 10, 11, 12 <br/>
+2: 12, 13, 14
 
 결과가 그대로임을 알 수 있습니다. 즉, **+=** operation은 주소를 할당받아 link되어 있지 않고, points들을 통째로 복사해온다는 것을 알 수 있습니다.
 
