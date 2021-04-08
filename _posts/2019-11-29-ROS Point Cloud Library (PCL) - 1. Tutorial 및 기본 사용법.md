@@ -55,61 +55,46 @@ pcl::PointXYZ point_xyz = {1, 2, 3}; // 1, 2, 3이 각각 x, y, z로 지정된�
 왜냐하면 pcl의 내부를 살펴보면 std::vector로 구성되어 있기 때문입니다 :) ([여기](http://docs.pointclouds.org/trunk/classpcl_1_1_point_cloud.html)를 참조하시면 알 수 있습니다)
 
 ```cpp
-pcl::PointCloud<pcl::PointXYZ> cloud;
-cloud.resize(3); //cloud의 size를 3으로 설정 
+pcl::PointCloud<pcl::PointXYZ> cloud_init0;
+cloud_init0.resize(3); //cloud의 size를 3으로 설정
 
-cloud.points[0].x = 1;
-cloud.points[0].y = 2;
-cloud.points[0].z = 3;
-
-cloud.points[1].x = 4;
-cloud.points[1].y = 5;
-cloud.points[1].z = 6;
-
-cloud.points[2].x = 7;
-cloud.points[2].y = 8;
-cloud.points[2].z = 9;
+cloud_init0.points[0].x = 1;    cloud_init0.points[0].y = 2;    cloud_init0.points[0].z = 3;
+cloud_init0.points[1].x = 4;    cloud_init0.points[1].y = 5;    cloud_init0.points[1].z = 6;
+cloud_init0.points[2].x = 7;    cloud_init0.points[2].y = 8;    cloud_init0.points[2].z = 9;
 
 ```
 
 or
 
 ```cpp
-pcl::PointCloud<pcl::PointXYZ> cloud;
+pcl::PointCloud<pcl::PointXYZ> cloud_init1;
 pcl::PointXYZ point_xyz; // pcl::PointXYZ이라는 type에 data를 담는다.
 
-point_xyz.x = 1;
-point_xyz.y = 2;
-point_xyz.z = 3;
-cloud.push_back(point_xyz);
-
-point_xyz.x = 4;
-point_xyz.y = 5;
-point_xyz.z = 6;
-cloud.push_back(point_xyz);
-
-point_xyz.x = 7;
-point_xyz.y = 8;
-point_xyz.z = 9;
-cloud.push_back(point_xyz);
+point_xyz.x = 1;    point_xyz.y = 2;    point_xyz.z = 3;
+cloud_init1.push_back(point_xyz);
+point_xyz.x = 4;    point_xyz.y = 5;    point_xyz.z = 6;
+cloud_init1.push_back(point_xyz);
+point_xyz.x = 7;    point_xyz.y = 8;    point_xyz.z = 9;
+cloud_init1.push_back(point_xyz);
 ```
 or
 ```cpp
-pcl::PointCloud<pcl::PointXYZ> cloud;
-cloud.push_back(pcl::PointXYZ(1, 2, 3));
-cloud.push_back(pcl::PointXYZ(4, 5, 6));
-cloud.push_back(pcl::PointXYZ(7, 8, 9));
+pcl::PointCloud<pcl::PointXYZ> cloud_init2;
+cloud_init2.push_back(pcl::PointXYZ(1, 2, 3));
+cloud_init2.push_back(pcl::PointXYZ(4, 5, 6));
+cloud_init2.push_back(pcl::PointXYZ(7, 8, 9));
 ```
 
 출력을 하면 아래와 같은 결과가 출력됩니다.
 ```cpp
-for (int i = 0 ; i < cloud.size(); ++i){
-      cout << i << ": ";
-      cout << cloud.points[i].x << ", ";
-      cout << cloud.points[i].y << ", ";
-      cout << cloud.points[i].z << endl;
-      
-  }
+template <class T>
+void print_pc(pcl::PointCloud<T>& cloud){
+    int count = 0;
+    for (const auto& pt: cloud.points){
+        cout << count++ << ": ";
+        cout <<pt.x << ", "<<pt.y << ", "<< pt.z << endl;
+    }
+}
 ```
 ##### Result: <br/>
 0: 1, 2, 3 <br/> 
