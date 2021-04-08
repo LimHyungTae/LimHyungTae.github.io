@@ -9,6 +9,8 @@ comments: true
 
 ## PCL pointer Ptr 선언
 
+<script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
+
 ### Pointer를 사용하는 이유
 
 pcl::PointCloud의 pointer는 아래와 같이 선언할 수 있습니다.
