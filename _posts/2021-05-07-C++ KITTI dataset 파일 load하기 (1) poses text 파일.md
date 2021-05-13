@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C++ KITTI pose text 파일 load하기
+title: C++ KITTI dataset 파일 load하기 (1) poses text 파일
 subtitle: KITTI data Load하기
 tags: [C++, Text, Eigen]
 comments: true
