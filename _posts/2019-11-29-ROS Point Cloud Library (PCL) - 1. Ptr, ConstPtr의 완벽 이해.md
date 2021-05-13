@@ -52,15 +52,10 @@ cloud3 = *ptr_cloud;
 cout << "After: " << endl;
 print_pc(cloud3);
 ```
-##### Result: <br/>
-Before: <br/>
-0: 7, 8, 9 <br/>
-1: 10, 11, 12 <br/>
-After: <br/> 
-0: 1, 2, 3 <br/>
-1: 4, 5, 6 <br/>
-2: 7, 8, 9 <br/>
-3: 10, 11, 12
+![centroid](/img/ptr_value_1.png)
+
+![centroid](/img/ptr_value_2.png)
+
 
 #### pcl::PointCloud<T>::Ptr 간의 할당
 
