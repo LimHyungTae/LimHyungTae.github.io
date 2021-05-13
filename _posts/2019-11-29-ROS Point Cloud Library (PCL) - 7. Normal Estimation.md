@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 7. Normal Estimation
-subtitle: Outlier Rejection
+subtitle: Estimation of normal vectors
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 
@@ -16,9 +16,9 @@ comments: true
 
 # 궁금증
 
-Normal Estimation은 그런데 인접한 point들과 해당 point 간의 관계를 구하는 것이기 때문에 알고리즘을 사용할 때 SearchMethod도 지정해주어야 합니다.
+Normal Estimation은 인접한 point들과 해당 point 간의 관계를 구하는 것이기 때문에 알고리즘을 사용할 때 SearchMethod을 지정해주어야 합니다.
 
-그리고 `setRadiusSearch(double radius)` 멤버함수를 통해서 radius를 지정해주는데, 그러면 radius 이내에 인접한 point는 어떻게 되는지 궁금해서 테스트 해보았습니다.
+그리고 `setRadiusSearch(double radius)` 멤버함수를 통해서 radius를 지정해주는데, 그러면 만약 radius 이내에 인접한 point가 없을 때는 어떻게 되는지 궁금해서 테스트 해보았습니다.
 
 아래 코드가 그 예시입니다.
 
