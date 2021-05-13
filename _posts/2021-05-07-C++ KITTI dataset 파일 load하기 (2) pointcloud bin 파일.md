@@ -19,10 +19,10 @@ KITTI dataset의 pointcloud는 pcd 형식으로 되어있으면 좋을텐데, �
 <script src="https://gist.github.com/LimHyungTae/cb52f6540210bcad91d942eb0c88bbaf.js"></script>
 
 ```cpp
-# velodyne path
+// velodyne path
 string target_path = "/your/kitti/path/sequences/00/velodyne";
 KittiLoader loader(target_path);
-# what you want to call
+// what you want to call
 int seq_frame = 10;
 loader.cloud(seq_frame);
 ```
