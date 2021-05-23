@@ -6,9 +6,9 @@ title: Publications
 
 # International Journal
 
-* Wonkeun Youn, **HyungtaeLim**, Hyoung Sik Choi, Matthew B. Rhudy, Hyeok Ryu, Sungyug Kim, andHyun Myung, "State Estimation of HALE UAV with Deep Learning-aided Virtual AOA/SSA Sensorfor Analytical Redundancy," IEEE Robotics and Automation Letters (RA-L), 2021
+* Wonkeun Youn, **HyungtaeLim**, Hyoung Sik Choi, Matthew B. Rhudy, Hyeok Ryu, Sungyug Kim, andHyun Myung, "State Estimation of HALE UAV with Deep Learning-aided Virtual AOA/SSA Sensorfor Analytical Redundancy," *IEEE Robotics and Automation Letters (RA-L)*, 2021
 
-* **HyungtaeLim**, Sungwon Hwang, and Hyun Myung. ERASOR: Egocentric Ratio of Pseudo Occupancy-based Dynamic Object Removal for Static 3D Point Cloud Map Building.IEEE Robotics and Automa-tion Letters (with ICRA option), 2021
+* **HyungtaeLim**, Sungwon Hwang, and Hyun Myung, "ERASOR: Egocentric Ratio of Pseudo Occupancy-based Dynamic Object Removal for Static 3D Point Cloud Map Building," *IEEE Robotics and Automa-tion Letters (RA-L)* (with ICRA option), 2021
 
 
 # International Conference
