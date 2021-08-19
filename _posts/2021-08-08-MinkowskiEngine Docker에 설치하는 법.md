@@ -10,5 +10,7 @@ comments: true
 
 내가 뭘 쳐서 install이 됐는지 저장을 위해 기록해둔다.
 
+![MinkowskiEngine](/img/MinkowskiEngine_history.png){: .center-block :}
+
 
 
