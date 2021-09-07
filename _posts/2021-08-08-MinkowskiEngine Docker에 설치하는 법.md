@@ -27,7 +27,7 @@ $$y_{k+1} = y_{k+3}$$
 
 <script src="https://gist.github.com/LimHyungTae/68af19259c6e36b5f58ffa606b0b1f0a.js"></script>
 
-0
+3
 
 <script src="https://github.com/LimHyungTae/helloceres/blob/8c8cb1b3d69d9962e921f59dd0f6d5f338630d16/helloceres_1.cc"></script>
 
@@ -36,5 +36,4 @@ $$y_{k+1} = y_{k+3}$$
 <script src="https://github.com/LimHyungTae/helloceres/blob/8c8cb1b3d69d9962e921f59dd0f6d5f338630d16/helloceres_1.cc.js"></script>
 
 
-
-hehehe222
+hi
