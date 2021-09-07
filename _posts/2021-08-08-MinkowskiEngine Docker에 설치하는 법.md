@@ -26,7 +26,9 @@ $
 $$y_{k+1} = y_{k+3}$$
 
 <script src="https://gist.github.com/LimHyungTae/68af19259c6e36b5f58ffa606b0b1f0a.js"></script>
+
 0
+
 <script src="https://github.com/LimHyungTae/helloceres/blob/master/helloceres_1.cc.js"></script>
 
 1
