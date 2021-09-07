@@ -14,19 +14,17 @@ use_math: true
 ![MinkowskiEngine](/img/MinkowskiEngine_history.png){: .center-block :}
 
 >$$
-y = ax + b 
+y_{k+1} = y_{k}
 $$
 
-$y_{k+1} = y_{k}$
+$y_{k+1} = y_{k-2}$
 
 >$
-y = ax + b 
+y_{k+1} = y_{k+7}
 $
 
-$
-y = ax + b 
-$
+$$y_{k+1} = y_{k+3}$$
 
-\y = ax + b \
+
 
 hehehe222
