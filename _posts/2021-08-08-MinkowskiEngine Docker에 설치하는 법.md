@@ -12,5 +12,7 @@ comments: true
 
 ![MinkowskiEngine](/img/MinkowskiEngine_history.png){: .center-block :}
 
-
+>$$
+y = ax + b 
+$$
 
