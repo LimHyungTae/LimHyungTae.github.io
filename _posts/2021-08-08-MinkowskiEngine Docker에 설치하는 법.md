@@ -16,3 +16,5 @@ comments: true
 y = ax + b 
 $$
 
+$y_{k+1} = y_{k}$
+
