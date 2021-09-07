@@ -3,6 +3,7 @@ layout: post
 title: MinkowskiEngine Docker에 설치하는 법
 subtitle: xhost +
 tags: [MinkowskiEngine]
+use_math: true
 comments: true
 ---
 
