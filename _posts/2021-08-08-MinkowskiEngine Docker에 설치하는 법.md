@@ -3,8 +3,8 @@ layout: post
 title: MinkowskiEngine Docker에 설치하는 법
 subtitle: xhost +
 tags: [MinkowskiEngine]
-use_math: true
 comments: true
+use_math: true
 ---
 
 처음에는 빨간 error message로 도배가 됐었는데, 어째저째 하니 무탈히 install이 완료되었다.
