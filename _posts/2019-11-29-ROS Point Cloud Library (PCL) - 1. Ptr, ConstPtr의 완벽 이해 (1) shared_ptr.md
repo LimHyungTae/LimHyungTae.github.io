@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (1) shared_ptr
-subtitle: PCL의 Ptr, ConstPtr 사용법 및 정리
+subtitle: PCL의 Ptr의 typedef를 구성하는 shared_ptr 살펴보기
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
@@ -9,13 +9,20 @@ comments: true
 
 ## PCL pointer Ptr 선언
 
-### Pointer를 사용하는 이유
+### Ptr? 포인터인가?
 
-pcl::PointCloud의 pointer는 아래와 같이 선언할 수 있습니다.
+향후 PCL 라이브러리의 예제코드들을 살펴보면 `Ptr`에 대해 굉장히 많이 나오게 됩니다.
+
+pcl::PointCloud의 `Ptr`은 아래와 같이 선언해서 사용합니다.
 
 ```cpp
 pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>);
 ```
+
+그리고 이의 정의는 PCL의 [point_cloud.h](https://pointclouds.org/documentation/common_2include_2pcl_2point__cloud_8h_source.html)의 413번 째 줄에 정의돼있습니다.
+
+![pcl_img](pcl_point_cloud_h.png)
+
 
 저또한 솔직히 말씀드리면 석사 시절에는 라이브러리를 사용하는데 큰 뜻을 사용하느라 **Ptr**이 지니는 의미에 대해 깊게 생각해보지 않았었습니다.
 
