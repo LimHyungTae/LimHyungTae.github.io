@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (2) Ptr in PCL
-subtitle: PCL의 Ptr, ConstPtr 사용법 및 정리
+title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (3) Ptr in 클래스 멤버변수
+subtitle: PCL의 Ptr를 Class member 변수로 쓸 때 주의점
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
