@@ -7,24 +7,12 @@ comments: true
 ---
 
 
-## PCL pointer Ptr 예제
+## PCL Ptr in Class
 
-이번 시간에는 아래의 예시를 통해 어떻게 쓰면 될지 하나하나 알아가보도록 하겠습니다.
+이번 시간에는 마지막으로, Class 내에서 멤버 변수로 사용할 때의 주의점에 대해서 말씀 드리고, Ptr에 대한 얘기를 끝내겠습니다.
 
-<script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
+<script src="https://gist.github.com/LimHyungTae/4b5a1085162b0851a9429b017ab9b7ef.js"></script>
 
-
-### 사용법
-
-
-
-#### pcl::PointCloud<T>::Ptr 간의 할당
-
-TBU
-
-#### pcl::PointCloud<T>::ConstPtr
-
-TBU 
 
 ---
 
