@@ -15,7 +15,7 @@ Line-by-line으로 주석을 달아두었으니 한번 살펴보시길 바랍니
 
 <script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
 
-## 스스로 잘 이해했는지 테스트
+## 스스로 잘 이해했는지 테스트 :100:
 `Ptr`을 new를 통해 선언한 `pcl::PointCloud<pcl::PointXYZ>::Ptr`, `Cloud`를 `pcl::PointCloud<pcl::PointXYZ>`로 선언한 pointcloud라 간략히 표현했을 때, 
 * `Ptr` = `Ptr`
 * `Ptr` = `*Ptr`
