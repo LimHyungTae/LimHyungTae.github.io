@@ -21,7 +21,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>
 
 그리고 이의 정의는 PCL의 [point_cloud.h](https://pointclouds.org/documentation/common_2include_2pcl_2point__cloud_8h_source.html)의 413번 째 줄에 정의돼있습니다.
 
-![pcl_img](pcl_point_cloud_h.png)
+![pcl_img](/img/pcl_point_cloud_h.png)
 
 
 저또한 솔직히 말씀드리면 석사 시절에는 라이브러리를 사용하는데 큰 뜻을 사용하느라 **Ptr**이 지니는 의미에 대해 깊게 생각해보지 않았었습니다.
