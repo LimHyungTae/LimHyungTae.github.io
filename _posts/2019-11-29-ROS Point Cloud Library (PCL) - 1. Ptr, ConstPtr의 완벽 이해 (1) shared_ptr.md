@@ -36,19 +36,19 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>
 2. 2의 내용은 std::vector를 사용할 때 발생하는 memory leak과 관련이 있습니다. 관심 있으신 분은 google에 **vector memory leak**이라고 검색하시거나 [여기](https://stackoverflow.com/questions/1361139/how-to-avoid-memory-leaks-when-using-a-vector-of-pointers-to-dynamically-allocat)글을 보시면, 이러한 현상을 해결하기 위해 boost::shared_ptr을 사용한다고 합니다.
     * 한 줄 요약: std::vector의 `clear()`나 `resize()`는 vector의 iterator의 위치만 이동시켜주고, 해당하는 메모리를 delete하지 않는 문제가 있음. 근데 boost::shared_ptr을 쓰면 자동적으로 메모리 해제를 해 줌
 
-그럼, 기존의 reference 기반의 pointer처럼 `pcl::PointCloud`의 주소를 Ptr로 할당시키려면 아래와 같이 하면 될까요?
+그럼, 기존의 reference 기반의 pointer처럼 `pcl::PointCloud`의 주소를 Ptr에 넘겨주면 될까요?
 
 ```cpp
 ptr_cloud = &cloud2; # Wrong :(
 ```
 
-정답은 *틀렸습니다!!* 자세히 wiki를 살펴보시면 boost::shared_ptr로 구성되어 있기때문에, 아래와 같이 사용해야 pointcloud를 참조할 수 있습니다.
+정답은 *틀렸습니다!!* 자세히 wiki를 살펴보시면 boost::shared_ptr로 구성되어 있기때문에, 아래와 같이 사용해야 pointcloud가 원래 지니던 points들을 건내받을 수 있습니다.
 
 ```cpp
 *ptr_cloud = cloud2; # Right :)
 ```
 
-ptr을 살펴보기 앞서, `boost::shared_ptr`의 사용 예제부터 차근차근 살펴보도록 하겠습니다. 
+ptr을 살펴보기 앞서, `boost::shared_ptr`의 사용 예제부터 차근차근 살펴보면 훨씬 이해하기 쉬우실 겁니다. :)
 
 ---
 
