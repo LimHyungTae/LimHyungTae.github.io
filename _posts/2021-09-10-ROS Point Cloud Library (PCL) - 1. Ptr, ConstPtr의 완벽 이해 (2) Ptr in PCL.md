@@ -15,7 +15,19 @@ Line-by-line으로 주석을 달아두었으니 한번 살펴보시길 바랍니
 
 <script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
 
+## 스스로 잘 이해했는지 테스트
+`Ptr`을 new를 통해 선언한 `pcl::PointCloud<pcl::PointXYZ>::Ptr`, `Cloud`를 `pcl::PointCloud<pcl::PointXYZ>`로 선언한 pointcloud라 간략히 표현했을 때, 
+* `Ptr` = `Ptr`
+* `Ptr` = `*Ptr`
+* `*Ptr` = `Cloud`
+* `Cloud` = `*Ptr`
 
+이 각각 어떤 의미인가?
+
+의미에 답을 잘 못내리시겠으면, 위의 예제 코드를 좀더 차근차근 읽어보시길 바랍니다.
+
+
+---
 
 Point Cloud Library Tutorial 시리즈입니다.
 
