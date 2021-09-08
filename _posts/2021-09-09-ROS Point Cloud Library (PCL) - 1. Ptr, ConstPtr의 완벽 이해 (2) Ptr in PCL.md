@@ -11,22 +11,11 @@ comments: true
 
 이번 시간에는 아래의 예시를 통해 어떻게 쓰면 될지 하나하나 알아가보도록 하겠습니다.
 
+Line-by-line으로 주석을 달아두었으니 한번 살펴보시길 바랍니다 :)
+
 <script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
 
 
-### 사용법
-
-
-
-#### pcl::PointCloud<T>::Ptr 간의 할당
-
-TBU
-
-#### pcl::PointCloud<T>::ConstPtr
-
-TBU 
-
----
 
 Point Cloud Library Tutorial 시리즈입니다.
 
