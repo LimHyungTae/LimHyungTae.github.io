@@ -19,7 +19,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>
 
 저또한 솔직히 말씀드리면 석사 시절에는 라이브러리를 사용하는데 큰 뜻을 사용하느라 **Ptr**이 지니는 의미에 대해 깊게 생각해보지 않았었습니다.
 
-하지만, PCL에서의 사용법이 문제 아니라, modern C++에서 핵심적인 개념이기에, 설명드리려 합니다.
+하지만, 이 Ptr은 PCL에서의 사용법이 문제 아니라, modern C++에서 도입한 스마트 포인터(smart pointer)라는 핵심적인 개념이기에, 설명드리려 합니다.
 
 ---
 
@@ -51,35 +51,18 @@ ptr을 살펴보기 앞서, `boost::shared_ptr`의 사용 예제부터 차근차
 <script src="https://gist.github.com/LimHyungTae/fc6c71a06a9a09a1e7958d35b64f9dd4.js"></script>
 
 
+## 사용법
 
-<script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
+가장 먼저 선언을 하고자 하면, 이 boost::shared_ptr을 사용하려면 shared_ptr가 가리키고자 할 객체의 메모리를 할당해주어 합니다.
 
-### 사용법
+그래서 위의 예시 코드 처럼 `new`를 사용해서 요청한 타입의 객체를 담을 수 있는 크기의 메모리를 할당해 주어야 합니다.
 
-#### pcl::PointCloud<T>::Ptr <-> pcl::PointCloud<T>
-```cpp
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>);
-pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud2(new pcl::PointCloud<pcl::PointXYZ>);
-*ptr_cloud = cloud2;
+그 후 요소의 접근은 `(*vec_ptr)`과 같이 이용해서 기존의 pointer와 같이 유사하게 사용할 수 있습니다.
 
-cout<<"Before: "<<endl;
-print_pc(cloud3);
-cloud3 = *ptr_cloud;
-cout << "After: " << endl;
-print_pc(cloud3);
-```
-![centroid](/img/ptr_value_1.png)
-
-![centroid](/img/ptr_value_2.png)
+여기서 주의할 점은 shared_ptr이 가리키는 객체의 값을 변경할 때도 마찬가지로 `*`을 붙혀주어야 한다는 것입니다.
 
 
-#### pcl::PointCloud<T>::Ptr 간의 할당
-
-TBU
-
-#### pcl::PointCloud<T>::ConstPtr
-
-TBU 
+여기서 살펴본 것을 바탕으로, 바로 PCL 상의 Ptr이 어떻게 쓰이는 지 살펴보도록 하겠습니다.
 
 ---
 
