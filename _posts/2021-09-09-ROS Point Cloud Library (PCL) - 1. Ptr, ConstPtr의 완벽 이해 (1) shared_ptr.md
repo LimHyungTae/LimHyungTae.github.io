@@ -39,13 +39,13 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>
 그럼, 기존의 reference 기반의 pointer처럼 `pcl::PointCloud`의 주소를 Ptr에 넘겨주면 될까요?
 
 ```cpp
-ptr_cloud = &cloud2; # Wrong :(
+ptr_cloud = &cloud2; // Wrong :(
 ```
 
 정답은 *틀렸습니다!!* 자세히 wiki를 살펴보시면 boost::shared_ptr로 구성되어 있기때문에, 아래와 같이 사용해야 pointcloud가 원래 지니던 points들을 건내받을 수 있습니다.
 
 ```cpp
-*ptr_cloud = cloud2; # Right :)
+*ptr_cloud = cloud2; // Right :)
 ```
 
 ptr을 살펴보기 앞서, `boost::shared_ptr`의 사용 예제부터 차근차근 살펴보면 훨씬 이해하기 쉬우실 겁니다. :)
