@@ -27,7 +27,7 @@ Q1. `Ptr`을 new를 통해 선언한 `pcl::PointCloud<pcl::PointXYZ>::Ptr`, `Clo
 
 이 각각 어떤 의미인가?
 
-![img](/img/pcl_ptr_viz.png)
+![img_file](/img/pcl_ptr_viz.png)
 
 Q1. 위의 그림을 보고 어떤 상황인지 설명이 가능한가?
 
