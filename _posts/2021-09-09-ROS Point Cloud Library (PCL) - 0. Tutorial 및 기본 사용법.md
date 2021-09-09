@@ -251,6 +251,8 @@ Point Cloud Library Tutorial 시리즈입니다.
 
 모든 코드는 이 [**레포지토리**](https://github.com/LimHyungTae/pcl_tutorial)에 ros package로 구성되어 있습니다 :)
 
+(아래 링크는 동작하지 않을 수도 있습니다. 블로그 개편중...)
+
 0. **ROS Point Cloud Library (PCL) - 0. Tutorial 및 기본 사용법**
 
 1. [ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-1.-Ptr,-ConstPtr%EC%9D%98-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4/)
