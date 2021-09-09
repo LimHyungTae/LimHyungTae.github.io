@@ -50,7 +50,7 @@ viewer1.addPointCloud<pcl::PointXYZRGB>(tgt_colored, "src_red");
 
 > [addPointCloud] The id <src_red> already exists! Please choose a different id and retry.
 
-라는 말과 함께 빨간 `src_colored` 밖에 viz가 되지 않는 것을 볼 수 있습니다.
+라는 warning message가 뜨면서 빨간 `src_colored` 밖에 viz가 되지 않는 것을 볼 수 있습니다.
 
 ---
 
