@@ -56,3 +56,8 @@ viewer1.addPointCloud<pcl::PointXYZRGB>(tgt_colored, "src_red");
 
 
 Point Cloud Library Tutorial 시리즈입니다.
+
+모든 코드는 이 [**레포지토리**](https://github.com/LimHyungTae/pcl_tutorial)에 ros package로 구성되어 있습니다 :)
+
+(아래 링크는 동작하지 않을 수도 있습니다. 블로그 개편중...)
+
