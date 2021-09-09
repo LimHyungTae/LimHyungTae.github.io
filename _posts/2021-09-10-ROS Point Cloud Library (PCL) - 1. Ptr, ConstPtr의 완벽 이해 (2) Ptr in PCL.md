@@ -36,7 +36,12 @@ Q2. 위의 그림을 보고 어떤 상황인지 설명이 가능한가?
 
 ---
 
+
 Point Cloud Library Tutorial 시리즈입니다.
+
+모든 코드는 이 [**레포지토리**](https://github.com/LimHyungTae/pcl_tutorial)에 ros package로 구성되어 있습니다 :)
+
+(아래 링크는 동작하지 않을 수도 있습니다. 블로그 개편중...)
 
 0. [ROS Point Cloud Library (PCL) - 0. Tutorial 및 기본 사용법](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-0.-Tutorial-%EB%B0%8F-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95/)
 
