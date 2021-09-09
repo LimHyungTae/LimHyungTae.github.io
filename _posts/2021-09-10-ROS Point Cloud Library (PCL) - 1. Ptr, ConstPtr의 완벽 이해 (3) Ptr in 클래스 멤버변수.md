@@ -24,9 +24,9 @@ comments: true
 
 만약 선언 후에 생성자 내에서 동적 할당을 해주지 않으면 어떻게 될까요?
 
-![wo_init](img/pcl_class_wo_init.png)
+![wo_init](/img/pcl_class_wo_init.png)
 
-![wo_init_output](img/pcl_class_wo_init_result.png)
+![wo_init_output](/img/pcl_class_wo_init_result.png)
 
 다음과 같이 exit code 139가 뜨는데, 이 의미는 다음과 같습니다.
 
