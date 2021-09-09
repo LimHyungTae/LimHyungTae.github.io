@@ -18,7 +18,7 @@ comments: true
 
 실행시키면 다음과 같이 앞으로 5m transformation된 pointcloud와 raw한 데이터가 함께 visualization되는 것을 볼 수 있습니다.
 
-[pcl_color](/img/pcl_viz.png)
+![pcl_color](/img/pcl_viz.png)
 
 
 #### 주의점 1
