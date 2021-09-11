@@ -21,7 +21,7 @@ Line-by-line으로 주석을 달아두었으니 한번 살펴보시길 바랍니
 
 Q1. `Ptr`을 new를 통해 선언한 `pcl::PointCloud<pcl::PointXYZ>::Ptr`, `Cloud`를 `pcl::PointCloud<pcl::PointXYZ>`로 선언한 pointcloud라 간략히 표현했을 때, 
 * `Ptr` = `Ptr`
-* `Ptr` = `*Ptr`
+* `*Ptr` = `*Ptr`
 * `*Ptr` = `Cloud`
 * `Cloud` = `*Ptr`
 
