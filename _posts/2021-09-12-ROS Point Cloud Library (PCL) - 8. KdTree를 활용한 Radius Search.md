@@ -37,7 +37,7 @@ pointcloud 상에서 기준 point(query point)를 기준으로 search 하는 법
 
 을 추출해낼 수 있습니다.
 
-주의하실 점은 KdTree는 `setInputCloud()`할 때 내부적으로 input pointcloud를 트리화하여 저장하기 때문에, time cost가 다소 존재한다는 것입니다. 하지만 한번 등록해두면 `radiusSearch()`를 통해 찾을 때는 단순히 for문을 돌리는 것보다는 훨씬 빠릅ㄴ디ㅏ.
+주의하실 점은 KdTree는 `setInputCloud()`할 때 내부적으로 input pointcloud를 트리화하여 저장하기 때문에, time cost가 다소 존재한다는 것입니다. 하지만 한번 등록해두면 `radiusSearch()`를 통해 찾을 때는 단순히 for문을 돌리는 것보다는 훨씬 빠릅니다.
 
 따라서 자신이 적용할 task가 KdTree를 사용하기 전에 inputcloud를 한 번 등록해두고 계속 search를 해야할 task인가를 검토하는 것이 중요합니다.
 
