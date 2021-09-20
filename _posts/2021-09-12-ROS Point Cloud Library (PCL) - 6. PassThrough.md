@@ -22,7 +22,7 @@ PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 �
 
 <script src="https://gist.github.com/LimHyungTae/e64164994be190b6a3638f6b770f9485.js"></script>
 
-![img](/img/passthrough_v2.svg)
+![img](/img/pass_through_v2.svg)
 
 보시는 것과 같이 왼쪽(빨강) 주변부에 차량 위쪽이 찍혀서 noise가 있었는데, sensor frame 인근의 pointcloud를 지움으로써 오른쪽(초록)처럼 주변부가 깔끔해지는 것을 확인할 수 있습니다.
 
