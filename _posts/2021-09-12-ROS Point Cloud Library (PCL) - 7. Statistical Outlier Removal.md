@@ -7,7 +7,7 @@ comments: true
 
 ---
 
-# Statistical Outlier Removal
+# Statistical Outlier Removal (SOR)
 
 ![sor](/img/pcl_sor.PNG)
 
