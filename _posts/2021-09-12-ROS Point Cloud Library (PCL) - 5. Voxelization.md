@@ -21,7 +21,7 @@ Voxelization은 pointcloud를 말그대로 voxel화해주는 기능입니다. �
 
 # How to Downsample via VoxelGrid header
 
-Voxelization을 하는 방법은 아래와 같습니다.
+Voxelization을 하는 방법은 아래와 같습니다. (77번째 줄 부터)
 
 
 <script src="https://gist.github.com/LimHyungTae/1235dcdbe293133079c359f11906be24.js"></script>
@@ -32,7 +32,7 @@ Voxelization을 하는 방법은 아래와 같습니다.
 
 ![voxel](/img/voxel_example.png)
 
-실외에서 3D pointcloud로 측정할 수 있는 거리가 약 80m 정도 되기 때문에, 티가 잘 나지 않을 수 있습니다.
+실외에서 3D pointcloud로 측정할 수 있는 거리가 약 80m 정도 되기 때문에, 0.2m로 voxelization을 하면 밖에서 보면 티가 잘 나지 않을 수 있습니다.
 
 하지만 확대해서 살펴보면 그 차이를 확인할 수 있습니다.
 
