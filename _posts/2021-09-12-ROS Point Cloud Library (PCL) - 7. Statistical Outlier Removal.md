@@ -25,7 +25,7 @@ LiDAR data는 NAVER LABS localization dataset의 Velodyne-16 point cloud를 활�
 
 ![img](/img/sor.png)
 
-잘 보이지는 않겠지만, 왼쪽(빨강)에서의 noise 부분들이 상당히 제거되는 것을 볼 수 있습니다.
+위의 그림처럼, 왼쪽(빨강)에서의 noise 부분들이 상당히 제거됩니다. 특히, 이 LiDAR pointcloud는 실제 판교 백화점에서 측정된 data인데, 환경적 특징으로 인해 난반사 등이 발생하여 상당한 noise가 껴있어도 SOR을 통해 noise를 제거할 수 있다는 것을 확인할 수 있습니다.
 
 그로 인해 오른쪽(초록)에서 dense하게 측정된 부분만 남게 됩니다.
 
@@ -34,7 +34,7 @@ LiDAR data는 NAVER LABS localization dataset의 Velodyne-16 point cloud를 활�
 
 # 개인적인 견해
 
-하지만, 저의 경험으로는 **채널이 많은( > 16) 3D LiDAR로 얻은 pointcloud에서는 SOR을 잘 안 씁니다.** 왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 떄문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, voxelization은 Leaf 내부의 여러 point의 평균을 내기 때문에, 이 과정에서 outlier의 영향을 줄일 수 있습니다. 따라서 SOR을 굳이 사용하지 않아도 SLAM을 하는데 큰 무리가 없습니다. (100% 저의 견해입니다. 부족한 점이 있으면 언제든 코멘트 부탁드립니다. 감사합니다.)
+하지만, 저의 경험으로는 **채널이 많은( > 32) 3D LiDAR로 얻은 pointcloud에서는 SOR을 잘 안 씁니다.** 왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 떄문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, voxelization은 Leaf 내부의 여러 point의 평균을 내기 때문에, 이 과정에서 outlier의 영향을 줄일 수 있습니다. 따라서 SOR을 굳이 사용하지 않아도 SLAM을 하는데 큰 무리가 없습니다. (100% 저의 견해입니다. 부족한 점이 있으면 언제든 코멘트 부탁드립니다. 감사합니다.)
 
 ![sor_real_case](/img/hitach_sor.JPG)
 
