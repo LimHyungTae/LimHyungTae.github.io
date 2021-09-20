@@ -9,10 +9,14 @@ comments: true
 
 # Normal Estimation
 
-<script src="https://gist.github.com/LimHyungTae/f93910f855b7b9981485fc2c95916279.js"></script>
+`pcl::NormalEstimation`이라는 function이 있으나,
+
 
 
 # How to use
+
+<script src="https://gist.github.com/LimHyungTae/f93910f855b7b9981485fc2c95916279.js"></script>
+
 
 ![normal1](/img/normal_vector1.png)
 
