@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 10. Normal Estimation
-subtitle: Normal Estimation using SVD
+title: ROS Point Cloud Library (PCL) - 9. KdTree를 활용한 K-nearest Neighbor Search (KNN)
+subtitle: K-nearest Neighbor Search
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 
