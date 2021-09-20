@@ -1,27 +1,33 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 8. KdTree를 활용한 Radius Search
-subtitle: Probabilistic Outlier Rejection
+subtitle: KdTree FLANN 기반 Radius Search
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 
 ---
 
-# Statistical Outlier Removal (SOR)
+# Search in Pointcloud
 
-![sor](/img/pcl_sor.PNG)
+pointcloud 상에서 기준 point(query point)를 기준으로 search 하는 법은 크게
 
-Statistical Outlier Removal는 outlier를 제거하는 알고리즘입니다. n=1, 2, ..., N 개의 point가 있을 때 n 번째 point를 기준으로 인접한 k개의 point들과 평균과 분산을 구해서 분산이 세팅한 parameter보다 큰 값이면 outlier로 간주하고 제거하는 알고리즘입니다. 이 알고리즘을 통해서는 위 그림같이 부정확하게 측정된 point를 제거할 수 있다는 장점이 있습니다. 3D LiDAR 센서라고 해서 100% 정확하게 거리를 측정하지는 못 합니다. 물체의 겉이 반사가 심하게 코딩되어 있거나(e.g. 뻔뜩뻔뜩한 대리석 바닥) 면이 둥글어서 난반사가 일어나거나 유리로 되어 있는 경우에는 굴절이 일어나면서 측정값이 부정확해질 수 있기 때문입니다. 그럴 떄 Satisticcal Outlier Removal을 사용하면 outlier를 손쉽게 제거할 수 있습니다.    
+* Radius search
+* k-nearest Neighbor search
+
+가 있습니다. 먼저, Radius search는 pointcloud 상 주어진 query point의 거리 r 안에 있는 모든 point들의 index를 리턴해주는 함수입니다. 활용처는 크게 두가지가 있는데,
+
+* 여기처럼 모바일 플랫폼의 sensor frame 주변의 noise의 index를 추출해서 제거할 때 (하지만, 엄밀히 따지면 연산적으로 비효율적임)
+* 전체 map 상에서 global한 좌표를 기점으로 인근의 submap을 추출할 때 (예시는 [여기](https://github.com/LimHyungTae/ERASOR))
+
+등입니다.
 
 ---
 
-# How to use SOR
+# How to use
 
-아래는 인접한 10개를 통해 std가 1.0 이상인 outlier를 제거하는 코드 예제입니다. (46번 째 줄 부터)
+아래는 두 query points `query1`과 `query2`에 대해 8m 이내로 인접해 있는 pointcloud를 추출하는 예제입니다.(52번 째 줄 부터)
 
-LiDAR data는 NAVER LABS localization dataset의 Velodyne-16 point cloud를 활용했습니다.
-
-<script src="https://gist.github.com/LimHyungTae/180795d280fdc091d2798c2b7e215fa6.js"></script>
+<script src="https://gist.github.com/LimHyungTae/a0f16eb19b90899e6f7012eee257130c.js"></script>
 
 ![img](/img/sor.png)
 
@@ -29,30 +35,6 @@ LiDAR data는 NAVER LABS localization dataset의 Velodyne-16 point cloud를 활�
 
 그로 인해 오른쪽(초록)에서 dense하게 측정된 부분만 남게 됩니다.
 
-
----
-
-# 개인적인 견해 (및 저의 경험)
-
-하지만, 저의 경험으로는 **채널이 많은( > 32) 3D LiDAR로 얻은 pointcloud에서는 SOR을 잘 안 씁니다.** 
-
-왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 떄문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, 
-
-voxelization은 Leaf 내부의 여러 point의 평균을 내기 때문에, 이 과정에서도 side effect로 outlier의 영향을 줄일 수 있습니다. 
-
-따라서 SOR을 굳이 사용하지 않아도 SLAM을 하는데 큰 무리가 없습니다. (100% 저의 견해입니다. 부족한 점이 있으면 언제든 코멘트 부탁드립니다.)
-
-![sor_real_case](/img/hitach_sor.JPG)
-
-그래서 저는 주로 2D LiDAR의 outlier를 제거할 때 사용합니다. 
-
-예전에 Hitach-LG에서 주관한 LiDAR 경진대회에 나간 적이 있는데, 그 때 2D LiDAR의 LaserScan의 outlier를 제거하는데 효과적임을 확인했었습니다. 
-
-2D LiDAR 같은 경우는 3차원 공간 상의 한 평면만 스캔을 하는데, laser scan이 원기둥으로 기둥이나 매끄러운 평면에 맞게되면 range 값들이 종종 오측정됩니다. 
-
-따라서 당시에 경진대회를 했을 때 Clustering을 하기 전에 SOR을 통해 너무 심한 outlier를 제거해준 후 clustering을 하면 좀더 robust하게 clustering이 되는 것을 확인했습니다. 
-
-그리고 2D LiDAR같은 경우에는 point 수가 그렇게 많지 않으니 SOR을 해도 연산에 부담이 없었던 것으로 기억합니다 :)
 
 ---
 
