@@ -29,11 +29,14 @@ pointcloud 상에서 기준 point(query point)를 기준으로 search 하는 법
 
 <script src="https://gist.github.com/LimHyungTae/a0f16eb19b90899e6f7012eee257130c.js"></script>
 
-![img](/img/sor.png)
+![img](/img/kdtree_radius.png)
 
-위의 그림처럼, 왼쪽(빨강)에서의 noise 부분들이 상당히 제거됩니다. 특히, 이 LiDAR pointcloud는 실제 판교 백화점에서 측정된 data인데, 환경적 특징으로 인해 난반사 등이 발생하여 상당한 noise가 껴있어도 SOR을 통해 noise를 제거할 수 있다는 것을 확인할 수 있습니다.
+위의 그림처럼, input cloud(빨강)가 주어졌을 때 
+* query1의 위치인 (0, 0, 0) 이내의 8m 영역(초록색)
+* query2의 위치인 (20, 0, 0) 이내의 8m 영역(파란색)
 
-그로 인해 오른쪽(초록)에서 dense하게 측정된 부분만 남게 됩니다.
+을 추출해낼 수 있습니다.
+
 
 
 ---
