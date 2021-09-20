@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ROS Point Cloud Library (PCL) - 7. Statistical Outlier Removal
-subtitle: Outlier Rejection
+subtitle: Probabilistic Outlier Rejection
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 
