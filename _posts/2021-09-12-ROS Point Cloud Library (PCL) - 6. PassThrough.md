@@ -27,6 +27,11 @@ PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 �
 보시는 것과 같이 왼쪽(빨강) 주변부에 차량 위쪽이 찍혀서 noise가 있었는데, sensor frame 인근의 pointcloud를 지움으로써 오른쪽(초록)처럼 주변부가 깔끔해지는 것을 확인할 수 있습니다.
 
 
+`애걔, 겨우 저걸 지우려고 이 노력을?`이라 생각하실 수도 있으나, 저 차 윗면에 반사된 pointcloud가 몇개 안돼보여도 반사면으로 인해 몇 천 개가 있는 경우도 있고, 또한 mapping을 할 때 저 noise를 지우지 않으면 차가 지나간 부분에 noise처럼 pointcloud가 찍혀있기 때문에 navigation 상에서 문제를 일으킬 수도 있습니다 (i.e. 실제 공간은 비어있으나 noise가 있어서 공간이 occupied되어 있다고 여겨질 수도 있기 때문입니다)
+
+따라서, 모든 pointcloud data를 얻은 후, sensor frame 주변의 noise pointcloud를 잘 제거해주는 것은 필수입니다.
+
+
 
 ---
 추가로, 제가 실제로 짰던 코드 snippet도 공유드립니다. 주로 mobile robot에 3D LiDAR를 로봇 위쪽이 아닌 앞 쪽에 부착하게 되면 Sensor로 취득한 뒷 부분을 아래와 같이 filtering해야 합니다. 이 때 `setFilterLimitsNegative(true)`를 사용하면 손쉽게 filtering할 수 있습니다. (사실 for문으로 포인트마다 영역을 확인해줘서 filtering해주는 방법도 가능합니다 :)
@@ -35,10 +40,6 @@ PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 �
 
 
 <script src="https://gist.github.com/LimHyungTae/aa538935ec8a5c8a482a8eb3002b6407.js"></script>
-
-`애걔, 겨우 저걸 지우려고 이 노력을?`이라 생각하실 수도 있으나, 저 차 윗면에 반사된 pointcloud가 몇개 안돼보여도 반사면으로 인해 몇 천 개가 있는 경우도 있고, 또한 mapping을 할 때 저 noise를 지우지 않으면 차가 지나간 부분에 noise처럼 pointcloud가 찍혀있기 때문에 navigation 상에서 문제를 일으킬 수도 있습니다 (i.e. 실제 공간은 비어있으나 noise가 있어서 공간이 occupied되어 있다고 여겨질 수도 있기 때문입니다)
-
-따라서, 모든 pointcloud data를 얻은 후, sensor frame 주변의 noise pointcloud를 잘 제거해주는 것은 필수입니다.
 
 ---
 
