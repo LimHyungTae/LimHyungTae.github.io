@@ -27,7 +27,7 @@ comments: true
 
 <script src="https://gist.github.com/LimHyungTae/8ebd587dd5fdbdbd54706150b7da437e.js"></script>
 
-![img](/img/kdtree_knn.png)
+![img](/img/kdtree_knn_v2.png)
 
 위의 그림처럼, input cloud가 주어지고(빨강) 차량 근처의 query point를 주었을 때(파랑) 그 근처의 1,200개의 cloud points(초록)이 추출되는 것을 볼 수 있습니다.
 
