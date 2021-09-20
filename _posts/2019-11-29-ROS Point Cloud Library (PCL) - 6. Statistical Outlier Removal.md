@@ -19,7 +19,16 @@ Statistical Outlier Removal는 outlier를 제거하는 알고리즘입니다. n=
 
 아래는 인접한 10개를 통해 std가 1.0 이상인 outlier를 제거하는 코드 예제입니다.
 
+LiDAR data는 NAVER LABS localization dataset의 Velodyne-16 point cloud를 활용했습니다.
+
 <script src="https://gist.github.com/LimHyungTae/180795d280fdc091d2798c2b7e215fa6.js"></script>
+
+![img](/img/sor.png)
+
+잘 보이지는 않겠지만, 왼쪽(빨강)에서의 noise 부분들이 상당히 제거되는 것을 볼 수 있습니다.
+
+그로 인해 오른쪽(초록)에서 dense하게 측정된 부분만 남게 됩니다.
+
 
 ---
 
