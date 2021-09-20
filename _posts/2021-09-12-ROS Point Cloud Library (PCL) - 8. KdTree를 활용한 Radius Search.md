@@ -9,6 +9,8 @@ comments: true
 
 # Search in Pointcloud
 
+![img_kd](/img/3dtree.png)
+
 pointcloud 상에서 기준 point(query point)를 기준으로 search 하는 법은 크게
 
 * Radius search
