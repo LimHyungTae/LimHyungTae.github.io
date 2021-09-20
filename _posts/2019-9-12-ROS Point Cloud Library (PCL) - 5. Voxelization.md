@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 4. Voxelization
+title: ROS Point Cloud Library (PCL) - 5. Voxelization
 subtitle: Reduction of Computation
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
