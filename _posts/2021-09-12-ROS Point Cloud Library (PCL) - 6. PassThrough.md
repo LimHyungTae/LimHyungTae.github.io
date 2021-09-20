@@ -26,6 +26,8 @@ PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 �
 
 보시는 것과 같이 왼쪽(빨강) 주변부에 차량 위쪽이 찍혀서 noise가 있었는데, sensor frame 인근의 pointcloud를 지움으로써 오른쪽(초록)처럼 주변부가 깔끔해지는 것을 확인할 수 있습니다.
 
+
+
 ---
 추가로, 제가 실제로 짰던 코드 snippet도 공유드립니다. 주로 mobile robot에 3D LiDAR를 로봇 위쪽이 아닌 앞 쪽에 부착하게 되면 Sensor로 취득한 뒷 부분을 아래와 같이 filtering해야 합니다. 이 때 `setFilterLimitsNegative(true)`를 사용하면 손쉽게 filtering할 수 있습니다. (사실 for문으로 포인트마다 영역을 확인해줘서 filtering해주는 방법도 가능합니다 :)
 
