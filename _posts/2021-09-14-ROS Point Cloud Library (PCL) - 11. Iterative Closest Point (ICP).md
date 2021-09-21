@@ -21,7 +21,7 @@ ICP는 한 번 loop마다 두 개의 step으로 구성되어 있습니다. 그�
 
 # How to Use
 
-<script src="https://gist.github.com/LimHyungTae/f93910f855b7b9981485fc2c95916279.js"></script>
+<script src="https://gist.github.com/LimHyungTae/639e39853fe465ffe941417821cc87e0.js"></script>
 
 # 결과
 
