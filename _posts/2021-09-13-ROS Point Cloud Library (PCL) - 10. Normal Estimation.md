@@ -26,11 +26,13 @@ PCL 상에 `pcl::NormalEstimation`이라는 end-to-end function이 있으나,
 
 Normal vector를 visualization하면 아래와 같습니다.
 
+# 결과
+
 ![normal1](/img/normal_vector1.png)
 
 ![normal2](/img/normal_vector2.png)
 
-보시는 것과 같이 벽면들, 바닥들의 normal vector가 
+보시는 것과 같이 벽면들, 바닥들의 normal vector가 수직으로 잘 뽑히는 것을 확인할 수 있습니다.
 
 ---
 
