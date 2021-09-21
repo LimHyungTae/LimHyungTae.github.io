@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 11. Iterative Closest Point
+title: ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)
 subtitle: Hello ICP
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
