@@ -21,7 +21,7 @@ PCL 상에 `pcl::NormalEstimation`이라는 end-to-end function이 있으나,
 
 # How to Use
 
-<script src="https://gist.github.com/LimHyungTae/f93910f855b7b9981485fc2c95916279.js"></script>
+<script src="https://gist.github.com/LimHyungTae/4e0738316126fbe2d5cbe6cded1c2f2a.js"></script>
 
 Normal vector를 visualization하면 아래와 같습니다.
 
