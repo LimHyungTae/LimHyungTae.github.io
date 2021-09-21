@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)
+title: ROS Point Cloud Library (PCL) - 11. Iterative Closest Point
 subtitle: Low-level Normal Estimation of PointCloud 
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
