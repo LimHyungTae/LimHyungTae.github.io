@@ -8,11 +8,11 @@ title: Publications
 
 * Seungwon Song, **Hyungtae Lim**, Sungwook Jung, and Hyun Myung, "G2P-SLAM: Generalized RGB-D SLAM Framework for Mobile Robots in Low-Dynamic Environments," *IEEE Access*, vol.10, pp.21370 - 21383, Feb. 2022.
 
-* **Hyungtae Lim**, Han-seok Ryu, Matthew Rhudy, Dongjin Lee, Dongjin Jang, Changho Lee, Youngmin Park, Wonkeun Youn, and Hyun Myung†, "Deep Learning-aided Synthetic Airspeed Estimation of UAVs for Analytical Redundancy with a Temporal Convolutional Network," *IEEE Robotics and Automation Letters (RA-L)*, vol.7, no.1, pp. 17-24, Oct. 2021.
+* **Hyungtae Lim**, Han-seok Ryu, Matthew Rhudy, Dongjin Lee, Dongjin Jang, Changho Lee, Youngmin Park, Wonkeun Youn, and Hyun Myung, "Deep Learning-aided Synthetic Airspeed Estimation of UAVs for Analytical Redundancy with a Temporal Convolutional Network," *IEEE Robotics and Automation Letters (RA-L)*, vol.7, no.1, pp. 17-24, Oct. 2021.
 
 * Changki Sung, Seulgi Jeon, **Hyungtae Lim**, and Hyun Myung, "What If There Was No Revisit? Large-Scale Graph-based SLAM with Traffic Sign Detection in an HD Map Using LiDAR Inertial Odometry," *Journal of Intelligent Service Robotics*, pp. 1-10, Nov. 2021.
 
-* **Hyungtae Lim**, Minho Oh, and Hyun Myung†, "Patchwork: Concentric Zone-based Region-wise Ground Segmentation with Ground Likelihood Estimation Using a 3D LiDAR Sensor," *IEEE Robotics and Automation Letters (RA-L)* (with IROS option), vol.6, no.4, pp.6458-6465, Jun. 2021.
+* **Hyungtae Lim**, Minho Oh, and Hyun Myung, "Patchwork: Concentric Zone-based Region-wise Ground Segmentation with Ground Likelihood Estimation Using a 3D LiDAR Sensor," *IEEE Robotics and Automation Letters (RA-L)* (with IROS option), vol.6, no.4, pp.6458-6465, Jun. 2021.
 
 * Wonkeun Youn, **HyungtaeLim**, Hyoung Sik Choi, Matthew B. Rhudy, Hyeok Ryu, Sungyug Kim, andHyun Myung, "State Estimation of HALE UAV with Deep Learning-aided Virtual AOA/SSA Sensorfor Analytical Redundancy," *IEEE Robotics and Automation Letters (RA-L)*, 2021.
 
