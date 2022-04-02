@@ -13,10 +13,10 @@ comments: true
 
 최근 LiDAR sensor로 취득한 3D point cloud에서 feature extraction을 어떻게 뽑는가에 대한 관심이 생겨서, LeGO-LOAM을 자세히 보게 되었습니다.
 
-그런데 찾아보는 도중, 크게 3가지 이슈가 있다는 것을 느껴 제가 한 번 정리해보고자 이렇게 글을 쓰게 되었습니다.
+그런데 찾아보는 도중, 크게 3가지 문제점을 느껴서 제가 한 번 초심자도 LeGO-LOAM 코드를 잘 이해할 수 있게 정리해보고자 이렇게 글을 쓰게 되었습니다.
 
 * Overview에 대한 설명 자료는 많으나, line-by-line으로 자세한 설명으로 되어있는 한글 문서가 없음 (주로 중국어(!)로 되어있음)
-* LeGO-LOAM의 코드가 생각보다 휴리스틱한 부분과 하드코딩이 많아서, 처음 SLAM을 공부하는 이들이 LeGO-LOAM 코드를 바이블 삼아 공부하기에는 진입장벽이 높을 것 같음 (LiDAR SLAM framework 자체를 공부하는 것이 목적이라면 저는 [Faster-LIO](https://github.com/gaoxiang12/faster-lio)를 보는 것을 더 추천드립니다.)
+* LeGO-LOAM의 코드가 생각보다 휴리스틱한 부분과 하드코딩이 많아서, 처음 SLAM을 공부하는 이들이 LeGO-LOAM 코드를 바이블 삼아 공부하기에는 진입장벽이 높을 것 같음 (LiDAR SLAM framework 자체를 공부하는 것이 목적이라면 저는 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)이나 [Faster-LIO](https://github.com/gaoxiang12/faster-lio)를 보는 것을 더 추천드립니다.)
 * 논문 상에서는 수식을 제시하고 Levenberg-Marquardt 방법으로 optimization을 했다고 되어 있으나, 실제 코드 내부는 jacobian term을 직접 하나하나 구한다거나 설명없이 하드코딩으로 되어 있는 부분이 많음. 따라서 수학적 배경없이 코드를 이해하기 상당히 어려움
 
 그래서 제가 이해한 것을 바탕으로 line-by-line으로 정리하고자 합니다.
@@ -43,7 +43,7 @@ LeGO-LOAM의 전반적인 파이프라인은 아래와 같고,
 
 향후 각각의 요소에 대해서 설명할 예정입니다 
 
-(22.03.07: 현재 작성자의 interest는 `featureAssociation.cpp`까지입니다... :sweat_smile:)
+(22.03.07: 현재 작성자의 interest는 `featureAssociation.cpp`까지입니다...헤헿...)
 
 ## Preliminaries
 
@@ -67,7 +67,7 @@ extern const int groundScanInd = 7;
 
 
 만약 다른 센서(e.g Ouster OS1-64)로 LOAM 계열 코드를 돌려야하는 경우에는 하드웨어의 특성에 맞게 아래와 같이 파라미터들이 수정되어야 합니다.
-(**중요**:Ouster 같은 경우는 Velodyne 사의 3D LiDAR와 측정 방식이 달라 추가적으로 코드 내부를 더 수정해주어야 합니다. 기섭이가 정리해둔 [레포지토리](https://github.com/irapkaist/SC-LeGO-LOAM) 참조)
+(**중요**:Ouster 같은 경우는 Velodyne 사의 3D LiDAR와 측정 방식이 달라 추가적으로 코드 내부를 더 수정해주어야 합니다. 간략히 예시를 들자면 아래와 같이 하드웨어에 맞게 파라미터들을 잘 수정해주어야 합니다. 자세한 것은 기섭이가 정리해둔 [레포지토리](https://github.com/irapkaist/SC-LeGO-LOAM) 참조)
 
 ```cpp
 // Ouster OS1-64
