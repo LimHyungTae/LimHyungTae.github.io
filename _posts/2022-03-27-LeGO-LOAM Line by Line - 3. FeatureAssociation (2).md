@@ -149,14 +149,17 @@ d) 위의 조건을 만족하면 해당 pixel을 corner feature로 pixel을 뽑�
 
 e) 제일 sharp한 2개의 points를 뽑은 후, `cornerPointsLessSharp`를 할당한다.
 
-f) 위의 과정과 비슷하게 planar feature를 뽑는 반복하는데, planar feature는 우선적으로 ground에 있는 경우에만 `surfPointsFlat`으로 할당한다. 여기서 특이한건, `surfPointsLessFlat`를 할당하는 방법인데, feature 뽑기를 진행하면 각 cloudLabel[i]이 다음과 같이 할당되어 있다.
+f) 위의 과정과 비슷하게 planar feature를 뽑는 것을 반복하는데, planar feature는 우선적으로 ground에서만 `surfPointsFlat`으로 할당한다. 
+
+g) 여기서 특이한건, `surfPointsLessFlat`를 할당하는 방법인데, `surfPointsLessFlat`는 planar feature + 할당되지 않은 모든 feature로 구성되어 있다. feature 뽑는 것을 진행하면 각 cloudLabel[i]이 다음과 같이 할당되어 있는데:
 
 * `cloudLabel[i] == 2`: Sharp corner features
 * `cloudLabel[i] == 1`: Less harp corner features
 * `cloudLabel[i] == 0`: Not assigned
 * `cloudLabel[i] == -1`: Planar features
 
-전부 할당이 끝난 후에 `cloudLabel[i]`가 0이거나 -1인 경우에 대해서만 아래와 같이 `surfPointsLessFlatScan`에 다 때려 넣는다.
+`cloudLabel[i]`가 0이거나 -1인 경우에 대해서만 아래와 같이 `surfPointsLessFlatScan`에 다 때려 넣는다.
+
 ```cpp
 // 3. Set surfPointsLessFlatScan
 for (int k = sp; k <= ep; k++) {
@@ -171,6 +174,13 @@ for (int k = sp; k <= ep; k++) {
 ```cpp
 downSizeFilter.setLeafSize(0.2, 0.2, 0.2);
 ```
+
+cornerPointsSharp->clear();
+    cornerPointsLessSharp->clear();
+    surfPointsFlat->clear();
+    surfPointsLessFlat->clear();
+
+**NOTE**: `cornerPointsLessSharp`와 `surfPointsLessFlat`는 해당 frame이 t-1의 역할을 할 때 활용된다. 이 두 feature 집합을 편히 *less-feature*라 부를 때, 이 *less-feature*들은 t-1의 point pair로, distint feature들은 t의 입력값이 되어 서로 간에 pair를 찾는다.
 
 ### checkSystemInitialization()
 
