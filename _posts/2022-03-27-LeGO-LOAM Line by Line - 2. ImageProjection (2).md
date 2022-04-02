@@ -315,7 +315,7 @@ for (size_t i = 0; i < N_SCAN; ++i) {
 
 ### 6. publishCloud() & 7. resetParameters()
 
-그 후, `segMsg`와 visualization을 위해 ground, non-ground points가 publish되고 내부 변수들은 다음(t+1)의 point cloud preprocessing을 위해 reset됩니다. 자명하므로 생략.
+그 후, `segMsg`와 visualization을 위해 ground, non-ground points가 publish되고 내부 변수들은 다음 frame의 point cloud를 다시 preprocessing하기 위해 파라미터들이 reset된됩니다. 자명하므로 생략.
 
  
 ---
