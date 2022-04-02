@@ -135,7 +135,7 @@ void findStartEndAngle(){
 
 이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 Velodyne Puck LiDAR를 사용했을 경우 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 377도 정도 shift가 일어난 것을 확인하게끔 세팅이 된다. 이 차이각은 `segMsg.orientationDiff`에 전체 회전한 정도를 저장한다 (단위: rad). 
 
-그런데, 여기서 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 0~N개의 point들이 아래와 같이 시계 방향을 돌면서 취득되기 때문이다.   
+그런데, 여기서 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 ROS 상에서 point cloud를 입력으로 받았을 때, 0~N개의 point들이 아래와 같이 시계 방향 순으로 (clock-wise) vector에 담겨있기 때문이다.   
 
 ![](/img/lego_loam_relTime.png)
 
@@ -151,7 +151,7 @@ point.intensity = int(segmentedCloud->points[i].intensity) + scanPeriod * relTim
 
 ### 3. projectPointCloud()
 
-이 함수에서는 N개(아래의 `cloudSize`)의 points를 가상의 range image, i.e. `rangeMat`,로 projection시킨다. 즉, 3D point cloud를 `N_SCAN`x`Horizon_SCAN`의 array로 매핑한다. Velodyne 16의 경우에는 matrix의 사이즈가 16x1800와 같다. 순서대로 `rowIdn`와 `columnIdn`를 구하고, 해당하는 픽셀 (`rowIdn`, `columnIdn`)에 range 값을 저장한다.
+그 후, N개(아래의 `cloudSize`)의 points를 가상의 range image, i.e. `rangeMat`,로 projection시킨다. 즉, 3D point cloud를 `N_SCAN`x`Horizon_SCAN`의 array로 매핑한다. Velodyne 16의 경우에는 matrix의 사이즈가 16 (channel 갯수)x1800 (수평한 방향으로 각 channel에서 취득할 수 있는 갯수, i.e. 360 deg/`ang_res_x`)와 같다. 순서대로 `rowIdn`와 `columnIdn`를 구하고, 해당하는 픽셀 (`rowIdn`, `columnIdn`)에 range 값을 저장한다.
 
 ```cpp
 void projectPointCloud(){
