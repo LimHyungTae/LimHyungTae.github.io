@@ -94,7 +94,7 @@ void runFeatureAssociation()
 
 ## 1. Check whether the output of ImageProjection is coming or not
 
-가장 첫 번째로 FeatureAssociation으로 입력값들이 다 callback을 통해 할당되었는지 확인한다. 
+가장 첫 번째로 FeatureAssociation으로 입력값들이 다 callback을 통해 할당이 완료되었는지 확인한다. 
 ```cpp
 if (newSegmentedCloud && newSegmentedCloudInfo && newOutlierCloud &&
     std::abs(timeNewSegmentedCloudInfo - timeNewSegmentedCloud) < 0.05 &&
@@ -117,15 +117,14 @@ if (newSegmentedCloud && newSegmentedCloudInfo && newOutlierCloud &&
 ---
 ## 2. Ready for Feature Extraction
 
-Feature를 뽑기 전에, 앞서서 다음과 같이 세 가지 단계가 존재한다.
-1. XYZ coordinate -> ZXY coordinate로 축 변환
-2. Curvature 계산
-3. Occlusion (LiDAR sensor 기준 앞쪽의 물체가 뒷쪽 물체를 가려서 뒷쪽의 물체가 관측되지 않는 현상) 
+Feature extraction을 하기 전에, 앞서서 다음과 같이 세 가지 단계가 존재한다.
+a) `adjustDistortion()`: i) XYZ coordinate -> ZXY coordinate로 축 변환, ii) 각 point의 relative time 계산
+b) `calculateSmoothness()`: Corner/edge feature 추출에 사용될 Curvature 계산
+c) `markOccludedPoints()`: i) Occlusion (LiDAR sensor 기준 앞쪽의 물체가 뒷쪽 물체를 가려서 뒷쪽의 물체가 관측되지 않는 현상)이 일어나거나 ii) 해당 point의 normal vector가 모호한 경우 feature로 사용하지 않기 위해 masking을 함
 
 ### adjustDistortion()
 
 먼저 `adjustDistortion()` 함수는 아래와 같다. (IMU data로 deskewing하는 부분은 생략한다. IMU data를 callback으로 안 받으면 `imuPointerLast`가 계속 -1으로 세팅되어 있어서 실행 안 됨. [원 코드](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM/blob/master/LeGO-LOAM/src/featureAssociation.cpp) 참조)
-
 
 
 ```
@@ -167,6 +166,8 @@ void adjustDistortion()
     }
 }
 ```
+
+**i) XYZ coordinate -> ZXY coordinate로 축 변환**
 
 여기서 아래와 같이 point cloud의 좌표 축을 변환되는데 **별 이유 없다** ~~이 좌표축 변환은 후대의 많은 연구자들을 혼란에 빠뜨리고 마는데...~. 
 
@@ -215,6 +216,7 @@ void publishCloud()
 }
 ```
 
+**ii) 각 point의 relative time 계산**
 
 ```cpp
 float relTime;
