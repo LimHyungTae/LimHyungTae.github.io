@@ -15,7 +15,7 @@ comments: true
 
 ### 5. cloudSegmentation()
 
- `cloudSegmentation()` 함수에서는 [앞선 과정](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-%EC%83%81%EC%84%B8-%EC%84%A4%EB%AA%85-2.-ImageProjection-(1)/)에서 `labelMat`의 각 픽셀에 해당하는 유효하지 않은 points들을 -1로 할당한 후, 아직 0으로 할당되어 있는 픽셀들을 입력값으로 하여 최종적으로 유효한 points를 segmentation한다. 여기서 최종적인 결과인 '유효한 points`(valid segments)는 non-ground points들 중 기하학적인 특성을 띌 것 같은 물체로부터 측정된 points들을 뜻한다 (도심 환경을 예로 들면 전봇대, 건물의 벽면, 나무 줄기, 자동차 옆면 등등). 전체 과정은 아래와 같다.
+ `cloudSegmentation()` 함수에서는 [앞선 과정](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1)/)의 결과인 `labelMat`를 입력으로 받는다. `labelMat`의 non-ground points는 아직 0으로 할당되어 있는데, 픽셀들을 입력값으로 하여 최종적으로 유효한 points를 segmentation한다. 여기서 최종적인 결과인 '유효한 points`라는 말은 해당 points를 이용하여 feature를 추출했을 때 그 피쳐가 기하학적인 특성을 띌 것 같은 물체로부터 측정된 points들을 뜻한다 (도심 환경을 예로 들면 전봇대, 건물의 벽면, 나무 줄기, 자동차 옆면 등등). 전체 과정은 아래와 같다.
 
 
 ```cpp
