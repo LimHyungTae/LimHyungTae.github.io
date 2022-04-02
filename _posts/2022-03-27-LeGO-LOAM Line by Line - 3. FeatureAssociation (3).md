@@ -64,15 +64,15 @@ void updateInitialGuess(){
 
 ### updateTransformation()
 
-Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기** (`findCorrespondingSurfFeatures()` & `findCorrespondingCornerFeatures()`)와 **b) Optimization을 통한 parameter update** (`calculateTransformationSurf()` & `calculateTransformationCorner()`)로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 각각 행해진다.
+Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기**와 **b) Optimization을 통한 parameter update**로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 각각 행해진다.
 
 ```cpp
 void updateTransformation(){
     if (laserCloudCornerLastNum < 10 || laserCloudSurfLastNum < 100)
         return;
-    // ----------------------
+    // -------------------------------------------------------------------------
     // Optimization of t_z, roll, and pitch by using planar (surface) features 
-    // ----------------------
+    // -------------------------------------------------------------------------
     for (int iterCount1 = 0; iterCount1 < 25; iterCount1++) {
         laserCloudOri->clear();
         coeffSel->clear();
@@ -85,9 +85,9 @@ void updateTransformation(){
             break;
     }
     
-    // ----------------------
+    // ------------------------------------------------------------------
     // Optimization of t_x, t_y, and yaw by using corner (edge) features 
-    // ----------------------
+    // ------------------------------------------------------------------
     for (int iterCount2 = 0; iterCount2 < 25; iterCount2++) {
 
         laserCloudOri->clear();
@@ -105,7 +105,7 @@ void updateTransformation(){
 
 순서는 surface features -> corner features 순으로 optimization을 진행하지만, 둘의 구조와 알고리즘 상의 방법론이 동일하기 때문에, 수식이 좀 더 쉬운 corner feature에 대해 먼저 설명한다.
 
-### findCorrespondingCornerFeatures(iterCount2)
+### a) Correspondence 찾기 `findCorrespondingCornerFeatures(iterCount2)`
 
 ```cpp
 void findCorrespondingCornerFeatures(int iterCount){
@@ -282,7 +282,7 @@ if (s > 0.1 && ld2 != 0) {
 * 5번 이후에는 너무 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. 즉, `s`에 0.1을 넣고 전개하면 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크다.
 
 
-### calculateTransformationCorner(iterCount2)
+### b) Optimization을 통한 parameter update `calculateTransformationCorner(iterCount2)`
 
 Correspondences를 추정한 후, time t에서의 `cornerPointsSharp`에서 유효하다고 판단되어 선별된 `laserCloudOri`을 입력으로 하여 optimization을 진행한다. 크게 네 파트로 구성되어 있는데, i) jacobian matrix 계산, ii) solve the delta, iii) degeneracy check, iv) 수렴했는지 판단 으로 구성되어 있다.
 
