@@ -265,17 +265,10 @@ void labelComponents(int row, int col){
 #### b) Set `segMsg` based on `rangeMat`, `groundMat`, and `labelMat`
 
 
-위의 결과로, `labelMat`의 전체 값은 
-* -1 (range measurement가 없음)
-* 999999 (segment의 point 수가 적음. sub-cluster로 간주하여 유효하지 않다고 판단)
-* 0보다 큰 1 이상의 어떤 값 (label의 cluster id라 보면 될 듯)
-* 으로 할당되게 된다.
-
-
 그 후, `featureAssociation.cpp`의 입력값인 `outlierCloud`, `segmentedCloud`, `segMsg`를 세팅한다. 각각의 의미는 아래와 같다
 * `outlierCloud`: sub-cluster로 간주된 (`labelMat`의 값이 999999) points들을 5개 간격으로 하여 하나씩 넣음. 주의해야할 것은 `groundScanInd` 이상의 channel에서만 outlier를 추출함.
 * `segmentedCloud`: 여기서의 `segmented`의 의미는 i) ground 중 5칸 당 1개씩,  ii) clustering이 유효한 non-ground points를 의미한다.
-* `segMsg`: 각각에 해당하는 추가적인 정보들이 저장된다.
+* `segMsg`: 각각에 해당하는 추가적인 정보들이 저장된다. 여기서 주의해야할 것은 `segMsg`의 데이터 순서는 (0, 0)->(0, 1)->...->(0, 1799)->(1, 0)->...->(15, 1799)순으로 `segmentedCloud`에 해당하는 point가 저장된다.
 
 아래의 값 `5`가 의미하는 것이 명확하지는 않으나 아마 margin을 뜻하는 게 아닌가 싶다. Horizontal 방향으로 5개 마다 1개씩 sampling을 함으로써 points의 숫자를 줄여준다.
 
