@@ -27,6 +27,9 @@ comments: true
 * [Partial derivative](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/introduction-to-partial-derivatives)
 
 
+### updateInitialGuess()
+
+
 ### updateTransformation()
 
 Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기**와 **b) non-linear optmizaton을 통한 parameter update하기**로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 행해진다.
