@@ -64,7 +64,7 @@ void updateInitialGuess(){
 
 ### updateTransformation()
 
-Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기**와 **b) non-linear optmizaton을 통한 parameter update하기**로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 행해진다 (ICP와 동일하다).
+Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기** (`findCorrespondingSurfFeatures()` & `findCorrespondingCornerFeatures()`)와 **b) Optimization을 통한 parameter update** (`calculateTransformationSurf()` & `calculateTransformationCorner()`)로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 각각 행해진다.
 
 ```cpp
 void updateTransformation(){
