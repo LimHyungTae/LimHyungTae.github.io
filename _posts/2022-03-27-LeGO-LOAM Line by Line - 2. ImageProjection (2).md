@@ -311,7 +311,7 @@ for (size_t i = 0; i < N_SCAN; ++i) {
 }
 ```
 
-각각의 output이 `featureAssociation.cpp`에서 어떻게 사용되는지는 [여기]에서 살펴본다.
+각각의 output이 `featureAssociation.cpp`에서 어떻게 사용되는지는 [여기](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1)/)에서 살펴본다.
 
 ### 6. publishCloud() & 7. resetParameters()
 
