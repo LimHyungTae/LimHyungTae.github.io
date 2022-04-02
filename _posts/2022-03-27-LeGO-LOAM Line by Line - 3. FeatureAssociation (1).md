@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LeGO-LOAM 상세 설명 - 3. FeatureAssociation (1)
+title: LeGO-LOAM Line by Line - 3. FeatureAssociation (1)
 subtitle: Feature Extraction
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
