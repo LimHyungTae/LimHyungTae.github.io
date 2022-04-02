@@ -73,8 +73,6 @@ cv::Mat groundMat; // ground matrix for ground cloud marking
     * 1 이상: label이 유효하면 1 이상의 값이 할당됨. `labelComponents(i, j)` 함수에서 시행. 즉, 0 초과인 값들은 모두 유효한 값. Cluster의 id를 나타냄
     * 999999: `labelComponents(i, j)` 함수에서 clustering을 한 후 cluster의 point 수가 너무 적은 경우. Ground는 아니지만 유효하지 않다는 것을 의미함
 
-주의할 것은 
-
 
 추가적으로, 이러한 matrix들과 `fullCloud`, `fullInfoCloud`는 아래와 같이 initialization이 된다.
 
