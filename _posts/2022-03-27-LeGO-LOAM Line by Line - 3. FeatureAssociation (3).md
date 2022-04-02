@@ -220,9 +220,9 @@ void findCorrespondingCornerFeatures(int iterCount){
 }
 ```
 
-위 함수는 다시 크게 두 파트로 나뉘어진다.
+위의 코드를 해석하자면 아래와 같이 크게 두 파트로 나뉘어진다.
 
-**i) Correspondence 찾기**: 가장 먼저, time t 상의 sharp한 corner feature와 가장 거리가 가까운 t-1 두 corner feature를 찾는다. 여기서 `kdtreeCornerLast`의 입력 point cloud는 t-1의 `cornerPointsLessSharp`이다. t-1에서 가장 가까운 점 1개를 찾은 후, 그 점을 기점으로 +-2.5ms (확인 요망) 근처에 있는 점을 l점으로 취급한다. 근데 코드 상에서 보면 +- check를 위->아래 순으로 체크하는 것 같다. 
+**i) Correspondence 찾기**: 가장 먼저, time t 상의 sharp한 corner feature와 가장 거리가 가까운 t-1 두 corner feature를 찾는다. 여기서 `kdtreeCornerLast`의 입력 point cloud는 t-1의 `cornerPointsLessSharp`이다. t-1에서 가장 가까운 점 1개를 찾은 후, 그 점을 기점으로 +-2.5 channel index 이내에 있는 corner feature를 그점으로 취급한다. 근데 코드 상에서 보면 +- check를 위->아래 순으로 체크하는 것 같다. 
 
 최종적으로는 가장 가까운 점과 그 다음 가까운 점이 아래와 같이 할당된다. 만약 두 점의 거리의 제곱이 주어진 파라미터 `nearestFeatureSearchSqDist`보다 크면 잘못된 pair라고 상정한다. 기본적으로 `nearestFeatureSearchSqDist`는 25m^2으로 설정되어 있다. 가장 가까운 포인트와 그 다음 가까운 포인트는 아래와 같이 index가 저장된다.
 
