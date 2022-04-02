@@ -1,7 +1,7 @@
 ---
 layout: post
 title: LeGO-LOAM Line by Line - 3. FeatureAssociation (2)
-subtitle: Edge and Planar Feature Extraction
+subtitle: Corner and Planar Feature Extraction
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 ---
@@ -12,11 +12,11 @@ comments: true
 
 ![](/img/lego_loam_fa2.png)
 
+Feature를 뽑을 준비가 끝나면 `extractFeatures()` 함수를 통해 feature를 추출한다. 그런데, relative pose를 추정하기 위해서는 연속적인 두 프레임의 feature가 필요하기 때문에, i.e. features on t-1 & features on t, initialization이 필요하다. 따라서 t=1인 경우에는 위와 같이 `checkSystemInitialization()` 함수까지만 진행이 되고 return된다.
+
 ### extractFeatures()
 
-`cloudNeighborPicked[i] = 1`와 `cloudCurvature[i] = diffRange*diffRange`가 계산되어 있음
-
-전반적으로 feature extraction은 edge feature과 corner feature를 나눠서 뽑는다.
+이 함수에서는 앞에 계산했던 `cloudCurvature[i] = diffRange*diffRange` (from `calculateSmoothness()`)와 `cloudNeighborPicked[i]`를 활용하여 최종적으로 feature extraction을 진행한다. 크게 feature extraction 과정은 edge feature과 corner feature를 나눠서 뽑는다.
 
 ```cpp
 void extractFeatures()
@@ -38,7 +38,9 @@ void extractFeatures()
                 continue;
 
             std::sort(cloudSmoothness.begin()+sp, cloudSmoothness.begin()+ep, by_value());
+            // ---------------------------
             // 1. Extract edge features
+            // ---------------------------
             int largestPickedNum = 0;
             for (int k = ep; k >= sp; k--) {
                 int ind = cloudSmoothness[k].ind;
@@ -60,13 +62,15 @@ void extractFeatures()
 
                     cloudNeighborPicked[ind] = 1;
                     for (int l = 1; l <= 5; l++) {
-                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] - segInfo.segmentedCloudColInd[ind + l - 1]));
+                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] 
+                                            - segInfo.segmentedCloudColInd[ind + l - 1]));
                         if (columnDiff > 10)
                             break;
                         cloudNeighborPicked[ind + l] = 1;
                     }
                     for (int l = -1; l >= -5; l--) {
-                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] - segInfo.segmentedCloudColInd[ind + l + 1]));
+                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l]
+                                            - segInfo.segmentedCloudColInd[ind + l + 1]));
                         if (columnDiff > 10)
                             break;
                         cloudNeighborPicked[ind + l] = 1;
@@ -93,7 +97,8 @@ void extractFeatures()
                     cloudNeighborPicked[ind] = 1;
                     for (int l = 1; l <= 5; l++) {
 
-                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] - segInfo.segmentedCloudColInd[ind + l - 1]));
+                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] 
+                                            - segInfo.segmentedCloudColInd[ind + l - 1]));
                         if (columnDiff > 10)
                             break;
 
@@ -101,7 +106,8 @@ void extractFeatures()
                     }
                     for (int l = -1; l >= -5; l--) {
 
-                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] - segInfo.segmentedCloudColInd[ind + l + 1]));
+                        int columnDiff = std::abs(int(segInfo.segmentedCloudColInd[ind + l] 
+                                            - segInfo.segmentedCloudColInd[ind + l + 1]));
                         if (columnDiff > 10)
                             break;
 
