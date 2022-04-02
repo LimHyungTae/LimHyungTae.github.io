@@ -1,14 +1,16 @@
 ---
 layout: post
 title: LeGO-LOAM Line by Line - 3. FeatureAssociation (1)
-subtitle: Feature Extraction
+subtitle: Ready for Feature Extraction
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 ---
 
-# FeatureAssociation in LeGO-LOAM (1) Feature Extraction
+# FeatureAssociation in LeGO-LOAM (1) Ready for Feature Extraction
 
-`featureAssociation.cpp`에서는 `imageProjection.cpp`에서 유효한 points들과 ground points를 추출한 후, 해당하는 값들로부터 (1) corner feature와 edge feature를 뽑고, (2) t-1과 t 사이의 relative odometry를 각 feature로부터 추정한다.
+`featureAssociation.cpp`에서는 `imageProjection.cpp`에서 추출한 segmented cloud를 입력으로 받아 해당하는 point cloud로부터 유의미한 corner feature와 edge feature를 뽑고, t-1과 t 사이의 relative odometry를 각 feature로부터 추정한다.
+
+## Overview
 
 먼저 전체적으로 아래와 같이 200Hz로 (>10Hz) `runFeatureAssociation()` 함수를 계속 시행한다.
 
@@ -36,13 +38,13 @@ int main(int argc, char** argv)
 }
 ```
 
-그리고 `runFeatureAssociation()` 함수는 아래와 같이 세 파트로 구성되어 있다.
+그리고 `runFeatureAssociation()` 함수는 아래와 같이 네 파트로 구성되어 있다.
 
 ```cpp
 void runFeatureAssociation()
 {
     /**
-     0. Check whether the output of ImageProjection is coming or not
+     1. Check whether the output of ImageProjection is coming or not
     */
     if (newSegmentedCloud && newSegmentedCloudInfo && newOutlierCloud &&
         std::abs(timeNewSegmentedCloudInfo - timeNewSegmentedCloud) < 0.05 &&
@@ -55,26 +57,29 @@ void runFeatureAssociation()
         return;
     }
     /**
-     1. Feature Extraction
+     2. Ready for Feature Extraction
     */
     adjustDistortion();
 
     calculateSmoothness();
 
     markOccludedPoints();
-
+    
+    /**
+     3. Perform Feature Extraction
+    */
     extractFeatures();
 
     publishCloud(); // cloud for visualization
 
-    /**
-     2. Feature Association
-    */
     if (!systemInitedLM) {
         checkSystemInitialization();
         return;
     }
-
+    
+    /**
+     4. Relative Pose Estimation via Feature Association
+    */
     updateInitialGuess();
 
     updateTransformation();
@@ -87,8 +92,9 @@ void runFeatureAssociation()
 }
 ```
 
-가장 첫 번째로 FeatureAssociation으로 입력값들이 다 callback을 통해 할당되었는지 확인한다. 3D LiDAR sensor의 Hz가 10Hz임을 감안하면, 0.05 sec.의 timestamp 간격이 상당히 작다는 것을 알 수 있다. 하지만 ImageProjection단에서 거의 동시에 세 개의 message를 publish하기 때문에 서로간의 time delay가 적은게 정상이다.
+## 1. Check whether the output of ImageProjection is coming or not
 
+가장 첫 번째로 FeatureAssociation으로 입력값들이 다 callback을 통해 할당되었는지 확인한다. 
 ```cpp
 if (newSegmentedCloud && newSegmentedCloudInfo && newOutlierCloud &&
     std::abs(timeNewSegmentedCloudInfo - timeNewSegmentedCloud) < 0.05 &&
@@ -102,12 +108,14 @@ if (newSegmentedCloud && newSegmentedCloudInfo && newOutlierCloud &&
 }
 ```
 
-그 후, 데이터가 들어온 것을 확인하면 feature를 먼저 추출한 후 (feature extraction), t-1에서와 t에서의 feature 간의 correspondences를 찾아 relative pose를 추정한다. 
+3D LiDAR sensor의 Hz가 10Hz임을 감안하면, 0.05 sec.의 timestamp 간격이 상당히 작다는 것을 알 수 있다. 그렇더라도 ImageProjection단에서 거의 동시에 세 개의 message를 publish하기 때문에 서로간의 time delay가 적은게 정상이다.
 
-**NOTE**: LeGO-LOAM에서도 IMU data를 취급하지만, 실제로 돌려보면 IMU data를 사용했을 때 성능이 더 안 좋은 경우가 종종 발생한다. 이 것은 너무 naive하게 IMU 데이터를 축적했기 때문이다. 이러한 문제점들은 원저자의 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)에서 GTSAM의 preintegration module을 도입해서 좀더 정밀한 initial guess pose를 IMU 데이터로부터 얻는다. 무튼, 본 글에서는 IMU callback은 들어오지 않는다고 가정한다. 
+데이터가 들어온 것을 확인하면 a) feature extraction을 위한 preprocessing을 진행하고, b) corner feature와 planar feature를 추출한 후 (feature extraction), c) t-1에서와 t에서의 feature 간의 correspondences를 찾아 relative pose를 추정한다. 
+
+**NOTE**: LeGO-LOAM에서도 IMU data를 통해 initial guess를 추정하는 부분이 있지만, 실제로는 LiDAR+IMU data를 사용했을 때가 LiDAR sensor만 사용했을 때에 비해 성능이 더 안 좋은 경우가 종종 발생한다. 이 것은 코드 내에서 다소 naive하게 IMU 데이터를 축적했기 때문이다. 이러한 문제점은 원저자의 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)에서 GTSAM의 preintegration module을 도입해서 좀더 정밀한 initial guess pose를 얻게끔 해소된다. 무튼, 본 글에서는 편의 상 IMU callback을 통해 IMU data가 들어오지 않는다고 가정한다. LiDAR Inertial Odometry에 관심이 있으면 LIO-SAM 코드를 보는 걸로...
 
 ---
-## Ready for Feature Extraction
+## 2. Ready for Feature Extraction
 
 Feature를 뽑기 전에, 앞서서 다음과 같이 세 가지 단계가 존재한다.
 1. XYZ coordinate -> ZXY coordinate로 축 변환
@@ -341,16 +349,8 @@ void markOccludedPoints()
 }
 ```
 
-#### Case1
-
-인접한 두 포인트가 가까이 있지만, i.e `columnDiff < 10`, 거리차가 너무 많이 나는 경우에는 occlusion이 일어났다고 판단한다. 
-
-#### Case2
-
-i번째 point를 기준으로 양 옆의 가장 가까운 valid segments와 상대적 거리차가 어느정도 나는지 확인한다. 그래서 i-1번째와 i+1번 째 모두 다 i를 기준으로 상대적 거리가 꽤 차이나게 위치하고 있으면, i.e. range * 1.02 초과거나 range * 0.98 미만이면, i 번째 point를 feature 후보군으로 여기지 않는다.
-
-
-
+* **Case1**: 인접한 두 포인트가 가까이 있지만, i.e `columnDiff < 10`, 거리차가 너무 많이 나는 경우에는 occlusion이 일어났다고 판단한다. 
+* **Case2**: i번째 point를 기준으로 양 옆의 가장 가까운 valid segments와 상대적 거리차가 어느정도 나는지 확인한다. 그래서 i-1번째와 i+1번 째 모두 다 i를 기준으로 상대적 거리가 꽤 차이나게 위치하고 있으면, i.e. range * 1.02 초과거나 range * 0.98 미만이면, i 번째 point를 feature 후보군으로 여기지 않는다.
  
 ---
 
