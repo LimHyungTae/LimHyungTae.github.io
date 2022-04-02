@@ -133,7 +133,7 @@ void extractFeatures()
 }
 ```
 
-a) 가장 먼저, 각 channal 별로 start point (`sp`)와 end point (`ep`)를 아래와 같이 6분할한다. 코드를 자세히 보기 전에는 단순히 이미지 plane을 6개의 subregion으로 쪼개서 feature를 고루 뽑는 줄 알았는데, 그게 아니라 아래와 같이 valid points 중 앞에서 5번째와 뒤에서 5번째 사이를 6분할한다.
+a) 가장 먼저, 각 channal 별로 start point (`sp`)와 end point (`ep`)를 아래와 같이 6분할한다. 코드를 자세히 보기 전에는 단순히 이미지 plane을 6개의 subregion으로 쪼개서 feature를 고루 뽑는 줄 알았는데, 그게 아니라 아래와 같이 valid points 중 앞에서 5번째와 뒤에서 6번째 사이를 6분할한다 (기억이 안나면 [여기](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)의 (b) 참조).
 
 ![](/img/lego_loam_sp_ep.png)
 
