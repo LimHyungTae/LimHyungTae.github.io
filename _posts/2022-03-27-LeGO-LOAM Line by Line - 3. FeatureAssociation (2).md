@@ -77,8 +77,9 @@ void extractFeatures()
                     }
                 }
             }
-            
+            // ---------------------------
             // 2. Extract planar features
+            // ---------------------------
             int smallestPickedNum = 0;
             for (int k = sp; k <= ep; k++) {
                 int ind = cloudSmoothness[k].ind;
@@ -132,18 +133,18 @@ void extractFeatures()
 }
 ```
 
-1. 가장 먼저, 각 channal 별로 start point (`sp`)와 end point (`ep`)를 아래와 같이 6분할한다. 코드를 자세히 보기 전에는 단순히 이미지 plane을 6개의 subregion으로 쪼개서 feature를 고루 뽑는 줄 알았는데, 그게 아니었다.
+a) 가장 먼저, 각 channal 별로 start point (`sp`)와 end point (`ep`)를 아래와 같이 6분할한다. 코드를 자세히 보기 전에는 단순히 이미지 plane을 6개의 subregion으로 쪼개서 feature를 고루 뽑는 줄 알았는데, 그게 아니라 아래와 같이 valid points 중 앞에서 5번째와 뒤에서 5번째 사이를 6분할한다.
 
 ![](/img/lego_loam_sp_ep.png)
 
-2. 그 후 해당 subregion을 sorting을 한다. 그래서 `sp`쪽에서는 curvature가 작은 값이 위치하게 되고, `ep` 쪽에는 반대로 curvature가 크게 위치하게 된다.
+b) 그 후 해당 subregion을 sorting을 한다. 그래서 `sp`쪽에서는 curvature가 작은 값이 위치하게 되고, `ep` 쪽에는 반대로 curvature가 크게 위치하게 된다.
 
-3. Sorting 후에 edge features를 선별하는데, 
+c) Sorting 후에 edge features를 선별하는데, 
     * `markOccludedPoints()` 함수로부터 마스킹이 안 되었고 (`cloudNeighborPicked[ind] == 0`)
     * curvature 값이 충분히 크고
     * 해당 pixel이 ground 가 아닌 경우에만 edge feature를 뽑는다.
 
-4. 그리고 edge feature로 pixel을 뽑으면 `cloudNeighborPicked[ind] = 1`로 설정하여 해당 pixel이 중복으로 뽑히는 걸 방지하고, feature를 고루 뽑기 위해 그 주변의 +-10 index 범위의 pixel은 feature를 뽑는데 사용하지 않는다.
+d) 그리고 edge feature로 pixel을 뽑으면 `cloudNeighborPicked[ind] = 1`로 설정하여 해당 pixel이 중복으로 뽑히는 걸 방지하고, feature를 고루 뽑기 위해 그 주변의 +-10 index 범위의 pixel은 feature를 뽑는데 사용하지 않는다.
 
 
 마찬가지로 planar feature를 뽑는데, planar feature는 우선적으로 ground에 있는 경우에만 `surfPointsFlat`으로 할당한다. 여기서 특이한건, `surfPointsLessFlat`를 할당하는 방법인데, feature 뽑기를 진행하면 각 cloudLabel[i]이 다음과 같이 할당되어 있다.
