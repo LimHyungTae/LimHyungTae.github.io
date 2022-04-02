@@ -212,7 +212,7 @@ void projectPointCloud(){
 
 ### 4. groundRemoval()
 
-Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서는 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0 `(deg)로 세팅한 것을 볼 수 있다.
+Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서는 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0`로 세팅한 것을 볼 수 있다.
 
 (**주의**: Velodyne HDL series의 경우 바닥쪽으로 laser ray가 약간 치우쳐져 있는 sensor들도 존재한다, i.e. Velodyne HDL-32E or Velodyne HDL-64E. 따라서 무지성으로 # of channels/2으로 `groundScanInd`를 세팅하면 안 되고 datasheet를 꼭 확인 후 하드웨어 맞게 세팅해야한다!!)
 
@@ -273,6 +273,8 @@ void groundRemoval(){
     }
 }
 ```
+
+정리하자면, ground removal은 크게 아래의 세 단계로 이루어진다.
 
 #### a) Check the validity of the values in the range image
 
