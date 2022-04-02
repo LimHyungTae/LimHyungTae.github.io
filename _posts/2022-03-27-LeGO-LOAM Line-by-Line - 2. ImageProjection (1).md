@@ -135,15 +135,15 @@ void findStartEndAngle(){
 }
 ```
 
-이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 18도 정도 shift가 되면서 일어나는 것을 확인할 수 있다.
-
-결과적으로 `segMsg.orientationDiff`에 전체 회전한 정도를 저장한다. 이는 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. `relTime`을 지정할 때 사용된다.
+이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 Velodyne Puck LiDAR를 사용했을 경우 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 377도 정도 shift가 일어난 것을 확인하게끔 세팅이 된다다. 마지막으로, `segMsg.orientationDiff`에 전체 회전한 정도를 저장한다 (단위: rad). 이렇게 세팅된 변수는 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. `relTime`을 지정할 때 사용된다 (향후 다시 설명 예정)
 
 ```cpp
 // adjustDistortion() in featureAssociation.cpp
 float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 point.intensity = int(segmentedCloud->points[i].intensity) + scanPeriod * relTime;
 ```
+
+이 부분을 보고 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 0~N개의 point들이 시계 방향을 돌면서 취득되기 때문이다.   
 
 ### 3. projectPointCloud()
 
