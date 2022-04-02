@@ -264,9 +264,11 @@ if ( (ori > segInfo.startOrientation) && (ori < endOriCorrected) ||
 }
 ```
 
+다행히 이 문제는 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM/blob/master/src/imageProjection.cpp)에서는 deskewing을 ImageProjection 단에서 하는 것으로 변경되어 완벽히 해결되어 있다 ~~Tixiao Shan...그는 신이야!~~
+
 ### calculateSmoothness()
 
-그 후 아래와 같이 curvature 값을 구한다. 그리고 모든 valid segments에 대응하는 pixel은 'cloudNeighborPicked[i] = 0', 'cloudLabel[i] = 0'로 초기화가 된다. 여기서 `cloudNeighborPicked[i]`는 향후 edge, corner features를 추출할 때 해당 pixel을 후보군으로 쓸지 말지를 결정한다 (뒤의 `markOccludedPoints()` 함수 참고). 참고로 1로 할당되면 향후 해당 pixel 값이 feature로서 사용되지 않음을 의미한다.
+그 후 아래와 같이 curvature 값을 구한다. 그리고 모든 valid segments에 대응하는 pixel은 'cloudNeighborPicked[i] = 0', 'cloudLabel[i] = 0'로 초기화가 되고 여기서 `cloudNeighborPicked[i]`는 향후 edge, corner features를 추출할 때 해당 pixel을 후보군으로 쓸지 말지를 결정한다 (뒤의 `markOccludedPoints()` 함수 참고). 참고로 1로 할당되면 향후 해당 pixel 값이 feature로서 사용되지 않음을 의미한다.
 
 ```cpp
 void calculateSmoothness()
