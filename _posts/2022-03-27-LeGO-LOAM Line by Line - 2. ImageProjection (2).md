@@ -1,12 +1,17 @@
 ---
 layout: post
-title: LeGO-LOAM 상세 설명 - 2. ImageProjection (2)
+title: LeGO-LOAM Line by Line - 2. ImageProjection (2)
 subtitle: Cloud Segmentation using Clustering
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 ---
 
 # ImageProjection in LeGO-LOAM (2) Cloud Segmentation using Clustering
+
+(Cont'd)
+
+![](/img/lego_loam_ip_contd.png)
+
 
 ### 5. cloudSegmentation()
 
