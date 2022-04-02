@@ -218,8 +218,7 @@ void publishCloud()
 
 **ii) 각 point의 relative time 계산**
 
-축을 ZYX로 변환한 후, 아래와 같이 상대적 시간을 구한다. Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 이 부분이 왜 이상한지와 어떻게 수정되어야 하는지도 아래에 간략히 설명해둔다.
-
+축을 ZYX로 변환한 후, 아래와 같이 상대적 시간을 구한다. 
 ```cpp
 float ori = -atan2(point.x, point.z);
 if (!halfPassed) {
@@ -241,6 +240,10 @@ if (!halfPassed) {
 
 float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 ```
+
+Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 왜냐하면 이 부분이 왜 이상한지와 어떻게 수정되어야 하는지도 아래에 간략히 설명한다.
+
+![](img/lego_loam_angle_ambiguity.png)
 
 
 
