@@ -298,7 +298,7 @@ Curvature 값은 아래와 같이 기하학적으로 해석할 수 있는데, �
 
 ![](/img/lego_loam_curvatures_v2.png)
 
-추가적으로, 이 글을 정리하다가 새롭게 안 사실인데, 현재 코드 상에서 i-k와 i+k는 (k=1, 2, 3, 4, 5)는 **인접한 픽셀 값이 아니다!**. ImageProjection의 `cloudSegmentation()` 함수에서 유효한 point들만 아래와 같이 차곡차곡 할당하는데, 
+추가적으로, 이 글을 정리하다가 새롭게 안 사실인데, 현재 코드 상에서 i-k와 i+k는 (k=1, 2, 3, 4, 5)는 **인접한 픽셀 값이 아니다!**. 앞에서도 말했듯이 [ImageProjection](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)의 `cloudSegmentation()` 함수에서 유효한 point들만 range image의 인덱스 순으로 아래와 같이 차곡차곡 `segmentedCloud`가 할당되는데, 
 
 ```cpp
 // In `cloudSegmentation()` function in `imageProjection.cpp`
