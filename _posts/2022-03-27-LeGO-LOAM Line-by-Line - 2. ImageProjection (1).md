@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LeGO-LOAM 상세 설명 - 2. ImageProjection (1)
+title: LeGO-LOAM Line-by-Line - 2. ImageProjection (1)
 subtitle: Range Image Projection & Ground Removal
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
