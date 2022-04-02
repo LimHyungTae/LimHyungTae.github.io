@@ -314,7 +314,7 @@ if (abs(angle - sensorMountAngle) <= 10){
 
 **c) Mask the pixels which are considered as the ground or have invalid values**
 
-Ground masking을 다 한 후, 1) `groundMat`에서 ground로 판별되었거나 2) point가 projection되지 않아서 `rangeMat`의 값이 `FLT_MAX`인 경우 `labelMat`에 -1을 할당한다.
+Ground masking을 다 한 후, i) `groundMat`에서 ground로 판별되었거나 ii) point가 projection되지 않아서 `rangeMat`의 값이 `FLT_MAX`인 경우 `labelMat`에 -1을 할당한다.
 
 -1로 할당된 pixel들은 Step 5. `cloudSegmentation()` 함수 과정에서 제외된다.
 
