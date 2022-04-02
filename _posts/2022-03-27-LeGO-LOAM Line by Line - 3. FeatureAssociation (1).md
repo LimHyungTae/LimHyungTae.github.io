@@ -241,17 +241,19 @@ if (!halfPassed) {
 float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 ```
 
-Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 왜냐하면 이 부분이 왜 이상한지와 어떻게 수정되어야 하는지도 아래에 간략히 설명한다.
-
-![](img/lego_loam_angle_ambiguity.png)
+Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 실제로 cout을 출력해보면 `relTime`이 0보다 작거나 1보다 큰 경우가 발생하게 된다 (`relTime`은 0과 1사이의 ratio여야 하기 때문). 왜 이런 현상이 일어나나 했더니, 현재 ImageProjection 과정에서 range image로 projection -> image 평면에서 인덱스 순으로 `segmentedCloud`를 할당했기 때문에 현재 for문의 순서를 통해 `halfPassed`인지 아닌 지 판별하는게 말이 안된다 ([이전](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)에 이미 설명했듯이, `segmentedCloud`의 순서는 (0, 0)->(0, 1)->…->(0, 1799)->(1, 0)->…->(15, 1799)순으로 서치하면서 유효한 points만 push_back하는 식으로 되어있음). 즉 아래의 그림과 같이 original data는 빨간 화살표의 방향을 따라 획득되는데, 현재 `segmentedCloud` 방향은 초록색 화살표를 따라서 진행되기 때문에 `halfPassed`를 판별할 수 없다.
 
 
+![](/img/lego_loam_angle_ambiguity.png)
+
+따라서, 본 `relTime`은 아래와 같이 구해져야 한다고 생각한다 (저의 주관적 해석입니다).
 
 ```cpp
 float relTime;
 float endOriCorrected = segInfo.endOrientation - (M_PI * 2);
 if ( (ori > segInfo.startOrientation) && (ori < endOriCorrected) ||
         ( (endOriCorrected > M_PI) && ((ori > segInfo.startOrientation) || (ori + 2 * M_PI < endOriCorrected)) ) ) {
+    // We do not discern whether the point is measured when `relTime` is 0~0.0451(17deg/360) or 0.955~1.0 (The indistinguishable part in the upper figure)
     relTime = 0.0;
 } else {
     if (ori <= segInfo.startOrientation) {
