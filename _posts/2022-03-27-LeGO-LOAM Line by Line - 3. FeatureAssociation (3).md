@@ -31,7 +31,7 @@ comments: true
 
 `updateInitialGuess()` 함수에서는 IMU data가 들어오면 IMU data를 통해 구한 inital relative pose를 더해준다. 하지만 IMU를 쓰지 않으면 `imuShiftFromStartX`, `imuShiftFromStartY`, `imuShiftFromStartZ`, `imuVeloFromStartX`, `imuVeloFromStartY`, `imuVeloFromStartZ` 모두 다 계속 0이다. 즉, IMU 데이터가 들어오지 않으면 `updateInitialGuess()` 함수를 통해 `transformCur`가 업데이트되지는 않는다.
 
-여기서 주의해야할점은 초기 transformCur의 값은 t-2와 t-1 프레임 간의 pose로 할당되어 있다는 것이다 (t=1과 t=2의 경우에는 [0, 0, 0, 0, 0, 0]으로 initialization되어 있음). 그 이유는 iterative하게 optimization을 할 때에는 초기값에 따라 성능이 많이 달라지게 되는데, 모바일 로봇의 경우 주로 앞-뒤로 움직이기 떄문에 (어려운 말로는 non-holonomic motion을 주로 하기 때문에) 이전에 추정한 pose와 현재 추정해야할 pose의 경향성이 비슷하다는 전제하에 initial pose를 이전 time step에 추정한 pose를 할당해둔다.
+여기서 주의해야할 점은 초기 transformCur의 값은 t-2와 t-1 프레임 간의 pose로 할당되어 있다는 것이다 (t=1과 t=2의 경우에는 [0, 0, 0, 0, 0, 0]으로 initialization되어 있음). 그 이유는 iterative하게 optimization을 할 때에는 초기값에 따라 성능이 많이 달라지게 되는데, 모바일 로봇의 경우 주로 앞-뒤로 움직이기 떄문에 (어려운 말로는 non-holonomic motion을 주로 하기 때문에) 이전에 추정한 pose와 현재 추정해야할 pose의 경향성이 비슷하다는 전제하에 initial pose를 이전 time step에 추정한 pose를 할당해둔다.
 
 ```cpp
 void updateInitialGuess(){
