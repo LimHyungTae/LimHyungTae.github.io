@@ -218,10 +218,9 @@ void checkSystemInitialization(){
 }
 ```
 
-즉, t=1일 때는 다음과 같이 Kd Tree만 세팅한 후, 종료한다.
+즉, t=1일 때는 다음과 같이 Kd Tree만 세팅한 후 `systemInitedLM`를 true로 세팅하여 종료한다. 여기서 t=1일 때 `laserCloudCornerLast`와 `laserCloudSurfLast`는 크기가 0인 point cloud이다 (swap을 하지만 사실상 별로 의미 없는 swap임).
 
 ![](/img/lego_loam_initialization_v2.png) 
- 
  
  
 이렇게 feature setting이 완료되면, 마지막으로 relative pose를 추정한다.
