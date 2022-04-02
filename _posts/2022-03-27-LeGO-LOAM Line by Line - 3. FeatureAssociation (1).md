@@ -66,7 +66,7 @@ void runFeatureAssociation()
     markOccludedPoints();
     
     /**
-     3. Perform Feature Extraction
+     3. Corner and Planar Feature Extraction
     */
     extractFeatures();
 
