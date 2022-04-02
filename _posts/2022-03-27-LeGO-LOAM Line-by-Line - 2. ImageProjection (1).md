@@ -9,19 +9,19 @@ comments: true
 
 # ImageProjection in LeGO-LOAM (1) Range Image Projection & Ground Removal
 
-`imageProjection.cpp`에서는 3D LiDAR sensor로 취득한 point cloud를 range image로 projection을 한 후에, preprocessing을 진행한다. 그로 인해, 3D point cloud 상의 각 포인트를 `segmentedCloud`와 `outlierCloud`로 binary classification을 진행한다. 이는 `featureAssociation.cpp`에서 향후 t-1와 t의 3D point cloud를 입력으로 relative pose를 구할 때 드는 연산량을 줄여준다. 
+`imageProjection.cpp`에서는 3D LiDAR sensor로 취득한 point cloud를 range image로 projection을 한 후에, preprocessing을 진행한다. 그로 인해, 3D point cloud 상의 각 포인트를 `segmentedCloud`와 `outlierCloud`로 binary classification을 진행한다. 요약하자면, `imageProjection.cpp`의 역할은 아래와 같이 세 가지로 꼽을 수 있다.
 
-요약하자면, `imageProjection.cpp`의 역할은 아래와 같이 3가지로 꼽을 수 있다.
+1. `featureAssociation.cpp`에서 interpolation을 할 때 파라미터로 사용되는`segMsg.orientationDiff` 세팅 
+2. Ground points/Non-ground points 구분
+   * Ground points: Laser ray가 땅바닥에서 반사되어 측정된 point로, 주로 3D point cloud 상에서 50~60%는 ground points임. 따라서 미리 ground points를 거르면 후과정에서의 연산량을 줄일 수 있음
+3. Non-ground points 상에서 유효한 segment와 그렇지 않은 것들로 포인트를 구분함
+   * 다소 noisy한 points들: Sub-cluster라고도 부르는데, clustering을 했더니 너무 포인트 수가 적은 cloud points들. 덤불(bushes)같이 기하학적으로 비정형적인 물체들을 제거하는 것을 목표로 함. 
 
-1. `featureAssociation.cpp`에서 interpolation 부분에서 쓸 `segMsg.orientationDiff` 세팅 (in `findStartEndAngle()` 함수)
-2. 유효한 segment와 그렇지 않은 것들로 포인트를 구분함
-    * 그렇지 않은 것들
-      * ground points: 주로 3D point cloud 상에서 50~60%는 ground points임. 따라서 미리 ground points를 거르면 후과정에서의 연산량을 줄일 수 있음
-      * 다소 noisy한 points들: Sub-cluster라고도 부름. clustering을 했더니 너무 포인트 수가 적은 cloud points들
+최종적으로 segment와 outliers를 구분한 정보들은 다음 스텝인 `featureAssociation.cpp`에서 corner feature와 planar feature를 추출할 때 다시 활용된다. 결론부터 말하자면 a) ground points와 b) non-ground points 상에서 상대 포즈를 추정할 때 사용할, 주변 환경을 잘 묘사할 수 있는 (reliable & repeatable) 물체들을 추출해낸다.
 
 ## Overview
 
-각 3D point cloud가 들어오면 아래와 같은 `cloudHandler` callback이 실행되고, 아래와 같이 7 step으로 구성되어 있다.
+각 frame마다 3D LiDAR sensor에서 3D point cloud가 들어오면 아래와 같은 `cloudHandler` callback이 실행되고, 아래와 같이 7 step으로 구성되어 있다.
 
 ```c++
 void cloudHandler(const sensor_msgs::PointCloud2ConstPtr& laserCloudMsg){
@@ -47,7 +47,7 @@ void cloudHandler(const sensor_msgs::PointCloud2ConstPtr& laserCloudMsg){
 ### 핵심 변수들
 
 #### Decision making을 위한 내부 멤버 변수들
-Step 4와 5에서 각 point의 상태를 판별하는 게 다소 헷갈리는데, 미리 정리를 하자면 아래와 같다.
+Step 4와 5에서 각 point의 상태를 판별하는 게 조금 헷갈리는데, 미리 정리를 하자면 아래와 같다 (코드를 보다가 해당하는 변수의 값이 뭘 나타내는지 헷갈릴 때 참고).
 
 크게 이 preprocessing 단계에서 가장 중요한 변수는 아래와 같은 세 개의 matrix이다.
 
@@ -58,20 +58,22 @@ cv::Mat groundMat; // ground matrix for ground cloud marking
 ```
 각 matrix의 각 값은 아래와 같다 ~~matrix의  status를 #define을 통해서 정의해줬으면 이해하기 편했을텐데...~~
 
-* `rangeMat`
+* `rangeMat`: 3D Point cloud를 range image로 만들 때 쓰임
     * `FLT_MAX`로 initialization
     * 한 point가 pixel에 해당하면 센서 프레임으로부터 그 point까지의 거리로 채워짐
 
-* `groundMat`
+* `groundMat`: Range image의 pixel과 일대일 대응되며, range image 중에서 ground points들을 masking하는 용도로 사용
     * 0으로 initialization. 그 후, non-ground의 label로 사용됨   
     * -1: 유효하지 않은 값으로 인해 ground인지 non-ground인지 여부를 판단할 수 없음을 의미. 즉 해당 pixel과 대응되는 `rangeMat` 상의 값이 `FLT_MAX`일 때
     * 1: Ground로 판명
 
-* `labelMat`
-    * 0으로 initialization됨. Not assigned를 의미함    
+* `labelMat`: Range image의 pixel과 일대일 대응되며, range image 중에서 non-ground points들 중 valid segment를 masking하는 용도로 사용
+    * 0으로 initialization됨. 0은 *Not assigned*를 의미함    
     * -1: 해당하는 pixel의 위치가 유효하지 않다고 판별됐을 때. 즉, 해당하는 pixel과 대응되는 `groundMat` 상의 값이 1이거나, `rangeMat` 상의 값이 `FLT_MAX`일 때
     * 1 이상: label이 유효하면 1 이상의 값이 할당됨. `labelComponents(i, j)` 함수에서 시행. 즉, 0 초과인 값들은 모두 유효한 값. Cluster의 id를 나타냄
     * 999999: `labelComponents(i, j)` 함수에서 clustering을 한 후 cluster의 point 수가 너무 적은 경우. Ground는 아니지만 유효하지 않다는 것을 의미함
+
+주의할 것은 
 
 
 추가적으로, 이러한 matrix들과 `fullCloud`, `fullInfoCloud`는 아래와 같이 initialization이 된다.
@@ -98,11 +100,11 @@ nanPoint.z = std::numeric_limits<float>::quiet_NaN();
 nanPoint.intensity = -1;
 ```
 
-그래서 향후에 `fullCloud->points`의 각 point의 intensity가 -1인지 아닌지를 판별하여 현재 상태가 유효한지 아닌지를 판별한다 (step 4. groundRemoval() 참조)
+그래서 향후에 `fullCloud->points`의 각 point의 intensity가 -1인지 아닌지를 판별하여 현재 상태가 유효한지 아닌지를 판별한다 (물리적으로 intensity가 음수의 값으로 나오지는 않기 떄문. step 4. groundRemoval() 참조)
 
 #### 최종 output message
 
-최종적으로, `featureAssociation.cpp`의 입력값으로 되는 `segMsg`는 아래와 같은 멤버 변수를 지니고 있고, 연상 효율성을 위해 fixed size로 정의되어 있다.
+최종적으로, `featureAssociation.cpp`의 입력값으로 되는 `segMsg`는 아래와 같은 멤버 변수를 지니고 있고, 연산 효율성을 위해 fixed size로 정의되어 있다.
 ```cpp
 segMsg.startRingIndex.assign(N_SCAN, 0);
 segMsg.endRingIndex.assign(N_SCAN, 0);
@@ -111,6 +113,8 @@ segMsg.segmentedCloudGroundFlag.assign(N_SCAN*Horizon_SCAN, false);
 segMsg.segmentedCloudColInd.assign(N_SCAN*Horizon_SCAN, 0);
 segMsg.segmentedCloudRange.assign(N_SCAN*Horizon_SCAN, 0);
 ```
+
+`copyPointCloud(laserCloudMsg);`는 이름과 마찬가지로 point cloud를 복사하는 행위이기 때문에 생략한다.
 
 ---
 
