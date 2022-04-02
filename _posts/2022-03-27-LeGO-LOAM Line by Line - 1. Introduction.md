@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LeGO-LOAM 상세 설명 - 1. Introduction
+title: LeGO-LOAM Line by Line - 1. Introduction
 subtitle: Preview and Preliminaries
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
@@ -13,7 +13,7 @@ comments: true
 
 최근 LiDAR sensor로 취득한 3D point cloud에서 feature extraction을 어떻게 뽑는가에 대한 관심이 생겨서, LeGO-LOAM을 자세히 보게 되었습니다.
 
-그런데 찾아보는 도중, 크게 3가지 문제점에 대해 깨달아서 제가 한 번 정리해보고자 이렇게 글을 쓰게 되었습니다.
+그런데 찾아보는 도중, 크게 3가지 이슈가 있다는 것을 느껴 제가 한 번 정리해보고자 이렇게 글을 쓰게 되었습니다.
 
 * Overview에 대한 설명 자료는 많으나, line-by-line으로 자세한 설명으로 되어있는 한글 문서가 없음 (주로 중국어(!)로 되어있음)
 * LeGO-LOAM의 코드가 생각보다 휴리스틱한 부분과 하드코딩이 많아서, 처음 SLAM을 공부하는 이들이 LeGO-LOAM 코드를 바이블 삼아 공부하기에는 진입장벽이 높을 것 같음 (LiDAR SLAM framework 자체를 공부하는 것이 목적이라면 저는 [Faster-LIO](https://github.com/gaoxiang12/faster-lio)를 보는 것을 더 추천드립니다.)
