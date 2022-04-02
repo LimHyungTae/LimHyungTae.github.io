@@ -15,7 +15,7 @@ comments: true
 
 ### 5. cloudSegmentation()
 
- `cloudSegmentation()` 함수에서는 [앞선 과정](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1)/)의 결과인 `labelMat`를 입력으로 받는다. `labelMat`의 non-ground points는 아직 0으로 할당되어 있는데, 픽셀들을 입력값으로 하여 최종적으로 유효한 points를 segmentation한다. 여기서 최종적인 결과인 '유효한 points`라는 말은 해당 points를 이용하여 feature를 추출했을 때 그 피쳐가 기하학적인 특성을 띌 것 같은 물체로부터 측정된 points들을 뜻한다 (도심 환경을 예로 들면 전봇대, 건물의 벽면, 나무 줄기, 자동차 옆면 등등). 전체 과정은 아래와 같다.
+ `cloudSegmentation()` 함수에서는 [앞선 과정](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1)/)의 결과인 `labelMat`를 입력으로 받는다. `labelMat`의 non-ground points는 아직 0으로 할당되어 있는데, 픽셀들을 입력값으로 하여 최종적으로 유효한 points를 segmentation한다. 여기서 최종적인 결과인 '유효한 points'라는 말은 해당 points를 이용하여 feature를 추출했을 때 그 피쳐가 기하학적인 특성을 띌 것 같은 물체로부터 측정된 points들을 뜻한다 (도심 환경을 예로 들면 전봇대, 건물의 벽면, 나무 줄기, 자동차 옆면 등등). 전체 과정은 아래와 같다.
 
 
 ```cpp
@@ -80,9 +80,29 @@ void cloudSegmentation(){
 
 ---
 
+`cloudSegmentation()`로 돌아가서 살펴보면 전체적인 절차는 아래와 같이 크게 세가지로 나눠진다.
+
+#### a) Set `labelMat` by using `labelComponenets` function
+
+```cpp
+// segmentation process
+for (size_t i = 0; i < N_SCAN; ++i)
+   for (size_t j = 0; j < Horizon_SCAN; ++j)
+       if (labelMat.at<int>(i,j) == 0)
+           labelComponents(i, j);
+```
+
+위의 결과로, labelMat의 전체 값은 
+* -1 (range measurement가 없음)
+* 999999 (segment의 point 수가 적음. sub-cluster로 간주하여 유효하지 않다고 판단)
+* 0보다 큰 1 이상의 어떤 값으로 할당되게 된다.
+
+3D point cloud는 데이터 특성상 상당히 sparse하기 때문에, `labelComponents(i, j)` 함수를 통해 noise points나 덤불(bushes)같이 기하학적인 관점에서 repeatable한 feuture가 뽑힐 것 같지 않은 point cloud를 masking한다.  
+
+
 #### labelComponents(i, j)
 
-Segmentation의 핵심은 ` labelComponents(i, j)` 함수인데, 이 함수를 통해서 `labelMat.at<int>(i,j)`이 0으로 할당되어 있는 pixels들을 Breadth-First Search (BFS) 기반으로 clustering을 하는데, 이 방법은 아래 IROS 2016 논문의 object clustering method를 활용했다. 
+Segmentation의 핵심은 이 `labelComponents(i, j)` 함수이다. 이 함수를 통해서 `labelMat.at<int>(i,j)`이 0으로 할당되어 있는 pixels들을 Breadth-First Search (BFS) 기반으로 clustering을 하는데, 이 방법은 아래 IROS 2016 논문의 object clustering method를 활용했다. 
 
 ![](/img/lego_loam_segmentation.png)
 
@@ -241,23 +261,8 @@ void labelComponents(int row, int col){
     }
 }
 ```
+
 ---
-다시 `cloudSegmentation()`로 돌아가서 살펴보면 전체적인 절차는 아래와 같이 크게 세가지로 나눠진다.
-
-#### a) Set `labelMat` by using `labelComponenets`
-
-```cpp
-// segmentation process
-for (size_t i = 0; i < N_SCAN; ++i)
-   for (size_t j = 0; j < Horizon_SCAN; ++j)
-       if (labelMat.at<int>(i,j) == 0)
-           labelComponents(i, j);
-```
-
-위의 결과로, labelMat의 전체 값은 
-* -1 (range measurement가 없음)
-* 999999 (segment의 point 수가 적음. sub-cluster로 간주하여 유효하지 않다고 판단)
-* 0보다 큰 1 이상의 어떤 값으로 할당되게 된다.
 
 #### b) Set `segMsg` based on `rangeMat` and `groundMat`
 
