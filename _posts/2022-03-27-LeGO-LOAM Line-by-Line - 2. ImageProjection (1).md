@@ -212,13 +212,11 @@ void projectPointCloud(){
 
 ### 4. groundRemoval()
 
-Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서는 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0`로 세팅한 것을 볼 수 있다.
+Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서는 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0` (deg)로 세팅한 것을 볼 수 있다.
 
 (**주의**: Velodyne HDL series의 경우 바닥쪽으로 laser ray가 약간 치우쳐져 있는 sensor들도 존재한다, i.e. Velodyne HDL-32E or Velodyne HDL-64E. 따라서 무지성으로 # of channels/2으로 `groundScanInd`를 세팅하면 안 되고 datasheet를 꼭 확인 후 하드웨어 맞게 세팅해야한다!!)
 
-전체 코드는 아래와 같고, 해당하는 부분의 이해를 돕기 위해 그림을 첨부한다.
-
-![](/img/lego_loam_ground_procedure.png)
+전체 코드는 아래와 같고, 해당하는 부분을 설명할 때 이해를 돕기 위해 그림을 첨부한다.
 
 ```cpp
 void groundRemoval(){
@@ -274,11 +272,15 @@ void groundRemoval(){
 }
 ```
 
+
+![](/img/lego_loam_ground_procedure.png)
+
+
 정리하자면, ground removal은 크게 아래의 세 단계로 이루어진다.
 
-#### a) Check the validity of the values in the range image
+**a) Check the validity of the values in the range image**
 
-먼저 range image 상에서 row 방향으로 위쪽과 아래쪽 인덱스를 불러온 후, 해당하는 픽셀에 `projectPointCloud()` 함수를 통해 유효한 range 값이 할당되었는지를 우선 체크한다. 아래에서 `intensity`가 -1이란 말은, (rowIdn, columnIdn)에 대응하는 부분에 유효한 range 값이 projection 되지 않아서 계속 `nanPoint`로 할당되어 있음을 뜻한다. ~~그냥 `rangeMat` 상의 값이 FLT_MAX인지 아닌지를 확인하는 게 더 직관적인 거 같은데...~~
+먼저 range image 상에서 row 방향으로 위쪽 (i+1, j)과 아래쪽 (i, j) 인덱스를 세팅한 후, 해당하는 픽셀에 `projectPointCloud()` 함수를 통해 유효한 range 값이 할당되었는지를 우선 체크한다. 아래에서 `intensity`가 -1이란 말은, (rowIdn, columnIdn)에 대응하는 부분에 유효한 range 값이 projection 되지 않아서 계속 `nanPoint`로 할당되어 있음을 뜻한다. ~~그냥 `rangeMat` 상의 값이 FLT_MAX인지 아닌지를 확인하는 게 더 직관적인 거 같은데...~~
 
 따라서 둘 중 하나라도 range 값이 할당되어 있지 않으면 `groundMat`의 픽셀 (i, j)에 -1 (판별할 수 없음)을 할당하고 아래 추가적인 판단은 skip한다.
 
@@ -291,9 +293,9 @@ if (fullCloud->points[lowerInd].intensity == -1 ||
 }
 ```
 
-#### b) Check the inter-ring gradient
+**b) Check the inter-ring gradient**
 
-만약 두 값 모두 유효한 measurement가 있다면, 그 두 값의 gradient를 아래와 같이 측정한다. 그리고 그 값이 10도 이내이면(위의 그림과 같이 두 ray가 이루는 각도가 작으면 충분히 평평하다는 뜻) `groundMat`의 픽셀 (i, j)에 1 (해당 픽셀들은 ground임)을 할당한다.
+만약 두 값 모두 유효한 measurement가 있다면, 그 두 값의 gradient를 아래와 같이 측정한다 (위의 그림 상의 `angle` 참조). 그리고 그 값이 10도 이내이면(위의 그림과 같이 두 ray가 이루는 각도가 작으면 충분히 평평하다는 뜻) `groundMat`의 픽셀 (i, j)에 1 (해당 픽셀들은 ground임)을 할당한다.
 
 ```cpp
 diffX = fullCloud->points[upperInd].x - fullCloud->points[lowerInd].x;
@@ -310,9 +312,9 @@ if (abs(angle - sensorMountAngle) <= 10){
 
 
 
-#### c) Mask the pixels which are considered as the ground or have invalid values
+**c) Mask the pixels which are considered as the ground or have invalid values**
 
-Ground masking을 다 한 후, 1) `groundMat`에서 ground로 판변되었거나 2) point가 projection되지 않아서 `rangeMat`의 값이 `FLT_MAX`인 경우 `labelMat`에 -1을 할당한다.
+Ground masking을 다 한 후, 1) `groundMat`에서 ground로 판별되었거나 2) point가 projection되지 않아서 `rangeMat`의 값이 `FLT_MAX`인 경우 `labelMat`에 -1을 할당한다.
 
 -1로 할당된 pixel들은 Step 5. `cloudSegmentation()` 함수 과정에서 제외된다.
 
