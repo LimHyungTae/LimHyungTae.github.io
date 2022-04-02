@@ -29,7 +29,7 @@ comments: true
 
 ### updateInitialGuess()
 
-`updateInitialGuess()` 함수에서는 IMU data가 들어오면 IMU data를 통해 구한 inital relative pose를 더해준다. 하지만 IMU를 쓰지 않으면 `imuShiftFromStartX`, `imuShiftFromStartY`, `imuShiftFromStartZ`, `imuVeloFromStartX`, `imuVeloFromStartY`, `imuVeloFromStartZ` 모두 다 계속 0이다.
+`updateInitialGuess()` 함수에서는 IMU data가 들어오면 IMU data를 통해 구한 inital relative pose를 더해준다. 하지만 IMU를 쓰지 않으면 `imuShiftFromStartX`, `imuShiftFromStartY`, `imuShiftFromStartZ`, `imuVeloFromStartX`, `imuVeloFromStartY`, `imuVeloFromStartZ` 모두 다 계속 0이다. 즉, IMU 데이터가 들어오지 않으면 `updateInitialGuess()` 함수를 통해 `transformCur`가 업데이트되지는 않는다.
 
 여기서 주의해야할점은 초기 transformCur의 값은 t-2와 t-1 프레임 간의 pose로 할당되어 있다는 것이다 (t=1과 t=2의 경우에는 [0, 0, 0, 0, 0, 0]으로 initialization되어 있음). 그 이유는 iterative하게 optimization을 할 때에는 초기값에 따라 성능이 많이 달라지게 되는데, 모바일 로봇의 경우 주로 앞-뒤로 움직이기 떄문에 (어려운 말로는 non-holonomic motion을 주로 하기 때문에) 이전에 추정한 pose와 현재 추정해야할 pose의 경향성이 비슷하다는 전제하에 initial pose를 이전 time step에 추정한 pose를 할당해둔다.
 
@@ -62,16 +62,17 @@ void updateInitialGuess(){
 }
 ```
 
-
 ### updateTransformation()
 
-Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기**와 **b) non-linear optmizaton을 통한 parameter update하기**로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 행해진다.
+Pose estimation하는 부분은 자명하다. 크게 **a) Correspondence 찾기**와 **b) non-linear optmizaton을 통한 parameter update하기**로 나눠지고, 이는 각각 planar feature과 edge feature에 대해 행해진다 (ICP와 동일하다).
 
 ```cpp
 void updateTransformation(){
     if (laserCloudCornerLastNum < 10 || laserCloudSurfLastNum < 100)
         return;
-
+    // ----------------------
+    // Optimization of t_z, roll, and pitch by using planar (surface) features 
+    // ----------------------
     for (int iterCount1 = 0; iterCount1 < 25; iterCount1++) {
         laserCloudOri->clear();
         coeffSel->clear();
@@ -83,7 +84,10 @@ void updateTransformation(){
         if (calculateTransformationSurf(iterCount1) == false)
             break;
     }
-
+    
+    // ----------------------
+    // Optimization of t_x, t_y, and yaw by using corner (edge) features 
+    // ----------------------
     for (int iterCount2 = 0; iterCount2 < 25; iterCount2++) {
 
         laserCloudOri->clear();
@@ -99,7 +103,7 @@ void updateTransformation(){
 }
 ```
 
-순서는 planar -> corner 순으로 optimization을 진행하지만, 둘의 구조와 알고리즘 상의 방법론이 동일하기 때문에, 수식이 좀 더 쉬운 corner feature에 대해 먼저 설명한다.
+순서는 surface features -> corner features 순으로 optimization을 진행하지만, 둘의 구조와 알고리즘 상의 방법론이 동일하기 때문에, 수식이 좀 더 쉬운 corner feature에 대해 먼저 설명한다.
 
 ### findCorrespondingCornerFeatures(iterCount2)
 
