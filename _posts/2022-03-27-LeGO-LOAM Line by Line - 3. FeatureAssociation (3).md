@@ -20,8 +20,9 @@ comments: true
 ![](/img/lego_loam_two_stage_optimization.PNG)
 
 
-다른 section과 다르게 이 부분에서는 Levenberg-Marquardt Levenberg-M optimization을 하는 부분의 설명이 필요하다보니 좀더 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
+다른 section과 다르게 이 부분에서는 Levenberg-Marquardt (LM) optimization을 하는 부분의 설명이 필요하다보니 좀더 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
 * [Least square, Iterative method, L-M optimization](https://www.slideshare.net/phani279/lecture-5-15476418)
+* [Optimization (KOR.)](https://darkpgmr.tistory.com/142)
 * [Cross product](https://en.wikipedia.org/wiki/Cross_product)
 * [Partial derivative](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/introduction-to-partial-derivatives)
 
