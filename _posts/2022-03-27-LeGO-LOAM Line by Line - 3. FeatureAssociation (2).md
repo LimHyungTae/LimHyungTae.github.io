@@ -175,17 +175,12 @@ for (int k = sp; k <= ep; k++) {
 downSizeFilter.setLeafSize(0.2, 0.2, 0.2);
 ```
 
-cornerPointsSharp->clear();
-    cornerPointsLessSharp->clear();
-    surfPointsFlat->clear();
-    surfPointsLessFlat->clear();
+**NOTE**: `cornerPointsLessSharp`와 `surfPointsLessFlat`는 해당 frame이 t-1에서의 역할을 할 때 활용된다. 이 두 feature 집합을 편히 *less-feature*라 부를 때, 이 *less-feature*들은 t-1의 feature 입력값으로, distint feature (i.e. `cornerPointsSharp` & `surfPointsFlat`)들은 t의 입력값이 되어 서로 간에 correspondence를 찾는다. 
 
-**NOTE**: `cornerPointsLessSharp`와 `surfPointsLessFlat`는 해당 frame이 t-1의 역할을 할 때 활용된다. 이 두 feature 집합을 편히 *less-feature*라 부를 때, 이 *less-feature*들은 t-1의 point pair로, distint feature들은 t의 입력값이 되어 서로 간에 pair를 찾는다.
 
 ### checkSystemInitialization()
 
-Feature를 추출한 후에는 FeatureAssociation이 처음 feature를 뽑았는지 아닌지를 확인한다. 초기에는 `systemInitedLM = false`로 되어 있는데, 이는 LiDAR odometry를 계산하려면 t-1과 t의 feature가 필요하기 때문에 체크하는 것이다. 코드는 아래와 같다.
-
+Feature를 추출한 후에는 FeatureAssociation이 처음 feature를 뽑았는지 아닌지를 확인한다. 초기에는 `systemInitedLM = false`로 되어 있는데, 이는 LiDAR odometry를 계산하려면 t-1과 t의 두 프레임의 feature set이 필요하기 때문에 체크하는 것이다. 코드는 아래와 같다.
 
 ```cpp
 void checkSystemInitialization(){
@@ -222,10 +217,14 @@ void checkSystemInitialization(){
     systemInitedLM = true;
 }
 ```
-![](/img/lego_loam_initialization.png) 
+
+즉, t=1일 때는 다음과 같이 Kd Tree만 세팅한 후, 종료한다.
+
+![](/img/lego_loam_initialization_v2.png) 
  
  
-이렇게 feature setting이 완료되면, 후에 LiDAR odometry를 계산한다.
+ 
+이렇게 feature setting이 완료되면, 마지막으로 relative pose를 추정한다.
  
 ---
 
