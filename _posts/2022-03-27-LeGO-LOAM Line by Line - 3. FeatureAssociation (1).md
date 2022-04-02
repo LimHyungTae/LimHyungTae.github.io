@@ -169,17 +169,17 @@ void adjustDistortion()
 
 **i) XYZ coordinate -> ZXY coordinate로 축 변환**
 
-여기서 아래와 같이 point cloud의 좌표 축을 변환되는데 **별 이유 없다** ~~이 좌표축 변환은 후대의 많은 연구자들을 혼란에 빠뜨리고 마는데...~. 
+여기서 아래와 같이 point cloud의 좌표 축을 변환되는데 **별 이유 없다** ~~이 좌표축 변환은 후대의 많은 연구자들을 혼란에 빠뜨리고 마는데...~~ 
 
 ![](/img/lego_loam_lidar_coordinate.png)
 
-혹자는 이렇게 변환하는 이유가 manual 상의 Velodyne sensor의 좌표축때문이라고 그러는데, 그 것은 절대 아니다. 왜냐하면 Velodyne ROS driver를 통해 출력된 raw point cloud를 visualization하면 이미 아래와 같이 앞-왼쪽-윗쪽을 XYZ로 사용하고 있기 때문이다.
+[혹자](https://zhuanlan.zhihu.com/p/242559124)는 이렇게 변환하는 이유가 manual 상의 Velodyne sensor의 좌표축 때문이라고 그러는데, 이 것은 절대 아니다. 왜냐하면 Velodyne ROS driver를 통해 출력된 raw point cloud를 visualization하면 이미 아래와 같이 앞-왼쪽-윗쪽을 XYZ로 사용하고 있기 때문이다.
 
 Point cloud at time t       |  Accumulated point cloud
 :-------------------------:|:-------------------------:
 ![](/img/lego_loam_pc_at_t.png) |  ![](/img/lego_loam_pc_accum.png)
 
-주변 SLAM 고수들에게 자문을 구한 결과, 이 행위는 LOAM 저자인 Ji Zhang씨가 LOAM 코드를 설계할 때 초기부터 camera와의 sensor fusion을 염두해두고 짠 것이어서 이렇게 좌표축 변환의 흔적이 남아있다고 한다 (진화적 퇴행 같이 LOAM 계열 LiDAR odometry 코드에는 이런 좌표축 변환이 남아있는 것이다). 그 증거를 코드 내부에서 확인할 수 있는데, 가장 대표적인 건 LiDAR odometry 코드임에도 불구하고 아래와 같이 visualization을 할 때 frame_id를 `/camera`로 사용하고 있다는 것이다.
+주변 SLAM 고수들에게 자문을 구한 결과, 이 행위는 LOAM 저자인 Ji Zhang씨가 LOAM 코드를 설계할 때 초기부터 camera와의 sensor fusion을 염두해두고 짠 것이어서 이렇게 좌표축 변환의 흔적이 남아있다고 한다 (진화적 퇴행과 같이 LOAM 계열 LiDAR odometry 코드에는 이런 좌표축 변환이 계속 남아있다). 그 증거를 코드 내부에서 확인할 수 있는데, 가장 대표적인 건 LiDAR odometry 코드임에도 불구하고 아래와 같이 visualization을 할 때 frame_id를 `/camera`로 사용하고 있다는 것이다.
 
 ```cpp
 void publishCloud()
@@ -217,6 +217,32 @@ void publishCloud()
 ```
 
 **ii) 각 point의 relative time 계산**
+
+축을 ZYX로 변환한 후, 아래와 같이 상대적 시간을 구한다. Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 이 부분이 왜 이상한지와 어떻게 수정되어야 하는지도 아래에 간략히 설명해둔다.
+
+```cpp
+float ori = -atan2(point.x, point.z);
+if (!halfPassed) {
+    if (ori < segInfo.startOrientation - M_PI / 2)
+        ori += 2 * M_PI;
+    else if (ori > segInfo.startOrientation + M_PI * 3 / 2)
+        ori -= 2 * M_PI;
+
+    if (ori - segInfo.startOrientation > M_PI)
+        halfPassed = true;
+} else {
+    ori += 2 * M_PI;
+
+    if (ori < segInfo.endOrientation - M_PI * 3 / 2)
+        ori += 2 * M_PI;
+    else if (ori > segInfo.endOrientation + M_PI / 2)
+        ori -= 2 * M_PI;
+}
+
+float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
+```
+
+
 
 ```cpp
 float relTime;
