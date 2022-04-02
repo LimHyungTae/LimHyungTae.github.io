@@ -1,12 +1,17 @@
 ---
 layout: post
 title: LeGO-LOAM 상세 설명 - 3. FeatureAssociation (3)
-subtitle: Edge and Planar Feature Extraction
+subtitle: Relative Pose Estimation via Feature Association
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 ---
 
-# FeatureAssociation in LeGO-LOAM (3) Transformation
+# FeatureAssociation in LeGO-LOAM (3) Relative Pose Estimation via Feature Association
+
+(cont'd)
+
+![](/img/lego_loam_fa3.png)
+
 
 최종적으로 t-1과 t의 feature를 구했으면, 주어진 feature들을 바탕으로 relative pose를 구한다. 흔히 알고 있듯이 planar feature를 통해 z, roll, pitch가 optimize하고 edge feature를 통해 x, y, yaw가 optimize하는, two-stage optimization 방식을 따른다.
 
