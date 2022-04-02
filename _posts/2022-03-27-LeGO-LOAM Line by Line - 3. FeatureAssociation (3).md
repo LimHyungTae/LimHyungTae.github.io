@@ -13,12 +13,14 @@ comments: true
 ![](/img/lego_loam_fa3.png)
 
 
+## Overview
+
 최종적으로 t-1과 t의 feature를 구했으면, 주어진 feature들을 바탕으로 relative pose를 구한다. 흔히 알고 있듯이 planar feature를 통해 z, roll, pitch가 optimize하고 edge feature를 통해 x, y, yaw가 optimize하는, two-stage optimization 방식을 따른다.
 
 ![](/img/lego_loam_two_stage_optimization.PNG)
 
 
-다른 section과 다르게 이 부분에서는 L-M optimization을 하는 부분의 설명이 필요하다보니 좀더 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
+다른 section과 다르게 이 부분에서는 Levenberg-Marquardt Levenberg-M optimization을 하는 부분의 설명이 필요하다보니 좀더 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
 * [Least square, Iterative method, L-M optimization](https://www.slideshare.net/phani279/lecture-5-15476418)
 * [Cross product](https://en.wikipedia.org/wiki/Cross_product)
 * [Partial derivative](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/introduction-to-partial-derivatives)
