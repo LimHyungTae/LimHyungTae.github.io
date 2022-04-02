@@ -332,17 +332,16 @@ for (size_t j = 0; j < Horizon_SCAN; ++j) {
 }
 ```
 
-그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 알 수 있다. 심지어 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다. 향후 implementation을 해야할 일이 있으면 i-k과 i+k가 충분히 가까이 있어야 한다는 조건을 추가해야할 것 같다 (하지만 clustering으로 인해 대체로 valid segments들은 붙어있기 때문에, 기존 코드 상의 방식대로 smoothness를 평가해도 말이 되긴 함).
+그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 아래와 같이 나타낼 수 있다. 심지어는 우리의 생각과는 다르게 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다 (근데 후의 `extractFeatures()`에서 각 channel 별 가장 앞/뒤 5개는 feature로 선별하지 않게 되어있긴 함). 
 
 ![](/img/lego_loam_calc_smoothness_v2.png)
 
+향후 implementation을 개선해야할 일이 있으면 i-k과 i+k가 i 기준으로 충분히 가까이 있어야 한다는 조건을 추가해야할 것 같다 (하지만 clustering으로 인해 대체로 valid segments들은 붙어있기 때문에, 기존 코드 상의 방식대로 smoothness를 평가해도 말이 되긴 함).
 
 
 ### markOccludedPoints()
 
-그 후, valid segments 상에서 masking을 진행한다. 현 논문에서는 아래와 같은 두 케이스에 대해서 masking을 씌운다. 코드는 아래와 같다.
-
-![](/img/lego_loam_mark_occlusion.png)
+그 후, valid segments 상에서 masking을 진행한다. 코드는 아래와 같다.
 
 
 ```cpp
@@ -384,9 +383,15 @@ void markOccludedPoints()
 }
 ```
 
-* **Case1**: 인접한 두 포인트가 가까이 있지만, i.e `columnDiff < 10`, 거리차가 너무 많이 나는 경우에는 occlusion이 일어났다고 판단한다. 
-* **Case2**: i번째 point를 기준으로 양 옆의 가장 가까운 valid segments와 상대적 거리차가 어느정도 나는지 확인한다. 그래서 i-1번째와 i+1번 째 모두 다 i를 기준으로 상대적 거리가 꽤 차이나게 위치하고 있으면, i.e. range * 1.02 초과거나 range * 0.98 미만이면, i 번째 point를 feature 후보군으로 여기지 않는다.
+현 논문에서는 아래와 같은 두 케이스에 대해서 masking을 씌운다. 
+
+
+* **Case1**: 인접한 두 포인트가 가까이 있지만, i.e `columnDiff < 10`, range의 차가 너무 많이 나는 경우에는 occlusion이 일어났다고 판단한다 (아래 그림의 Case 1). 
+* **Case2**: i번째 point를 기준으로 양 옆의 가장 가까운 valid segments와 상대적 거리차가 어느정도 나는지 확인한다. 그래서 i-1번째와 i+1번 째 모두 다 i를 기준으로 상대적 거리가 꽤 차이나게 위치하고 있으면, i.e. range * 1.02 초과거나 range * 0.98 미만이면, i 번째 point를 feature 후보군으로 여기지 않는다 (아래 그림의 Case 2).
  
+ 
+![](/img/lego_loam_mark_occlusion.png)
+
 ---
 
 LeGO-LOAM의 line-by-line 설명 시리즈입니다.
