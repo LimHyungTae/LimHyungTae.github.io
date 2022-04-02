@@ -135,11 +135,13 @@ void findStartEndAngle(){
 }
 ```
 
-이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 Velodyne Puck LiDAR를 사용했을 경우 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 377도 정도 shift가 일어난 것을 확인하게끔 세팅이 된다다. 마지막으로, `segMsg.orientationDiff`에 전체 회전한 정도를 저장한다 (단위: rad). 
+이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 Velodyne Puck LiDAR를 사용했을 경우 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 377도 정도 shift가 일어난 것을 확인하게끔 세팅이 된다. 이 차이각은 `segMsg.orientationDiff`에 전체 회전한 정도를 저장한다 (단위: rad). 
+
+그런데, 여기서 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 0~N개의 point들이 아래와 같이 시계 방향을 돌면서 취득되기 때문이다.   
 
 ![](/img/lego_loam_relTime.png)
 
-이렇게 세팅된 변수는 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. `relTime`을 지정할 때 사용된다 (향후 다시 설명 예정)
+이렇게 세팅된 변수들은 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. `relTime`,을 계산할 때 사용된다. 아래와 같이 N개의 points 중 n번 째의 point와 가장 처음 취득한 포인트와의 차이각 대비 총 차이각의 비율을 구하여 `relTime`을 구할 수 있는데,
 
 ```cpp
 // adjustDistortion() in featureAssociation.cpp
@@ -147,7 +149,7 @@ float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 point.intensity = int(segmentedCloud->points[i].intensity) + scanPeriod * relTime;
 ```
 
-이 부분을 보고 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 0~N개의 point들이 시계 방향을 돌면서 취득되기 때문이다.   
+여기서 `ori`는 각 point의 각도를 뜻하며, `scanPeriod`는 주로 0.1초이기 때문에 0초~0.1초 사이에 해당 포인트가 취득된 시각을 각도를 통해 역추적할 수 있다. 이는 point cloud를 deskewing할 때 활용된다 (향후 다시 설명 예정).
 
 ### 3. projectPointCloud()
 
