@@ -92,12 +92,12 @@ for (size_t i = 0; i < N_SCAN; ++i)
            labelComponents(i, j);
 ```
 
-위의 결과로, labelMat의 전체 값은 
+위의 결과로, `labelMat`의 전체 값은 
 * -1 (range measurement가 없음)
 * 999999 (segment의 point 수가 적음. sub-cluster로 간주하여 유효하지 않다고 판단)
 * 0보다 큰 1 이상의 어떤 값으로 할당되게 된다.
 
-3D point cloud는 데이터 특성상 상당히 sparse하기 때문에, `labelComponents(i, j)` 함수를 통해 noise points나 덤불(bushes)같이 기하학적인 관점에서 repeatable한 feuture가 뽑힐 것 같지 않은 point cloud를 masking한다.  
+3D point cloud는 데이터 특성상 상당히 sparse하기 때문에, `labelComponents(i, j)` 함수를 통해 noise points나 덤불(bushes)같이 기하학적인 관점에서 repeatable한 feuture가 뽑힐 것 같지 않은 point cloud를 masking한다. 자세한 과정을 아래에서 설명한다.
 
 
 #### labelComponents(i, j)
@@ -262,7 +262,15 @@ void labelComponents(int row, int col){
 
 ---
 
-#### b) Set `segMsg` based on `rangeMat` and `groundMat`
+#### b) Set `segMsg` based on `rangeMat`, `groundMat`, and `labelMat`
+
+
+위의 결과로, `labelMat`의 전체 값은 
+* -1 (range measurement가 없음)
+* 999999 (segment의 point 수가 적음. sub-cluster로 간주하여 유효하지 않다고 판단)
+* 0보다 큰 1 이상의 어떤 값 (label의 cluster id라 보면 될 듯)
+* 으로 할당되게 된다.
+
 
 그 후, `featureAssociation.cpp`의 입력값인 `outlierCloud`, `segmentedCloud`, `segMsg`를 세팅한다. 각각의 의미는 아래와 같다
 * `outlierCloud`: sub-cluster로 간주된 (`labelMat`의 값이 999999) points들을 5개 간격으로 하여 하나씩 넣음. 주의해야할 것은 `groundScanInd` 이상의 channel에서만 outlier를 추출함.
