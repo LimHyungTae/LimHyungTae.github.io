@@ -332,17 +332,16 @@ for (size_t j = 0; j < Horizon_SCAN; ++j) {
 }
 ```
 
-그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 아래와 같이 나타낼 수 있다. 심지어는 우리의 생각과는 다르게 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다 (근데 후의 `extractFeatures()`에서 각 channel 별 가장 앞/뒤 5개는 feature로 선별하지 않게 되어있긴 함). 
+그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 아래와 같이 나타낼 수 있다. 심지어는 우리의 생각과는 다르게 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다 (근데 후의 `extractFeatures()`에서 각 channel 별 가장 앞/뒤 5개는 feature로 선별하지 않게 되어있음). 
 
 ![](/img/lego_loam_calc_smoothness_v2.png)
 
-향후 implementation을 개선해야할 일이 있으면 i-k과 i+k가 i 기준으로 충분히 가까이 있어야 한다는 조건을 추가해야할 것 같다 (하지만 clustering으로 인해 대체로 valid segments들은 붙어있기 때문에, 기존 코드 상의 방식대로 smoothness를 평가해도 말이 되긴 함).
+향후 implementation을 개선해야할 일이 있으면 i-k과 i+k가 i 기준으로 충분히 가까이 있어야 한다는 조건을 추가해야할 것 같다 (하지만 clustering으로 인해 대체로 valid segments들은 붙어있기 때문에, 기존 코드 상의 방식대로 smoothness를 평가해도 말이 됨).
 
 
 ### markOccludedPoints()
 
 그 후, valid segments 상에서 masking을 진행한다. 코드는 아래와 같다.
-
 
 ```cpp
 void markOccludedPoints()
