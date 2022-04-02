@@ -208,13 +208,13 @@ void projectPointCloud(){
 
 ![](/img/lego_loam_columnIdn.png) 
 
-뒷쪽의 index를 0으로 두는 Tixiao씨의 디테일이 보인다. LeGO-LOAM에서 feature를 추출하는 과정에서 0과 1799 index가 서로 붙어 있음에도 smoothness를 따로 판별하지 않는데, 어쩌피 feature로서 사용되지 않는 부분을 뒷쪽으로 둚으로써 양옆과 앞쪽에서는 feature를 뽑을 수 있게 세팅해둔 것이다. 모바일 로봇의 경우에는 주로 pilot이 뒤쪽에서 조종을 하다보니, 뒷쪽 point cloud를 버리는 경우가 많고, 자율차의 경우도 보닛이 point cloud의 뒷쪽에 찍혀서 앞의 180도만 쓰는 경우가 있는데, 이 관점에서 봤을 때 0-1800을 뒤에 두는 것은 나름 효율적인 선택인 것 같다 (100% 저의 주관적인 견해입니다).
+여기서 뒷쪽의 index를 0으로 두려한 Tixiao씨의 디테일이 보인다. LeGO-LOAM에서 feature를 추출하는 과정에서 0과 1799 index가 서로 붙어 있음에도 피쳐를 추출하지 않는데, feature로서 사용이 안 될 수도 있는 부분을 뒷쪽으로 둚으로써 양옆과 앞쪽에서는 feature를 잘 뽑을 수 있게 세팅해둔 것이다. 모바일 로봇의 경우에는 주로 pilot이 뒤쪽에서 조종을 하다보니, 뒷쪽 point cloud를 버리는 경우가 많고, 자율차의 경우에도 보닛이 point cloud의 뒷쪽에 찍혀서 앞의 180도만 쓰는 경우가 있는데, 이 관점에서 봤을 때 index의 시작점을 motion direction의 뒤쪽에 두는 것은 나름 효율적인 선택인 것 같다 (100% 저의 주관적인 견해입니다).
 
 ### 4. groundRemoval()
 
-Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0 `(deg)로 세팅한 것을 볼 수 있다.
+Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서는 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0 `(deg)로 세팅한 것을 볼 수 있다.
 
-(**주의**: Velodyne HDL series의 경우 바닥쪽으로 laser ray가 약간 치우쳐져 있는 sensor들도 존재한다. 따라서 무지성으로 # of channels/2으로 `groundScanInd`를 세팅하면 안 되고 datasheet를 꼭 확인 후 하드웨어 맞게 세팅해야한다!!)
+(**주의**: Velodyne HDL series의 경우 바닥쪽으로 laser ray가 약간 치우쳐져 있는 sensor들도 존재한다, i.e. Velodyne HDL-32E or Velodyne HDL-64E. 따라서 무지성으로 # of channels/2으로 `groundScanInd`를 세팅하면 안 되고 datasheet를 꼭 확인 후 하드웨어 맞게 세팅해야한다!!)
 
 전체 코드는 아래와 같고, 해당하는 부분의 이해를 돕기 위해 그림을 첨부한다.
 
