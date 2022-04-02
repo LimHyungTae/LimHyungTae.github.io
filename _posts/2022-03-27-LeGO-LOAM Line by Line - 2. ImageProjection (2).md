@@ -131,9 +131,7 @@ neighbor.first =  0; neighbor.second = -1; neighborIterator.push_back(neighbor);
 neighbor.first =  1; neighbor.second =  0; neighborIterator.push_back(neighbor);
 ```
 
-그리고 index를 관리하는 아래의 array들이 미리 할당되어 있다. ~~근데 코드 동작하는 걸 보면`allPushedInd`와 `queueInd`를 따로 있을 이유가 전혀 없다...~~
-
-원저자의 주석을 살펴 보면 이 행위는 속도를 빠르게 하기 위해서라고 한다 (std::queue, std::vector, std::deque를 쓰면 상당히 느려진다고 함!)
+그리고 index를 관리하는 아래의 array들이 미리 할당되어 있다. ~~근데 코드 동작하는 걸 보면 사실 `allPushedInd`와 `queueInd`를 따로 있을 이유가 전혀 없다...~~ 원저자의 주석을 살펴보면 이렇게 array를 미리 할당해서 사용하는 것은 속도를 빠르게 하기 위해서라고 한다 (std::queue, std::vector, std::deque를 쓰면 상당히 느려진다고 함! 아마 수십개의 query를 push_back/pop_front하는 게 연산적으로 비효율적이라고 판단한 것으로 추정됨)
 
 ```cpp
 allPushedIndX = new uint16_t[N_SCAN*Horizon_SCAN];
@@ -145,7 +143,7 @@ queueIndY = new uint16_t[N_SCAN*Horizon_SCAN];
 
 ---
 
-다시 `labelComponents(int row, int col)`를 살펴보면, BFS 기반으로 clustering을 시행하는 것을 확인할 수 있다. 편의상 주석으로 설명을 대체한다.
+각 변수가 뭘 뜻하는지 확인했으니, 그 후 `labelComponents(int row, int col)`로 돌아와 설명을 진행한다. ㅇ래 코드를 보면 BFS 기반으로 clustering을 시행하는 것을 확인할 수 있다. 편의상 주석으로 설명을 대체한다.
 
 ```cpp
 void labelComponents(int row, int col){
