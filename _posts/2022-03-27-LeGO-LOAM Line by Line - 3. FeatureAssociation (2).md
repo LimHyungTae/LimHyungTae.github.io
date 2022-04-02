@@ -1,12 +1,16 @@
 ---
 layout: post
-title: LeGO-LOAM 상세 설명 - 3. FeatureAssociation (2)
+title: LeGO-LOAM Line by Line - 3. FeatureAssociation (2)
 subtitle: Edge and Planar Feature Extraction
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 ---
 
 # FeatureAssociation in LeGO-LOAM (2) Edge and Planar Feature Extraction
+
+(Cont'd)
+
+![](/img/lego_loam_fa2.png)
 
 ### extractFeatures()
 
