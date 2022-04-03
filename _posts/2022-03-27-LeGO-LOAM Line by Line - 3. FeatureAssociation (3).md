@@ -251,9 +251,10 @@ void TransformToStart(PointType const * const pi, PointType * const po)
 }
 ```
 
-위의 계산은 아래 수식과 동일하다 (변수 위 ~는 현재 deskwed되었음을 의미한다).
+위의 계산은 아래 수식과 동일하다 (변수 위 ~ 표시는 현재 deskwed되었음을 의미한다).
 
 ![](/img/lego_loam_transform_v2.png)
+(Q. 왜 음의 방향인가?: 실제로 t-1와 t를 푼 결과를 보면 로봇이 앞쪽 방향으로 움직이고 있을 때 tz (ZXY좌표계에서 앞쪽 방향) 값이 음수로 도출된다. 즉 -1 * (음수)로 결론적으로는 양수값이 되어 상관 없긴 하다~~상관없으면 그냥 +로 써주지...).) 
 
 
 **ii) Correspondence 찾기**: 그 후, deskewing된 time t 상의 sharp한 corner feature와 가장 거리가 가까운, t-1 상의 두 corner feature를 찾는다. 여기서 `kdtreeCornerLast`의 입력 point cloud는 t-1의 `cornerPointsLessSharp`이다 (pose estimation이 완료되고 난 후 `publishCloudsLast()` 함수에서 세팅됨). 먼저 t-1에서 가장 가까운 점 1개를 찾은 후, 그 점을 기점으로 +-2.5 channel index 이내에 있는 corner feature를 그점으로 취급한다 (근데 코드 상에서 보면 +- check를 위->아래 순으로 체크하는 것 같다). 
