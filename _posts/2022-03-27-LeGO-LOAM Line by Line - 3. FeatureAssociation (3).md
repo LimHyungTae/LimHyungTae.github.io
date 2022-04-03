@@ -280,18 +280,16 @@ pointSearchCornerInd2[i] = minPointInd2;
 
 **2) Jacobian term**
 
-그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 저 `la`, `lb`, `lc`가 갑자기 나와서 무엇인지 잘 이해가 안 되고 명확히 설명하는 글이 많지 않는데, 저 term은 향후에 optimization을 할 때 chain rule을 통해 jacobian term을 표현할 때 필요하다. 먼저, non-linear equation을 iterative estimation method 기반으로 optimization하는 과정을 정리하자면 아래와 같고 jacobian matrix J가 필요하다는 것을 알 수 있다.
+그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 저 `la`, `lb`, `lc`가 갑자기 나와서 무엇인지 잘 이해가 안 되고 명확히 설명하는 글이 많지 않는데, 저 term은 향후에 optimization을 할 때 chain rule을 통해 jacobian term을 표현할 때 필요하다. 먼저, non-linear equation을 iterative estimation method 기반으로 optimization하는 과정에 대해 이해해야 한다. 정리하자면 아래와 같고, 요약하자면 jacobian matrix J가 필요하다는 것을 알 수 있다.
 
 ![](/img/lego_loam_fa_solve.png)
 
-Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 ry (yaw 회전), tx (왼쪽), tz (앞쪽)으로 표현되고, 이 변수들의 미소 변화량을 구하는 것이 매 iterative estimation의 목표이다)의 변화량이 우리가 구하고자 하는 파라미터가 된다. 하지만 현재 우리가 계산한 point-to-line distance는 ry, tx, tz로 직접적으로 표현되지 않는다. 따라서 point-to-line distance를 구하는 수식을 **f**라 표현했을 때, jacobian matrix의 각 term을 chain rule을 통해 아래와 같이 표현할 수 있다 (아래의 1, 2, and 3).
+Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 ry (yaw 회전), tx (왼쪽), tz (앞쪽)으로 표현되고, 이 변수들의 미소 변화량을 구하는 것이 매 iterative estimation의 목표이다)의 변화량이 우리가 구하고자 하는 파라미터가 된다. 하지만 현재 우리가 계산한 point-to-line distance는 deskewed point에 대한 함수로 표현될 뿐 ry, tx, tz로 직접적으로 표현되지 않는다. 따라서 point-to-line distance를 구하는 수식을 **f**라 표현했을 때, jacobian matrix의 각 term을 chain rule을 통해 아래와 같이 표현해주어야 한다 (아래의 1, 2, and 3).
 
 
 ![](/img/lego_loam_fa_la_lb_lc_v2.png)
 
-에 각 타겟 포인트에 대한 point-to-line distance의 derivate가 필요하다. 이 값은 r_y, x_rel, z_rel에 invariant하기 때문에 미리 계산해둔다. 수식 전개는 아래와 같다.
-
-
+정리하자면, ry, tx, tz에 대한 **f**의 partial derivative를 직접적으로 구할 수 없기 때문에 deskwed point의 x, y, z를 매개변수 삼아 상관관계를 표현하는 것이 가능해진다.
 
 **3) Alternative weighting**
 
