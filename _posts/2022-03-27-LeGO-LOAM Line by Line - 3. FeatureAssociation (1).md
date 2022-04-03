@@ -217,9 +217,10 @@ void publishCloud()
     }
 }
 ```
-이러한 이슈들은 [여기](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM/issues/131)에서 확인할 수 있다. 
+이러한 축 변경은 LeGO-LOAM 레포지토리 [issue](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM/issues/131)에서 열띄게 토의(?)했던 것을 확인할 수 있다.
 
 > The original LOAM code has a lot of mysterious parts and you should probably not read it too much unless you want your eyes to bleed. The coordinate switching here probably has to do with projecting the lidar points in the camera frame. I believe that historically the "open source" LOAM was published as Ji Zhang was preparing V-LOAM.
+> (의역) 원본 LOAM 코드는 많은 미스터리한 부분이 있기 때문에 하나하나 다 알려하다 보면 눈에 피가 날 수도 있기에 ~~그걸 제가 하고 있습니다~~, 너무 꼼꼼히 이해하려 할 필요가 없습니다. 여기서의 좌표 전환은 아마도 카메라 프레임에 LiDAR 포인트를 투영하기 위함이라고 추측됩니다. 이는 LOAM 코드를 open했을 당시 Ji Zhang이 V-LOAM을 준비하고 있을 때여서 이렇게 역사적 흔적(?)이 남겨진 것이 아닌가 생각됩니다.
 
 
 **ii) 각 point의 relative time 계산**
