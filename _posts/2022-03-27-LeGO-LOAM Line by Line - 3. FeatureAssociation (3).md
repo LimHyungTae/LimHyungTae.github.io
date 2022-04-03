@@ -317,7 +317,7 @@ if (s > 0.1 && ld2 != 0) {
 해석하자면,
 
 * 초기 5번 iteration 동안은 모든 distance들에 대해 `s=1`로 세팅하여 모든 measurements의 중요한 정도 (weight)를 균등하게 둔다.
-* 5번 이후에는 너무 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. 즉, `s`에 0.1을 넣고 전개하면 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이니, 0.1초 당 최대 0.3m 정도가 이동 가능하다고 가정할 수 있기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크기 때문에 위와 같은 weight를 세팅한다 (참고: 이렇게 weight를 다르게 주며 optimization하는 행위를 iteratively reweighted least squares라고 부른다).
+* 5번 이후에는 너무 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. 즉, `s`에 0.1을 넣고 전개하면 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이니, 0.1초 당 최대 0.3m 정도가 이동 가능하다고 가정할 수 있기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크기 때문에 위와 같은 weight를 세팅한다 (참고: 이렇게 매 iteration마다 weight를 다르게 주며 optimization하는 행위를 iteratively reweighted least squares라고 부른다).
 
 
 ### b) Optimization을 통한 parameter update `calculateTransformationCorner(iterCount2)`
