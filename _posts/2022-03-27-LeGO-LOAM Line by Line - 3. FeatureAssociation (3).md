@@ -444,7 +444,7 @@ bool calculateTransformationCorner(int iterCount){
 
 그 후 구한 t-1과 t간의 relative pose를 `integrateTransformation()` 함수에서 축적하여 (0, 0, 0)으로부터 t까지의 relative pose를 `transformSum`에 저장하고, `publishOdometry`에서 ZXY 좌표계에서 다시 XYZ 좌표계로 변환 후 pose를 publish해준다. 자명하므로 생략.
 
-## 마치며
+## 마치며s
 
 지금까지 LeGO-LOAM의 핵심적인 부분에 대해서 line-by-line으로 살펴보았다. 개인적인 의견으로는 LeGO-LOAM의 꽃은 바닥으로부터 planar feature를 뽑고, non-ground로부터 corner feauture를 각각 뽑은 후 two-stage optimization을 통해 pose를 구하는 부분이라고 생각한다. 사실, 이렇게 decoupling하는 것은 trade-off가 있는데, 먼저 a) 연산량을 줄여주고 b) oulier의 예기치 못한 error를 projection하여 outlier를 suppresion해주는 장점이 있다. 단점이라하면, 사실 (x, y, z, roll, pitch, yaw)가 서로 독립적이지 않기 때문에 optimization을 하더라도 미세하게 pose가 완전히 optimization해지지 못할 우려가 있다는 점이다. 그렇기에 논문에 보면 속도적인 측면에서 개선이 많이 되었음을 강조함으로써 (i7과 small form factor pc 둘다 실험을 하는 등) contribution을 가져간 것이 눈에 띈다. 
  
