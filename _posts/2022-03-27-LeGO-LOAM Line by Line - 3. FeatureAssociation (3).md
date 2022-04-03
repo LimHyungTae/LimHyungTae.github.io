@@ -20,12 +20,12 @@ comments: true
 ![](/img/lego_loam_two_stage_optimization.PNG)
 
 
-다른 section과 다르게 이 부분에서는 Levenberg-Marquardt (LM) optimization을 하는 부분의 설명이 필요하다보니 좀더 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
+다른 section과 다르게 이 부분에서는 Levenberg-Marquardt (LM) optimization을 하는 부분의 설명이 필요하다보니 좀 많이 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
 * [Least square, Iterative method, LM optimization](https://www.slideshare.net/phani279/lecture-5-15476418)
 * [Optimization (KOR.)](https://darkpgmr.tistory.com/142)
 * [Cross product](https://en.wikipedia.org/wiki/Cross_product)
 * [Partial derivative](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/introduction-to-partial-derivatives)
-
+* [Transformation matrix](https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/)
 
 ### updateInitialGuess()
 
@@ -220,9 +220,43 @@ void findCorrespondingCornerFeatures(int iterCount){
 }
 ```
 
-위의 코드를 해석하자면 아래와 같이 크게 두 파트로 나뉘어진다.
+위의 코드를 해석하자면 아래와 같이 크게 세 파트로 나뉘어진다.
 
-**i) Correspondence 찾기**: 가장 먼저, time t 상의 sharp한 corner feature와 가장 거리가 가까운 t-1 두 corner feature를 찾는다. 여기서 `kdtreeCornerLast`의 입력 point cloud는 t-1의 `cornerPointsLessSharp`이다. t-1에서 가장 가까운 점 1개를 찾은 후, 그 점을 기점으로 +-2.5 channel index 이내에 있는 corner feature를 그점으로 취급한다. 근데 코드 상에서 보면 +- check를 위->아래 순으로 체크하는 것 같다. 
+**i) TransformToStart(&cornerPointsSharp->points[i], &pointSel)**: 먼저 각 point는 initial pose를 활용하여 로봇의 motion으로 인한 error를 최소화한다. Point cloud 내의 한 point가 측정될 때에도 로봇은 계속 움직이기 때문에, 실제 측정된 원점이 제각각 달라질 수 있다. 따라서 이렇게 발생한 에러를 줄여주기 위해 아래와 같이 point를 transform하고, 이 행위를 *deskewing*이라고 부른다. 이를 위해 `adjustDistortion()`에서 미리 구해둔 `scanPeriod * relTime`를 활용하여 아래와 같이 각 point를 transform시킨다.
+
+```cpp
+void TransformToStart(PointType const * const pi, PointType * const po)
+{
+    float s = 10 * (pi->intensity - int(pi->intensity));
+
+    float rx = s * transformCur[0];
+    float ry = s * transformCur[1];
+    float rz = s * transformCur[2];
+    float tx = s * transformCur[3];
+    float ty = s * transformCur[4];
+    float tz = s * transformCur[5];
+
+    float x1 = cos(rz) * (pi->x - tx) + sin(rz) * (pi->y - ty);
+    float y1 = -sin(rz) * (pi->x - tx) + cos(rz) * (pi->y - ty);
+    float z1 = (pi->z - tz);
+
+    float x2 = x1;
+    float y2 = cos(rx) * y1 + sin(rx) * z1;
+    float z2 = -sin(rx) * y1 + cos(rx) * z1;
+
+    po->x = cos(ry) * x2 - sin(ry) * z2;
+    po->y = y2;
+    po->z = sin(ry) * x2 + cos(ry) * z2;
+    po->intensity = pi->intensity;
+}
+```
+
+위의 계산은 아래 수식과 동일하다 (변수 위 ~는 현재 deskwed되었음을 의미한다).
+
+![](/img/lego_loam_transform_v2.png)
+
+
+**ii) Correspondence 찾기**: 그 후, deskewing된 time t 상의 sharp한 corner feature와 가장 거리가 가까운, t-1 상의 두 corner feature를 찾는다. 여기서 `kdtreeCornerLast`의 입력 point cloud는 t-1의 `cornerPointsLessSharp`이다 (pose estimation이 완료되고 난 후 `publishCloudsLast()` 함수에서 세팅됨). 먼저 t-1에서 가장 가까운 점 1개를 찾은 후, 그 점을 기점으로 +-2.5 channel index 이내에 있는 corner feature를 그점으로 취급한다 (근데 코드 상에서 보면 +- check를 위->아래 순으로 체크하는 것 같다). 
 
 최종적으로는 가장 가까운 점과 그 다음 가까운 점이 아래와 같이 할당된다. 만약 두 점의 거리의 제곱이 주어진 파라미터 `nearestFeatureSearchSqDist`보다 크면 잘못된 pair라고 상정한다. 기본적으로 `nearestFeatureSearchSqDist`는 25m^2으로 설정되어 있다. 가장 가까운 포인트와 그 다음 가까운 포인트는 아래와 같이 index가 저장된다.
 
@@ -233,26 +267,29 @@ pointSearchCornerInd2[i] = minPointInd2;
 
 만약 할당이 제대로 되지 않았으면 -1이 세팅된다.
 
-**ii) Optimization에 필요한 values 세팅**: 성공적으로 correspondence를 찾았으면 이제 향후 optimization에 필요한 값들을 세팅한다. 크게 아래의 세가지를 설정한다 (※수학주의).
+**iii) Optimization에 필요한 values 세팅**: 성공적으로 correspondence를 찾았으면 이제 향후 optimization에 필요한 값들을 세팅한다. 크게 아래의 세가지를 설정한다 (※수학주의).
 
 
 1. Point-to-line distance
 
-먼저 point-to-line distacne가 계산된다. 엄밀히 말하자면 외적(cross product)를 통해 두 line이 일치하는 정도를 측정한다. 외적을 하게 되면 크기x크기xsin(사잇각)이 되는데, 따라서 time t 상의 타겟 포인트와 t-1 상에서 타겟 포인트와 가장 가까운점과 그 다음 가까운 점을 각각 이은 두 선이 일치하는 쪽으로 향후에 optimize되는 것이다. 수식을 전개하기 위해 아래 그림으로 대체한다.
+먼저 point-to-line distacne (아래의 `ld2`)가 계산된다. 엄밀히 말하자면, 외적(cross product)를 통해 두 line이 일치하는 정도를 측정한다. 외적을 하게 되면 크기x크기xsin(사잇각)이 되는데, 따라서 time t 상의 타겟 포인트와 t-1 상에서 타겟 포인트와 가장 가까운점과 그 다음 가까운 점을 각각 이은 두 선이 일치하는 쪽으로 향후에 optimize되는 것이다. 즉, 한 세 점이 한 직선 위에 놓여졌을 때 distance가 0이 된다. 수식을 전개하기 위해 아래 그림으로 대체한다.
 
 ![](/img/lego_loam_fa_point_to_line.png)
+(위의 수식에서 k+1이 본 글의 t와 대응되고, *L*은 LiDAR sensor frame임을 나타낸다.)
 
+2. Jacobian term
 
-2.Jacobian term
-
-그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 자료들을 찾아보면 저 `la`, `lb`, `lc`가 무엇인지 설명을 하지 않는데, 저 term은 향후에 non-linear optimization을 할 때 필요하다. Interative estimation method 기반으로 non-linear optimization을 하면 아래와 같이 표현할 수 있다.
+그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 저 `la`, `lb`, `lc`가 갑자기 나와서 무엇인지 잘 이해가 안 되고 명확히 설명하는 글이 많지 않는데, 저 term은 향후에 optimization을 할 때 chain rule을 통해 jacobian term을 표현할 때 필요하다. 먼저, non-linear equation을 iterative estimation method 기반으로 optimization하는 과정을 정리하자면 아래와 같고 jacobian matrix J가 필요하다는 것을 알 수 있다.
 
 ![](/img/lego_loam_fa_solve.png)
 
-Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 r_y (yaw 회전), x_rel (왼쪽), z_rel (앞쪽)이 optimize된다)의 변화량이 풀어야할 파라미터가 된다. 하지만 jacobian matrix의 각 term을 구할 때 함수 (아래의 1, 2, 3)에 각 타겟 포인트에 대한 point-to-line distance의 derivate가 필요하다. 이 값은 r_y, x_rel, z_rel에 invariant하기 때문에 미리 계산해둔다. 수식 전개는 아래와 같다.
+Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 ry (yaw 회전), tx (왼쪽), tz (앞쪽)으로 표현되고, 이 변수들의 미소 변화량을 구하는 것이 매 iterative estimation의 목표이다)의 변화량이 우리가 구하고자 하는 파라미터가 된다. 하지만 현재 우리가 계산한 point-to-line distance는 ry, tx, tz로 직접적으로 표현되지 않는다. 따라서 point-to-line distance를 구하는 수식을 **f**라 표현했을 때, jacobian matrix의 각 term을 chain rule을 통해 아래와 같이 표현할 수 있다 (아래의 1, 2, and 3).
 
 
-![](/img/lego_loam_fa_la_lb_lc.png)
+![](/img/lego_loam_fa_la_lb_lc_v2.png)
+
+에 각 타겟 포인트에 대한 point-to-line distance의 derivate가 필요하다. 이 값은 r_y, x_rel, z_rel에 invariant하기 때문에 미리 계산해둔다. 수식 전개는 아래와 같다.
+
 
 
 3. Alternative weighting
@@ -279,12 +316,12 @@ if (s > 0.1 && ld2 != 0) {
 해석하자면,
 
 * 초기 5번 iteration 동안은 모든 distance들에 대해 `s=1`로 세팅하여 모든 measurements의 중요한 정도 (weight)를 균등하게 둔다.
-* 5번 이후에는 너무 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. 즉, `s`에 0.1을 넣고 전개하면 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크다.
+* 5번 이후에는 너무 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. 즉, `s`에 0.1을 넣고 전개하면 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이니, 0.1초 당 최대 0.3m 정도가 이동 가능하다고 가정할 수 있기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크기 때문에 위와 같은 weight를 세팅한다 (참고: 이렇게 weight를 다르게 주며 optimization하는 행위를 iteratively reweighted least squares라고 부른다).
 
 
 ### b) Optimization을 통한 parameter update `calculateTransformationCorner(iterCount2)`
 
-Correspondences를 추정한 후, time t에서의 `cornerPointsSharp`에서 유효하다고 판단되어 선별된 `laserCloudOri`을 입력으로 하여 optimization을 진행한다. 크게 네 파트로 구성되어 있는데, i) jacobian matrix 계산, ii) solve the delta, iii) degeneracy check, iv) 수렴했는지 판단 으로 구성되어 있다.
+Correspondences를 추정한 후, time t에서의 `cornerPointsSharp`에서 유효하다고 판단되어 선별된 `laserCloudOri`을 입력으로 하여 optimization을 진행한다. 전체 코드는 아래와 같고, transformation matrix를 구하는 과정은 크게 네 파트로 구성되어 있는데, i) jacobian matrix 계산, ii) Ax=b 꼴 least square로 풀기, iii) degeneracy check, iv) 수렴했는지 판단으로 구성되어 있다.
 
 ```cpp
 bool calculateTransformationCorner(int iterCount){
@@ -389,8 +426,21 @@ bool calculateTransformationCorner(int iterCount){
 }
 ```
 
+**i) jacobian matrix 계산**: 이전에 구해둔 `la`, `lb`, `lc`와 현재 n번째 point에 대한 partial derivative를 활용해서 jacobian matrix의 각 요소에 대해서 계산한다. 증명은 아래와 같고, 수식과 대응되는 부분은 사각형으로 표시해두었다. 
+
+![](/img/lego_loam_derivative1.png)
+
+![](/img/lego_loam_derivative_2.png)
+
+**ii) Ax=b 꼴 matrix least square로 풀기**: 그 후, 위에서 말했던 Ax=b 꼴의 J△=-b를 풀면 최적의 미소 변화량에 대해 구할 수 있다. 위의 코드에서 -b에 0.05가 곱해져 있는 것은 J△=-b을 통해 optimization할 때 그 변화의 폭이 너무 크지 않게 하기 위함이다. Iterative method는 현재 변수에 대해서 locally linear하다는 가정 하에 진행되는데, 변화량이 너무 크게 되면 가정과 맞지 않게 되기 때문에 이를 방지해주어야 한다. 
+
+**iii) degeneracy check**: 하지만 위에 같이 A가 정방 행렬이 아닌 경우에는 Ax=b 꼴의 수식을 풀 때는 양 변에 A^T를 곱해준 후, `A^T*A`를 정방 행렬으로 만든 후, [pseudo-inverse](https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/pseudinv.htm#:~:text=The%20Moore%2DPenrose%20pseudo%20inverse%20is%20a%20generalization%20of%20the,when%20A%20is%20not%20invertible.)를 통해 해를 푼다. 그런데, 가끔 A^T*A의 역행렬이 존재하지 않는 경우가 있는데, 이 `isDegenerate`는 이를 체크하기 위함이다. 실제로 코드를 돌려보면 좋은 환경에서는 이러한 degeneracy가 잘 일어나지 않는다.
+
+**iv) 수렴했는지 판단**: 최종적으로 `deltaR`와 `deltaT`가 너무 작은 경우에는 수렴했다고 판단한다. 현재 코드 상에는 변화량의 각도가 0.1도 이내이거나 translation이 0.001m인 경우에 optimization을 중단하게 되어 있다.
  
- Plane feature도 위와 똑같은 process로 진행된다. 연습문제로 삼아서 스스로 전개해보길 추천한다.
+ Plane feature도 위와 똑같은 process로 똑같고, 다른 점은 point-to-plane distance를 구한다는 점이다. 연습문제로 삼아서 스스로 전개해보길 추천한다.
+
+### integrationTransformation()
 
 ---
 

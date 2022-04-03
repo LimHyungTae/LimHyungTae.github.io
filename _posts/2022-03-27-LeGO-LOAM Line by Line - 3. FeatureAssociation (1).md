@@ -264,7 +264,13 @@ if ( (ori > segInfo.startOrientation) && (ori < endOriCorrected) ||
 }
 ```
 
-다행히 이 문제는 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM/blob/master/src/imageProjection.cpp)에서는 deskewing을 ImageProjection 단에서 하는 것으로 변경되어 완벽히 해결되어 있다 ~~Tixiao Shan...그는 신이야!~~
+다행히 이 문제는 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM/blob/master/src/imageProjection.cpp)에서는 deskewing을 ImageProjection 단에서 하는 것으로 변경되어 완벽히 해결되어 있다 ~~Tixiao Shan...그는 신이야!~~. 그렇게 `relTime`을 계산한 후, 아래와 같이 point의 intensity에 해당 포인트가 취득된 시간이 할당된다.
+
+```cpp
+point.intensity = int(segmentedCloud->points[i].intensity) + scanPeriod * relTime;
+```
+
+여기서 주의할 것은 intensity의 `int` 파트에는 ImageProjection에서 할당했던 `rowIdn` (LiDAR sensor의 channel id)이 저장되어 있다.
 
 ### calculateSmoothness()
 
