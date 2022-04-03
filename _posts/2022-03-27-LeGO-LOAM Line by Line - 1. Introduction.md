@@ -16,7 +16,7 @@ comments: true
 그런데 찾아보는 도중, 크게 3가지 문제점을 느껴서 제가 한 번 초심자도 LeGO-LOAM 코드를 잘 이해할 수 있게 정리해보고자 이렇게 글을 쓰게 되었습니다.
 
 * Overview에 대한 설명 자료는 많으나, line-by-line으로 자세한 설명으로 되어있는 한글 문서가 없음 (주로 중국어(!)로 되어있음)
-* LeGO-LOAM의 코드가 생각보다 휴리스틱한 부분과 하드코딩이 많아서, 처음 SLAM을 공부하는 이들이 LeGO-LOAM 코드를 바이블 삼아 공부하기에는 진입장벽이 높을 것 같음 (LiDAR SLAM framework 자체를 공부하는 것이 목적이라면 저는 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)이나 [Faster-LIO](https://github.com/gaoxiang12/faster-lio)를 보는 것을 더 추천드립니다.)
+* LeGO-LOAM의 코드가 생각보다 휴리스틱한 부분과 하드코딩이 많아서, 처음 SLAM을 공부하는 이들이 LeGO-LOAM 코드를 바이블 삼아 공부하기에는 진입장벽이 높을 것 같음 (LiDAR SLAM framework 자체를 공부하는 것이 목적이라면 저는 [Faster-LIO](https://github.com/gaoxiang12/faster-lio)를 보는 것을 더 추천드립니다.)
 * 논문 상에서는 수식을 제시하고 Levenberg-Marquardt 방법으로 optimization을 했다고 되어 있으나, 실제 코드 내부는 jacobian term을 직접 하나하나 구한다거나 설명없이 하드코딩으로 되어 있는 부분이 많음. 따라서 수학적 배경없이 코드를 이해하기 상당히 어려움
 
 그래서 제가 이해한 것을 바탕으로 line-by-line으로 정리하고자 합니다.
