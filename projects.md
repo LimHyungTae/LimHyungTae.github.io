@@ -2,6 +2,7 @@
 layout: page
 title: Projects
 ---
+(Deprecated. Last Update: Feb., 2020)
 
 ## Indoor Navigation of Mobile Robots using Deep Learning-based Object Recognition
 
