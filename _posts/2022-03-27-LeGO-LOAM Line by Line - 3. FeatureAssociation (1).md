@@ -181,6 +181,8 @@ Point cloud at time t       |  Accumulated point cloud
 
 주변 SLAM 고수들에게 자문을 구한 결과, 이 행위는 LOAM 저자인 Ji Zhang씨가 LOAM 코드를 설계할 때 초기부터 camera와의 sensor fusion을 염두해두고 짠 것이어서 이렇게 좌표축 변환의 흔적이 남아있다고 한다 (진화적 퇴행과 같이 LOAM 계열 LiDAR odometry 코드에는 이런 좌표축 변환이 계속 남아있다). 그 증거를 코드 내부에서 확인할 수 있는데, 가장 대표적인 건 LiDAR odometry 코드임에도 불구하고 아래와 같이 visualization을 할 때 frame_id를 `/camera`로 사용하고 있다는 것이다.
 
+
+
 ```cpp
 void publishCloud()
 {
@@ -215,6 +217,10 @@ void publishCloud()
     }
 }
 ```
+이러한 이슈들은 [여기](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM/issues/131)에서 확인할 수 있다. 
+
+> The original LOAM code has a lot of mysterious parts and you should probably not read it too much unless you want your eyes to bleed. The coordinate switching here probably has to do with projecting the lidar points in the camera frame. I believe that historically the "open source" LOAM was published as Ji Zhang was preparing V-LOAM.
+
 
 **ii) 각 point의 relative time 계산**
 
