@@ -270,14 +270,14 @@ pointSearchCornerInd2[i] = minPointInd2;
 **iii) Optimization에 필요한 values 세팅**: 성공적으로 correspondence를 찾았으면 이제 향후 optimization에 필요한 값들을 세팅한다. 크게 아래의 세가지를 설정한다 (※수학주의).
 
 
-1. Point-to-line distance
+**1) Point-to-line distance**
 
 먼저 point-to-line distacne (아래의 `ld2`)가 계산된다. 엄밀히 말하자면, 외적(cross product)를 통해 두 line이 일치하는 정도를 측정한다. 외적을 하게 되면 크기x크기xsin(사잇각)이 되는데, 따라서 time t 상의 타겟 포인트와 t-1 상에서 타겟 포인트와 가장 가까운점과 그 다음 가까운 점을 각각 이은 두 선이 일치하는 쪽으로 향후에 optimize되는 것이다. 즉, 한 세 점이 한 직선 위에 놓여졌을 때 distance가 0이 된다. 수식을 전개하기 위해 아래 그림으로 대체한다.
 
 ![](/img/lego_loam_fa_point_to_line.png)
 (위의 수식에서 k+1이 본 글의 t와 대응되고, *L*은 LiDAR sensor frame임을 나타낸다.)
 
-2. Jacobian term
+**2) Jacobian term**
 
 그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 저 `la`, `lb`, `lc`가 갑자기 나와서 무엇인지 잘 이해가 안 되고 명확히 설명하는 글이 많지 않는데, 저 term은 향후에 optimization을 할 때 chain rule을 통해 jacobian term을 표현할 때 필요하다. 먼저, non-linear equation을 iterative estimation method 기반으로 optimization하는 과정을 정리하자면 아래와 같고 jacobian matrix J가 필요하다는 것을 알 수 있다.
 
@@ -292,7 +292,7 @@ Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표�
 
 
 
-3. Alternative weighting
+**3) Alternative weighting**
 
 또한 각 distance에 대한 weight가 아래와 같이 매겨진다.
 
