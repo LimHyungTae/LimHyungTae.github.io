@@ -8,7 +8,7 @@ comments: true
 
 # FeatureAssociation in LeGO-LOAM (1) Ready for Feature Extraction
 
-`featureAssociation.cpp`에서는 `imageProjection.cpp`에서 추출한 segmented cloud를 입력으로 받아 해당하는 point cloud로부터 유의미한 corner feature와 edge feature를 뽑고, t-1과 t 사이의 relative odometry를 각 feature로부터 추정한다.
+`featureAssociation.cpp`에서 역할은 크게 두 가지이다. 먼저 a) `imageProjection.cpp`에서 추출한 segmented cloud를 입력으로 받아 해당하는 point cloud로부터 유의미한 corner feature와 edge feature를 뽑고, b) t-1과 t 사이의 relative odometry를 각 feature로부터 추정한다. 즉, LiDAR odometry에 대응되는 가장 중요한 파트라고 볼 수 있다 😎.
 
 ## Overview
 
@@ -110,14 +110,18 @@ if (newSegmentedCloud && newSegmentedCloudInfo && newOutlierCloud &&
 
 3D LiDAR sensor의 Hz가 10Hz임을 감안하면, 0.05 sec.의 timestamp 간격이 상당히 작다는 것을 알 수 있다. 그렇더라도 ImageProjection단에서 거의 동시에 세 개의 message를 publish하기 때문에 서로간의 time delay가 적은게 정상이다.
 
-데이터가 들어온 것을 확인하면 a) feature extraction을 위한 preprocessing을 진행하고, b) corner feature와 planar feature를 추출한 후 (feature extraction), c) t-1에서와 t에서의 feature 간의 correspondences를 찾아 relative pose를 추정한다. 
+즉 네 파트를 정리하자면
+1. 데이터가 들어온 것을 확인하면 
+2. feature extraction을 진행하기 전에 추가적인 preprocessing을 진행하고 
+3. corner feature와 planar feature를 추출한 후 (feature extraction)c) 
+4. t-1에서와 t에서의 feature 간의 correspondences를 찾아 relative pose를 추정한다. 
 
-**NOTE**: LeGO-LOAM에서도 IMU data를 통해 initial guess를 추정하는 부분이 있지만, 실제로는 LiDAR+IMU data를 사용했을 때가 LiDAR sensor만 사용했을 때에 비해 성능이 더 안 좋은 경우가 종종 발생한다. 이 것은 코드 내에서 다소 naive하게 IMU 데이터를 축적했기 때문이다. 이러한 문제점은 원저자의 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)에서 GTSAM의 preintegration module을 도입해서 좀더 정밀한 initial guess pose를 얻게끔 해소된다. 무튼, 본 글에서는 편의 상 IMU callback을 통해 IMU data가 들어오지 않는다고 가정한다. LiDAR Inertial Odometry에 관심이 있으면 LIO-SAM 코드를 보는 걸로...
+**NOTE**: LeGO-LOAM에서도 IMU data를 통해 initial guess를 추정하는 부분이 있지만, 실제로는 LiDAR+IMU data를 사용했을 때가 LiDAR sensor만 사용했을 때에 비해 성능이 더 안 좋은 경우가 종종 발생한다. 이 것은 코드 내에서 다소 naive하게 IMU 데이터를 축적했기 때문이다. 이러한 문제점은 원저자의 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)에서 GTSAM의 preintegration module을 도입해서 좀더 정밀한 initial guess pose를 추정하게 개선된다. 무튼, 본 글에서는 편의 상 IMU callback을 통해 IMU data가 들어오지 않는다고 가정한다 (LiDAR Inertial Odometry에 관심이 있으면 LIO-SAM 코드를 보는 걸로...).
 
 ---
 ## 2. Ready for Feature Extraction
 
-Feature extraction을 하기 전에, 앞서서 다음과 같이 세 가지 단계가 존재한다.
+Feature extraction을 하기 전에, 추가적인 preprocessing으로는 다음과 같이 세 가지 단계가 존재한다.
 a) `adjustDistortion()`: i) XYZ coordinate -> ZXY coordinate로 축 변환, ii) 각 point의 relative time 계산
 b) `calculateSmoothness()`: Corner/edge feature 추출에 사용될 Curvature 계산
 c) `markOccludedPoints()`: i) Occlusion (LiDAR sensor 기준 앞쪽의 물체가 뒷쪽 물체를 가려서 뒷쪽의 물체가 관측되지 않는 현상)이 일어나거나 ii) 해당 point의 normal vector가 모호한 경우 feature로 사용하지 않기 위해 masking을 함
@@ -217,10 +221,11 @@ void publishCloud()
     }
 }
 ```
-이러한 축 변경은 LeGO-LOAM 레포지토리 [issue](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM/issues/131)에서 열띄게 토의(?)했던 것을 확인할 수 있다.
+이러한 축 변경에 대한 이유는 LeGO-LOAM 레포지토리 [issue](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM/issues/131)에서 열띄게 토의(?)했던 주제라는 것도 확인할 수 있다.
 
 > The original LOAM code has a lot of mysterious parts and you should probably not read it too much unless you want your eyes to bleed. The coordinate switching here probably has to do with projecting the lidar points in the camera frame. I believe that historically the "open source" LOAM was published as Ji Zhang was preparing V-LOAM.
-> (의역) 원본 LOAM 코드는 많은 미스터리한 부분이 있기 때문에 하나하나 다 알려하다 보면 눈에 피가 날 수도 있기에 ~~그걸 제가 하고 있습니다~~, 너무 꼼꼼히 이해하려 할 필요가 없습니다. 여기서의 좌표 전환은 아마도 카메라 프레임에 LiDAR 포인트를 투영하기 위함이라고 추측됩니다. 이는 LOAM 코드를 open했을 당시 Ji Zhang이 V-LOAM을 준비하고 있을 때여서 이렇게 역사적 흔적(?)이 남겨진 것이 아닌가 생각됩니다.
+> 
+> (의역) 원본 LOAM 코드는 많은 미스터리한 부분이 있기 때문에 하나하나 다 알려하다 보면 눈에 피가 날 수도 있습니다 ~~그걸 제가 하고 있습니다~~. 그러니 너무 꼼꼼히 이해하려 할 필요가 없습니다. 여기서의 좌표 전환은 아마도 카메라 프레임에 LiDAR 포인트를 투영하기 위함이라고 추측됩니다. 이는 LOAM 코드를 open했을 당시 Ji Zhang이 V-LOAM을 준비하고 있을 때여서 이렇게 역사적 흔적(?)이 남겨진 것이 아닌가 생각됩니다.
 
 
 **ii) 각 point의 relative time 계산**
@@ -248,12 +253,12 @@ if (!halfPassed) {
 float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 ```
 
-Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 실제로 cout을 출력해보면 `relTime`이 0보다 작거나 1보다 큰 경우가 발생하게 된다 (`relTime`은 0과 1사이의 ratio여야 하기 때문). 왜 이런 현상이 일어나나 했더니, 현재 ImageProjection 과정에서 range image로 projection -> image 평면에서 인덱스 순으로 `segmentedCloud`를 할당했기 때문에 현재 for문의 순서를 통해 `halfPassed`인지 아닌 지 판별하는게 말이 안된다 ([이전](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)에 이미 설명했듯이, `segmentedCloud`의 순서는 (0, 0)->(0, 1)->…->(0, 1799)->(1, 0)->…->(15, 1799)순으로 서치하면서 유효한 points만 push_back하는 식으로 되어있음). 즉 아래의 그림과 같이 original data는 빨간 화살표의 방향을 따라 획득되는데, 현재 `segmentedCloud` 방향은 초록색 화살표를 따라서 진행되기 때문에 `halfPassed`를 판별할 수 없다.
+Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 실제로 cout을 출력해보면 `relTime`이 0보다 작거나 1보다 큰 경우가 발생하게 된다 (**NOTE:** `relTime`은 첫 점과 끝 점이 관측된 시간을 기준으로 해당 point가 측정된 시간의 ratio를 나타내기 때문에 무조건 0과 1사이의 값이여야 함). 왜 이런 현상이 일어나나 했더니, 현재 ImageProjection 과정에서 range image로 projection -> image 평면에서 인덱스 순으로 `segmentedCloud`를 할당했기 때문에 현재 for문의 순서를 통해 `halfPassed`인지 아닌 지 판별하는게 말이 안 된다 ([이전](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)에 이미 설명했듯이, `segmentedCloud`의 순서는 (0, 0)->(0, 1)->…->(0, 1799)->(1, 0)->…->(15, 1799)순으로 서치하면서 유효한 points만 push_back하는 식으로 되어있음). 즉 아래의 그림과 같이 original data는 빨간 화살표의 방향을 따라 획득되었으나 현재 `segmentedCloud` 방향은 image projection->unprojection 과정으로 인해 초록색 화살표를 따라서 진행되기 때문에 `halfPassed`를 판별할 수 없다.
 
 
 ![](/img/lego_loam_angle_ambiguity.png)
 
-따라서, 본 `relTime`은 아래와 같이 구해져야 한다고 생각한다 (저의 주관적 해석입니다).
+따라서, 본 `relTime`은 아래와 같이 구해져야 한다고 생각한다 (100% 저의 주관적 해석입니다).
 
 ```cpp
 float relTime;
@@ -271,13 +276,13 @@ if ( (ori > segInfo.startOrientation) && (ori < endOriCorrected) ||
 }
 ```
 
-다행히 이 문제는 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM/blob/master/src/imageProjection.cpp)에서는 deskewing을 ImageProjection 단에서 하는 것으로 변경되어 완벽히 해결되어 있다 ~~Tixiao Shan...그는 신이야!~~. 그렇게 `relTime`을 계산한 후, 아래와 같이 point의 intensity에 해당 포인트가 취득된 시간이 할당된다.
+다행히 이 문제는 후속연구인 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM/blob/master/src/imageProjection.cpp)에서는 deskewing을 ImageProjection 단에서 하는 것으로 변경되어 완벽히 해결되어 있다 ~~Tixiao Shan...그는 신이야!~~. 그렇게 `relTime`을 계산한 후, 아래와 같이 point의 intensity에 해당 포인트가 취득된 second 단위의 시간이 할당된다.
 
 ```cpp
 point.intensity = int(segmentedCloud->points[i].intensity) + scanPeriod * relTime;
 ```
 
-여기서 주의할 것은 intensity의 `int` 파트에는 ImageProjection에서 할당했던 `rowIdn` (LiDAR sensor의 channel id)이 저장되어 있다.
+여기서 주의할 것은 intensity의 `int` 파트에는 ImageProjection에서 할당했던 `rowIdn` (LiDAR sensor의 channel id)이 저장되어 있다. 이 `rowIdn`은 향후 feature를 추출할 때 feature들이 인접하게 존재하는 지 판단할 때 활용된다. 
 
 ### calculateSmoothness()
 
@@ -345,7 +350,7 @@ for (size_t j = 0; j < Horizon_SCAN; ++j) {
 }
 ```
 
-그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 아래와 같이 나타낼 수 있다. 심지어는 우리의 생각과는 다르게 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다 (근데 후의 `extractFeatures()`에서 각 channel 별 가장 앞/뒤 5개는 feature로 선별하지 않게 되어있음). 
+그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 아래와 같이 나타낼 수 있다. 심지어는 우리의 생각과는 다르게 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다 (근데 후의 `extractFeatures()`에서 각 channel 별 가장 앞/뒤 5개는 feature로 선별하지 않게 되어있어 문제 없긴 하다 ~~그럼 여기서도 그냥 뽑지 말지~~). 
 
 ![](/img/lego_loam_calc_smoothness_v2.png)
 

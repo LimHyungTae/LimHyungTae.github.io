@@ -20,7 +20,7 @@ comments: true
 ![](/img/lego_loam_two_stage_optimization.PNG)
 
 
-다른 section과 다르게 이 부분에서는 Levenberg-Marquardt (LM) optimization을 하는 부분의 설명이 필요하다보니 좀 많이 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
+다른 section과 다르게 이 부분에서는 Levenberg-Marquardt (LM) optimization을 하는 부분에 대한 코드 설명이 필요하다보니 좀 많이 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
 * [Least square, Iterative method, LM optimization](https://www.slideshare.net/phani279/lecture-5-15476418)
 * [Optimization (KOR.)](https://darkpgmr.tistory.com/142)
 * [Cross product](https://en.wikipedia.org/wiki/Cross_product)
@@ -31,7 +31,9 @@ comments: true
 
 `updateInitialGuess()` 함수에서는 IMU data가 들어오면 IMU data를 통해 구한 inital relative pose를 더해준다. 하지만 IMU를 쓰지 않으면 `imuShiftFromStartX`, `imuShiftFromStartY`, `imuShiftFromStartZ`, `imuVeloFromStartX`, `imuVeloFromStartY`, `imuVeloFromStartZ` 모두 다 계속 0이다. 즉, IMU 데이터가 들어오지 않으면 `updateInitialGuess()` 함수를 통해 `transformCur`가 업데이트되지는 않는다.
 
-여기서 주의해야할 점은 초기 transformCur의 값은 t-2와 t-1 프레임 간의 pose로 할당되어 있다는 것이다 (t=1과 t=2의 경우에는 [0, 0, 0, 0, 0, 0]으로 initialization되어 있음). 그 이유는 iterative하게 optimization을 할 때에는 초기값에 따라 성능이 많이 달라지게 되는데, 모바일 로봇의 경우 주로 앞-뒤로 움직이기 떄문에 (어려운 말로는 non-holonomic motion을 주로 하기 때문에) 이전에 추정한 pose와 현재 추정해야할 pose의 경향성이 비슷하다는 전제하에 initial pose를 이전 time step에 추정한 pose를 할당해둔다.
+여기서 주의해야할 점은 초기 transformCur의 값은 t-2와 t-1 프레임 간의 pose로 할당되어 있다는 것이다. 다시 말해, **초기 값이 [0, 0, 0, 0, 0, 0]이 아니다!** (물론 t=1과 t=2 사이의 pose를 추정하는 경우에는 [0, 0, 0, 0, 0, 0]으로 initialization되어 있음). 그 이유는 non-linear equation의 최적해를 구할 때는 iterative하게 optimization을 하는데, 이 때 주어진 초기값에 따라 성능이 많이 달라지게 된다. 이러한 문제를 해소하기 위해 좋은 initial 값을 지정해 주어야 한다. 
+
+따라서, 모바일 로봇의 경우 주로 앞-뒤로 움직이기 때문에 (어려운 말로는 non-holonomic motion을 주로 하기 때문에) 이전에 추정한 pose와 현재 추정해야할 pose의 경향성이 비슷하다는 전제하에 initial pose를 이전 time step에 추정한 pose를 할당해둔다.
 
 ```cpp
 void updateInitialGuess(){
@@ -251,10 +253,10 @@ void TransformToStart(PointType const * const pi, PointType * const po)
 }
 ```
 
-위의 계산은 아래 수식과 동일하다 (변수 위 ~ 표시는 현재 deskwed되었음을 의미한다).
+위의 계산은 아래 수식과 동일하다 (변수 머리 위의 ~ 표시는 현재 deskwed되었음을 의미한다).
 
 ![](/img/lego_loam_transform_v2.png)
-(Q. 왜 음의 방향인가?: 실제로 t-1와 t를 푼 결과를 보면 로봇이 앞쪽 방향으로 움직이고 있을 때 tz (ZXY좌표계에서 앞쪽 방향) 값이 음수로 도출된다. 즉 -1 * (음수)로 결론적으로는 양수값이 되어 상관 없긴 하다~~상관없으면 그냥 +로 써주지ㅠㅜ~~.) 
+(Q. 왜 음의 방향인가?: 실제로 t-1와 t를 푼 결과를 출력해보면 로봇이 앞쪽 방향으로 움직이고 있을 때 tz (ZXY좌표계에서 앞쪽 방향) 값이 음수로 도출된다. 즉 -1 * (음수)로 결론적으로는 양수값이 되어 상관 없긴 하다~~상관없으면 그냥 양수로 표현해주지ㅠㅜ~~.) 
 
 
 **ii) Correspondence 찾기**: 그 후, deskewing된 time t 상의 sharp한 corner feature와 가장 거리가 가까운, t-1 상의 두 corner feature를 찾는다. 여기서 `kdtreeCornerLast`의 입력 point cloud는 t-1의 `cornerPointsLessSharp`이다 (pose estimation이 완료되고 난 후 `publishCloudsLast()` 함수에서 세팅됨). 먼저 t-1에서 가장 가까운 점 1개를 찾은 후, 그 점을 기점으로 +-2.5 channel index 이내에 있는 corner feature를 그점으로 취급한다 (근데 코드 상에서 보면 +- check를 위->아래 순으로 체크하는 것 같다). 
@@ -280,11 +282,13 @@ pointSearchCornerInd2[i] = minPointInd2;
 
 **2) Jacobian term**
 
-그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 저 `la`, `lb`, `lc`가 갑자기 나와서 무엇인지 잘 이해가 안 되고 명확히 설명하는 글이 많지 않는데, 저 term은 향후에 optimization을 할 때 chain rule을 통해 jacobian term을 표현할 때 필요하다. 먼저, non-linear equation을 iterative estimation method 기반으로 optimization하는 과정에 대해 이해해야 한다. 정리하자면 아래와 같고, 요약하자면 jacobian matrix J가 필요하다는 것을 알 수 있다.
+그 후, optimization에 필요한 jacobian term을 미리 구해둔다. 위 코드 상에 `la`, `lb`, `lc`를 갑자기 계산하는 것이 무엇인지 명확히 나타나 있지 않고 설명해주는 글이 거의 없는데, 저 term은 향후에 optimization을 할 때 chain rule을 통해 jacobian term을 표현할 때 필요한 term들이다. 이를 이해하려면 먼저 non-linear equation을 iterative estimation method 기반으로 optimization하는 과정에 대해 이해해야 한다. 
+
+정리하자면 아래와 같고, 한 줄 요약하자면 optimization을 하려면 jacobian matrix J가 필요하다는 것을 알 수 있다.
 
 ![](/img/lego_loam_fa_solve.png)
 
-Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 ry (yaw 회전), tx (왼쪽), tz (앞쪽)으로 표현되고, 이 변수들의 미소 변화량을 구하는 것이 매 iterative estimation의 목표이다)의 변화량이 우리가 구하고자 하는 파라미터가 된다. 하지만 현재 우리가 계산한 point-to-line distance는 deskewed point에 대한 함수로 표현될 뿐 ry, tx, tz로 직접적으로 표현되지 않는다. 따라서 point-to-line distance를 구하는 수식을 **f**라 표현했을 때, jacobian matrix의 각 term을 chain rule을 통해 아래와 같이 표현해주어야 한다 (아래의 1, 2, and 3).
+Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 ry (yaw 회전), tx (왼쪽), tz (앞쪽)으로 표현되고, 이 변수들의 미소 변화량을 구하는 것이 매 iterative estimation의 목표이다)의 변화량이 우리가 구하고자 하는 파라미터, i.e. △,가 된다. 하지만 현재 우리가 계산한 point-to-line distance는 deskewed point에 대한 함수로 표현될 뿐 ry, tx, tz로 직접적으로 표현되지 않는다. 따라서 point-to-line distance를 구하는 수식을 **f**라 표현했을 때, jacobian matrix의 각 term을 chain rule을 통해 아래와 같이 표현해주어야 한다 (아래의 1, 2, and 3).
 
 
 ![](/img/lego_loam_fa_la_lb_lc_v2.png)
@@ -315,12 +319,12 @@ if (s > 0.1 && ld2 != 0) {
 해석하자면,
 
 * 초기 5번 iteration 동안은 모든 distance들에 대해 `s=1`로 세팅하여 모든 measurements의 중요한 정도 (weight)를 균등하게 둔다.
-* 5번 이후에는 너무 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. 즉, `s`에 0.1을 넣고 전개하면 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이니, 0.1초 당 최대 0.3m 정도가 이동 가능하다고 가정할 수 있기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크기 때문에 위와 같은 weight를 세팅한다 (참고: 이렇게 매 iteration마다 weight를 다르게 주며 optimization하는 행위를 iteratively reweighted least squares라고 부른다).
+* 5번 이후에는 `ld2`의 크기에 따라 weight를 달리하는데, 특히 0.1이하의 경우에는 향후 optimization에 사용하지 않는다. `s`에 0.1을 대입하고 전개하면 저 조건문은 `ld2`가 0.5m 이하인 점들만 유효한 measurements로 여긴다고 해석할 수 있다. 이는 아주 reasonable한데, 왜냐하면 주로 모바일 로봇들이 1~3m/s로 움직이니, 0.1초 당 최대 0.3m 정도가 이동 가능하다고 가정할 수 있기 때문이다. 따라서 적어도 point-to-line distance가 0.5m 이내의 점들이 유효한 pair이고 그 이외의 점들은 extreme outliers일 가능성이 크기 때문에 위와 같은 weight를 세팅한다 (참고: 이렇게 매 iteration마다 weight를 다르게 주며 optimization하는 행위를 *iteratively reweighted least squares*라고도 부른다).
 
 
 ### b) Optimization을 통한 parameter update `calculateTransformationCorner(iterCount2)`
 
-Correspondences를 추정한 후, time t에서의 `cornerPointsSharp`에서 유효하다고 판단되어 선별된 `laserCloudOri`을 입력으로 하여 optimization을 진행한다. 전체 코드는 아래와 같고, transformation matrix를 구하는 과정은 크게 네 파트로 구성되어 있는데, i) jacobian matrix 계산, ii) Ax=b 꼴 least square로 풀기, iii) degeneracy check, iv) 수렴했는지 판단으로 구성되어 있다.
+Correspondences를 추정한 후, time t에서의 `cornerPointsSharp`에서 유효하다고 판단되어 선별된 `laserCloudOri`을 입력으로 하여 optimization을 진행한다. 전체 코드는 아래와 같고, transformation matrix를 구하는 과정은 다시 네 파트로 쪼개지는데, i) jacobian matrix 계산, ii) Ax=b 꼴 least square로 풀기, iii) degeneracy check, iv) 수렴했는지 판단으로 구성되어 있다.
 
 ```cpp
 bool calculateTransformationCorner(int iterCount){
@@ -445,9 +449,9 @@ bool calculateTransformationCorner(int iterCount){
 
 ## 마치며
 
-지금까지 LeGO-LOAM의 핵심적인 부분에 대해서 line-by-line으로 살펴보았다. 개인적인 의견으로는 LeGO-LOAM의 꽃은 바닥으로부터 planar feature를 뽑고, non-ground로부터 corner feauture를 각각 뽑은 후 two-stage optimization을 통해 pose를 구하는 부분이라고 생각한다. 사실, 이렇게 decoupling하는 것은 trade-off가 있는데, 먼저 a) 연산량을 줄여주고 b) oulier의 예기치 못한 error를 projection하여 outlier를 suppresion해주는 장점이 있다. 단점이라하면, 사실 (x, y, z, roll, pitch, yaw)가 서로 독립적이지 않기 때문에 optimization을 하더라도 미세하게 pose가 완전히 optimization해지지 못할 우려가 있다는 점이다. 그렇기에 논문에 보면 속도적인 측면에서 개선이 많이 되었음을 강조함으로써 (i7과 small form factor pc 둘다 실험을 하는 등) contribution을 가져간 것이 눈에 띈다. 
+지금까지 LeGO-LOAM의 핵심적인 부분에 대해서 line-by-line으로 살펴보았다. 개인적인 의견으로는 LeGO-LOAM의 꽃은 바닥으로부터 planar feature를 뽑고, non-ground로부터 corner feauture를 각각 뽑은 후 two-stage optimization을 통해 pose를 구하는 부분이라고 생각한다. 하지만 이렇게 decoupling하는 것은 trade-off가 있다. 먼저, a) 연산량을 줄여주고 b) oulier의 예기치 못한 error를 projection하여 outlier를 suppresion해주는 장점이 있다. 단점이라하면, (x, y, z, roll, pitch, yaw)은 실상 서로 독립적이지 않기 때문에 이렇게 two-stage로 따로따로 optimization을 하면 optimization이 종료되었더라도 미세하게 pose가 완전히 optimization해지지 못할 우려가 있다는 점이다. 그렇기에 논문에 보면 속도적인 측면에서 개선이 많이 되었음을 강조함으로써 (i7과 small form factor pc 둘다 실험을 하는 등) contribution을 가져간 것이 눈에 띈다. 
  
- `MapOptimization` 같은 경우에는 이해하기 어렵다기 보다는 뽑은 feature들을 활용하여 어떻게 map을 관리할지에 대한 테크니컬한 부분이 많아 생략한다. 그리고 LIO-SAM에서 코드가 좀 더 정돈되었기 때문에, LeGO-LOAM의 MapOptimization을 보기보다는 LIO-SAM의 뒷 부분이 어떻게 되어있는 지 살펴보는 것을 추천한다.
+ `MapOptimization` 같은 경우에는 뽑은 feature들을 활용하여 어떻게 submap을 관리할지에 대한 테크니컬한 부분이 많아 생략한다 (time t와 t-1~t-T 간의 상관관계를 추정함). 무엇보다도 LIO-SAM에서 코드가 좀 더 정돈되었기 때문에, LeGO-LOAM의 MapOptimization을 보고 공부하기 보다는 LIO-SAM의 뒷부분이 어떻게 되어있는 지 살펴보는 것을 추천한다.
  
 ---
 

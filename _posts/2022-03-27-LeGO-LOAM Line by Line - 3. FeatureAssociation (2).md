@@ -12,7 +12,7 @@ comments: true
 
 ![](/img/lego_loam_fa2.png)
 
-Feature를 뽑을 준비가 끝나면 `extractFeatures()` 함수를 통해 feature를 추출한다. 그런데, relative pose를 추정하기 위해서는 연속적인 두 프레임의 feature가 필요하기 때문에, i.e. features on t-1 & features on t, initialization이 필요하다. 따라서 t=1인 경우에는 위와 같이 `checkSystemInitialization()` 함수까지만 진행이 되고 return된다.
+Feature를 뽑을 준비가 끝나면 `extractFeatures()` 함수를 통해 feature를 추출한다. 그런데, relative pose를 추정하기 위해서는 연속적인 두 프레임의 feature가 필요하기 때문에, i.e. features on t-1 & features on t, initialization이 필요하다. 따라서 t=1인 경우에는 위와 같이 `checkSystemInitialization()` 함수까지만 진행이 되고 return 을 통해 종료된다.
 
 ### extractFeatures()
 

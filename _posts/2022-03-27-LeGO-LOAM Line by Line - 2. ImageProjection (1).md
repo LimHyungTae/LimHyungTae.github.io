@@ -9,19 +9,21 @@ comments: true
 
 # ImageProjection in LeGO-LOAM (1) Range Image Projection & Ground Removal
 
+
+
 `imageProjection.cpp`에서는 3D LiDAR sensor로 취득한 point cloud를 range image로 projection을 한 후에, preprocessing을 진행한다. 그로 인해, 3D point cloud 상의 각 포인트를 `segmentedCloud`와 `outlierCloud`로 binary classification을 진행한다. 요약하자면, `imageProjection.cpp`의 역할은 아래와 같이 세 가지로 꼽을 수 있다.
 
-1. `featureAssociation.cpp`에서 interpolation을 할 때 파라미터로 사용되는`segMsg.orientationDiff` 세팅 
+1. Image Projection의 다은 단계인 Feature Association에서 interpolation을 할 때 파라미터로 사용되는 `segMsg.orientationDiff` 미리 세팅 
 2. Ground points/Non-ground points 구분
    * Ground points: Laser ray가 땅바닥에서 반사되어 측정된 point로, 주로 3D point cloud 상에서 50~60%는 ground points임. 따라서 미리 ground points를 거르면 후과정에서의 연산량을 줄일 수 있음
 3. Non-ground points 상에서 유효한 segment와 그렇지 않은 것들로 포인트를 구분함
    * 다소 noisy한 points들: Sub-cluster라고도 부르는데, clustering을 했더니 너무 포인트 수가 적은 cloud points들. 덤불(bushes)같이 기하학적으로 비정형적인 물체들을 제거하는 것을 목표로 함. 
 
-최종적으로 segment와 outliers를 구분한 정보들은 다음 스텝인 `featureAssociation.cpp`에서 corner feature와 planar feature를 추출할 때 다시 활용된다. 결론부터 말하자면 a) ground points와 b) non-ground points 상에서 상대 포즈를 추정할 때 사용할, 주변 환경을 잘 묘사할 수 있는 (reliable & repeatable) 물체들을 추출해낸다.
+요약하자면 `featureAssociation.cpp`에서 feature를 추출하기 이전에 preprocessing을 해주는 단계라고 볼 수 있다. Preprocessing을 위해 a) ground points와 b) 주변 환경을 잘 묘사할 수 있는 (reliable & repeatable) non-ground points를 raw point cloud에서 추출해낸다.
 
 ## Overview
 
-각 frame마다 3D LiDAR sensor에서 3D point cloud가 들어오면 아래와 같은 `cloudHandler` callback이 실행되고, 아래와 같이 7 step으로 구성되어 있다.
+각 frame마다 3D LiDAR sensor에서 3D point cloud를 측정하면 아래와 같은 `cloudHandler` callback이 실행되고, 아래와 같이 7 단계로 구성되어 있다.
 
 ```c++
 void cloudHandler(const sensor_msgs::PointCloud2ConstPtr& laserCloudMsg){
@@ -98,7 +100,7 @@ nanPoint.z = std::numeric_limits<float>::quiet_NaN();
 nanPoint.intensity = -1;
 ```
 
-그래서 향후에 `fullCloud->points`의 각 point의 intensity가 -1인지 아닌지를 판별하여 현재 상태가 유효한지 아닌지를 판별한다 (물리적으로 intensity가 음수의 값으로 나오지는 않기 떄문. step 4. groundRemoval() 참조)
+그래서 향후에 `fullCloud->points`의 각 point의 intensity가 -1인지 아닌지를 판별하여 현재 상태가 유효한지 아닌지를 판별한다 (물리적으로 intensity가 음수의 값으로 나오지는 않기 때문. step 4. groundRemoval() 참조)
 
 #### 최종 output message
 
@@ -112,7 +114,7 @@ segMsg.segmentedCloudColInd.assign(N_SCAN*Horizon_SCAN, 0);
 segMsg.segmentedCloudRange.assign(N_SCAN*Horizon_SCAN, 0);
 ```
 
-`copyPointCloud(laserCloudMsg);`는 이름과 마찬가지로 point cloud를 복사하는 행위이기 때문에 생략한다.
+`copyPointCloud(laserCloudMsg);`는 이름에서 알 수 있듯이 point cloud를 복사하는 행위이기 때문에 생략한다.
 
 ---
 
@@ -133,13 +135,13 @@ void findStartEndAngle(){
 }
 ```
 
-이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 Velodyne Puck LiDAR를 사용했을 경우 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 377도 정도 shift가 일어난 것을 확인하게끔 세팅이 된다. 이 차이각은 `segMsg.orientationDiff`에 전체 회전한 정도를 저장한다 (단위: rad). 
+이 행위를 통해 3D LiDAR sensor가 0.1초 동안 회전한 총 angle을 구한다. 실제로 Velodyne Puck LiDAR를 사용했을 경우 (`segMsg.startOrientation`, `segMsg.endOrientation`)를 cout으로 출력해보면 연속적으로 (-118.59, 259.08), (-100.85, 276.93), (-82.98, 294.76), (-65.16, 312.58) (-47.33, 330.62), (-29.3, 348.7), (-11.22, 366.56), (6.66, 384.53), (24.63, 402.56), (42.61, 420.44), (60.51, 438.03), (78.08, 455.49) ... 과 같이 약 17도 정도 shift가 일어나면서 0.1초당 377도를 측정하게끔 세팅이 되어있다 (이러한 세팅은 변경할 수 있기 때문에, 알잘딱깔센으로 확인해봐야 한다). 이 차이각, i.e. 377도,은 `segMsg.orientationDiff`에 저장된다 (단위: rad). 
 
 그런데, 여기서 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 ROS 상에서 point cloud를 입력으로 받았을 때, 0~N개의 point들이 아래와 같이 시계 방향 순으로 (clock-wise) vector에 담겨있기 때문이다.   
 
 ![](/img/lego_loam_relTime.png)
 
-이렇게 세팅된 변수들은 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. `relTime`,을 계산할 때 사용된다. 아래와 같이 N개의 points 중 n번 째의 point와 가장 처음 취득한 포인트와의 차이각 대비 총 차이각의 비율을 구하여 `relTime`을 구할 수 있는데,
+이렇게 세팅된 변수들은 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. 위 그림 상의 `relTime`,을 계산할 때 사용된다. 아래와 같이 N개의 points 중 n번 째의 point와 가장 처음 취득한 포인트와의 차이각 대비 총 차이각의 비율을 구하여 `relTime`을 구할 수 있는데,
 
 ```cpp
 // adjustDistortion() in featureAssociation.cpp
@@ -147,11 +149,11 @@ float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 point.intensity = int(segmentedCloud->points[i].intensity) + scanPeriod * relTime;
 ```
 
-여기서 `ori`는 각 point의 각도를 뜻하며, `scanPeriod`는 주로 0.1초이기 때문에 0초~0.1초 사이에 해당 포인트가 취득된 시각을 각도를 통해 역추적할 수 있다. 이는 point cloud를 deskewing할 때 활용된다 (향후 다시 설명 예정).
+여기서 `ori`는 각 point의 각도를 뜻하며, `scanPeriod`는 주로 0.1초이기 때문에 0초~0.1초 사이에 해당 포인트가 취득된 시각을 각도를 통해 역추적할 수 있다. 이는 point cloud를 deskewing할 때 활용된다 (향후 Feature Association에서 다시 설명 예정).
 
 ### 3. projectPointCloud()
 
-그 후, N개(아래의 `cloudSize`)의 points를 가상의 range image, i.e. `rangeMat`,로 projection시킨다. 즉, 3D point cloud를 `N_SCAN`x`Horizon_SCAN`의 array로 매핑한다. Velodyne 16의 경우에는 matrix의 사이즈가 16 (channel 갯수)x1800 (수평한 방향으로 각 channel에서 취득할 수 있는 갯수, i.e. 360 deg/`ang_res_x`)와 같다. 순서대로 `rowIdn`와 `columnIdn`를 구하고, 해당하는 픽셀 (`rowIdn`, `columnIdn`)에 range 값을 저장한다.
+그 후, N개(아래의 `cloudSize`)의 points를 가상의 range image, i.e. `rangeMat`,로 projection시킨다. 이 때, 3D point cloud를 `N_SCAN`x`Horizon_SCAN`의 array로 매핑한다. Velodyne 16의 경우에는 matrix의 사이즈가 16 (channel 갯수)x1800 (수평한 방향으로 각 channel에서 취득할 수 있는 갯수, i.e. 360 deg/`ang_res_x`)와 같다. 순서대로 각 point의 `rowIdn`와 `columnIdn` pixel 위치를 구하고, 해당하는 픽셀 (`rowIdn`, `columnIdn`)에 range 값을 저장한다.
 
 ```cpp
 void projectPointCloud(){
@@ -208,13 +210,13 @@ void projectPointCloud(){
 
 ![](/img/lego_loam_columnIdn.png) 
 
-여기서 뒷쪽의 index를 0으로 두려한 Tixiao씨의 디테일이 보인다. LeGO-LOAM에서 feature를 추출하는 과정에서 0과 1799 index가 서로 붙어 있음에도 피쳐를 추출하지 않는데, feature로서 사용이 안 될 수도 있는 부분을 뒷쪽으로 둚으로써 양옆과 앞쪽에서는 feature를 잘 뽑을 수 있게 세팅해둔 것이다. 모바일 로봇의 경우에는 주로 pilot이 뒤쪽에서 조종을 하다보니, 뒷쪽 point cloud를 버리는 경우가 많고, 자율차의 경우에도 보닛이 point cloud의 뒷쪽에 찍혀서 앞의 180도만 쓰는 경우가 있는데, 이 관점에서 봤을 때 index의 시작점을 motion direction의 뒤쪽에 두는 것은 나름 효율적인 선택인 것 같다 (100% 저의 주관적인 견해입니다).
+여기서 뒷쪽의 index를 0으로 둔 원저자 Tixiao님의 디테일이 보인다. LeGO-LOAM에서 feature를 추출하는 과정에서 0과 1799 index가 서로 붙어 있음에도 피쳐를 추출하지 않는데, feature로서 사용이 안 될 수도 있는 부분을 뒷쪽으로 둚으로써 양옆과 앞쪽에서는 feature를 잘 뽑을 수 있게 세팅해둔 것이다. 모바일 로봇의 경우에는 주로 pilot이 뒤쪽에서 조종을 하다보니, 뒷쪽 point cloud를 버리는 경우가 많고, 자율차의 경우에도 보닛이 point cloud의 뒷쪽에 찍혀서 앞의 180도만 쓰는 경우가 있는데, 이 관점에서 봤을 때 index의 시작점을 motion direction의 뒤쪽에 두는 것은 나름 효율적인 선택인 것 같다 (100% 저의 주관적인 견해입니다).
 
 ### 4. groundRemoval()
 
 Range image를 만든 후에, range image를 활용하여 ground points를 labeling한다. 이 과정에서는 암묵적으로 3D LiDAR sensor가 수평하게 모바일 플랫폼에 부착되어 있다고 가정한다. 그렇기 때문에 16 channel LiDAR의 경우 1~8번째 channel의 경우에만 땅바닥쪽으로 laser ray가 방출되고 있기 때문에, `groundScanInd=7`, `sensorMountAngle=0` (deg)로 세팅한 것을 볼 수 있다.
 
-(**주의**: Velodyne HDL series의 경우 바닥쪽으로 laser ray가 약간 치우쳐져 있는 sensor들도 존재한다, i.e. Velodyne HDL-32E or Velodyne HDL-64E. 따라서 무지성으로 # of channels/2으로 `groundScanInd`를 세팅하면 안 되고 datasheet를 꼭 확인 후 하드웨어 맞게 세팅해야한다!!)
+(**주의**: Velodyne HDL series의 경우 바닥쪽으로 laser ray가 약간 치우쳐져 있는 sensor들도 존재한다, e.g. Velodyne HDL-32E or Velodyne HDL-64E. 따라서 무지성으로 # of channels/2으로 `groundScanInd`를 세팅하면 안 되고 datasheet를 꼭 확인 후 하드웨어 맞게 세팅해야한다!!)
 
 전체 코드는 아래와 같고, 해당하는 부분을 설명할 때 이해를 돕기 위해 그림을 첨부한다.
 
@@ -311,7 +313,6 @@ if (abs(angle - sensorMountAngle) <= 10){
 ```
 
 
-
 **c) Mask the pixels which are considered as the ground or have invalid values**
 
 Ground masking을 다 한 후, i) `groundMat`에서 ground로 판별되었거나 ii) point가 projection되지 않아서 `rangeMat`의 값이 `FLT_MAX`인 경우 `labelMat`에 -1을 할당한다.
@@ -334,7 +335,7 @@ for (size_t i = 0; i < N_SCAN; ++i){
 * Range image라는 제한된 resolution으로 ground segmentation을 하다보니, 한 픽셀 내에 여러 points가 찍히는 경우에 대해서는 실제 ground points가 ground로 판별이 되지 않음 
 * Line 기반이다보니, 수풀같이 기울기가 다소 불규칙적인 지역에서는 ground segmentation 성능이 상당히 저하됨
 
-따라서, ground segmentation 자체에 관심이 있는 것이라면 [Patchwork](https://github.com/LimHyungTae/patchwork)를 추천한다!
+따라서, ground segmentation 자체에 관심이 있는 것이라면 [Patchwork](https://github.com/LimHyungTae/patchwork)를 추천한다! 아래 그림은 빨간색이 estimated non-ground points, 초록색이 estimated ground points를 의미한다.
 
 ![](/img/lego_loam_ground_comparison.PNG) 
 
