@@ -22,7 +22,9 @@ comments: true
 그래서 제가 이해한 것을 바탕으로 line-by-line으로 정리하고자 합니다.
 
 LOAM과 LeGO-LOAM의 지식이 전혀 없으신 분은 진용이 형이 예전에 발표하셨던 [SLAM KR youtube 영상](https://www.youtube.com/watch?v=snPzNmcbCCQ&t=1589s)을 추천드립니다.
-
+ 
+* 그림들 내부는 구글 번역기를 돌리는 다른 나라의 외국인분들을 위해 영어로 작성하기로 했습니다. 이 점 양지 부탁드립니다. 
+ 
 ## Preview
 
 LeGO-LOAM의 전반적인 파이프라인은 아래와 같고,
