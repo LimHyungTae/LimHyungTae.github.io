@@ -1,12 +1,12 @@
 ---
 layout: post
 title: LeGO-LOAM 상세 설명 - 3. FeatureAssociation (3)
-subtitle: Relative Pose Estimation via Feature Association
+subtitle: Relative Pose Estimation via Two-stage Optimization
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 ---
 
-# FeatureAssociation in LeGO-LOAM (3) Relative Pose Estimation via Feature Association
+# FeatureAssociation in LeGO-LOAM (3) Relative Pose Estimation via Two-stage Optimization
 
 (cont'd)
 
@@ -440,8 +440,24 @@ bool calculateTransformationCorner(int iterCount){
  
  Plane feature도 위와 똑같은 process로 똑같고, 다른 점은 point-to-plane distance를 구한다는 점이다. 연습문제로 삼아서 스스로 전개해보길 추천한다.
 
-### integrationTransformation()
+### 그 후...
 
+그 후 구한 t-1과 t간의 relative pose를 `integrateTransformation()` 함수에서 축적하여 (0, 0, 0)으로부터 t까지의 relative pose를 `transformSum`에 저장하고, `publishOdometry`에서 ZXY 좌표계에서 다시 XYZ 좌표계로 변환 후 pose를 publish해준다. 자명하므로 생략.
+
+## 마치며
+
+지금까지 LeGO-LOAM의 핵심적인 부분에 대해서 line-by-line으로 살펴보았다. 개인적인 의견으로는 LeGO-LOAM의 꽃은 바닥으로부터 planar feature를 뽑고, non-ground로부터 corner feauture를 각각 뽑은 후 two-stage optimization을 통해 pose를 구하는 부분이라고 생각한다. 사실, 이렇게 decoupling하는 것은 trade-off가 있는데, 먼저 a) 연산량을 줄여주고 b) oulier의 예기치 못한 error를 projection하여 outlier를 suppresion해주는 장점이 있다. 단점이라하면, 사실 (x, y, z, roll, pitch, yaw)가 서로 독립적이지 않기 때문에 optimization을 하더라도 미세하게 pose가 완전히 optimization해지지 못할 우려가 있다는 점이다. 그렇기에 논문에 보면 속도적인 측면에서 개선이 많이 되었음을 강조함으로써 (i7과 small form factor pc 둘다 실험을 하는 등) contribution을 가져간 것이 눈에 띈다. 
+ 
+ `MapOptimization` 같은 경우에는 이해하기 어렵다기 보다는 뽑은 feature들을 활용하여 어떻게 map을 관리할지에 대한 테크니컬한 부분이 많아 생략한다. 그리고 LIO-SAM에서 코드가 좀 더 정돈되었기 때문에, LeGO-LOAM의 MapOptimization을 보기보다는 LIO-SAM의 뒷 부분이 어떻게 되어있는 지 살펴보는 것을 추천한다.
+ 
 ---
 
 LeGO-LOAM의 line-by-line 설명 시리즈입니다.
+
+1. [LeGO-LOAM-Line-by-Line-1.-Introduction: Preview and Preliminaries](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-1.-Introduction/)
+2. [LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1): Range Image Projection & Ground Removal](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1)/)
+3. [LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2): Cloud Segmentation using Clustering](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)
+4. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1): Ready for Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1)/)
+5. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2): Corner and Planar Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2)/)
+6. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3): Relative Pose Estimation via Two-stage Optimization](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3)/)
+ 
