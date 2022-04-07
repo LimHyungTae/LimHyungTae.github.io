@@ -63,7 +63,7 @@ extern const int groundScanInd = 7;
 
 이를 잘 이해하려면 LiDAR Odometry를 돌리기 이전에 **센서의 datasheet를 꼭 확인**해야 합니다. 예를 들어 Velodyne Puck같은 경우에는 [스펙](https://www.amtechs.co.jp/product/VLP-16-Puck.pdf)과 [메뉴얼](https://velodynelidar.com/wp-content/uploads/2019/12/63-9243-Rev-E-VLP-16-User-Manual.pdf)을 확인하시면 변수의 의미를 파악할 수 있습니다. 아래는 코드의 변수에 대응되는 부분을 제가 간단히 표현해보았습니다.
 
-![](/img/lego_loam_vel_16.png)
+![](/img/preintegration/overview.png)
 
 
 
