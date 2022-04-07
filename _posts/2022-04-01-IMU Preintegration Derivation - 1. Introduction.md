@@ -11,6 +11,9 @@ comments: true
 
 $$ x = y^2 $$
 
+Hello world $\omega_k$
+
+
 ![](/img/preintegration/overview.png)
 
 
