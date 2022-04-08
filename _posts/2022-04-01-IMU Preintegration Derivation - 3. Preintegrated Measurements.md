@@ -1,6 +1,6 @@
 ---
 layout: post
-title: IMU Preintegration Derivation - 2. Preliminaries
+title: IMU Preintegration Derivation - 3. Preintegrated Measurements
 subtitle: Why is the IMU Preintegration important
 tags: [SLAM, LiDAR, Pointcloud, ROS, IMU, Preintegration]
 comments: true
