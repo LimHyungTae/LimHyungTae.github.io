@@ -12,11 +12,13 @@ comments: true
 먼저 preintegration을 
 
 
-## Quaternion vs SO(3)
+## IMU Model and Motion Integration
 
 ![](/img/preintegration/dt_equation.png)
 
 ![](/img/preintegration/physical_meaning.png)
+
+## Preintegrated IMU Measurements
 
 ![](/img/preintegration/preinteg_rot.png)
 
