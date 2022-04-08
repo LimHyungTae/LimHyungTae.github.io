@@ -1,22 +1,15 @@
 ---
 layout: post
-title: IMU Preintegration Derivation - 3. Preintegrated Measurements
+title: IMU Preintegration (Easy) - 4. Derivation of Preintegrated IMU Measurements
 subtitle: Why is the IMU Preintegration important
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
 
 ---
 
-# Preliminaries of IMU Preintegration (작성 중)
-
-먼저 preintegration을 
+# Derivation of Preintegrated IMU Measurements
 
 
-## IMU Model and Motion Integration
-
-![](/img/preintegration/dt_equation.png)
-
-![](/img/preintegration/physical_meaning.png)
 
 ## Preintegrated IMU Measurements
 

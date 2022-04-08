@@ -1,13 +1,13 @@
 ---
 layout: post
 title: IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty
-subtitle: Why is the IMU Preintegration important
+subtitle: Uncertainty Description in SO(3)
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
 
 ---
 
-# Preliminaries of IMU Preintegration 
+# Preliminaries of IMU Preintegration (2) Uncertainty Description in SO(3)
 
 원 논문의 이름이 "On-Manifold Preintegration for Real-Time
 Visual-Inertial Odometry"인만큼, 사실 
@@ -49,7 +49,7 @@ $$\mathbf{x}^{*}=\operatorname{argmin} \sum_{\mathbf{x}} \mathbf{e}_{i j}^{T} {\
 
 
 
-이 개념을 잘 받아들이는 게 중요한데, 왜냐하면 이 논문의 Section Ⅵ에서 설명하는 *"preintegration on manifold"*에서 최종적으로 증명하는 것이 keyframe $$i$$와 $$j$$의 사이의 수십~수백 여개의 IMU measurements를 사용해서 $$\tilde{\mathtt{R}}$$와 $$\delta \boldsymbol{\phi}_{ij}$$를 구하는 것이기 때문이다.
+이 개념을 잘 받아들이는 게 중요한데, 왜냐하면 이 논문의 Section Ⅵ에서 설명하는 *preintegration on manifold*에서 최종적으로 증명하는 것이 keyframe $$i$$와 $$j$$의 사이의 수십~수백 여개의 IMU measurements를 사용해서 $$\tilde{\mathtt{R}}_{ij}$$와 $$\delta \boldsymbol{\phi}_{ij}$$를 구하는 것이기 때문이다.
 
 
 ---
