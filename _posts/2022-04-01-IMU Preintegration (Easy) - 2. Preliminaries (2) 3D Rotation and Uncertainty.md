@@ -57,6 +57,7 @@ $$\tilde{\mathtt{R}}_{ij}=\mathtt{R}_{ij} \operatorname{Exp}(\epsilon^\prime)$$
 Joan Sola의 님의 [Quaternion kinematics for the error-state Kalman filter](https://arxiv.org/abs/1711.02508)
 
 HELLO $$ \alpha $$ and$$ \beta $$ with you $$\gamma$$.
+
 ---
 
 IMU Preintegration Derivation 설명 시리즈입니다.
