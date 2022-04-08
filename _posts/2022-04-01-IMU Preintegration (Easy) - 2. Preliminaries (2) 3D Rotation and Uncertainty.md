@@ -1,24 +1,21 @@
 ---
 layout: post
-title: IMU Preintegration Derivation - 3. Preintegrated Measurements
+title: IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty
 subtitle: Why is the IMU Preintegration important
-tags: [SLAM, LiDAR, Pointcloud, ROS, IMU, Preintegration]
+tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
 
 ---
 
-# Preliminaries of IMU Preintegration (작성 중)
+# Preliminaries of IMU Preintegration 
 
-먼저 preintegration을 
+원 논문의 이름이 "On-Manifold Preintegration for Real-Time
+Visual-Inertial Odometry"인만큼, 사실 
+먼저 preintegration을 이해하기 위해서는 manifold의 이해를 필요로 한다.
 
+특히 3
 
-
-## Keyframe 
-
-## Quaternion vs SO(3)
-
-
-
+![](/img/rotation/overview.png)
 
 
 ---

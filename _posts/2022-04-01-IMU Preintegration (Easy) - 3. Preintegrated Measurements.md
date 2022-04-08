@@ -1,8 +1,8 @@
 ---
 layout: post
-title: IMU Preintegration Derivation - 2. Preliminaries
+title: IMU Preintegration Derivation - 3. Preintegrated Measurements
 subtitle: Why is the IMU Preintegration important
-tags: [SLAM, LiDAR, Pointcloud, ROS, IMU, Preintegration]
+tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
 
 ---
@@ -11,9 +11,6 @@ comments: true
 
 먼저 preintegration을 
 
-
-
-## Keyframe 
 
 ## Quaternion vs SO(3)
 
@@ -28,6 +25,8 @@ comments: true
 ![](/img/preintegration/preinteg_pos.png)
 
 ![](/img/preintegration/rel_motion_increments.png)
+
+
 
 
 ---

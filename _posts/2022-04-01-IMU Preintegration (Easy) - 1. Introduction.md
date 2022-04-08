@@ -16,7 +16,13 @@ VINS (Visual-Inertial System)이나 LIO (LiDAR-Inertial Odometry)에 관심이 �
 
 IMU sensor는 주로 Hz가 높은데 (e.g. LIO-SAM 저자가 사용하는 IMU는 약 330 Hz로 data 측정), 이는 continuous-time system인 실제 우리 주변의 환경에서의 움직임을 discrete-time system 상에서 잘 묘사하기 위함이다. 하지만 그 결과, graph SLAM 상에서 IMU 관련 factor의 수가 늘어나게 된다. 
 
-[여기](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3)/)에서 간략히 non-linear equation을 optimization하는 방법을 소개했듯이, SLAM에서도 $\mathcal{X}$라는 state가 주어졌을 때 $\mathbf{J} \Delta=-\epsilon$ 꼴의 식을 통해 반복적으로 optimal한 $\Delta$를 구해 inital 값을 지닌 state $\mathcal{X}$를 업데이트해나가는 과정이라고 볼 수 있다. 여기서 문제는, IMU에 대한 모든 상대적 pose 또한 graph SLAM의 parameter로 여기게 되면 $\mathbf{J}$와 $\mathcal{X}$의 행렬의 크기가 굉장히 커지게 된다는 것이다. 
+[여기](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3)/)에서 간략히 non-linear equation을 optimization하는 방법을 소개했듯이, SLAM에서도 최적의 해를 구할 때 non-linear equation을 iterative하게 풀어나간다. 이러한 과정은 행렬 연산을 필요로 하는데 여기서 문제는 IMU로 추정한 estimated pose들을 모두 다 measurements로 사용하게 되면 추정해야 하는 matrix의 크기가 시간이 지남에 따라 기하급수적으로 커지게 된다는 문제가 있다.
+
+![](/img/preintegration/imu_characteristics_cut.png)
+
+jacobian matrix를 구하고
+
+풀 $\mathcal{X}$라는 state가 주어졌을 때 $\mathbf{J} \Delta=-\epsilon$ 꼴의 식을 통해 반복적으로 optimal한 $\Delta$를 구해 inital 값을 지닌 state $\mathcal{X}$를 업데이트해나가는 과정이라고 볼 수 있다. 여기서 문제는, IMU에 대한 모든 상대적 pose 또한 graph SLAM의 parameter로 여기게 되면 $\mathbf{J}$와 $\mathcal{X}$의 행렬의 크기가 굉장히 커지게 된다는 것이다. 
 
 따라서 이러한 문제를 해결하기 위해 IMU preintegration을 도입한 것이다.
 
