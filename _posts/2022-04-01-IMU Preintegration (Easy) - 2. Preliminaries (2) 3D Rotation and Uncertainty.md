@@ -37,26 +37,20 @@ $$\tilde{\mathtt{R}}=\mathtt{R} \operatorname{Exp}(\epsilon), \quad \epsilon \si
 
 즉, 위의 식은 우리 주변의 3차원을 표현하는 manifold 상의 uncertainty를 3x1 크기를 지니고 zero-mean인 gaussian distribution으로 표현할 수 있음을 뜻한다.  
 
-위의 수식 [1]을 활용하면 $$ i $$ 번 째 world 좌표계 기준의 rotation과 $$ i $$ 번째와 인접하는 $$ j $$번째 world 좌표계 기준 사이의 relative rotation과 그에 대한 uncertainty 또한 아래와 같이 나타낼 수 있고: $$ x $$
+위의 수식 [1]을 활용하면 $$ i $$ 번째 world 좌표계 기준의 rotation과 $$i$$ 번째와 인접하는 $$j$$ 번째 world 좌표계 기준 사이의 relative rotation과 그에 대한 uncertainty 또한 아래와 같이 나타낼 수 있고: 
 
-$$\Delta \tilde{\mathtt{R}}_{ij}=\Delta \mathtt{R}_{ij} \operatorname{Exp}(\epsilon), \quad \epsilon \sim \mathcal{N}(0, \Sigma) \; \; \; \; \text{[2]}$$ 
+$$\Delta \tilde{\mathtt{R}}_{ij}=\Delta \mathtt{R}_{i}^{\intercal} \mathtt{R}_{j} \operatorname{Exp}(\delta \boldsymbol{\phi}_{ij}) \; \;  \; \; \; \; \; \text{[2]}$$ 
 
 Factor graph SLAM의 최종 목표가 아래의 optimization 수식을 푸는 것과 같은데:
 
 $$\mathbf{x}^{*}=\operatorname{argmin} \sum_{\mathbf{x}} \mathbf{e}_{i j}^{T} {\Omega}_{i j} \mathbf{e}_{i j} \; \; \; \; \;  \; \text{[3]}$$
 
-수식 [1]을 바탕으로 [2]의 omega에 대응되는 부분(어려운 말로는 information matrix라 부름)을 저 epsilon의 역수를 통해 modeling을 가능하게 한다는 궁극적인 의미가 있다 (epsilon이 크다 → measurements가 불확실하다는 의미 → 해당 measurements에 해당하는 error 크기의 중경도를 따질 때 덜 중요하다고 여김, i.e. 지닌 information의 중요한 정도가 낮음. 이는 기존의 graph SLAM과 동일하다). $$ 5 + 5 $$
+[2]의 $$\Omega_{ij}$$에 대응되는 부분 (어려운 말로는 information matrix라 부름)을 저 $$\delta \boldsymbol{\phi}_{ij}$$의 역수를 통해 modeling이 가능해진다. ($$\delta \boldsymbol{\phi}_{ij}$$이 크다 → relative rotation에 대한 measurements가 불확실하다는 의미 → 해당 measurements에 해당하는 error 크기의 중경도를 따질 때 덜 중요하다고 여김, i.e. 지닌 information의 중요한 정도가 낮다고 판단). **따라서 기존의 factor graph SLAM의 objective function에 loss term을 끼워넣는 것이 가능해진다!**
 
 
 
-이 개념을 잘 받아들이는 게 중요한데, 왜냐하면 이 논문의 Section Ⅵ에서 설명하는 preintegration on manifold가 최종적으로 나타내고 싶은 것이 keyframe i와 j의 사이의 수십~수백 여개의 IMU measurements를 사용해서 아래와 같이 i와 j 간의 relative rotation을 
+이 개념을 잘 받아들이는 게 중요한데, 왜냐하면 이 논문의 Section Ⅵ에서 설명하는 *"preintegration on manifold"*에서 최종적으로 증명하는 것이 keyframe $$i$$와 $$j$$의 사이의 수십~수백 여개의 IMU measurements를 사용해서 $$\tilde{\mathtt{R}}$$와 $$\delta \boldsymbol{\phi}_{ij}$$를 구하는 것이기 때문이다.
 
-$$\tilde{\mathtt{R}}_{ij}=\mathtt{R}_{ij} \operatorname{Exp}(\epsilon^\prime)$$
-
-
-Joan Sola의 님의 [Quaternion kinematics for the error-state Kalman filter](https://arxiv.org/abs/1711.02508)
-
-HELLO $$ \alpha $$ and$$ \beta $$ with you $$\gamma$$.
 
 ---
 
