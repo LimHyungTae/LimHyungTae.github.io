@@ -31,13 +31,13 @@ Rotation에 대해 자세히 설명하면 글이 너무 길어지기 때문에 �
 
 On-Manifold Preintegration를 이해하는 데 가장 핵심적인, base가 되는 개념은 Section Ⅲ. *B*에서 소개되는, SO(3)의 uncertainty에 관련된 내용이다. 겉보기에는 논문에서도 preliminaries에 있어서 별로 안 중요하겠거니 했는데 **이 부분의 의미를 깨닫는 것이 제일 중요하다**. SO(3)의 uncertainty를 표현하는 것에 대해 알지 못하면 뒤의 Section에서 전개를 통해 preintegrated measurements를 표현하는 과정을 왜 하고 있는지 이해할 수 없기 때문이다.
 
-3차원 상에서의 회전에 대한 불확실성은 불확실한 정도의 크기가 작다는 가정하면, 회전에 대한 noise는 기존 noise-free인  rotation matrix * noise를 exponential map을 통해 투영한 rotation matrix의 곱으로 아래와 같이 표현이 가능하다:
+3차원 상에서의 회전에 대한 불확실성은 불확실한 정도의 크기가 작다는 가정하면, 회전에 대한 noise는 기존 noise-free인  rotation matrix * noise를 exponential map을 통해 투영한 rotation matrix의 곱으로 아래와 같이 표현이 가능하다 (SO(3) $$ \times $$ SO(3) → SO(3)):
 
 $$\tilde{\mathtt{R}}=\mathtt{R} \operatorname{Exp}(\epsilon), \quad \epsilon \sim \mathcal{N}(0, \Sigma) \; \; \; \; \text{[1]}$$ 
 
 즉, 위의 식은 우리 주변의 3차원을 표현하는 manifold 상의 uncertainty를 3x1 크기를 지니고 zero-mean인 gaussian distribution으로 표현할 수 있음을 뜻한다.  
 
-위의 수식 [1]을 활용하면 i번 째 world 좌표계 기준의 rotation과 i번째와 인접하는 j번째 world 좌표계 기준 사이의 relative rotation과 그에 대한 uncertainty 또한 아래와 같이 나타낼 수 있고: $$ x $$
+위의 수식 [1]을 활용하면 $$ i $$ 번 째 world 좌표계 기준의 rotation과 $$ i $$ 번째와 인접하는 $$ j $$번째 world 좌표계 기준 사이의 relative rotation과 그에 대한 uncertainty 또한 아래와 같이 나타낼 수 있고: $$ x $$
 
 $$\Delta \tilde{\mathtt{R}}_{ij}=\Delta \mathtt{R}_{ij} \operatorname{Exp}(\epsilon), \quad \epsilon \sim \mathcal{N}(0, \Sigma) \; \; \; \; \text{[2]}$$ 
 
@@ -56,7 +56,7 @@ $$\tilde{\mathtt{R}}_{ij}=\mathtt{R}_{ij} \operatorname{Exp}(\epsilon^\prime)$$
 
 Joan Sola의 님의 [Quaternion kinematics for the error-state Kalman filter](https://arxiv.org/abs/1711.02508)
 
-
+HELLO $$ \alpha $$ and$$ \beta $$ with you $$\gamma$$.
 ---
 
 IMU Preintegration Derivation 설명 시리즈입니다.
