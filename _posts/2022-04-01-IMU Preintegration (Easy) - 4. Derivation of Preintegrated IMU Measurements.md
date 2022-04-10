@@ -24,12 +24,12 @@ comments: true
 
 ### Definition & Assumption
 
-**Definition**: Preintegration의 과정을 유도하기 앞서 논문에서는 아래와 같이 "relative motion increments" $$\Delta \mathtt{R}_i$$, $$\Delta \mathbf{v}_i$$, $$\Delta \mathbf{p}_i$$를 정의한다:
+**Definition**: Preintegration의 과정을 유도하기 앞서 논문에서는 아래와 같이 "relative motion increments" $$\Delta \mathtt{R}_{ij}$$, $$\Delta \mathbf{v}_{ij}$$, $$\Delta \mathbf{p}_{ij}$$를 정의한다:
 
 ![](/img/preintegration/relative_motion_increments.png)
 
 
-여기서 $$\Delta t_{ij}$$는 두 keyframe 간의 총 시간 차를 의미한다. 참고로 이 relative motion increments 중 $$\Delta \mathbf{v}_i$$와 $$\Delta \mathbf{p}_i$$는 물리적으로 incremental motion을 뜻하지는 않는다. 왜냐하면 전개의 편의성을 위해서 중력에 관련된 term도 좌변으로 이항했기 때문이다. 실제로 $$k$$ 번째와 $$k+1$$ frame 사이의 물리적인 relative motion (아래의 자주색으로 표시된 부분)은 아래와 같다는 것을 주의하자.
+여기서 $$\Delta t_{ij}$$는 두 keyframe 간의 총 시간 차를 의미한다. 참고로 이 relative motion increments 중 $$\Delta \mathbf{v}_{ij}$$와 $$\Delta \mathbf{p}_{ij}$$는 물리적으로 incremental motion을 뜻하지는 않는다. 왜냐하면 전개의 편의성을 위해서 중력에 관련된 term도 좌변으로 이항했기 때문이다. 실제로 $$k$$ 번째와 $$k+1$$ frame 사이의 물리적인 relative motion (아래의 자주색으로 표시된 부분)은 아래와 같다는 것을 주의하자.
 
 ![](/img/preintegration/physical_meaning.png)
 

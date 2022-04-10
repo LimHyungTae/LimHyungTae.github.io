@@ -9,7 +9,7 @@ comments: true
 
 # Derivation of Preintegrated IMU Measurements
 
-
+(작성 중)
 
 
 ```cpp
