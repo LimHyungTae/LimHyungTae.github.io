@@ -9,7 +9,7 @@ comments: true
 
 # Derivation of Preintegrated IMU Measurements
 
-본 글에서는 이제 K개의 IMU measurement를 통해 표현한 $$i$$와 $$j$$ 번째의 Relative motion을 하나의 요소로 미리 취합(preintegration)하는 방법에 대해 설명한다 (수학주의).
+본 글에서는 이제 K개의 IMU measurement를 통해 표현한 $$i$$와 $$j$$ 번째의 Relative motion을 하나의 요소로 미리 취합(preintegration)하는 방법에 대해 설명한다.
 
 
 ## Preintegrated IMU Measurements
@@ -40,10 +40,7 @@ Preintegration의 과정을 유도하기 앞서 논문에서는 아래와 같이
 
 ![](/img/preintegration/preint_bias.png)
 
-(실제로 bias는 주로 MEMS system 상에 전지적 신호의 offset으로 인해 발생하는 것이기 떄문에 위처럼 가정을 해도 괜찮다. 자세한 설명은  
-[여기](http://www.canalgeomatics.com/knowledgebase/imu-accuracy-error-definitions/ 참조)
-
-
+(실제로 bias는 주로 MEMS system 상에 전지적 신호의 offset으로 인해 발생하는 것이기 떄문에 위처럼 가정을 해도 괜찮다. 자세한 설명은 [여기](http://www.canalgeomatics.com/knowledgebase/imu-accuracy-error-definitions/ 참조)
 
 
 이러한 가정 이후 아래와 같이 rotation, velocity, position에 대한 preintegration term을 표현한다 (아래 rotation term의 전개가 이해가 안 되시는 분은 Joan Sola의 님의 [Quaternion kinematics for the error-state Kalman filter](https://arxiv.org/abs/1711.02508),,,Chapter 4까지,,,꼭 읽어보시길 바랍니다,,,).
@@ -67,6 +64,19 @@ Preintegration의 과정을 유도하기 앞서 논문에서는 아래와 같이
 ![](/img/preintegration/behave_like.png)
 
 Rotation, velocity, position을 factor에 추가할 때 IMU를 통해 저 covariance term만 추정해주면 되는 것으로 과정이 simplify되는 것을 볼 수 있다.
+
+즉, 위의 식은 우리 주변의 3차원을 표현하는 manifold 상의 uncertainty를 3x1 크기를 지니고 zero-mean인 gaussian distribution으로 표현할 수 있음을 뜻한다.  
+
+위의 수식 [1]을 활용하면 $$ i $$ 번째 world 좌표계 기준의 rotation과 $$i$$ 번째와 인접하는 $$j$$ 번째 world 좌표계 기준 사이의 relative rotation과 그에 대한 uncertainty 또한 아래와 같이 나타낼 수 있고: 
+
+$$\Delta \tilde{\mathtt{R}}_{ij}=\Delta \mathtt{R}_{i}^{\intercal} \mathtt{R}_{j} \operatorname{Exp}(\delta \boldsymbol{\phi}_{ij}) \; \;  \; \; \; \; \; \text{[2]}$$ 
+
+Factor graph SLAM의 최종 목표가 아래의 optimization 수식을 푸는 것과 같은데:
+
+$$\mathbf{x}^{*}=\operatorname{argmin} \sum_{\mathbf{x}} \mathbf{e}_{i j}^{T} {\Omega}_{i j} \mathbf{e}_{i j} \; \; \; \; \;  \; \text{[3]}$$
+
+[2]의 $$\Omega_{ij}$$에 대응되는 부분 (어려운 말로는 information matrix라 부름)을 저 $$\delta \boldsymbol{\phi}_{ij}$$의 역수를 통해 modeling이 가능해진다. ($$\delta \boldsymbol{\phi}_{ij}$$이 크다 → relative rotation에 대한 measurements가 불확실하다는 의미 → 해당 measurements에 해당하는 error 크기의 중경도를 따질 때 덜 중요하다고 여김, i.e. 지닌 information의 중요한 정도가 낮다고 판단). **따라서 기존의 factor graph SLAM의 objective function에 loss term을 끼워넣는 것이 가능해진다!**
+
 
 
 ## Bias Update 

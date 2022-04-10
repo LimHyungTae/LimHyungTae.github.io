@@ -9,18 +9,16 @@ comments: true
 
 # Preliminaries of IMU Preintegration (1) Definition of Keyframe
 
-먼저 preintegration을 이해하기 전에 두가지의 사전 지식을 필요로 하기에, 간략히 설명한다.
 
+먼저 preintegration을 이해하기 전에 keyframe가 무엇인지 알아야 한다. keyframe은 말그대로 "중요한 (key) frame"을 뜻하는데, 여기서 "중요하다"는 말은 주어진 두 frame 사이에 relative pose를 추정할 때 주변 환경의 기하학적 특성을 잘 묘사할 수 있는 reliable & repeatable features가 풍부하여 충분히 정확한 pose 추정이 가능하다는 것을 의미한다. 
 
-## Keyframe 
+ keyframe을 선정하는 주된 이유는 사용하는 sesnor의 모든 data를 전부 사용하여 SLAM을 하려 하면 많은 메모리를 필요로 하기 때문이라고 생각한다. 예를 들자면, 3D LiDAR sensor는 대부분 10 Hz로 3D point cloud를 취득하고, camera sensor의 같은 경우에는 약 30 Hz로 image를 취득한다. 그런데 LiDAR sensor를 활용해서 큰 도심 환경을 매핑하기 위해 약 1시간 가량 데이터를 취득했다고 가정하면, 1시간 동안 약 36,000개의 frame을 얻게 된다. 각 frame은 약 10만 여개의 points로 구성되어 있는데 (64 채널 기준. Velodyne HDL 64E의 경우 약 130,000 여개의 points를 매 frame마다 획득함), 이 raw range를 (x, y, z) format으로 파싱하면 각 point 당 3개의 float을 필요로 하게 된다. 그러면 어림잡아도 raw data를 저장하는 데에만 36,000 * 130,000 * 3 * 4하게 되면 약 56 GB 정도의 메모리가 필요하게 된다 (물론 이해를 돕기 위한 예시일 뿐, 정확하지 않음. 실제로 SLAM을 할 때는 voxelization 등을 활용해서 최소한 points만 저장하기 때문). 
 
-먼저 keyframe에 대한 이해가 필요로 한다. keyframe은 말그대로 중요한 (key) frame을 뜻하는데, 여기서 "중요하다"는 말은 주어진 두 frame 사이에 relative pose를 추정할 때 주변 환경의 기하학적 특성을 잘 묘사할 수 있는 reliable & repeatable features가 풍부하다는 것을 의미한다. 
+ 따라서 이러한 문제를 해결하기 위해서 대부분의 SLAM 알고리즘들에서는 a) 이전 keyframe 기준 로봇이 어느 정도 이상 움직였거나 (하지만 그 거리가 "적당히" 멀어야 함. Keyframe 사이의 거리가 너무 멀어지게 되면 pose 추정을 하는 것이 오히려 부정확해지기 때문) b) 이전 keyframe 기준 어느 정도 시간이 흘렀을 경우 다음 keyframe을 생성하고 있다. 
+ 
+ 이렇게 keyframe을 생성하는 행위는 sensor configuration과는 무관하게 LiDAR Inertial Odometry (LIO)든 Visual Inertial Odometry (VIO)이든 비슷하게 이루어진다. LIO-SAM와 VINS-Mono의 keyframe 생성 파트를 아래에 코드 상의 주석으로 표기해보았다 (case (a)와 case (b)로 표기해 둠).
 
- keyframe을 선정하는 주된 이유는 사용하는 sesnor의 모든 data를 전부 사용하여 SLAM을 하려 하면 많은 메모리를 필요로 하기 때문이라고 생각한다. 예를 들자면, LiDAR sensor는 대부분 10 Hz로, camera sensor의 같은 경우에는 주로 30 Hz로 데이터가 취득된다. 그런데 LiDAR sensor를 활용해서 큰 도심 환경을 매핑하기 위해 약 1시간 가량 데이터를 취득했다고 가정하면, 1시간 동안 약 36,000개의 frame을 얻게 된다. 그런데 각 frame은 또 10만 여개의 points로 구성되어 있는데 (64 채널 기준. Velodyne HDL 64E의 경우 약 130,000 여개의 points를 매 frame마다 획득함), 이 raw range를 (x, y, z) format으로 파싱하면 각 point 당 3개의 float을 필요로 하게 된다. 그러면 어림잡아도 36,000 * 130,000 * 3 * 4하게 되면 약 56 GB 정도의 메모리가 필요하게 된다 (예시일 뿐 정확하지 않음. 물론 실제 SLAM을 할 때는 voxelization 등을 활용해서 최소한 points만 저장함). 
-
- 따라서 이러한 문제를 해결하기 위해서 대부분의 SLAM 알고리즘들에서는 a) 이전 keyframe 기준 로봇이 어느 정도 이상 움직였거나 b) 이전 keyframe 기준 어느 정도 시간이 흘렀을 경우 다음 keyframe을 생성하고 있다. 코드의 예시는 아래와 같다 (코드 내의 주석으로 case (a)와 case (b) 표기해 둠).
-
- **In LIO-SAM**
+ **In LIO-SAM** (`saveFrame()` function and `laserCloudInfoHandler` callback in `mapOptmization.cpp`)
 
 
  ```cpp
@@ -169,20 +167,19 @@ else
 
 ## Goal of IMU Preintegration between two keyframes
 
-따라서 keyframe은 아래의 그림과 같이 sensor로 매번 취득되는 frame 중에서 어느 정도의 간격을 두고 선별된다. 이 논문에서는 인접한 두 keyframe을 i, j로 표기하고 있다. 따라서 preintegration의 문제 정의는 "두 keyframe 사이의 수십~수백여개의 IMU data (아래의 x 표시)를 어떻게 하나의 factor (아래의 파란 ■)로 표현할 수 있는가"로 정리된다.
+결과적으로 keyframe은 아래의 그림과 같이 sensor로 매번 취득되는 frame 중에서 어느 정도의 간격을 두고 선별된다. [원 논문](https://rpg.ifi.uzh.ch/docs/TRO16_forster.pdf)에서는 인접한 두 keyframe을 $$i$$와 $$j$$로 표기하고 있다. 따라서 preintegration의 문제 정의는 "두 keyframe 사이의 수십~수백여개의 IMU data (그림 상의 x 표시)를 어떻게 하나의 factor (그림 상의 파란 ■)로 표현할 수 있는가"로 정리할 수 있다.
 
 
 ![](/img/preintegration/keyframe.png)
 
 
 
-8545
-
 ---
 
 IMU Preintegration Derivation 설명 시리즈입니다.
 
 TBU
+
 ---
 
 
