@@ -62,6 +62,21 @@ Preintegration의 과정을 유도하기 앞서 논문에서는 아래와 같이
 
 ## Final Results
 
+위의 전개를 하다보면 '이걸 왜 하고 있는거지...?'라는 의문이 들 것이다. 최종적으로는 아래와 같이 표현을 할 수 있고:
+
+![](/img/preintegration/behave_like.png)
+
+Rotation, velocity, position을 factor에 추가할 때 IMU를 통해 저 covariance term만 추정해주면 되는 것으로 과정이 simplify되는 것을 볼 수 있다.
+
+
+## Bias Update 
+
+
+![](/img/preintegration/bias_description.png)
+
+## 결론
+
+* 
 
 ---
 
