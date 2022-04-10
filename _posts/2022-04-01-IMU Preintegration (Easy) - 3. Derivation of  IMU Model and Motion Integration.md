@@ -54,12 +54,11 @@ Integration을 하기 앞서 먼저 IMU가 제공하는 데이터 타입에 대�
 
 그 후 아래의 수식전개를 통해 $$t$$일 때와 $$t + \Delta t$$의 상대적 motion을 아래와 같이 전개할 수 있다.
 
-![](/img/preintegration/dt_equation.png)
+![](/img/preintegration/dt_equation_v2.png)
 
-최종적으로 ketyframe 간의 모션을 K개의 IMU data를 통해 추정한 미소 움직임을 축적하여(intergration) 추정할 수 있다.
+최종적으로 $$i$$ 번째 keyframe과 $$j$$ 번째 keyframe 간의 모션은 수식 (31)을 활용하여 K개의 IMU data를 통해 추정한 미소 움직임을 축적 (intergration)하면 구할 수 있다.
 
-
-![](/img/preintegration/final_i_j.png)
+![](/img/preintegration/final_i_j_v2.png)
 
 ---
 
