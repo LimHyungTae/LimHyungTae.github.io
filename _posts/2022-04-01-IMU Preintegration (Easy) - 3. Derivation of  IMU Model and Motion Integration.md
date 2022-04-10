@@ -38,14 +38,16 @@ Integration을 하기 앞서 먼저 IMU가 제공하는 데이터 타입에 대�
 * b) 지구에는 **중력**이 존재한다. 따라서 정확한 가속도를 추정하려면 중력의 영향을 제거해주어야 한다.
 * c) IMU는 IMU가 부착되어 있는 위치를 기준으로 가속도를 측정한다 (Inertial frame이라고 부르기도 하며, 주로 로봇의 Body frame B와 동일시 된다). 따라서, 가속도를 활용해 우리의 목표인 World frame의 (x, y, z)를 추정하려면 측정한 가속도를 world 좌표계로 변화해주는 과정이 필요하다.
 
-위의 (b)와 (c)를 더 이해하기 쉽게 아래에 예시 상황을 그려보았다. 아래의 그림과 같이 pitch방향으로 -45도 기울어져있는 상태 (pitch는 World frame의 Y축 방향으로 시계 방향 회전이 +임을 주의)로 드론이 가속운동을 한다고 가정해보자. 드론이 드론 자기자신을 기준으로(Body frame 기준으로) X 방향으로 $$13.873m/s^2$$으로 가속한다고 하면, IMU에서 측정하는 가속도는 위의 가속 움직임으로 발생한 가속도와 중력방향의 가속도의 합이 된다. 그런데 중력은 자명하게도 World frame 기준으로 -Z 방향으로 향하기 때문에 IMU에서 측정하는 가속도를 Body frame 기준으로 변환해주어야 한다. 따라서 실제로 IMU 상에서 관측되는 가속도 $$_\text{B}^\text{Mes}{\mathbf{a}}(t)$$는 noise가 없다는 가정하에 $$_\text{B}^\text{Mes}{\mathbf{a}}(t) = {_\text{B}\mathbf{a}(t) - {\mathtt{R}_{\text{WB}}^\intercal}{_\text{W}\mathbf{g}}}= {\mathtt{R}_{\text{WB}}^\intercal}({_\text{W}\mathbf{a}(t) - {_\text{W}\mathbf{g}})}$$로 표현할 수 있다. 참고로 중력가속도 $$_W\mathbf{g}$$는 주로 $$[0, \; 0, \; 9.81]^\intercal$$로, 양수로 표현된다.
+위의 (b)와 (c)를 더 이해하기 쉽게 아래에 예시 상황을 그려보았다. 아래의 그림과 같이 pitch방향으로 -45도 기울어져있는 상태 (pitch는 World frame의 Y축 방향으로 시계 방향 회전이 +임을 주의)로 드론이 가속운동을 한다고 가정해보자. 드론이 드론 자기자신을 기준으로(Body frame 기준으로) X 방향으로 $$13.873m/s^2$$으로 가속한다고 하면, IMU에서 측정하는 가속도는 위의 가속 움직임으로 발생한 가속도와 중력방향의 가속도의 합이 된다. 그런데 중력은 자명하게도 World frame 기준으로 -Z 방향으로 향하기 때문에 IMU에서 측정하는 가속도를 Body frame 기준으로 변환해주어야 한다. 따라서 실제로 IMU 상에서 관측되는 가속도 $$_\text{B}^\text{Mes}{\mathbf{a}}(t)$$는 noise가 없다는 가정하에 $$_\text{B}^\text{Mes}{\mathbf{a}}(t) = {_\text{B}\mathbf{a}(t) - {\mathtt{R}_{\text{WB}}^\intercal}{_\text{W}\mathbf{g}}}= {\mathtt{R}_{\text{WB}}^\intercal}({_\text{W}\mathbf{a}(t) - {_\text{W}\mathbf{g}})}$$로 표현할 수 있다. 참고로 중력가속도 $$_\text{W}\mathbf{g}$$는 주로 $$[0, \; 0, \; 9.81]^\intercal$$로, 양수로 표현된다.
 
 
 ![](/img/preintegration/IMU_example_v2.png)
 
-**NOTE:** 여기서 기억해야할 것은 우리가 최종적으로 구하고 싶은 것은 $$_W\mathbf{a}(t)$$라는 것이다. 따라서 최종적으로 추정해야하는 state들과 IMU에서 noise를 포함하여 측정되는 수식의 관계를 정리하면 아래와 같다.
+**NOTE:** 여기서 기억해야할 것은 우리가 최종적으로 구하고 싶은 것은 $$_W\mathbf{a}(t)$$라는 것이다. 위의 식을 기반으로 bias $$\mathbf{b}$$와 noise $$\boldsymbol{\eta}$$까지 포함시키면 최종적으로 우리가 추정하고자 하는 state들과 IMU에서 noise를 포함하여 측정되는 수식의 관계는 아래와 같이 표현된다.
 
 ![](/img/preintegration/IMU.png)
+
+윗첨자 $$g$$와 $$a$$는 각각 gyroscope와 acceleration을 뜻한다.
 
 
 ### Derivation
