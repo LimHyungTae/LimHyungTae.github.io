@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2022-04-01-IMU Preintegration (Easy) - 5. IMUPreintegration in LIO-SAM
+title: IMU Preintegration (Easy) - 5. IMUPreintegration in LIO-SAM
 subtitle: Line-by-line explanations of IMU Preintegration in LIO-SAM
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true

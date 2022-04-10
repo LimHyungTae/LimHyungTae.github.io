@@ -28,14 +28,14 @@ Rotation에 대해 자세히 설명하면 글이 너무 길어지기 때문에 �
 무튼, 기억해야할 것은 rotation term에 대한 optimization을 할 때는 SO(3)를 angle-axis representation으로 parametrization하여 푸는 데, 이러한 행위를 하는 데에는 세 가지 장점이 있다.
 
 * 3x3 rotation matrix를 표현하려면 6개의 parameter가 필요한 반면, axis-angle representation으로 rotation을 표현하면 3개의 parameter만으로 3D rotation을 표현할 수 있다. 그렇다면 '왜 quaternion'으로는 표현을 안 하냐'는 궁금증이 있을 수 있는데, quaternion으로 parametrization을 하면 optimization을 할 때 상당히 까다롭기 때문이다. quaternion은 크기가 1이어야 한다는 constraint가 있는데, 이 constraint를 유지하면서 optimization의 결과를 quaternion으로 update하려면 constrained optimization을 풀어야 한다. 이는 angle-axis representation으로 rotation을 표현한 후 optimization을 하는 것에 비해 상당히 까다롭다. 
-* 주로 optimization을 할 때는 iterative하게 푸는데, 만약 rotation의 변화량의 크기가 작다면, i.e. 위의 표 상에서 $$\mathbf{v}$$의 크기가 작다면, $$\text{Exp}(\mathbf{v}) \approxeq \mathbf{I}_3 + [\mathbf{v}]^{\wedge}$$로 approximation이 쉽게 가능하다.
-* Rotation의 uncertainty를 표현하는 것이 용이해진다. 이러한 표현은 기존의 Euclidean geometry 상에서 사용하던 linear equation이나 non-linear equation에 gaussian noise를 더해주는 행위와 같은 의미로서 사용이 가능하다.
+* 주로 optimization을 할 때는 iterative하게 푸는데, 만약 rotation의 변화량의 크기가 작다면, i.e. 위의 표 상에서 $$\mathbf{v}$$의 크기가 작다면, $$\text{Exp}(\mathbf{v}) \backsimeq \mathbf{I}_3 + [\mathbf{v}]^{\wedge}$$로 approximation이 쉽게 가능하다.
+* Rotation의 불확실성 (uncertainty)를 표현하는 것이 용이해진다. 이러한 표현은 기존의 Euclidean geometry 상에서 사용하던 linear equation이나 non-linear equation에 uncertainty를 표현할 때 gaussian noise를 더해주는 행위와 같은 의미로서 사용이 가능하다. 자세한 내용은 이어서 마저 설명한다.
 
-## Uncertainty Description in SO(3) (In Section Ⅲ. *B* ) 
+## Uncertainty Description in SO(3) 
 
-On-Manifold Preintegration를 이해하는 데 가장 핵심적이고 중요한  개념이 논문 내의 Section Ⅲ. *B*에서 소개되는, SO(3)의 uncertainty에 관련된 내용이다. 겉보기에는 논문에서도 preliminaries에 있어서 별로 안 중요하겠거니 했는데 **이 부분의 의미를 깨닫는 것이 제일 중요하다**. SO(3)의 uncertainty를 표현하는 것에 대해 알지 못하면 뒤의 Section에서 전개를 통해 preintegrated measurements를 구하는 과정을 왜 하고 있는지 이해할 수 없기 때문이다.
+On-Manifold Preintegration를 이해하는 데 가장 핵심적이고 중요한  개념이 논문 내의 Section Ⅲ. *B*에서 소개되는, SO(3)의 uncertainty에 관련된 내용이다. 겉보기에는 논문에서도 preliminaries에 있어서 별로 안 중요하겠거니 했는데 **이 부분의 의미를 깨닫는 것이 제일 중요하다**. SO(3)의 uncertainty를 표현하는 것에 대해 받아들이지 못 하면 뒤의 Section에서 전개를 통해 preintegrated measurements를 구하는 과정을 왜 하고 있는지 이해할 수 없기 때문이다.
 
-3차원 상에서의 회전에 대한 불확실성 (uncertainty)는 기존 noise-free인  rotation matrix * uncertainty를 exponential map을 통해 투영한 rotation matrix의 곱으로 아래와 같이 표현이 가능하다 (SO(3) $$ \times $$ SO(3) → SO(3)):
+3차원 상에서의 회전에 대한 uncertainty는 기존 noise-free인  rotation matrix와 uncertainty vector $$\epsilon \in \mathbb{R}^3$$를 exponential map을 통해 투영한 rotation matrix의 곱으로 아래와 같이 표현이 가능하다 (SO(3) $$ \times $$ SO(3) → SO(3)):
 
 $$\tilde{\mathtt{R}}=\mathtt{R} \operatorname{Exp}(\epsilon), \quad \epsilon \sim \mathcal{N}(0, \Sigma) \; \; \; \; \text{[1]}$$ 
 
@@ -45,11 +45,10 @@ $$\tilde{\mathtt{R}}=\mathtt{R} \operatorname{Exp}(\epsilon), \quad \epsilon \si
 
 $$\mathbf{x}^{*}=\operatorname{argmin} \sum_{\mathbf{x}} \mathbf{e}_{i j}^{T} {\Omega}_{i j} \mathbf{e}_{i j} \; \; \; \; \;  \; \text{[2]}$$
 
-즉, graph SLAM을 하기 위해서는 residual $$\mathbf{e}_{i j}$$와 그 residual의 uncertainty를 $$\Omega}_{i j}$$로 표현해야 하는데, 수식 [1]을 통해 
-[2]의 $$\Omega_{ij}$$에 대응되는 부분 (어려운 말로는 information matrix라 부름)을 저 $$\delta \boldsymbol{\phi}_{ij}$$의 역수를 통해 modeling이 가능해진다. ($$\delta \boldsymbol{\phi}_{ij}$$이 크다 → relative rotation에 대한 measurements가 불확실하다는 의미 → 해당 measurements에 해당하는 error 크기의 중경도를 따질 때 덜 중요하다고 여김, i.e. 지닌 information의 중요한 정도가 낮다고 판단). **따라서 기존의 factor graph SLAM의 objective function에 loss term을 끼워넣는 것이 가능해진다!**
+즉, graph SLAM을 하기 위해서는 residual $$\mathbf{e}_{i j}$$와 그 residual의 uncertainty $$\Omega_{i j}$$를 수학적으로 표현해야 하는데, 수식 [1]을 통해 
+[2]의 $$\Omega_{ij}$$에 대응되는 부분 (어려운 말로는 information matrix라 부름)의 표현이 가능해진다 (i.e. $$\epsilon$$이 크다 → rotation에 대한 measurements가 불확실하다는 의미 → 해당 measurements에 해당하는 error 크기의 중경도를 따질 때 덜 중요하다고 여김, i.e. 지닌 information의 중요한 정도가 낮다고 판단). 
 
-
-이 개념을 잘 받아들이는 게 중요한데, 왜냐하면 이 논문의 Section Ⅵ에서 설명하는 preintegration on manifold에서 최종적으로 증명하는 것이 keyframe $$i$$와 $$j$$의 사이의 수십~수백 여개의 IMU measurements를 사용해서 $$\tilde{\mathtt{R}}_{ij}$$와 $$\delta \boldsymbol{\phi}_{ij}$$를 구하는 것이기 때문이다.
+이 개념을 잘 받아들이는 게 중요한데, 왜냐하면 이 논문의 Section Ⅵ에서 설명하는 preintegration on manifold에서 최종적으로 증명하고자 하는 것이 keyframe $$i$$와 $$j$$의 사이의 수십~수백 여개의 IMU measurements를 $$i$$와 $$j$$ 간의 하나의 $$\epsilon$$ term로 간략화하는 것이기 때문이다. 더 자세한 것은 [Derivation of Preintegrated IMU Measurements](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-4.-Derivation-of-Preintegrated-IMU-Measurements/)에서 다루니, "**3D 공간 상의 rotation의 uncertainty를 exponential map을 활용하여 표현함으로써 기존의 factor graph SLAM framework를 그대로 사용해서 optimization하는 것이 가능하다**"는 정도만 기억해주면 좋을 것 같다.
 
 
 ---
