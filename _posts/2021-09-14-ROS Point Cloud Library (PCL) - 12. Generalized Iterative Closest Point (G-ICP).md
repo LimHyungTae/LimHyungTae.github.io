@@ -22,9 +22,6 @@ comments: true
 
 <script src="https://gist.github.com/LimHyungTae/4e0738316126fbe2d5cbe6cded1c2f2a.js"></script>
 
-# 결과
-
-![img](/img/gicp_result.png)
 
 ---
 
