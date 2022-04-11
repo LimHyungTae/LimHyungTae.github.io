@@ -25,7 +25,7 @@ Visual-Inertial Odometry"인만큼 preintegration을 이해하기 위해서는 m
 
 Rotation에 대해 자세히 설명하면 글이 너무 길어지기 때문에 자세한 설명글은 **여기(TBU)** 에서 다룬다.
 
-무튼, 기억해야할 것은 rotation term에 대한 optimization을 할 때는 SO(3)를 angle-axis representation으로 parametrization하여 푸는 데, 이러한 행위를 하는 데에는 세 가지 장점이 있다.
+무튼, 기억해야할 것은 rotation term에 대한 optimization을 할 때는 SO(3)를 angle-axis representation으로 parametrization하여 푸는데, 이러한 행위를 하는 데에는 세 가지 장점이 있다.
 
 * 3x3 rotation matrix를 표현하려면 6개의 parameter가 필요한 반면, axis-angle representation으로 rotation을 표현하면 3개의 parameter만으로 3D rotation을 표현할 수 있다. 그렇다면 '왜 quaternion'으로는 표현을 안 하냐'는 궁금증이 있을 수 있는데, quaternion으로 parametrization을 하면 optimization을 할 때 상당히 까다롭기 때문이다. quaternion은 크기가 1이어야 한다는 constraint가 있는데, 이 constraint를 유지하면서 optimization의 결과를 quaternion으로 update하려면 constrained optimization을 풀어야 한다. 이는 angle-axis representation으로 rotation을 표현한 후 optimization을 하는 것에 비해 상당히 까다롭다. 
 * 주로 optimization을 할 때는 iterative하게 푸는데, 만약 rotation의 변화량의 크기가 작다면, i.e. 위의 표 상에서 $$\mathbf{v}$$의 크기가 작다면, $$\text{Exp}(\mathbf{v}) \backsimeq \mathbf{I}_3 + [\mathbf{v}]^{\wedge}$$로 approximation이 쉽게 가능하다.
@@ -33,7 +33,7 @@ Rotation에 대해 자세히 설명하면 글이 너무 길어지기 때문에 �
 
 ## Uncertainty Description in SO(3) 
 
-On-Manifold Preintegration를 이해하는 데 가장 핵심적이고 중요한  개념이 논문 내의 Section Ⅲ. *B*에서 소개되는, SO(3)의 uncertainty에 관련된 내용이다. 겉보기에는 논문에서도 preliminaries에 있어서 별로 안 중요하겠거니 했는데 **이 부분의 의미를 깨닫는 것이 제일 중요하다**. SO(3)의 uncertainty를 표현하는 것에 대해 받아들이지 못 하면 뒤의 Section에서 전개를 통해 preintegrated measurements를 구하는 과정을 왜 하고 있는지 이해할 수 없기 때문이다.
+On-Manifold Preintegration를 이해하는 데 가장 핵심적이고 중요한 개념이 논문 내의 Section Ⅲ. *B*에서 소개되는, SO(3)의 uncertainty에 관련된 내용이다. 겉보기에는 논문에서도 preliminaries에 있어서 별로 안 중요하겠거니 했는데 **이 부분의 의미를 깨닫는 것이 제일 중요하다**. SO(3)의 uncertainty를 표현하는 것에 대해 받아들이지 못 하면 뒤의 Section에서 전개를 통해 preintegrated measurements를 구하는 과정을 왜 하고 있는지 이해할 수 없기 때문이다.
 
 3차원 상에서의 회전에 대한 uncertainty는 기존 noise-free인  rotation matrix와 uncertainty vector $$\epsilon \in \mathbb{R}^3$$를 exponential map을 통해 투영한 rotation matrix의 곱으로 아래와 같이 표현이 가능하다 (SO(3) $$ \times $$ SO(3) → SO(3)):
 
@@ -55,9 +55,16 @@ $$\mathbf{x}^{*}=\operatorname{argmin} \sum_{\mathbf{x}} \mathbf{e}_{i j}^{T} {\
 
 IMU Preintegration Derivation 설명 시리즈입니다.
 
-TBU
+1. [IMU Preintegration (Easy) - 1. Introduction](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-1.-Introduction/)
+2. [IMU Preintegration (Easy) - 2. Preliminaries (1) Keyframe](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-2.-Preliminaries-(1)-Keyframe/)
+3. [IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-2.-Preliminaries-(2)-3D-Rotation-and-Uncertainty/)
+4. [IMU Preintegration (Easy) - 3. Derivation of IMU Model and Motion Integration](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-3.-Derivation-of-IMU-Model-and-Motion-Integration/)
+5. [IMU Preintegration (Easy) - 4. Derivation of Preintegrated IMU Measurements](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-4.-Derivation-of-Preintegrated-IMU-Measurements/)
+6. [IMU Preintegration (Easy) - 5. IMUPreintegration in LIO-SAM](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-5.-IMUPreintegration-in-LIO-SAM/)
+ 
 
 ---
+
 
 
 ### 원 논문
