@@ -36,14 +36,14 @@ Integration을 하기 앞서 먼저 IMU가 제공하는 데이터 타입에 대�
 
 * a) IMU data는 대체로 **아주 많이** noisy하고 bias가 존재한다. 물론, 이러한 현상은 가속도를 취득하는 센서의 원리에 따라서 달라지긴 한다. 예로 들어서 비행기에서 사용하는 수천만원짜리 IMU sensor는 가속도를 mechanical하게 측정하기 떄문에 noise의 크기가 상당히 적고 bias도 거의 없다. 하지만 우리의 타겟인 모바일 로봇에는 이러한 IMU sensor를 쓰기에는 무리가 있기 때문에 (가격적으로나 무게적으로나) 주로 MEMS 기반 저가형 IMU를 사용한다. 이러한 MEMS 기반 IMU는 IMU에 작용하는 관성의 정도를 전류의 크기로 변환하는데, 그 과정이 아주 미세하다보니 미세한 떨림에도 전류의 크기가 불규칙적으로 바뀌게 되어 white noise가 존재하게 된다 ([이 Youtube](https://www.youtube.com/watch?v=eqZgxR6eRjo)의 0:30에 측정 원리가 잘 visualization되어 있음). 그리고 소자를 만드는 과정에서 불순물이나 약간의 치수공차등으로 인해 가속도 → 전류로 변환하는 과정에서 저항이 달라지게 되어 내부에 bias가 필연적으로 생기게 된다.
 * b) 지구에는 **중력**이 존재한다. 따라서 정확한 가속도를 추정하려면 중력의 영향을 제거해주어야 한다.
-* c) IMU는 IMU가 부착되어 있는 위치를 기준으로 가속도를 측정한다 (Inertial frame이라고 부르기도 하며, 주로 로봇의 Body frame B와 동일시 된다). 따라서, 가속도를 활용해 우리의 목표인 World frame의 (x, y, z)를 추정하려면 측정한 가속도를 world 좌표계로 변화해주는 과정이 필요하다.
+* c) IMU는 IMU가 부착되어 있는 위치를 기준으로 가속도를 측정한다 (Inertial frame이라고 부르기도 하며, 주로 로봇의 Body frame B와 동일시 되기도 한다). 따라서, 가속도를 활용해 우리의 목표인 World frame의 (x, y, z)를 추정하려면 측정한 가속도를 world 좌표계로 변화해주는 과정이 필요하다.
 
 위의 (b)와 (c)를 더 이해하기 쉽게 아래에 예시 상황을 그려보았다. 아래의 그림과 같이 pitch방향으로 -45도 기울어져있는 상태 (pitch는 World frame의 Y축 방향으로 시계 방향 회전이 +임을 주의)로 드론이 가속운동을 한다고 가정해보자. 드론이 드론 자기자신을 기준으로(Body frame 기준으로) X 방향으로 $$13.873m/s^2$$으로 가속한다고 하면, IMU에서 측정하는 가속도는 위의 가속 움직임으로 발생한 가속도와 중력방향의 가속도의 합이 된다. 그런데 중력은 자명하게도 World frame 기준으로 -Z 방향으로 향하기 때문에 IMU에서 측정하는 가속도를 Body frame 기준으로 변환해주어야 한다. 따라서 실제로 IMU 상에서 관측되는 가속도 $$_\text{B}^\text{Mes}{\mathbf{a}}(t)$$는 noise가 없다는 가정하에 $$_\text{B}^\text{Mes}{\mathbf{a}}(t) = {_\text{B}\mathbf{a}(t) - {\mathtt{R}_{\text{WB}}^\intercal}{_\text{W}\mathbf{g}}}= {\mathtt{R}_{\text{WB}}^\intercal}({_\text{W}\mathbf{a}(t) - {_\text{W}\mathbf{g}})}$$로 표현할 수 있다. 참고로 중력가속도 $$_\text{W}\mathbf{g}$$는 주로 $$[0, \; 0, \; 9.81]^\intercal$$로, 양수로 표현된다.
 
 
 ![](/img/preintegration/IMU_example_v2.png)
 
-**NOTE:** 여기서 기억해야할 것은 우리가 최종적으로 구하고 싶은 것은 $$_W\mathbf{a}(t)$$라는 것이다. 위의 식을 기반으로 bias $$\mathbf{b}$$와 noise $$\boldsymbol{\eta}$$까지 포함시키면 최종적으로 우리가 추정하고자 하는 state들과 IMU에서 noise를 포함하여 측정되는 수식의 관계는 아래와 같이 표현된다.
+**NOTE:** 여기서 기억해야할 것은 우리가 최종적으로 구하고 싶은 것은 $$_\text{W}\mathbf{a}(t)$$라는 것이다. 위의 식을 기반으로 bias $$\mathbf{b}$$와 noise $$\boldsymbol{\eta}$$까지 포함시키면 최종적으로 우리가 추정하고자 하는 state들과 IMU에서 noise를 포함하여 측정되는 수식의 관계는 아래와 같이 표현된다.
 
 ![](/img/preintegration/IMU.png)
 
@@ -56,7 +56,7 @@ Integration을 하기 앞서 먼저 IMU가 제공하는 데이터 타입에 대�
 
 ![](/img/preintegration/dt_equation_v2.png)
 
-최종적으로 $$i$$ 번째 keyframe과 $$j$$ 번째 keyframe 간의 모션은 수식 (31)을 활용하여 K개의 IMU data를 통해 추정한 미소 움직임을 축적 (intergration)하면 구할 수 있다.
+최종적으로 $$i$$ 번째 keyframe과 $$j$$ 번째 keyframe 간의 모션은 수식 (31)을 활용하여 K개의 IMU measurements를 통해 추정한 미소 움직임을 축적 (intergration)하면 구할 수 있다.
 
 ![](/img/preintegration/final_i_j_v2.png)
 
