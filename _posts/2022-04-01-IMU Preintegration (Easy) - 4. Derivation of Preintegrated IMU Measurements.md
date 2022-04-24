@@ -83,7 +83,7 @@ Uncertainty가 Gaussian distribution의 꼴이라는 말은 optimization의 결�
 ## 결론
 
 정리하자면 preintegration이라는 것은 "$$i$$번째 keyframe과 $$j$$ keyframe 사이의 IMU data를 integration하여 세 relative motion increments와 biases term으로 구성된 하나의 factor를 생성하는 과정"이라고 요약할 수 있다. 여기까지 도달하는 데에 많은 수식 전개가 있었는데, 그렇다면 위의 수식들을 다 알아야 할까? **그렇지 않다**. 
-
+ㄴ
 사실 Integration은 `gtsam::PreintegratedImuMeasurements` 클래스의 `integrateMeasurement()` 함수로 이미 구현이 되어 있어서 $$i$$와 $$j$$ 사이의 IMU measurement를 위 함수에 입력으로 넣어주면 된다.
 
 ```cpp
