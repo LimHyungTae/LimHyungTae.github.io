@@ -7,8 +7,6 @@ comments: true
 
 ---
 
-# Derivation of Preintegrated IMU Measurements
-
 최종적으로 LIO-SAM 내부의 `imuPreintegration.cpp` 코드가 어떻게 작동되는지를 알아본다. 코드가 꽤 긴데, 원 코드는 [여기](https://github.com/TixiaoShan/LIO-SAM/blob/master/src/imuPreintegration.cpp) 참조.
 
 ## Procedure
