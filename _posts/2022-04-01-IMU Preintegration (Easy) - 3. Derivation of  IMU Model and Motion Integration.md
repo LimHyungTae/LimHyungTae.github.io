@@ -7,7 +7,7 @@ comments: true
 
 ---
 
-# Derivation of  IMU Model and Motion Integration
+# Derivation of IMU Model and Motion Integration
 
 
 ## Integration 한줄 요약

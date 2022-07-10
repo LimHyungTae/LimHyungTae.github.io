@@ -39,7 +39,7 @@ ICP를 할 때 크게 주의해야할 파라미터 세팅은 아래와 같이 �
 * `getFitnessScore()`: 각 point pair별 거리의 평균이 나옵니다 (작을수록 더 registration이 잘되었다고 볼 수 있음)
 * `hasConverged()`: 수렴하면 `true`리턴
 
-여기서 주의하실 점은 `hasConverged()` 함수로 registration이 수렴했는지 안 했는지 판별하는 것은 좋은 선택이 아닙니다. 왜냐하면 `hasConverged()`는 registration이 진짜 true, best solution에 갔는지의 여부는 알바 아니고, 각 transformation의 epsilon이 작기만 하면 true를 리턴하기 때문에, `setMaximumIterations()`의 크기가 충분히 거진 100% true를 리턴하기 때문에 변별력이 없습니다. 따라서 ICP를 사용하실 때는 `getFitnessScore()` 함수를 이용해서 score 값이 어느 정도 작은 경우에 잘 수렴했다고 간주하시면 좋을 것 같습니다. 
+여기서 주의하실 점은 `hasConverged()` 함수로 registration이 수렴했는지 안 했는지 판별하는 것은 좋은 선택이 아니라는 것입니다. 왜냐하면 `hasConverged()`는 registration이 진짜 true, best solution에 갔는지의 여부는 알바 아니고, 각 transformation의 epsilon이 작기만 하면 true를 리턴하기 때문에, `setMaximumIterations()`의 크기가 충분히 거진 100% true를 리턴하기 때문에 변별력이 없습니다. 따라서 ICP를 사용하실 때는 `getFitnessScore()` 함수를 이용해서 score 값이 어느 정도 작은 경우에 잘 수렴했다고 간주하시면 좋을 것 같습니다. 
 
 
 # 결과
