@@ -12,7 +12,7 @@ comments: true
 
 대부분 ROS의 RViz로 visualization을 하실텐데, 간단히 몇개의 포인트를 볼 때는 저의 개인적인 소견으로는 pcl viewer가 훨씬 간편한 것 같습니다.
 
-방법은 크게 `PCLVisualizer`를 사용하는 법과 `CloudViewer`룰 사용하는 법으로 크게 나뉘어져 있습니다.
+방법은 크게 `PCLVisualizer`를 사용하는 법과 `CloudViewer` 사용하는 법으로 크게 나뉘어져 있습니다.
 
 <script src="https://gist.github.com/LimHyungTae/193f9662d4d11f9117acc0a81a16eeb0.js"></script>
 
