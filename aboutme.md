@@ -4,7 +4,7 @@ title: About Me
 ---
 
 
-I’m Hyungtae Lim who is on Ph.D course at KAIST in South Korea and studies robotics. And my research topic is about 3D geometry, in particular, I've focused on perceiving the surroundings in a robust manner and localizing a robot platform, including mobile robots and autonomous vehicles. I propose various methods for dealing with the effect of dynamic objects, which is one of the important factors to be considered in real-world applications.
+I’m Hyungtae Lim who is on Ph.D course at KAIST in South Korea and studies robotics. My research topic is about 3D geometry, in particular, I've focused on perceiving the surroundings in a robust manner and localizing a robot platform, including mobile robots and autonomous vehicles. I propose various methods for dealing with the effect of dynamic objects, which is one of the important factors to be considered in real-world applications.
 
 (Korean version is also available on [my Notion page](https://nettle-camera-ba2.notion.site/Hyungtae-Lim-af61e161715e464d88592fe94f084c04))
 
