@@ -21,6 +21,11 @@ comments: true
 
 `T_LiDAR_TO_CAM`라는 변수가 있다고 가정하자 (transformation matrix가 친숙하지 않은 분은 [여기](https://limhyungtae.github.io/2021-09-10-ROS-Point-Cloud-Library-(PCL)-3.-Transformation/) 참조).
 
+하지만, 여기서 `to`의 의미가 SLAM / Robotics 분야에서 혼동해서 사용하고 있다는 것을 알게 되었다.
+
+i) 
+
+ii)
 
 ### 2. Quaternion, Eular angle의 순서를 잘 명시하자
 
