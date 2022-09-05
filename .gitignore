@@ -3,6 +3,11 @@ _site
 .sass-cache
 .vagrant
 
+.idea/*
+.idea/
+*/.idea/*
+*/.idea/
+
 # general
 .DS_Store
 Thumbs.db
