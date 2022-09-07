@@ -15,6 +15,7 @@ comments: true
 
 
 ![img](/img/wft_p_minute.jpeg)
+
 *더 정확히는 SLAM 및 robotics 관련 개발을 할 때 코드를 읽어보는 사람의 'WTFs/minute'을 줄일 수 있는 방법에 대해 알아본다*
 
 
