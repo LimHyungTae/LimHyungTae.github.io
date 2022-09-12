@@ -18,12 +18,13 @@ comments: true
 // `ori`라는, x, y, z, and w를 멤버 변수로 가지는 quaternion struct가 있다고 가정
 // Quaternion 값의 순서가 라이브러리마다 다르다!
 // Eigen: w, x, y, z order
+// https://eigen.tuxfamily.org/dox/classEigen_1_1Quaternion.html#a3eba7a582f77a8f30525614821d7056f
 // tf   : x, y, z, w order
 Eigen::Quaterniond q_e(ori.w, ori.x, ori.y, ori.z);
 tf::Quaternion q_t(ori.x, ori.y, ori.z, ori.w);
 ```
 
-이는 라이브러리의 메뉴얼을 꼼꼼히 읽어보지 않은 이를 엄청난 디버깅 지옥(!)에 빠트릴 수 있다. 비단 Eigen과 ROS tf 뿐만 아니라, 다른 언어(e.g. python이나 C# 등)의 라이브러리에서도 똑같이 어떤 곳에서는 XYZW를 쓰고 어떤 곳에서는 WXYZ를 쓴다. 
+이는 라이브러리의 메뉴얼을 꼼꼼히 읽어보지 않은 이를 엄청난 디버깅 지옥(!)에 빠트릴 수 있다. 더 혼란스러운 건 `q_e.coeffs()`로 quaternion의 element를 확인할 때는 [qx, qy, qz, qw](https://eigen.tuxfamily.org/dox/classEigen_1_1QuaternionBase.html#ae61294790c0cc308d3f69690a657672c) 순이다. 비단 Eigen과 ROS tf 뿐만 아니라, 다른 언어(e.g. python이나 C# 등)의 라이브러리에서도 똑같이 어떤 곳에서는 XYZW를 쓰고 어떤 곳에서는 WXYZ를 쓴다. 
 실례로, 필자도 python에 있는 [pyquaternion](http://kieranwynn.github.io/pyquaternion/)을 사용하여 3D pose를 나타낼 때, XYZW 순이겠거니 지레짐작했다가 pose가 계속 이상하게 표현되어 한 이틀가량 모든 코드를 디버깅하느라 진을 뺀 적이 있다 (pyquaternion은 Eigen과 마찬가지로 WXYZ form을 따른다).
 
 ### 꿀팁 (2)의 결론 및 해결책
