@@ -25,3 +25,16 @@ comments: true
 
 <script src="https://gist.github.com/LimHyungTae/812985af7b8ab9ae7e85fda3ec3ec675.js"></script>
 
+## 20221024 업데이트
+
+이미 pcd 파일이 zero padding 없이 만들어졌다면? 아래의 명령어를 command 상에서 입력하면 파일의 숫자의 칸이 6칸인 파일 명으로 변경해준다 (e.g. 12.pcd를 000012.pcd로)
+
+```bash
+for file in [0-9]*.pcd;
+do
+name=${file%.*}
+extension=${file##*.}
+new_name=`printf %06d.%s ${name} ${extension}`
+mv -n $file $new_name
+done
+```
