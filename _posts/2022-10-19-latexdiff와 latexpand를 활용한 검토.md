@@ -32,8 +32,19 @@ latexpand main.tex > v2.tex
 ```bash
 latexdiff v1_1.tex v2.tex > diff.tex
 ```
+---
+아래 줄을 
+```
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                  
+```
 
+이렇게 고치면
 
+```
 \providecommand{\DIFaddtex}[1]{{\protect\color{red}{#1}}} %DIF PREAMBLE
 \providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{}}}                 
+```
+
+물결이 없고 빨강이 없게 출력이 됨!
 
