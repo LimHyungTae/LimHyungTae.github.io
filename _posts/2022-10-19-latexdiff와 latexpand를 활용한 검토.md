@@ -8,13 +8,35 @@ comments: true
 
 # Latexdiff과 latexpand를 활용한 효과적인 논문 검토
 
-(작성 중)
+오늘은 Robotics와는 크게 관련은 없으나, latex을 활용해 논문 작성을 할 때 버전 관리 및 수정 부분을 자동으로 highlight해주는 latexdiff와 latexpand의 사용법에 대해 알아보도록 한다.
+
+결과부터 보여주자면,
 
 command 기반으로 latex의 history를 관리할 수 있는 명령어
 
-latexdiff:
+```
+# For installation of `latexdiff`
+$ sudo apt install latexdiff
+# For installation of `latexpand`
+$ apt-get install texlive-extra-utils
+```
 
-latexpand:
+둘 다 설치가 완료돼었다면, 
+```
+latexdiff --help
+latexpand --help
+```
+라고 하면 뭐가 떠야 됨!
+
+덧: 간혹 논문 workspace는 window로, 실험 workspace는 Ubuntu로 이분화해서 사용하는 이들이 있는데, 이는 비효율적이다.
+
+아래의 명령어를 통하면 바로 latex을 Ubuntu에서 수정/작성할 수 있게끔 latex 컴파일러를 설치하고 Tex Studio를 설치할 수 있다:
+
+```
+$ sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-font-utils texlive-science
+$ sudo apt install texstudio
+```
+
 
 ## How to install
 
