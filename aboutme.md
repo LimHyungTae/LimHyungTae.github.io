@@ -20,7 +20,7 @@ I’m Hyungtae Lim who is on Ph.D course at KAIST in South Korea and studies rob
 # Experience
 * **Invited Visiting Scholar at StachnissLab, Univ. Bonn, Germany** - 2022.11 ~ 2023.02
 * **Ouside Expert of CTO Division of LG Electronics** - 2022.03 ~
-* **CV / Deep Learning Research Intern, NAVER LABS Copr.** 2021.04 ~ 2021.09 (6 months)
+* **CV / Deep Learning Research Intern, NAVER LABS Corp.** 2021.04 ~ 2021.09 (6 months)
 
 # Honors
 * **Received Kim Sung-bue Creative Activity Award, from KAIST** - 2020.07
