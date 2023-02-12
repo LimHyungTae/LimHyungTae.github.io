@@ -56,17 +56,23 @@ latexdiff v1_1.tex v2.tex > diff.tex
 ```
 ---
 아래 줄을 
-```
-\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
-\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                  
-```
+
+![lb_command](../img/latexdiff_before_command.png)
 
 이렇게 고치면
 
-```
-\providecommand{\DIFaddtex}[1]{{\protect\color{red}{#1}}} %DIF PREAMBLE
-\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{}}}                 
-```
+![la_command](../img/latexdiff_after_command.png)
 
 물결이 없고 빨강이 없게 출력이 됨!
 
+---
+
+### 결과
+
+고치기 전
+
+![lb_manuscript](../img/latexdiff_before_manuscript.png)
+
+고치기 후
+
+![la_manuscript](../img/latexdiff_after_manuscript.png)
