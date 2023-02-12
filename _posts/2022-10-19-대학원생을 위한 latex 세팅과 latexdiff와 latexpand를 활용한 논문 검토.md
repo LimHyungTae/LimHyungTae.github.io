@@ -35,7 +35,7 @@ $ (optional) sudo apt install latexdiff
 1. 컴파일 속도가 Overleaf에 비해 월등하게 빠르다 ★★★★★. 로컬에서 compile하면 학회지 같이 한 8페이지 정도는 거의 3초 이내로 컴파일이 된다. 한 번 컴파일에 수 십초가 걸리는 Overleaf에 비해 훨씬 시간을 아낄 수 있다. 그리고 논문 작성하면서 적어도 수 백번은 컴파일할텐데, 그 시간이 쌓이고 쌓이면 상당히 큰 차이가 난다.
 2. 로컬에서 작업하고 Github를 통해 버전관리를 하면 충분히 효율적으로 다른 저자들과 커뮤니케이션할 수 있음 (물론 Overleaf도 Github 연동 기능이 있음). Overleaf의 강점이 동시다발적으로 여러 명이 논문 작성을 할 수 있다는 점이긴 하지만, 실제로 논문을 작성할 때 모든 이들이 모든 시간동안 논문 작성을 하지는 않는다. 따라서 굳이 동시다발적으로 작업하는 것을 고려해야할 필요가 있을까하는 의문이 있다.
 
-추가로 꿀팁을 주자면 논문 작성 동안에는 `\usepackage{hyperref}`를 주석해두자. Reference의 hyperlink를 만드는 과정이 생각보다 컴파일하는 동안 오래 걸린다.
+*추가로 꿀팁*을 주자면 논문 작성 동안에는 `\usepackage{hyperref}`를 주석해두자. Reference의 hyperlink를 만드는 과정이 생각보다 컴파일하는 데에 시간이 많이 걸린다.
 
 
 ### 2. Ubuntu local에서 그림 또한 그릴 수 있게 Inkscape 설치
@@ -47,6 +47,27 @@ $ sudo apt-get install inkscape (enter)
 Inkscape는 주로 로고 등을 그리는 데에 사용되는 툴인데, open source여서 내 소속이 바뀌더라도 어디서든지 사용할 수 있다는 강점이 있다. 또한, vector image를 생성해내는 데에 특화되어 있다. 따라서 논문에 그림을 넣을 때 aliasing도 방지할 수 있다. 대다수가 PPT의 GUI에 익숙해져 있다 보니 GUI가 좀 낯선 것은 사실이다. 하지만 적응되면 Ubuntu → Window → Ubuntu로 컴퓨터를 껐다켜야하는 비효율적인 짓을 하지 않아도 된다. 처음인 사람들은 아래 링크를 따라서 몇 번해보면 금방 익숙해질 것이다: 
 
 https://www.dropbox.com/s/1z1up9m8tme637p/How_to_Use_Inkscape%20.pdf?dl=0
+
+**Advanced** 그림과 text를 함께 작성해야할 경우에 `Omit text in PDF and create LaTex file`를 사용하면 text들을 그림에 embeding하는 게 아니라 그림 object 따로, text 따로 저장하게 된다.
+
+![lb_command](../img/inkscape_option.png)
+
+이는 아래와 같은 명령어로 불러올 수 있다.
+```
+\begin{figure}[t!]
+	\captionsetup{font=footnotesize}
+	\centering
+	\def\svgwidth{0.48\textwidth}
+	\graphicspath{{pics/fig1/}} % important! Pdf가 있는 위치를 지정해 줘야 함. 그러면 ${해당 주소}/${아래 input의 파일 명}.pdf가 불러와 짐
+	\input{pics/fig1/fig1.pdf_tex}
+	\caption{BLABLA.}
+	\label{fig:fig1}
+\end{figure}
+``
+뭔가 어려워 보이지만, 아래와 같이 두 가지 장점이 있다. 개인적인 욕심으로는 모든 이들에게 이 방식으로 작성하기를 추천한다
+
+* Font size가 latex 파일에 맞춰서 작성된다. 따라서 그림이 좀 더 일관성있게 보임
+* Figure 내에 citation을 자동으로 수정해줄 수 있게끔 할 수 있다. 예로 들어서 `\cite{lim2023iros}`이라는 reference가 있다고 할 때, 기존의 방식으로 논문을 작성을 할 때는 논문에 충분히 레퍼런스들을 다 넣은 후, 직접 텍스트로 "BLABLA [#]"과 같이 써줬다. 하지만 위의 방식대로 내보내기를 하면, Inkscape에서 "BLABLA~\cite{lim2023iros}"라고 적으면 컴파일 할 때 자동으로 "BLABLA [#]"으로 변경해준다. 만약 논문 작성하다 reference를 추가적으로 수정해서 reference의 숫자가 밀려졌거나 당겨졌다고 생각해보자. 그럴 경우 기존의 방식은 다시 파일을 열어서 숫자를 수정해줘야 했다면, 이 방식은 자동적으로 citation의 숫자를 업데이트해줄 수 있다.
 
 
 
