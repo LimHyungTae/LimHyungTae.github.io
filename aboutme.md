@@ -9,9 +9,18 @@ I’m Hyungtae Lim who is on Ph.D course at KAIST in South Korea and studies rob
 (Korean version is also available on [my Notion page](https://nettle-camera-ba2.notion.site/Hyungtae-Lim-af61e161715e464d88592fe94f084c04))
 
 # Education
-* **Ph.D candidate Electrical Engineering / KAIST** - 2020.03~ 
+* **Ph.D candidate Electrical Engineering(also complete Robotics Program) / KAIST** - 2020.03~ 2023.02 
+  * Thesis (Eng.) - Robust LiDAR SLAM Framework for Autonomous Vehicles Leveraging Ground Segmentation
+  * Thesis (Kor.) - 지면 인식 기반 지상형 자율주행 로봇을 위한 강인한 라이다 SLAM 프레임워크
 * **M.S Electrical Engineering(also complete Robotics Program) / KAIST** - 2018.03~2020.02
+  * Thesis (Eng.) - Two-stage Depth Prediction using a 2D LiDAR and a Monocular Camera via Deep Learning  
+  * Thesis (Kor.) - 2D 라이다와 단일 카메라를 이용한 이단식 딥러닝 네트워크 기반 3D 깊이 추정 방법
 * **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
+
+# Experience
+* **Invited Visiting Scholar at StachnissLab, Univ. Bonn, Germany** - 2022.11 ~ 2023.02
+* **Ouside Expert of CTO Division of LG Electronics** - 2022.03 ~
+* **CV / Deep Learning Research Intern, NAVER LABS Copr.** 2021.04 ~ 2021.09 (6 months)
 
 # Honors
 * **Received Kim Sung-bue Creative Activity Award, from KAIST** - 2020.07
