@@ -11,10 +11,12 @@ comments: true
 ## 기존 커맨드들 (메모용)
 
 - `Ctrl(→CapsLock) + /`: 주석
+- `Ctrl(→CapsLock) + Shift + e`: 최근 수정파일들 보기
+- 
 
 ## 원래 Clion 명령어들을 LunarVim처럼 porting시킨 것들
 
 - Select Next Tab: `Shift + L`
 - Select Previous Tab: `Shift + H`
-
+- Terminal: `Ctrl+\`
 
