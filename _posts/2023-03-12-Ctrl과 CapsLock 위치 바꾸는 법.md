@@ -8,13 +8,13 @@ comments: true
 
 # Introduction
 
-오늘은 Clion과 IdeaVim 세팅을 하는 방법에 대해 다뤄보고자 한다. 필자는 원래 C++을 통한 ROS 관련 세팅할 때 Clion을 사용했는데, 박사를 졸업한 기념(?) heavy VIM user가 돼고 싶어서 [LunarVim](https://www.lunarvim.org/) 세팅을 하던 도중, i) LSP, linter 등에 대한 지식 부족과 ii) '나 연구해야하는데 너무 여기 시간을 많이 쓰는데...?'라는 것을 깨달아서 다시 JetBrains 성님들 IDE로 돌아왔다. LunarVim은 확실히 잘 만든 VIM + IDE이지만, 만약 python 코딩 시 Pycharm의 강력한 Debugging 기능을 LunarVim에서 할 생각을 하니, 그냥 JetBrains이 만든 IDE를 사용하기로 했다.
+오늘은 Clion과 IdeaVim 세팅을 하는 방법에 대해 다뤄보고자 한다. 필자는 원래 C++을 통한 ROS 관련 세팅할 때 Clion을 사용했는데, 박사를 졸업한 기념(?) heavy VIM user가 되고 싶어서 [LunarVim](https://www.lunarvim.org/) 세팅을 하던 도중, i) LSP, linter 등에 대한 지식 부족과 ii) '나 연구해야하는데 너무 여기 시간을 많이 쓰는데...?'라는 것을 깨달아서 다시 JetBrains 성님들 IDE로 돌아왔다. LunarVim은 확실히 잘 만든 VIM + IDE이지만, 만약 python 코딩 시 Pycharm의 강력한 Debugging 기능을 LunarVim에서 스스로 구축해서 코드를 돌려야할 생각을 하니, 그냥 JetBrains이 만든 IDE를 사용하기로 했다.
 
 최근 독일에 방문 연구원을 다녀오면서 [Nacho](https://www.ipb.uni-bonn.de/people/ignacio-vizzo/)의 Vim 세팅 및 LunarVim을 통한 Vim 세팅을 통해 보다 효과적으로 Clion 세팅을 하고자 한다.
 
-## 1. 좌측의 `CapLocks` and `Ctrl` Swap 
+## 1. 좌측의 `CapsLock` and `Ctrl` Swap 
 
-먼저, 편의를 위해, Ctrl키와 Caplock(이하 Cap)키를 변경한다. 변경하는 이유는 다음과 같다.
+먼저, 편의를 위해, Ctrl키와 CapsLock(이하 Cap)키를 변경한다. 변경하는 이유는 다음과 같다.
 
 1. Cap키에 비해 Ctrl키의 빈도수가 월등히 높은데, Ctrl키가 너무 왼쪽 끝에 위치함
 2. `Ctrl+C`나 `Ctrl+v` 시 손목의 무리가 감 (하지만 키를 바꾸면 안→밖으로 손목을 돌릴 필요가 없음!★★★★)
