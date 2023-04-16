@@ -12,7 +12,9 @@ comments: true
 
 - `Ctrl(→CapsLock) + /`: 주석
 - `Ctrl(→CapsLock) + Shift + e`: 최근 수정파일들 보기
-- 
+- `Shift + Enter`: 오른쪽 창에 열기
+- `Ctrl(→CapsLock) + e`: 최근 열었던 파일들 navigation하기. 빠른 창 변환을 위해 강추 (`e`는 explore의 약자인듯한데, Lunarvim을 쓰면서 뭔가 IntelliJ에도 있을 것 같은 기능이라고 생각되어서 찾아보았음. 아주 편함!!!)
+
 
 ## 원래 Clion 명령어들을 LunarVim처럼 porting시킨 것들
 

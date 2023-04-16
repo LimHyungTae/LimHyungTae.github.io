@@ -47,7 +47,9 @@ $ xmodmap ~/.xmodmap
 
 그렇게 되면 Cap + hjkl로 방향키를 사용할 수 있게 된다! 잘 쓰이지 않지만, 오른손이 방향키로 움직이기 vs 왼손 새끼를 원래 Ctrl키로 옮기기의 cost를 따져봤을 때, 후자가 좀 더 경제적일지도...? (지극히 개인적 의견)
 
-추가적으로 terminator 상에서 탭을 변경할 때 `Ctrl+PgUp/PgDn`으로 할 수 있는데, 현재까지의 세팅으로는 `Ctrl+Capslock+p`와 `Ctrl+Capslock+u` 로 사용할 수 있다. 무튼 손이 멀리 안 나가니 편함!~이거 편한거 맞아?~
+추가적으로 terminator 상에서 탭을 변경할 때 `Ctrl+PgUp/PgDn`으로 할 수 있는데, 현재까지의 세팅으로는 `Ctrl+Capslock+p`와 `Ctrl+Capslock+u` 로 사용할 수 있다. 무튼 손이 멀리 안 나가니 편함!~~이거 편한거 맞아?~~
+
+(**23.03.26** 단축키를 Terminator 상에서 세팅해서 그냥 사용 중. 자세한건 [여기]() 참조)
 
 사실 나의 Vim 스승인 Nacho는 Capslock키와 hjkl를 물려서 사용하고, Capslock키를 ESC키로 대체해서 사용했는데, 나는 Ctrl키가 더 중요한거 같고, ESC 같은 경우에는 vim에서 jk로 매핑하여 사용하고 있어서 필요성이 상대적으로 덜 하였다. 
 

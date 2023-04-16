@@ -6,6 +6,15 @@ title: About Me
 
 I’m Hyungtae Lim who is on Ph.D course at KAIST in South Korea and studies robotics. My research topic is about 3D geometry, in particular, I've focused on perceiving the surroundings in a robust manner and localizing robot platforms, including mobile robots and autonomous vehicles. I propose various methods for dealing with the effect of dynamic objects, which is one of the important factors to be considered in real-world applications.
 
+<p class="about-text">
+<span class="fa fa-graduation-cap about-icon"></span>
+Obtained my MSc in <strong>Bioinformatics</strong> from the University of British Columbia (supervised by the amazing
+<a href="https://twitter.com/JennyBryan" target="_blank">Jenny Bryan</a>) and my Bachelor of <strong>Computer Science</strong> from the
+University of Waterloo, Canada. My masters thesis project involved
+<a href="https://github.com/daattali/ddpcr" target="_blank">developing computational methods to automatically analyze
+droplet digital PCR</a> data.
+</p>
+
 (Korean version is also available on [my Notion page](https://nettle-camera-ba2.notion.site/Hyungtae-Lim-af61e161715e464d88592fe94f084c04))
 
 # Education
