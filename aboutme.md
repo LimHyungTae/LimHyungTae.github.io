@@ -5,7 +5,7 @@ title: About Me
 
 <p class="about-text">
 <span class="fa fa-briefcase about-icon"></span>
-Currently a postdoc in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory in KAIST.</strong></a>. Previously worked as a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
+Currently a postdoc in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory in KAIST</strong></a>. Previously worked as a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
 </p>
 
 <p class="about-text">
