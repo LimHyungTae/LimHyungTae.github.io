@@ -3,6 +3,8 @@ layout: page
 title: About Me
 ---
 
+# Hyungtae Lim
+
 <p class="about-text">
 <span class="fa fa-briefcase about-icon"></span>
 Currently a postdoc in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory</strong></a> in Korea Advanced Institute of Science and Technology (KAIST). Previously worked as a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
@@ -24,7 +26,7 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 ---
 
-# Detailed Education
+## Detailed Education
 
 * **Ph.D candidate Electrical Engineering(also complete Robotics Program) / KAIST** - 2020.03~ 2023.02 
   * Thesis (Eng.) - Robust LiDAR SLAM Framework for Autonomous Vehicles Leveraging Ground Segmentation
@@ -34,13 +36,13 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
   * Thesis (Kor.) - 2D 라이다와 단일 카메라를 이용한 이단식 딥러닝 네트워크 기반 3D 깊이 추정 방법
 * **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
 
-# Experience
+## Experience
 
 * **Invited Visiting Scholar at StachnissLab, Univ. Bonn, Germany** - 2022.11 ~ 2023.02
 * **Ouside Expert of CTO Division of LG Electronics** - 2022.03 ~
 * **CV / Deep Learning Research Intern, NAVER LABS Corp.** 2021.04 ~ 2021.09 (6 months)
 
-# Honors & Awards
+## Honors & Awards
 
 * **CES 2023 Innovation Awards With Hills Robotics** - 2022.10
 * **2nd Prize among academia in HILTI SLAM Challenge 2022 (workshop in IEEE ICRA)** - 2022.05
@@ -51,10 +53,12 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 * **2018 Smart City Service and Start-up Competition, Excellence Prize** - 2018.09
 * **Listed on _Dean's list_ of ME, KAIST (GPA 4.23/4.3 at the semester)** - Fall semester, 2015
 
-# Fun Facts
+## Fun Facts
 
 I won the grand prize at Taeul Singing Competition, which is the largest singing competition of Chungcheong four years in a row!
 
-# Contact
------
-shapelim@kaist.ac.kr
+--- 
+
+## Contact
+
+shapelim `dot` kaist `dot` ac `dot` kr
