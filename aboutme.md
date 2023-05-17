@@ -23,6 +23,22 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 (Korean version is also available on [my Notion page](https://nettle-camera-ba2.notion.site/Hyungtae-Lim-af61e161715e464d88592fe94f084c04))
 
+--
+
+## Field of Research Interest
+
+My research interest includes, but not confined to:
+
+* SLAM using LiDAR, camera, or radar sensors
+* Robust 3D point cloud registration
+* Mobile robotics including autonomous vehicles
+* All kinds of perception that help perceiving neighbor situations
+    * In particular, ground segmentation as pre-processing by using a 3D point cloud
+    * Instance segmentation and clustering
+* Localization including visual localization (i.e. visual place recognition)
+* Static map building by updating a prior 3D point cloud map
+* Robust visual(-inertial) odometry
+* Analytical redundancy
 
 ---
 
