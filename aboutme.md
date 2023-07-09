@@ -3,7 +3,7 @@ layout: page
 title: About Me
 ---
 
-# Hyungtae Lim
+## Hello, I'm Hyungtae Lim!
 
 <p class="about-text">
 <span class="fa fa-briefcase about-icon"></span>
