@@ -7,13 +7,22 @@ subtitle: Towards TBB
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, Patchwork]
 comments: true
 
+# Under Writing!!! Will be completed soon!
+
 ---
+
 ## Motivation
 
 Nowadays, many open-source codes employ TBB to speed up their algorithms. 
 However, there are few tutorials or materials to help we understand how to use TBB for speeding up our own algorithms.
-It is the same for me also. For that reason, I would like to share my experience of using TBB to speed up my own algorithm.
+It is the same for me also; I really wanted to get to know about multi-threading better.
+While there are many reference codes, they are already completed, so they do not provide any tips regarding how to change an algorithm that is single-thread to multi-thread.
+For that reason, I imp
+
+I would like to share my experience of using TBB to speed up my own algorithm.
 Benchmarking [KISS-ICP](https://github.com/PRBonn/kiss-icp), I aim for speeding up a point cloud ground segmentation approach, *Patchwork*, as much as possible.
+
+### About Patchwork 
 
 Since the original code was implemented by me two years ago, and it was a single thread-based version.
 Nevertheless, it operates at almost 50 Hz. But I felt that it is not enough for real-time applications.
