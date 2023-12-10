@@ -34,6 +34,29 @@ Normal vector를 visualization하면 아래와 같습니다.
 
 보시는 것과 같이 벽면들, 바닥들의 normal vector가 수직으로 잘 뽑히는 것을 확인할 수 있습니다.
 
+
+# 궁금증
+
+위에서 본 것과 같이, normal estimation은 인접한 point들과 해당 point 간의 관계를 구하는 것이기 때문에 알고리즘을 사용할 때 SearchMethod을 지정해주어야 합니다.
+
+그리고 `setRadiusSearch(double radius)` 멤버함수를 통해서 radius를 지정해주는데, 그러면 만약 radius 이내에 인접한 point가 없을 때는 어떻게 되는지 궁금해서 테스트 해보았습니다.
+
+아래 코드가 그 예시입니다.
+
+<script src="https://gist.github.com/LimHyungTae/90cbbdd87727ee8bd3cb795005b5474f.js"></script>
+
+```
+(0,0,1 - 0)
+(0,0,1 - 0)
+(0,0,1 - 0)
+(0,0,1 - 0)
+(0,0,1 - 0)
+(nan,nan,nan - nan)
+```
+
+`nan`으로 뜨는 것을 확인할 수 있습니다.
+
+
 ---
 
 Point Cloud Library Tutorial 시리즈입니다.

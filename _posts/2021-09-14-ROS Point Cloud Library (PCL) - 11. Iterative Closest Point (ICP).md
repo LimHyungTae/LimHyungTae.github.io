@@ -36,10 +36,18 @@ ICP를 할 때 크게 주의해야할 파라미터 세팅은 아래와 같이 �
 ### 결과값 return 받기
 
 * `getFinalTransformation()`: src를 transform한 결과를 받을 수 있습니다.
-* `getFitnessScore()`: 각 point pair별 거리의 평균이 나옵니다 (작을수록 더 registration이 잘되었다고 볼 수 있음)
+* `getFitnessScore()`: 각 point pair별 거리의 제곱의 평균이 나옵니다 (작을수록 더 registration이 잘되었다고 볼 수 있음)
 * `hasConverged()`: 수렴하면 `true`리턴
 
-여기서 주의하실 점은 `hasConverged()` 함수로 registration이 수렴했는지 안 했는지 판별하는 것은 좋은 선택이 아니라는 것입니다. 왜냐하면 `hasConverged()`는 registration이 진짜 true, best solution에 갔는지의 여부는 알바 아니고, 각 transformation의 epsilon이 작기만 하면 true를 리턴하기 때문에, `setMaximumIterations()`의 크기가 충분히 거진 100% true를 리턴하기 때문에 변별력이 없습니다. 따라서 ICP를 사용하실 때는 `getFitnessScore()` 함수를 이용해서 score 값이 어느 정도 작은 경우에 잘 수렴했다고 간주하시면 좋을 것 같습니다. 
+여기서 주의하실 점은 `hasConverged()` 함수로 registration이 수렴했는지 안 했는지 판별하는 것은 좋은 선택이 아니라는 것입니다. 왜냐하면 `hasConverged()`는 registration이 진짜 true, best solution에 갔는지의 여부는 알바 아니고, 각 transformation의 epsilon이 작기만 하면 true를 리턴하기 때문에, `setMaximumIterations()`의 크기가 충분히 거진 100% true를 리턴하기 때문에 변별력이 없습니다. 따라서 ICP를 사용하실 때는 `getFitnessScore()` 함수를 이용하는 것이 좋습니다.
+즉, score가 fit한지 아닌지 score 값이 어느 정도 작은 경우는 두 point cloud가 충분히 잘 포개졌다는 의미이기 때문에 잘 수렴했다고 간주할 수 있습니다.
+
+하지만 `getFitnessScore()`도 만능은 아닌데, 왜냐하면 **두 point cloud의 overlap된 정도가 적은 상태에서 fitness score를 구하게 되면 수렴을 잘 했더라도 큰 fitness score를 보이기 때문**입니다.
+저 Fitness score는 두 point cloud가 잘 포개질수록 낮은 값을 제공한다고 말했는데, 
+overlap 자체가 적은 경우에는 src/tgt의 overlap 이외의 부분으로부터 가장 가까운 tgt/src point가 어느정도 거리가 떨어져 있습니다.
+따라서 이 getFitnessScore()를 너무 타이트하게 잡게 되면, overlap된 영역이 작은 두 point cloud도 잘못된 registration이라고 판단되어 registration이 잘 됐음에도 불구하고 걸러질 수도 있습니다.
+
+그러니 filtering할 때는 꼭 주의해서 filtering을 해야합니다!
 
 
 # 결과

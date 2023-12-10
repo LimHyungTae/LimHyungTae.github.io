@@ -30,6 +30,10 @@ gicp.align(*align);
 <script src="https://gist.github.com/LimHyungTae/4e0738316126fbe2d5cbe6cded1c2f2a.js"></script>
 
 
+G-ICP 코드는 사실 ICP를 상속 받아서 구현되어 있기 때문에, ICP를 사용할 때와 별반 다를바 없습니다.
+
+끗!
+
 ---
 
 Point Cloud Library Tutorial 시리즈입니다.
