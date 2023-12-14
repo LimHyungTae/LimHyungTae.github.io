@@ -1,11 +1,10 @@
-
 ---
-
 layout: post
 title: 2023-12-14-Pybind11 Line by Line - 2. Package에 대한 이해
 subtitle: Understanding Pybind11 easily
 tags: [Pybind11, Pybinding, Python, C++]
 comments: true
+---
 
 2편에서는 실제로 좀더 작은 예제를 빌드해 볼겸, 이렇게 pybinding을 가능하게 하는 `.so` 파일에 대해 알아본다.
 
@@ -116,7 +115,7 @@ setup(
 )
 ```
 
-우리가 [1편]()에서 `pip3 install` 한 행위가 이 `setup.py`를 실행하는 행위라 볼 수 있는데,  
+우리가 [1편](https://limhyungtae.github.io/2023-12-14-Pybind11-Line-by-Line-1.-Open-Source-Codes-Analyses/)에서 `pip3 install` 한 행위가 이 `setup.py`를 실행하는 행위라 볼 수 있는데,  
 Python의 `setup.py` 파일은 Python 패키지를 빌드, 설치 및 배포하는 데 사용되는 스크립트 파일이다.
 이 파일은 `setuptools` 라이브러리를 통해 실행되며 (그래서 파일 내를 살펴보면 `setuptools`를 import하고 있음), 
 Python 패키지를 관리하고 패키지의 메타데이터 및 의존성을 설정하는 데 필요한 정보를 포함한다.

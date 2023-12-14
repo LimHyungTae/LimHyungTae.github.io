@@ -1,11 +1,10 @@
-
 ---
-
 layout: post
 title: 2023-12-14-Pybind11 Line by Line - 1. Open Source Codes Analyses
 subtitle: Understanding Pybind11 easily
 tags: [Pybind11, Pybinding, Python, C++]
 comments: true
+---
 
 ## Motivation
 
@@ -205,6 +204,11 @@ target_compile_definitions(cmake_example
 
 ---
 
+
+Pybinding line-by-line 설명 시리즈입니다.
+
+1. [Pybind11 Line by Line - 1. Open Source Codes Analyses](https://limhyungtae.github.io/2023-12-14-Pybind11-Line-by-Line-1.-Open-Source-Codes-Analyses/)
+2. [Pybind11 Line by Line - 2. Package에 대한 이해](https://limhyungtae.github.io/2023-12-14-Pybind11-Line-by-Line-2.-Package%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/)
 
 
 
