@@ -2,7 +2,7 @@
 layout: post
 title: pdf 파일 eps로 변환하는 방법, dpi 쉬운 설명, 논문 Figure 잘 넣는 법
 subtitle: 두 번 그림 그릴 거 한 번만 그리자!
-tags: [latex, latexdiff, latexpand]
+tags: [latex, paper, writing]
 comments: true
 ---
 
