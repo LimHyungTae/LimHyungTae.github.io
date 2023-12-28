@@ -9,7 +9,7 @@ comments: true
 
 # Generalized Iterative Closest Point (G-ICP)
 
-(7/10 기준 작성 중...)
+(바빠서 코드만 살펴보고 설명을 못 적는 중...)
 
 https://pointclouds.org/documentation/registration_8hpp_source.html
 
