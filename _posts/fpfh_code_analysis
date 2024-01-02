@@ -1,0 +1,18 @@
+std::cout << "hello" << std::endl;
+for (int i = 0; i < 10000; i++) {
+    int rand0 = rand() % planar_points.size();
+    int rand1 = rand() % planar_points.size();
+
+    Eigen::Vector3f p1 = Eigen::Vector3f(planar_points.at(rand0).x, planar_points.at(rand0).y, planar_points.at(rand0).z);
+    Eigen::Vector3f p2 = Eigen::Vector3f(planar_points.at(rand1).x, planar_points.at(rand1).y, planar_points.at(rand1).z);
+    Eigen::Vector3f n1 = GenerateRandomNormalVector();
+    Eigen::Vector3f n2 = GenerateRandomNormalVector();
+
+    Eigen::Vector4f hist1 = Eigen::Vector4f::Zero();
+    Eigen::Vector4f hist2 = Eigen::Vector4f::Zero();
+
+    ComputePairFeatures(p1, n1, p2, n2, hist1(0), hist1(1), hist1(2), hist1(3));
+    ComputePairFeatures(p2, n2, p1, n1, hist2(0), hist2(1), hist2(2), hist2(3));
+}
+
+확인해보니 hist1과 hist2가 완전 동일하게 나옴!!!!!!!!!!! Hash로 구현해야 하는 필요성을 다시금 느꼈다,,,
