@@ -25,6 +25,14 @@ $ catkin build --save-config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 위의 명령어는 한 번 세팅해주면 BUILD_TYPE을 계속 Release로 유지해준다.
 
-**Additional CMake Args**에 `-DCMAKE_BUILD_TYPE=Release`가 추가 된것을 볼 수 있다. (근데 왜 2개지...?? 원래 그런건지 확인이 필요하다.)
+**Additional CMake Args**에 `-DCMAKE_BUILD_TYPE=Release`가 추가 된것을 볼 수 있다.
 
 ![cb_raw](/img/catkinbuild_release_raw.png)
+
+### Update on 2024-02-01
+
+만약 config를 지우고 싶다면 아래와 같은 명령어를 기입하면 저장된 config를 제거할 수 있다.
+
+```
+$ catkin config -r -DCMAKE_BUILD_TYPE=Release
+```
