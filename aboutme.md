@@ -3,10 +3,9 @@ layout: page
 title: About Me
 ---
 
-## Hello, I'm Hyungtae Lim!
-
 <p class="about-text">
 <span class="fa fa-briefcase about-icon"></span>
+An incoming postdoc in <a href="http://web.mit.edu/sparklab/"><strong>SPARK Lab</strong></a> in Massachusetts Institute of Technology (MIT) from Apr. 2024.
 Currently a postdoc in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory</strong></a> in Korea Advanced Institute of Science and Technology (KAIST). Previously worked as a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
 </p>
 
@@ -20,10 +19,23 @@ Obtained my Ph.D and M.S in <strong>Electrical Engineering</strong> from KAIST (
 I'm a robotics researcher and an enthusiast of open source as well. So I enjoy open-sourcing <strong>my researches regarding robotics</strong> to help others &mdash; check out <a href="https://github.com/LimHyungTae">my Github repository</a>. 
 </p>
 
+[[**CV**](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/cv.pdf)] [[**Research statement**](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/research_statement.pdf)]
 
 (Korean version is also available on [my Notion page](https://nettle-camera-ba2.notion.site/Hyungtae-Lim-af61e161715e464d88592fe94f084c04))
 
---
+## Highlights
+
+* 20 IROS, ICRA, RA-L, RSS, IJRR papers during grad school (12 first-author papers)
+* 2022 IEEE RA-L Best Paper Award (among 1,100 papers, only 5 papers are selected)
+* 1st prize in [HILTI SLAM Challenge'23 in IEEE ICRA](https://hilti-challenge.com/) among 63 international teams
+* [CES'23 innovation award](https://www.ces.tech/innovation-awards/honorees/2023/honorees/h/hi-bot-hologram-image-guide-robot.aspx) via tech. transfer regarding SLAM of mobile robots (collaborated with HILLS Robotics)
+* Visiting scholar of Univ. Bonn, Germany (advisor: Prof. Cyrill Stachniss)
+* From 2022, serve as a SLAM part outside expert, CTO division of LG Electronics, Republic of Korea
+* 2nd cash prize in [HILTI SLAM Challenge'22 in IEEE ICRA](https://hilti-challenge.com/) (in total, 4th place)
+* Research intern of vision/deep learning team of [NAVER LABS](https://www.naverlabs.com/), Republic of Korea
+* 1st prize in [Hitachi-LG Data Storage](https://hitachi-lg.com/) LiDAR application competition, Republic of Korea
+
+---
 
 ## Field of Research Interest
 
@@ -45,11 +57,9 @@ My research interest includes, but not confined to:
 ## Detailed Education
 
 * **Ph.D candidate Electrical Engineering(also complete Robotics Program) / KAIST** - 2020.03~ 2023.02 
-  * Thesis (Eng.) - Robust LiDAR SLAM Framework for Autonomous Vehicles Leveraging Ground Segmentation
-  * Thesis (Kor.) - 지면 인식 기반 지상형 자율주행 로봇을 위한 강인한 라이다 SLAM 프레임워크
+  * Thesis title: Robust LiDAR SLAM Framework for Autonomous Vehicles Leveraging Ground Segmentation
 * **M.S Electrical Engineering(also complete Robotics Program) / KAIST** - 2018.03~2020.02
-  * Thesis (Eng.) - Two-stage Depth Prediction using a 2D LiDAR and a Monocular Camera via Deep Learning  
-  * Thesis (Kor.) - 2D 라이다와 단일 카메라를 이용한 이단식 딥러닝 네트워크 기반 3D 깊이 추정 방법
+  * Thesis title: Two-stage Depth Prediction using a 2D LiDAR and a Monocular Camera via Deep Learning  
 * **B.S Mechanical Engineering / KAIST** - 2013.03~2018.02
 
 ## Experience

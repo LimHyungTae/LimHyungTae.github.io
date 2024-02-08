@@ -3,6 +3,8 @@ layout: page
 title: Lectures
 ---
 
+(Under the contruction)
+
 ## 수식 없는 SLAM
 
 1. Introduction
