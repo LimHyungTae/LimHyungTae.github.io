@@ -31,6 +31,17 @@ Window 링크는 [https://johnhaller.com/useful-stuff/disable-caps-lock](https:/
 
 ---
 
+Apr.1.2024 Update
+
+In Ubuntu 22.04, please follow
+
+```
+$ sudo add-apt-repository universe
+$ sudo apt install gnome-tweaks
+```
+
+---
+
 써본 후기
 - 처음에 한 30분은 페터 빅셀의 '책상은 책상이다'에 나오는 것처럼, 혼자서 '책상을 의자라고 부르고 있는게 아닌가, '이게 맞나' 싶을 정도로 헷갈린다.
 - 하루에서 이틀 지나게 되면 새끼 손가락이 약간 저릿저릿하다. 새끼 손가락 근육이 단련되는 느낌? Ctrl이 좌측 하단에 있을 때 보다 뻗어서 눌러야 하니 손날쪽 근육이 더 쓰여져서 그런 듯하다.
