@@ -5,13 +5,13 @@ title: About Me
 
 <p class="about-text">
 <span class="fa fa-briefcase about-icon"></span>
-An incoming postdoc in <a href="http://web.mit.edu/sparklab/"><strong>SPARK Lab</strong></a> in Massachusetts Institute of Technology (MIT) from Apr. 2024.
-Currently a postdoc in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory</strong></a> in Korea Advanced Institute of Science and Technology (KAIST). Previously worked as a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
+Currently a postdoc in <a href="http://web.mit.edu/sparklab/"><strong>SPARK Lab</strong></a> at Massachusetts Institute of Technology (MIT) from Apr. 2024.
+Previously worked as a postdoc in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory</strong></a> in Korea Advanced Institute of Science and Technology (KAIST), a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
 </p>
 
 <p class="about-text">
 <span class="fa fa-graduation-cap about-icon"></span>
-Obtained my Ph.D and M.S in <strong>Electrical Engineering</strong> from KAIST (supervised by academic father, <a href="https://urobot.kaist.ac.kr/url_teams/prof-hyunmyung/" target="_blank">Prof. Hyun Myung</a>) and my Bachelor of <strong>Mechanical Engineering</strong> from KAIST
+Obtained my Ph.D and M.S in <strong>Electrical Engineering</strong> from KAIST (supervised by academic father, <a href="https://urobot.kaist.ac.kr/url_teams/prof-hyunmyung/" target="_blank">Prof. Hyun Myung</a>) and my Bachelor of <strong>Mechanical Engineering</strong> from KAIST.
 </p>
 
 <p class="about-text">
