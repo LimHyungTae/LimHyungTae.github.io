@@ -5,8 +5,8 @@ title: About Me
 
 <p class="about-text">
 <span class="fa fa-briefcase about-icon"></span>
-Currently a <strong>postdoc</strong>strong> in <a href="http://web.mit.edu/sparklab/"><strong>SPARK Lab</strong></a> at Massachusetts Institute of Technology (MIT) from Apr. 2024.
-Previously worked as a <strong>postdoc</strong>strong> in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory</strong></a> in Korea Advanced Institute of Science and Technology (KAIST), a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
+Currently a <strong>postdoc</strong> in <a href="http://web.mit.edu/sparklab/"><strong>SPARK Lab</strong></a> at Massachusetts Institute of Technology (MIT) from Apr. 2024.
+Previously worked as a <strong>postdoc</strong> in <a href="https://urobot.kaist.ac.kr/"><strong>Urban Robotics Labaratory</strong></a> in Korea Advanced Institute of Science and Technology (KAIST), a <strong>visiting student</strong> in <a href="https://www.ipb.uni-bonn.de" target="_blank">StachnissLab</a> and <strong>research intern</strong> in <a href="https://www.naverlabs.com/" target="_blank">Naver Labs</a>.
 </p>
 
 <p class="about-text">
