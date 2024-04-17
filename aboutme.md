@@ -87,4 +87,4 @@ I won the grand prize at Taeul Singing Competition, which is the largest singing
 
 ## Contact
 
-shapelim `dot` kaist `dot` ac `dot` kr
+shapelim `at` mit `dot` edu
