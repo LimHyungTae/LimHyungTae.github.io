@@ -1,34 +1,8 @@
 ---
 layout: page
-title: Lectures
+title: Post Lists
 ---
 
-(Under the contruction)
-
-## 수식 없는 SLAM
-
-1. Introduction
-2. SLAM이란?
-3. Filter 기반의 SLAM
-   1. TBU
-   2. TBU
-   3. TBU
-4. Graph 기반의 SLAM
-   1. TBU
-   2. TBU
-   3. TBU
-
-### Camera를 이용한 SLAM
-
-1. 카메라 센서에 대한 이해
-2. TBU
-
-### LiDAR를 이용한 SLAM
-
-1. LiDAR 센서에 대한 이해
-2. TBU
-
---- 
 
 ### ROS Point Cloud Library Tutorials
 
