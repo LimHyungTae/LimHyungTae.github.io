@@ -8,4 +8,4 @@ title: Post Lists
 
 ---
 
-{% include post_links_pcl.html %}
+{% include post_links_all.html %}

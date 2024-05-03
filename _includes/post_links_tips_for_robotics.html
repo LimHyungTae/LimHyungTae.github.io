@@ -1,5 +1,9 @@
+{% assign reversed_posts = site.posts | reverse %}
+
 <ol>
-    {% for post in site.posts %}
-        <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-    {% endfor %}
-</ol>
+  {% for post in reversed_posts %}
+  {% if post.title contains 'SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁' %}
+  <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+  {% endif %}
+  {% endfor %}
+</ol>/ol>
