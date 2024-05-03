@@ -51,3 +51,6 @@ title: Post Lists
 
 {% include post_links.html %}
 
+### Link Test2 
+
+{% include post_links.html %}
