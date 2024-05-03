@@ -20,7 +20,7 @@ baseurl: ""
 navbar-links:
   About Me: "aboutme"
   Publications: "publications"
-  Lectures: "lectures"
+  Post Lists: "lectures"
   #Resources:
     #- Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     #- Learn markdown: "http://www.markdowntutorial.com/"
