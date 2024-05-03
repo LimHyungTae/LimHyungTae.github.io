@@ -8,6 +8,16 @@ layout: base
   {{ content }}
 </div>
 
+<div class="sidebar">
+  <h3>Old Posts</h3>
+  <ul>
+    {% for post in site.posts %}
+    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
 {% if page.use_math %}
 	{% include mathjax_support.html %}
 {% endif %}
+
