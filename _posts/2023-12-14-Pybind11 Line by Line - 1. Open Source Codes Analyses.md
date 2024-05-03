@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-12-14-Pybind11 Line by Line - 1. Open Source Codes Analyses
+title: Pybind11 Line by Line - 1. Open Source Codes Analyses
 subtitle: CMakeLists.txt setting for Pybind11
 tags: [Pybind11, Pybinding, Python, C++]
 comments: true

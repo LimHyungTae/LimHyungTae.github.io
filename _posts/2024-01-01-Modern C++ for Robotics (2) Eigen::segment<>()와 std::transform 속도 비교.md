@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024-01-01-Modern C++ for Robotics (2) Eigen::segment<>()와 std::transform 속도 비교 
+title: Modern C++ for Robotics (2) Eigen::segment<>()와 std::transform 속도 비교 
 subtitle: Comparison of element-wise operation and segment<>()
 tags: [C++, Eigen, Robotics]
 comments: true
@@ -138,3 +138,7 @@ TBB는 데이터의 동시성과 스레드 간의 작업 분할을 관리하는�
 ```
 
 함수형 프로그래밍은 모던 C++의 큰 특징인데, [여기](https://mangkyu.tistory.com/111) 설명이 잘 되어 있으니 참고하면 좋을듯 하다.
+
+---
+
+{% include post_links_tips_modern_cpp.html %}

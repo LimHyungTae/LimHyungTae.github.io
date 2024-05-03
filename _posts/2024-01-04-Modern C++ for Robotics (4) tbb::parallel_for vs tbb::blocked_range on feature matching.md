@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024-01-04-Modern C++ for Robotics (4) tbb::parallel_for vs tbb::blocked_range on feature matching 
+title: Modern C++ for Robotics (4) tbb::parallel_for vs tbb::blocked_range on feature matching 
 subtitle: Speed Comparison of tbb::Parallel_for vs tbb::blocked_range
 tags: [C++, tbb, parallel programming, robotics]
 comments: true
@@ -94,3 +94,9 @@ tbb::parallel_for(tbb::blocked_range<int>(0, nPtj),
 그리고 데이터의 크기, N,이 그리 크지 않을 때 (한 100개~500개 이하)는 multi-threading을 하는 것이 오히려 느린 경우도 있다. 그러니 꼭 single thread로 짰을 때와 multi thread로 짰을 때 속도 차이가 유의미하게 나는지 확인해보는 습관이 중요한 거 같다.
 
 TBB 잘 쓰고 싶다...오늘의 프로파일링 끗!
+
+---
+
+Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
+
+{% include post_links_tips_modern_cpp.html %}

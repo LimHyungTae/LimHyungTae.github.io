@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-08-14-TBB Tutorials (Easy) - 2. Tips and Tricks (Practice on Patchwork)
+title: TBB Tutorials (Easy) - 2. Tips and Tricks (Practice on Patchwork)
 subtitle: Towards TBB
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, Patchwork]
 comments: true

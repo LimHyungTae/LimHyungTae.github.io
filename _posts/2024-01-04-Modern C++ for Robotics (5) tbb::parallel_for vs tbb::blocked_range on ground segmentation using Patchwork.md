@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024-01-04-Modern C++ for Robotics (5) tbb::parallel_for vs tbb::blocked_range on ground segmentation using Patchwork 
+title: Modern C++ for Robotics (5) tbb::parallel_for vs tbb::blocked_range on ground segmentation using Patchwork 
 subtitle: Speed Comparison of tbb::Parallel_for vs tbb::blocked_range
 tags: [C++, tbb, parallel programming, robotics]
 comments: true
@@ -32,3 +32,8 @@ Patchwork code에서 `num_patches`가 그렇게 크지 않은 숫자임에도 �
 
 N이 작은 경우에도 tbb::blocked_range가 더 빠른 것이 의외였다. `tbb::parallel_for(0, n, [&](int i) {...})`는 그럼 언제 써야 하는지 혹시 아는 이가 있다면 꼭 좀 나에게 알려 줬으면 좋겠다,,,
 
+---
+
+Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
+
+{% include post_links_tips_modern_cpp.html %}

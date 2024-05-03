@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-03-13-Ubuntu에서 CapsLock + hjkl를 통한 방향키 세팅하는 법
+title: Ubuntu에서 CapsLock + hjkl를 통한 방향키 세팅하는 법
 subtitle: Clion + Vim (IdeaVim) 세팅 (2)
 tags: [Clion, Pycharm, IntelliJ, Vim]
 comments: true

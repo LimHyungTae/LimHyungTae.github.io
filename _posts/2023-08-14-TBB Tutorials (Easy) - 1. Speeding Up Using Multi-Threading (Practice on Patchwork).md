@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-08-14-Multi-Threading Using TBB for Speeding Up Your Algorithm (Practice on Patchwork)
+title: Multi-Threading Using TBB for Speeding Up Your Algorithm (Practice on Patchwork)
 subtitle: Towards TBB
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, Patchwork]
 comments: true

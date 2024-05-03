@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024-01-04-Modern C++ for Robotics (3) TBB의 Segmentation fault 해결하는 방법 
+title: Modern C++ for Robotics (3) TBB의 Segmentation fault 해결하는 방법 
 subtitle: 1주일 동안 디버깅을 하며 알아낸 것들
 tags: [C++, Eigen, Robotics]
 comments: true
@@ -165,3 +165,9 @@ void searchKDTree(const KDTree& tree, const T& input, std::vector<int>& indices,
 
 * `resize`를 할 때는, **기존의 메모리 주소를 유지하면서 크기를 줄이는 경우**에만 thread-safe하다. 그냥 TBB 쓸때는 메모리를 건드릴 생각을 하지말자!
 * 이 Segmentation fault 때문에 근 3개월 헤맸는데, 역시 코드는 거짓말을 하지 않는다...
+
+---
+
+Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
+
+{% include post_links_tips_modern_cpp.html %}

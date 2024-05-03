@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-03-14-Terminator 단축키 변경하는 법
+title: Terminator 단축키 변경하는 법
 subtitle: Terminator 단축키 변경하는 법
 tags: [Terminator]
 comments: true

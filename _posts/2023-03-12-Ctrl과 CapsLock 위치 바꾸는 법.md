@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-03-12-Ctrl과 CapsLock 위치 바꾸는 법
+title: Ctrl과 CapsLock 위치 바꾸는 법
 subtitle: Clion + Vim (IdeaVim) 세팅 (1)
 tags: [Clion, Pycharm, IntelliJ, Vim]
 comments: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024-01-01-Modern C++ for Robotics (1) Introduction
+title: Modern C++ for Robotics (1) Introduction
 subtitle: Just take a note of what I learned
 tags: [C++, Eigen, Robotics]
 comments: true
@@ -29,3 +29,9 @@ C++은 로보틱스에서 성능과 효율성이 중요한 요소로 자리 잡�
 로보틱스에 특화된 이러한 도구들의 활용 예를 소개하면서, 이 분야에 관심이 있는 독자들에게 유용한 정보를 제공할 예정이다.
 
 새해의 끄적끄적 끝!
+
+---
+
+Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
+
+{% include post_links_tips_modern_cpp.html %}

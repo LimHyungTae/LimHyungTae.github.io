@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-03-14-Clion과 IdeaVim을 활용한 세팅
+title: Clion과 IdeaVim을 활용한 세팅
 subtitle: Clion + Vim (IdeaVim) 세팅 (3)
 tags: [Clion, Pycharm, IntelliJ, Vim]
 comments: true

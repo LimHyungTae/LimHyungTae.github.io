@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-12-15-Overleaf, TeXstudio 쓰지 마세요! Pycharm의 TeXiFy를 활용한 효율적인 LaTex 작성
+title: Overleaf, TeXstudio 쓰지 마세요! Pycharm의 TeXiFy를 활용한 효율적인 LaTex 작성
 subtitle: Leverage IntelliJ for integration IDE
 tags: [Pycharm, IDE, Latex, Overleaf, TeXiFy]
 comments: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2023-12-14-Pybind11 Line by Line - 2. Package에 대한 이해
+title: Pybind11 Line by Line - 2. Package에 대한 이해
 subtitle: Understanding Pybind11 easily
 tags: [Pybind11, Pybinding, Python, C++]
 comments: true
