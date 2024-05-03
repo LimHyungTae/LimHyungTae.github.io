@@ -1,6 +1,8 @@
 <!-- _includes/post_list.html -->
+{% assign reversed_posts = site.posts | reverse %}
+
 <ol>
-    {% for post in site.posts %}
+    {% for post in reversed_posts %}
         {% if post.title contains 'ROS Point Cloud Library' %}
             <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
         {% endif %}
