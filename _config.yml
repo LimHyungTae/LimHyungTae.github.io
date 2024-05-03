@@ -161,7 +161,7 @@ timezone: "Asia/Seoul"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 10
+paginate: 20
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
