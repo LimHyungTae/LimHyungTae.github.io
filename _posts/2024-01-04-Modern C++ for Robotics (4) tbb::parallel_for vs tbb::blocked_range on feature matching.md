@@ -99,4 +99,4 @@ TBB 잘 쓰고 싶다...오늘의 프로파일링 끗!
 
 Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
 
-{% include post_links_tips_modern_cpp.html %}
+{% include post_links_modern_cpp.html %}

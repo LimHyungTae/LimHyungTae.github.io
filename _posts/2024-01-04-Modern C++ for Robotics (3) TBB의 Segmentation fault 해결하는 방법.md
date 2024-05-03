@@ -170,4 +170,4 @@ void searchKDTree(const KDTree& tree, const T& input, std::vector<int>& indices,
 
 Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
 
-{% include post_links_tips_modern_cpp.html %}
+{% include post_links_modern_cpp.html %}

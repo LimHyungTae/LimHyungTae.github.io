@@ -36,4 +36,4 @@ N이 작은 경우에도 tbb::blocked_range가 더 빠른 것이 의외였다. `
 
 Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
 
-{% include post_links_tips_modern_cpp.html %}
+{% include post_links_modern_cpp.html %}

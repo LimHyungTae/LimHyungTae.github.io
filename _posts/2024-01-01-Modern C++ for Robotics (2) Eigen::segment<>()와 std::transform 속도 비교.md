@@ -141,4 +141,4 @@ TBB는 데이터의 동시성과 스레드 간의 작업 분할을 관리하는�
 
 ---
 
-{% include post_links_tips_modern_cpp.html %}
+{% include post_links_modern_cpp.html %}

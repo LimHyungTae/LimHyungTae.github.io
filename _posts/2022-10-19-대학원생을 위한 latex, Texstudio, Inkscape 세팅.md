@@ -54,6 +54,8 @@ https://www.dropbox.com/s/1z1up9m8tme637p/How_to_Use_Inkscape%20.pdf?dl=0
 ![lb_command](../img/inkscape_option.png)
 
 이는 아래와 같은 명령어로 불러올 수 있다.
+
+{% raw %}
 ```
 \begin{figure}[t!]
 	\captionsetup{font=footnotesize}
@@ -65,6 +67,7 @@ https://www.dropbox.com/s/1z1up9m8tme637p/How_to_Use_Inkscape%20.pdf?dl=0
 	\label{fig:fig1}
 \end{figure}
 ```
+{% endraw %}v^
 
 뭔가 어려워 보이지만, 아래와 같이 세 가지 장점이 있다. 개인적인 욕심으로는 모든 이들에게 이 방식으로 작성하기를 추천한다
 
