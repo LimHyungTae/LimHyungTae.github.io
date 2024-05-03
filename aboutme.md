@@ -11,7 +11,7 @@ Previously worked as a <strong>postdoc</strong> in <a href="https://urobot.kaist
 
 <p class="about-text">
 <span class="fa fa-graduation-cap about-icon"></span>
-Obtained my Ph.D and M.S in <strong>Electrical Engineering</strong> from KAIST (supervised by academic father, <a href="https://urobot.kaist.ac.kr/url_teams/prof-hyunmyung/" target="_blank">Prof. Hyun Myung</a>) and my Bachelor of <strong>Mechanical Engineering</strong> from KAIST.
+Earned my Ph.D and M.S in <strong>Electrical Engineering</strong> from KAIST (supervised by academic father, <a href="https://urobot.kaist.ac.kr/url_teams/prof-hyunmyung/" target="_blank">Prof. Hyun Myung</a>) and my Bachelor of <strong>Mechanical Engineering</strong> from KAIST.
 </p>
 
 <p class="about-text">
