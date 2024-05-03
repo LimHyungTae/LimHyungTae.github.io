@@ -1,0 +1,5 @@
+<ol>
+    {% for post in site.posts | reverse %}
+        <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ol>
