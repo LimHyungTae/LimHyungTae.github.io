@@ -212,15 +212,3 @@ Mean time:
 0.003955806273062731
 
 뭐 그닥 좋아지진 않는듯?
-
----
-
-parallel_for 과 block_range
-
-Case 1
-
-int num_patches = patch_indices_.size();
-
-tbb::parallel_for(0, num_patches, [&](int i) {
-
-Case 2
