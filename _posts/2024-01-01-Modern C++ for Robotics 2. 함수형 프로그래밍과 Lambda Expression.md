@@ -110,4 +110,7 @@ Lambda expression이 처음에 쓰려고 하면 머리에 잘 기억이 남지 �
 
 ---
 
+Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
+사용된 코드들은 [여기](https://github.com/LimHyungTae/moderncpp_study)에서 확인할 수 있습니다.
+
 {% include post_links_modern_cpp.html %}

@@ -156,4 +156,7 @@ tbb::parallel_for(tbb::blocked_range<int>(0, num_patches),
 
 ---
 
+Robotics 연구자/개발자를 위한 Modern C++ 시리즈입니다.
+사용된 코드들은 [여기](https://github.com/LimHyungTae/moderncpp_study)에서 확인할 수 있습니다.
+
 {% include post_links_modern_cpp.html %}
