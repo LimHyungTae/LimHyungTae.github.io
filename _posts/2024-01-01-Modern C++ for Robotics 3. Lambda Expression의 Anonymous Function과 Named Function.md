@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Modern C++ for Robotics 3. Lambda Expression의 Anonymous Function과 Named Function
-subtitle: Comparison of element-wise operation and segment<>()
 tags: [C++, Eigen, Robotics]
 comments: true
 ---

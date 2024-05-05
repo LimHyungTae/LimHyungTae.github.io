@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Modern C++ for Robotics 1. Introduction
-subtitle: Just take a note of what I learned
+subtitle: Towards Modern C++ for Robotics
 tags: [C++, Eigen, Robotics]
 comments: true
 ---

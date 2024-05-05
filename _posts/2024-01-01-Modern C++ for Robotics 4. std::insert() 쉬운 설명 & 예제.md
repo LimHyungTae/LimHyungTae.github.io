@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Modern C++ for Robotics 5. std::move() 쉬운 설명 & 예제
-subtitle: Comparison of element-wise operation and segment<>()
 tags: [C++, Eigen, Robotics]
 comments: true
 ---
