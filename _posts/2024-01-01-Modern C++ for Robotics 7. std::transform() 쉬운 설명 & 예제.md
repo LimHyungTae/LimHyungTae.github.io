@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modern C++ for Robotics 6. std::transform() 쉬운 설명 & 예제
+title: Modern C++ for Robotics 7. std::transform() 쉬운 설명 & 예제
 subtitle: Easy Explanation & Examples of std::transform()
 tags: [C++, Eigen, Robotics]
 comments: true

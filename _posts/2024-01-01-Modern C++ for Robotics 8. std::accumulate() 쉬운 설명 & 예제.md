@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modern C++ for Robotics 7. std::accumulate() 쉬운 설명 & 예제
+title: Modern C++ for Robotics 8. std::accumulate() 쉬운 설명 & 예제
 subtitle: Easy Explanation & Examples of std::accumulate()
 tags: [C++, Eigen, Robotics]
 comments: true
