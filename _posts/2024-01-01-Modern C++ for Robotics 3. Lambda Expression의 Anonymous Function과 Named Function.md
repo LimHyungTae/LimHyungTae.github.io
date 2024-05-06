@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Modern C++ for Robotics 3. Lambda Expression의 Anonymous Function과 Named Function
+subtitle: Anoynmous and Named Function in Lambda Expression
 tags: [C++, Eigen, Robotics]
 comments: true
 ---

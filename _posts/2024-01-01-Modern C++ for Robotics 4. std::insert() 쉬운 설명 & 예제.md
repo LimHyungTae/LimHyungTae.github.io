@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Modern C++ for Robotics 5. std::move() 쉬운 설명 & 예제
+title: Modern C++ for Robotics 4. std::insert() 쉬운 설명 & 예제
+subtitle: Easy Explanation & Examples of std::insert() 
 tags: [C++, Eigen, Robotics]
 comments: true
 ---

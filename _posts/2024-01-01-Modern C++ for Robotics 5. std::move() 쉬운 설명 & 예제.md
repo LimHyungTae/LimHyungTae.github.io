@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Modern C++ for Robotics 4. std::move() 쉬운 설명 & 예제
+subtitle: Easy Explanation & Examples of std::move()
 tags: [C++, Eigen, Robotics]
 comments: true
 ---

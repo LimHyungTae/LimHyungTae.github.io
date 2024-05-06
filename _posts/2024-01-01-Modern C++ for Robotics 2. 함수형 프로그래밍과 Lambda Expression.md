@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Modern C++ for Robotics 2. 함수형 프로그래밍과 Lambda Expression
+subtitle: Functional Programming and Lambda Expression
 tags: [C++, Eigen, Robotics]
 comments: true
 ---
