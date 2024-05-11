@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modern C++ for Robotics 10. std::copy_if(), std::remove_if(), std::find_if(), std::replace_if() 쉬운 설명 & 예제
+title: Modern C++ for Robotics 13. std::replace_if() 쉬운 설명 & 예제
 subtitle: Easy Explanation & Examples of Conditional Algorithms
 tags: [C++, Eigen, Robotics]
 comments: true
