@@ -146,7 +146,7 @@ for (const auto& elem : set2) {
 로보틱스의 경우에는 이를 통해 keyframes의 id를 다루거나, 혹은 multi-robot 상황에서 landmark들의 id를 unique하게 관리해야하는 상황에서 활용할 수 있다.
 
 
-## 로보틱스에서 예제
+## 로보틱스에서 활용 사례
 
 
 

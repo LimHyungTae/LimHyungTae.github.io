@@ -57,7 +57,7 @@ std::for_each(std::execution::par_unseq, v.begin(), v.end(), [](int &x) { x *= 2
 간략히만 말하자면, for_each 문 내에서 바깥에 있는 변수를 resize하거나, 바깥의 vector에 emplace_back(혹은 push_back)을 하게 되면 충돌이 일어나니, 조심해야 한다.
 
 
-## 로보틱스에서 예제
+## 로보틱스에서 활용 사례
 
 std::for_each는 너무나도 많이 써서 아마 '내 알고리즘이 빠르다!'라고 주장하는 레포지토리를 보면 거진 대부분 std::for_each를 사용하고 있을 것이다. 
 

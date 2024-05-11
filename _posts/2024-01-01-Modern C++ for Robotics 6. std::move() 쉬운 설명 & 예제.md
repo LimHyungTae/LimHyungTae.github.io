@@ -92,7 +92,7 @@ int main() {
 결론적으로, std::move의 주요 이점은 객체 간에 데이터를 "복사"하는 대신 "이동"을 통해 리소스를 효율적으로 재사용할 수 있다는 점이다.
 이는 특히 robotics에서 map 단위의 수 백만개의 point cloud를 다루거나 SfM의 수 십만개 이상의 feature를 다룰 때 계산 효율적으로 데이터를 다룰 수 있다.
 
-## 로보틱스에서 예제
+## 로보틱스에서 활용 사례
 
 [Faster-LIO](https://github.com/gaoxiang12/faster-lio/blob/6f6f1d6ea97071902a82c138f3359d4711873e2b/include/ivox3d/ivox3d_node.hpp#L223C1-L237C3)에서도 보면 이러한 이점을 활용하기 위해 point를 리턴할 때 std::move를 통해 지니고 있던 point를 어딘가로 전달하는 것을 확인할 수 있다.
 

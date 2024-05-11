@@ -62,7 +62,7 @@ for (int i = 0; i < dst.size(); i++) {
 이는 프로그램 오류로 이어질 수 있으니 **반드시** `dst`의 크기가 `src`가 크게 잡혀있는지 확인해야 한다.
 `dst`의 크기가 `src`보다 크기만 하다면 위에서 0 값이 계속 0으로 유지되는 것처럼, 큰 문제가 일어나지 않는다. 
 
-## 로보틱스에서 예제
+## 로보틱스에서 활용 사례
 
 로보틱스에서 pose transformation은 숙명이라고 볼 수 있는데, 만약 `Eigen::Vector4f`의 std::vector인 points가 있고,
 `Eigen::Matrix4f`인 transformation `T`가 있으면, 아래와 같이 한 줄로 transformation을 작성할 수 있다.
