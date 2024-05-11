@@ -9,12 +9,14 @@ comments: true
 ## std::move
 
 std::insert는 C++ 표준 라이브러리의 컨테이너 클래스에서 사용할 수 있는 멤버 함수로, 특정 위치에 하나 이상의 요소를 삽입하는 데 사용된다. 
-std::insert의 장점은, 다양한 컨테이너 타입(e.g., std::vector, std::unordered_set 등등)에 쉽게 사용가능하다는 것이다. 물론 각각의 컨테이너 타입에 따라 약간씩 다를 수 있다. 
+std::insert의 장점은, 다양한 컨테이너 타입(e.g., std::vector, std::unordered_set 등등)에 쉽게 사용 가능하다는 것이다. 물론 각각의 컨테이너 타입에 따라 약간씩 다를 수 있다. 
 
 
 ### std::vector에서의 std::insert 사용법
 
-std::vector에서 std::insert는 주어진 위치에 요소를 삽입한다. 삽입 위치는 반복자로 지정하고, 삽입할 값도 함께 아래와 같이 제공해야 한다. 또한 횟수를 지정해서 여러번 값을 insert를 할 수도 있다:
+std::vector에서 std::insert 함수는 주어진 위치에 요소를 삽입하는데 사용된다. 
+삽입 위치는 반복자로 지정하고, 삽입할 값도 함께 아래와 같이 제공되어야 한다. 
+또한, 특정 횟수만큼 값을 반복해서 삽입하는 것도 가능하다:
 
 ```cpp
 #include <iostream>
@@ -47,8 +49,9 @@ int main() {
 }
 ```
 
-하지만 std::vector의 경우, 요소를 삽입할 때마다 컨테이너의 기존 요소들을 뒤로 밀어내야 하기 때문에 큰 벡터에서는 성능상 비용이 클 수 있습니다.
-주로 std::vector에서는 여러 std::vector를 합칠 때 std::insert를 활용하면 편리하다. 아래 예제는 네 개의 std::vector를 합치는 예제이다:
+하지만 std::vector의 경우, 요소를 삽입할 때마다 컨테이너의 기존 요소들을 뒤로 밀어내야 하기 때문에 큰 벡터에서는 성능상 비용이 클 수 있다.
+그 대신, std::vector에서는 여러 std::vector를 하나로 합칠 때 std::insert를 활용하면 편리하다. 
+아래 예제는 네 개의 std::vector를 합치는 방법을 보여준다:
 
 ```cpp
 #include <iostream>
@@ -88,7 +91,7 @@ int main() {
 }
 ```
 
-이를 통해 두 가지를 알 수 있는데, 첫 번째는 아래와 같이 for 문을 돌며 요소를 넣어주는 행위를 
+이를 통해 두 가지를 알 수 있는데, 첫 번째는 아래와 같이 for 문을 돌며 요소를 각각 타겟 vector `vec1`에 담아주던 행위를: 
 
 ```cpp
 for (const auto& elem : vec4) {
@@ -97,14 +100,14 @@ for (const auto& elem : vec4) {
 ```
 
 코드 한 줄로 간결히 표현할 수 있다는 것이다(코드의 간지 또한 덤으로 얻을 수 있다(?)).
-그리고 두 번째로는 std::make_move_iterator를 사용하여 벡터의 요소를 복사 없이 '이동'시킬 수 있다는 것이다 (이동시킨다는 것이 중요하다!).
-아무리 emplace_back이 push_back보다 효율적이라고 해도, std::make_move_iterator를 통해 요소를 이동시키는 것이 퍼포먼스 측면에서 보다 효율적임을 잊지 말자.
-이는 다음 글 std::move에서 좀 더 자세히 다룰 예정이다.
+그리고 두 번째로는 `std::make_move_iterator`를 사용하여 벡터의 요소를 복사 없이 '이동'시킬 수 있다는 것이다 (이동시킨다는 것이 중요하다!).
+아무리 emplace_back이 push_back보다 효율적이라고 해도, `std::make_move_iterator`를 통해 요소를 이동시키는 것이 성능 측면에서 더욱 효율적임을 잊지 말자.
+이는 [다음 글 std::move](https://limhyungtae.github.io/2024-01-01-Modern-C++-for-Robotics-6.-std-move()-%EC%89%AC%EC%9A%B4-%EC%84%A4%EB%AA%85-&-%EC%98%88%EC%A0%9C/)에서 좀 더 자세히 다룰 예정이다.
 
 
-### std::unordered_set에서의 std::insert 사용법
+### std::set이나 std::map에서의 std::insert 사용법
 
-마찬가지로 std::insert를 set이나 map container에서도 사용이 가능하다.
+마찬가지로 std::insert를 set이나 map 컨테이너에서도 사용이 가능하다.
 
 ```
 #include <iostream>
