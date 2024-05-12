@@ -6,7 +6,7 @@ tags: [C++, Eigen, Robotics]
 comments: true
 ---
 
-## std::move
+## std::insert
 
 std::insert는 C++ 표준 라이브러리의 컨테이너 클래스에서 사용할 수 있는 멤버 함수로, 특정 위치에 하나 이상의 요소를 삽입하는 데 사용된다. 
 std::insert의 장점은, 다양한 컨테이너 타입(e.g., std::vector, std::unordered_set 등등)에 쉽게 사용 가능하다는 것이다. 물론 각각의 컨테이너 타입에 따라 약간씩 다를 수 있다. 

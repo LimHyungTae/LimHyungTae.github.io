@@ -68,9 +68,9 @@ for (const auto& elem: nums) {
     max_value = std::max(max_value, elem);
 }
 ```
-을 std::accumulate()를 사용하여 한 줄로 표현할 수 있다. 
+을 std::accumulate()를 사용하여 한 줄로 간결히 표현할 수 있다. 
 
-이를 더 심화시키면 아래와 내가 만든 struct나 class가 지니는 멤버 변수의 값이 최대인 객체를 찾는 식으로도 활용이 가능하다:
+이를 더 심화시키면 아래와 struct나 class가 지니는 멤버 변수의 값이 최대인 객체를 찾는 식으로도 활용이 가능하다:
 
 ```cpp
 #include <numeric>
@@ -97,11 +97,11 @@ int main() {
 }
 ```
 
-이러한 이유로 std::accumulate는 조건을 탐색할 때에도 많이 사용된다.
+이러한 이유로 std::accumulate는 대소비교를 한 후, 가장 큰/작은 값을 리턴할 때도 많이 사용된다.
 
 ## 로보틱스에서 활용 
 
-사실 합이나 평균을 구하는 과정에서는 모두 다 자명하게 사용 가능 하다.
+아래의 예시 코드들처럼 합이나 평균을 구하는 과정에서는 모두 다 자명하게 사용 가능 하다.
 
 ```cpp
 // From https://github.com/ethz-asl/maplab
@@ -119,10 +119,11 @@ const float mean = std::accumulate(times.begin(), times.end(), 0.f) / times.size
                             true, [](bool a, bool b) { return a && b; });
 ```
 
-하지만 위의 코드는 파일을 불러오는 코드여서 상관없긴 하지만, `normals_indicator`의 모든 요소가 조건을 충족하는 지 확인해야 한다는 단점이 있다.
-따라서 무진장 큰 vector라면, 모든 요소의 boolean 값을 계속해서 확인하는 것이 비효율 적일 수 있다.
+하지만 위의 코드는 파일을 불러오는 코드여서 상관없긴 하지만, std::accumulate를 활용해서 각 요소를 비교하면, `normals_indicator`의 모든 요소가 조건을 충족하는 지 확인해야 한다는 단점이 있다.
+따라서 무진장 큰 vector라면, 모든 요소의 boolean 값을 계속해서 확인하는 것이 비효율적일 수 있다. 
+예로 들어서, 100,000개의 요소가 있는 vector에서 2번째 vector의 normal이 유효하지 않다는 것을 알게 되었으면 그 즉시 `all_normal_set`을 false로 return하면 되는데, 남은 999,998개를 확인하는 추가적인 연산이 필요하기 때문이다.
 
-이런 경우에는 [std::all_of](https://en.cppreference.com/w/cpp/algorithm/all_of)를 사용하는 것이 더 효율적이다.
+이런 경우에는 [std::all_of](https://limhyungtae.github.io/2024-01-01-Modern-C++-for-Robotics-9.-std-all_of(),-std-any_of(),-std-none_of()-%EC%89%AC%EC%9A%B4-%EC%84%A4%EB%AA%85-&-%EC%98%88%EC%A0%9C/)를 사용하는 것이 더 효율적이다.
 
 ```cpp
 // 모든 element가 조건을 만족하는 지 확인
@@ -131,12 +132,13 @@ bool all_normals_set = std::all_of(normals_indicator.begin(), normals_indicator.
     });
 ```
 
-std::all_of가 std::accumulate보다 더 효율적인 이유는, 조건을 만족하지 않는 요소를 만나면 바로 false를 반환하고 반복을 중단하기 때문이다.
+std::all_of가 std::accumulate보다 더 효율적인 이유는, 조건을 만족하지 않는 요소를 만나면 바로 false를 반환하고 반복을 중단하기 때문이다 (이는 다음 블로그 글에서 자세히 설명한다).
 
 ## 결론
 
-Weighted sum, 평균, 최대값, 최소값, 조건을 만족하는지 확인하는 등 다양한 활용이 가능한 std::accumulate() 함수에 대해 알아보았다.
-하지만 특정 조건을 만족하는지 확인하는 경우에는, 더 효율적인 함수형 프로그래밍을 지원할 수도 있으니 주의해서 사용해야 한다(키워드로는 std::all_of, std::any_of, std::none_of 등이 있다). 
+Weighted sum, 평균, 최대값, 최소값에 대응되는 요소 리턴 받기 등 다양한 활용이 가능한 std::accumulate 함수에 대해 알아보았다.
+하지만 특정 조건을 만족하는지 확인하는 경우에는, 더 효율적인 함수형 프로그래밍이 있으니 (e.g., std::all_of, std::any_of, std::none_of), 굳이 std::accumulate를 사용하지는 말자.
+
 
 ---
 
