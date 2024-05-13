@@ -76,12 +76,12 @@ void AdaptiveThreshold::UpdateModelDeviation(const Sophus::SE3d &current_deviati
 입력값을 받아서 주저리주저리 코드를 적는 것보다, 위의 네 줄이 model의 error를 구하는 부분이라고 알려주어 코드를 읽는 사람이 더 쉽게 이해할 수 있게 해준다 (물론 lambda expression과 친숙하지 않은 이에게는 고통일지도...).
 즉, 위의 코드에서는 함수의 black box 성질을 이용해 '마! error가 어떻게 계산되는지는 내가 잘 짜뒀으니 대충 이 과정을 통해 `model_error`가 리턴된다'를 알려 줄 수 있다는 것이다. 
 이를 코드를 추상화(abstraction)한다고 표현하는데, 
-핵심적인 기능과 개념에 집중하면서 불필요한 세부사항을 숨기는 것을 의미한다. 
+핵심적인 기능과 개념에 집중하면서 불필요한 세부 사항을 숨기는 것을 의미한다. 
 마치 건축가가 건물의 청사진을 그릴 때, 벽돌이나 철근 콘크리트와 같은 구체적인 세부사항보다는 건물의 전체적인 구조와 디자인에 집중하는 것과 유사하다고 생각할 수 있다..
 즉, 복잡한 내부 로직을 감추고 사용자나 다른 프로그램 개발자가 간편하게 사용할 수 있는 인터페이스를 제공함으로써, 프로그램의 복잡도를 관리하고 사용의 용이성을 높인다. 
 
 
-만약에 위의 코드가 아래와 같이 적혀 있다고 생각해보자:
+만약에 위의 코드가 아래와 같이 적혀 있다고 생각해 보자:
 
 ```cpp
 void AdaptiveThreshold::UpdateModelDeviation(const Sophus::SE3d &current_deviation) {
@@ -147,12 +147,12 @@ tbb::parallel_for(tbb::blocked_range<int>(0, num_patches),
 });
 ```
 
-위의 코드를 자세히 알 필요는 없지만, `tbb::parallel_for`을 통해 병렬 처리를 할 때 각 스레드가 처리해야 할 함수의 요소를 lambda function으로 표현하는 것을 확인할 수 있다. 
+위의 코드를 자세히 알 필요는 없지만, `tbb::parallel_for`을 통해 병렬 처리를 할 때 각 쓰레드가 처리해야 할 함수의 요소를 lambda function으로 표현하는 것을 확인할 수 있다. 
 이를 통한 장점은 lambda function도 '함수'이기 때문에 함수의 내부에서 새로운 변수를 선언하면 이 변수들은 로컬 변수가 되고, segmentation fault에서 자유로워진다. 
-예를 들어, 위의 코드에서 각 스레드들이 `zone_idx`, `ring_idx`, `sector_idx`, `concentric_idx`, `ground_z_vec`, `ground_z_elevation`, `surface_variable` 등을 로컬 변수로 편하게 선언해서 사용하는 것을 볼 수 있다. 
+예를 들어, 위의 코드에서 각 쓰레드가 `zone_idx`, `ring_idx`, `sector_idx`, `concentric_idx`, `ground_z_vec`, `ground_z_elevation`, `surface_variable` 등을 로컬 변수로 편하게 선언해서 사용하는 것을 볼 수 있다. 
 따라서 코드가 매우 thread-safe하게 된다!
 
-로보틱스 분야에서는 '그래서 네 알고리즘이 real-time으로 쓸 수 있냐?'에 대해 생각보다 엄격하게 평가하지만, multi-threading 기법을 잘 활용하면 알고리즘을 real-time으로 사용할 수 있는 척 할 수 있다
+로보틱스 분야에서는 '그래서 네 알고리즘이 real-time으로 쓸 수 있냐?'에 대해 생각보다 엄격하게 평가하지만, multi-threading 기법을 잘 활용하면 알고리즘을 real-time으로 사용할 수 있는 척할 수 있다
 (물론 얼마만큼의 CPU를 쓰는지는 논문들 내에서 안 알려주지 않는다...)
 
 ## 결론
