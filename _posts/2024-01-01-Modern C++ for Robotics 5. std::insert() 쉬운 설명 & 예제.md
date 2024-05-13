@@ -28,7 +28,7 @@ int main() {
     // 3을 vec[2] 위치에 삽입
     vec.insert(vec.begin() + 2, 3);
 
-    // 출력: 1 2 3 4 5
+    // Output: 1 2 3 4 5
     std::cout << "Vector after insertion: ";
     for (int elem : vec) {
         std::cout << elem << " ";
@@ -38,7 +38,7 @@ int main() {
     // 100을 vec[0] 위치에 3번 삽입 
     vec.insert(vec.begin(), 3, 100);
 
-    // 출력: 100 100 100 1 2 3 4 5
+    // Output: 100 100 100 1 2 3 4 5
     std::cout << "Vector after multiple insertions: ";
     for (int elem : vec) {
         std::cout << elem << " ";
@@ -69,7 +69,7 @@ int main() {
     // vec1의 끝에 vec3의 요소들을 삽입
     vec1.insert(vec1.end(), vec3.begin(), vec3.end());
 
-    // 출력: Combined vector: 1 2 3 4 5 6 7 8 9
+    // Output: Combined vector: 1 2 3 4 5 6 7 8 9
     std::cout << "Combined vector: ";
     for (int elem : vec1) {
         std::cout << elem << " ";
@@ -80,7 +80,7 @@ int main() {
     vec1.insert(vec1.end(), std::make_move_iterator(vec4.begin()), std::make_move_iterator(vec4.end()));
     vec4.clear();
 
-    // 출력: Combined vector: 1 2 3 4 5 6 7 8 9 10 11 12
+    // Output: Combined vector: 1 2 3 4 5 6 7 8 9 10 11 12
     std::cout << "After move iterator: ";
     for (int elem : vec1) {
         std::cout << elem << " ";
@@ -123,7 +123,7 @@ int main() {
     set1.insert(set2.begin(), set2.end());
 
     // 병합된 unordered_set의 내용을 출력
-    // 출력: Combined set contents: grape apple orange banana mango
+    // Output: Combined set contents: grape apple orange banana mango
     std::cout << "Combined set contents: ";
     for (const std::string& fruit : set1) {
         std::cout << fruit << " ";

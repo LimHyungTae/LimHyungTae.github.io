@@ -25,7 +25,7 @@ int main() {
     dst.resize(src.size() + 2, 0);
     std::transform(src.begin(), src.end(), dst.begin(), [](int x) { return x * x; });
 
-    // 출력: 1 4 9 16 25 0 0
+    // Output: 1 4 9 16 25 0 0
     for (auto i : dst) {
         std::cout << i << " ";
     }
@@ -41,7 +41,7 @@ int main() {
 
 ```cpp
 std::transform(dst.begin(), dst.end(), dst.begin(), [](int x) { return x * x; });
-// 출력: 1 16 81 256 625 0 0 
+// Output: 1 16 81 256 625 0 0 
 for (auto i : dst) {
     std::cout << i << " ";
 }

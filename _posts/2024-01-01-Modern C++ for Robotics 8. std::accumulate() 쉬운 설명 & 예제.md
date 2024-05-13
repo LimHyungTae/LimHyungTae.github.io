@@ -21,7 +21,7 @@ int main() {
     std::vector<int> v = {1, 2, 3, 4, 5};
     int sum = std::accumulate(v.begin(), v.end(), 0);
     
-    // 출력: Sum: 15
+    // Output: Sum: 15
     std::cout << "Sum: " << sum << std::endl; 
 }
 
@@ -92,7 +92,7 @@ int main() {
         return a.x > b.x ? a : b;
     });
 
-    // 출력: Sum: 30
+    // Output: Sum: 30
     std::cout << "Max value of the max struct: " << max_struct.x << std::endl;
 }
 ```

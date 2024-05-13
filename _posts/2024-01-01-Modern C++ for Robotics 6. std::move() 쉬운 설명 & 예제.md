@@ -61,13 +61,13 @@ int main() {
     std::vector<int> moved_to = std::move(original);
 
     // 'original'과 'moved_to'의 내용 출력
-    // 출력: Original vector:
+    // Output: Original vector:
     std::cout << "Original vector: ";
     for (auto& item : original) {
         std::cout << item << " ";
     }
 
-    // 출력: Moved to vector: 1 2 3 4 5
+    // Output: Moved to vector: 1 2 3 4 5
     std::cout << "\nMoved to vector: ";
     for (auto& item : moved_to) {
         std::cout << item << " ";
