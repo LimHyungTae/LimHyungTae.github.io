@@ -6,7 +6,7 @@ tags: [C++, Eigen, Robotics]
 comments: true
 ---
 
-## std::move
+## std::insert
 
 std::insert는 C++ 표준 라이브러리의 컨테이너 클래스에서 사용할 수 있는 멤버 함수로, 특정 위치에 하나 이상의 요소를 삽입하는 데 사용된다. 
 std::insert의 장점은, 다양한 컨테이너 타입(e.g., std::vector, std::unordered_set 등등)에 쉽게 사용 가능하다는 것이다. 물론 각각의 컨테이너 타입에 따라 약간씩 다를 수 있다. 
@@ -28,7 +28,7 @@ int main() {
     // 3을 vec[2] 위치에 삽입
     vec.insert(vec.begin() + 2, 3);
 
-    // 출력: 1 2 3 4 5
+    // Output: 1 2 3 4 5
     std::cout << "Vector after insertion: ";
     for (int elem : vec) {
         std::cout << elem << " ";
@@ -38,7 +38,7 @@ int main() {
     // 100을 vec[0] 위치에 3번 삽입 
     vec.insert(vec.begin(), 3, 100);
 
-    // 출력: 100 100 100 1 2 3 4 5
+    // Output: 100 100 100 1 2 3 4 5
     std::cout << "Vector after multiple insertions: ";
     for (int elem : vec) {
         std::cout << elem << " ";
@@ -49,7 +49,7 @@ int main() {
 }
 ```
 
-하지만 std::vector의 경우, 요소를 삽입할 때마다 컨테이너의 기존 요소들을 뒤로 밀어내야 하기 때문에 큰 벡터에서는 성능상 비용이 클 수 있다.
+하지만 std::vector의 경우, 요소를 삽입할 때마다 컨테이너의 기존 요소들을 뒤로 밀어내야 하므로 큰 벡터에서는 성능상 비용이 클 수 있다.
 그 대신, std::vector에서는 여러 std::vector를 하나로 합칠 때 std::insert를 활용하면 편리하다. 
 아래 예제는 네 개의 std::vector를 합치는 방법을 보여준다:
 
@@ -69,7 +69,7 @@ int main() {
     // vec1의 끝에 vec3의 요소들을 삽입
     vec1.insert(vec1.end(), vec3.begin(), vec3.end());
 
-    // 출력: Combined vector: 1 2 3 4 5 6 7 8 9
+    // Output: Combined vector: 1 2 3 4 5 6 7 8 9
     std::cout << "Combined vector: ";
     for (int elem : vec1) {
         std::cout << elem << " ";
@@ -80,7 +80,7 @@ int main() {
     vec1.insert(vec1.end(), std::make_move_iterator(vec4.begin()), std::make_move_iterator(vec4.end()));
     vec4.clear();
 
-    // 출력: Combined vector: 1 2 3 4 5 6 7 8 9 10 11 12
+    // Output: Combined vector: 1 2 3 4 5 6 7 8 9 10 11 12
     std::cout << "After move iterator: ";
     for (int elem : vec1) {
         std::cout << elem << " ";
@@ -123,7 +123,7 @@ int main() {
     set1.insert(set2.begin(), set2.end());
 
     // 병합된 unordered_set의 내용을 출력
-    // 출력: Combined set contents: grape apple orange banana mango
+    // Output: Combined set contents: grape apple orange banana mango
     std::cout << "Combined set contents: ";
     for (const std::string& fruit : set1) {
         std::cout << fruit << " ";
