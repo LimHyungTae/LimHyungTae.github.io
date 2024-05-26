@@ -24,7 +24,7 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 ## Highlights
 
-* Postdoc associate at [SPARK Lab, MIT](https://mit.edu/sparklab/people.html) (advisor: [Prof. Luca Carlone](https://lucacarlone.mit.edu/)
+* Postdoc associate at [SPARK Lab, MIT](https://mit.edu/sparklab/people.html) (advisor: [Prof. Luca Carlone](https://lucacarlone.mit.edu/))
 * 1st prize in [HILTI SLAM Challenge'24 in IEEE ICRA](https://construction-robots.github.io/#challenge)
 * [RSS Pioneers 2024](https://sites.google.com/view/rsspioneers2024/participants) (only 30 young researchers are selected each year)
 * 20+ IROS, ICRA, RA-L, RSS, IJRR, CVPR, and AAAI papers during grad school (12 first-author papers)
