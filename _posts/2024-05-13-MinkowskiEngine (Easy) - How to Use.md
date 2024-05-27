@@ -28,7 +28,7 @@ CSR은 메모리를 절약하고, 행 기반의 연산을 빠르게 수행할 �
 ## MinkowskiEngine 더 쉬운 예제 코드
 
 공식 홈페이지 예제코드를 수정해서 어떻게 MinkowskiEngine을 사용하는는지 작성해보았다.
-(설명은 향후 추가 예정)
+
 
 ```python
 import torch
@@ -125,9 +125,16 @@ print(tensor.F.transpose(0, 1))
 print("Done")
 ```
 
-예제와 유사한데, 
+**기억하면 좋을 것들**
+- Sparse tensor는 `.C`로 할당돼있는 (Batch, x index, y index, z index)인 coordinates와 `.F`로 할당돼있는 feature 값으로 구성되어 있다.
+- `ME.utils.sparse_collate`를 통해 여러 sparse tensor를 하나로 합치면, 자연스레 batch에 대한 관리를 할 수 있다
+- In-place operation을 하려면 위와 같이 `coordinate_manager`와 `coordinate_map_key`를 같이 입력으로 주어야 한다.
+  - 이는 내부적으로 두 sparse tensor가 같은 key를 사용하고 있는지 빠르게 판단한 후 각 key에 대응하는 value에 대해 연산을 하려고 하는 것이 아닌가로 유추된다.
+ 
 
 ## 결론
 
-MinkowskiEngine을 보다 잘 이용하려면 C++의 unordered_map과 같은 자료구조를 이해하고 있으면 좋다.
+MinkowskiEngine을 보다 잘 이용하려면 C++의 unordered_map과 같이 key-value로 이뤄져 있는 자료구조를 이해하고 있으면 좋다.
+왜냐하면 위의 코드에서 뜬금 없이 `coordinate_manager=tensor.coordinate_manager`, `coordinate_map_key=tensor.coordinate_map_key`와 같이 값을 받고 있는데,
+현실적으로 이는 key-value로 이뤄진 자료구조를 이해하고 있어야만 이해할 수 있는 부분이다.
 
