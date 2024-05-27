@@ -21,17 +21,19 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 [[**CV**](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/cv.pdf)] [[**Research statement**](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/research_statement.pdf)]
 
-(Korean version is also available on [my Notion page](https://nettle-camera-ba2.notion.site/Hyungtae-Lim-af61e161715e464d88592fe94f084c04))
 
 ## Highlights
 
-* 20 IROS, ICRA, RA-L, RSS, IJRR papers during grad school (12 first-author papers)
+* Postdoc associate at [SPARK Lab, MIT](https://mit.edu/sparklab/people.html) (advisor: [Prof. Luca Carlone](https://lucacarlone.mit.edu/))
+* 1st prize in [HILTI SLAM Challenge'24 in IEEE ICRA](https://construction-robots.github.io/#challenge)
+* [RSS Pioneers 2024](https://sites.google.com/view/rsspioneers2024/participants) (only 30 young researchers are selected each year)
+* 20+ IROS, ICRA, RA-L, RSS, IJRR, CVPR, and AAAI papers during grad school (12 first-author papers)
 * 2022 IEEE RA-L Best Paper Award (among 1,100 papers, only 5 papers are selected)
-* 1st prize in [HILTI SLAM Challenge'23 in IEEE ICRA](https://hilti-challenge.com/) among 63 international teams
+* 1st prize in [HILTI SLAM Challenge'23 in IEEE ICRA](https://hilti-challenge.com/leader-board-2023.html) among 63 international teams
 * [CES'23 innovation award](https://www.ces.tech/innovation-awards/honorees/2023/honorees/h/hi-bot-hologram-image-guide-robot.aspx) via tech. transfer regarding SLAM of mobile robots (collaborated with HILLS Robotics)
-* Visiting scholar of Univ. Bonn, Germany (advisor: Prof. Cyrill Stachniss)
+* Visiting scholar of Univ. Bonn, Germany (advisor: [Prof. Cyrill Stachniss](https://www.ipb.uni-bonn.de/people/cyrill-stachniss/index.html))
 * From 2022, serve as a SLAM part outside expert, CTO division of LG Electronics, Republic of Korea
-* 2nd cash prize in [HILTI SLAM Challenge'22 in IEEE ICRA](https://hilti-challenge.com/) (in total, 4th place)
+* 2nd cash prize in [HILTI SLAM Challenge'22 in IEEE ICRA](https://hilti-challenge.com/leader-board-2022.html) (in total, 4th place)
 * Research intern of vision/deep learning team of [NAVER LABS](https://www.naverlabs.com/), Republic of Korea
 * 1st prize in [Hitachi-LG Data Storage](https://hitachi-lg.com/) LiDAR application competition, Republic of Korea
 
