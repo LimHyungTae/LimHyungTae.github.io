@@ -56,7 +56,7 @@ comments: true
 
 ![](/img/texify_working_bib.png)
 
-아래의, BibTex가 동작이 됐을 때를 비교해서 살펴보면 해당 부분으 `Disabled` 되어있고, 아래의 화살표를 클릭해도 `bibliography BibTex`가 없다.
+아래의, BibTex가 동작이 됐을 때를 비교해서 살펴보면 해당 부분이 `Disabled` 되어있고, 아래의 화살표를 클릭해도 `bibliography BibTex`가 없다.
 
 ![](/img/texify_not_working.png)
 

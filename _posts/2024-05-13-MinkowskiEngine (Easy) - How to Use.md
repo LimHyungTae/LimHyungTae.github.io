@@ -12,6 +12,49 @@ comments: true
 그래서 Docker를 사용하는 것을 추천하고, 원작자가 제공한 Docker는 CUDA와 Torch가 너무 옛날버전이어서,
 여기 [Install MinkowskiEngine](https://brunch.co.kr/@leadbreak/18) 브런치 글을 참고하면 쉽게 docker로 설치할 수 있다.
 
+[MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine)의 docker 폴더 내의 Dockerfile을 아래와 변경했다 (24년 5월 기준 내 컴퓨터는 Ada Lovelace 기반 GPU를 사용하고 있어서, 11.8이 minimum으로 지원해주는  CUDA 버전이었다. [여기](https://en.wikipedia.org/wiki/CUDA)의 **GPU supported** 참고"):
+
+```angular2html
+# Use use previous versions, modify these variables
+# ARG PYTORCH="1.9.0"
+# ARG CUDA="11.1"
+
+ARG PYTORCH="2.2.1"
+ARG CUDA="11.8"
+ARG CUDNN="8"
+
+FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
+
+##############################################
+# You should modify this to match your GPU compute capability
+# ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0+PTX"
+ENV TORCH_CUDA_ARCH_LIST="8.6 8.9"
+##############################################
+
+ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
+
+# Install dependencies
+RUN apt-get update
+RUN apt-get install -y git ninja-build cmake build-essential libopenblas-dev \
+    xterm xauth openssh-server tmux wget mate-desktop-environment-core
+
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+
+# For faster build, use more jobs.
+ENV MAX_JOBS=36
+RUN git clone --recursive "https://github.com/leadbreak/MinkowskiEngine"
+RUN cd MinkowskiEngine; python setup.py install --force_cuda --blas=openblas
+```
+
+수정후 아래 명령어를 따지면 minkowski_engine이라는 명으로 Docker image를 빌드할 수 있다:
+
+```bash
+docker build -t minkowski_engine docker
+```
+
+---
+
 ## MinkowskiEngine Operation에 대한 배경지식
 
 기억해야할 것은, 이 SparseTensor는 Pytorch의 Tensor와는 다르게, `features`와 `coordinates`로 구성되어 있는 점이다.
