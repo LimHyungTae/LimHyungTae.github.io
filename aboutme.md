@@ -19,8 +19,21 @@ Earned my Ph.D and M.S in <strong>Electrical Engineering</strong> from KAIST (su
 I'm a robotics researcher and an enthusiast of open source as well. So I enjoy open-sourcing <strong>my researches regarding robotics</strong> to help others &mdash; check out <a href="https://github.com/LimHyungTae">my Github repository</a>. 
 </p>
 
-[[**CV**](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/cv.pdf)] [[**Research statement**](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/research_statement.pdf)]
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/hyungtae-lim-34b8a015a/)](https://www.linkedin.com/in/hyungtae-lim-34b8a015a/)
+[![Scholar Badge](https://img.shields.io/badge/Scholar-4285F4?style=flat-square&logo=GoogleScholar&logoColor=white&link=https://scholar.google.com/citations?user=S1A3nbIAAAAJ&hl=en)](https://scholar.google.com/citations?user=S1A3nbIAAAAJ&hl=en)
+[![CV Badge](https://img.shields.io/badge/CV-navy?style=flat-square&logo=AdobeAcrobatReader&logoColor=white&link=https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/cv.pdf)](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/cv.pdf)
+[![Research Statement1](https://img.shields.io/badge/Research%20Statement1-darkorange?style=flat-square&logo=ResearchGate&logoColor=white&link=https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/research_statement.pdf)](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/research_statement.pdf)
+[![Research Statement2](https://img.shields.io/badge/Research%20Statement2-forestgreen?style=flat-square&logo=arXiv&logoColor=white&link=https://arxiv.org/abs/2405.11176)](https://arxiv.org/abs/2405.11176)
 
+<details>
+  <summary>Detailed Bio</summary>
+  Hyungtae Lim is a postdoctoral researcher in the SPARK Lab at the Massachusetts Institute of Technology (MIT) since April 2024.
+  Previously, he worked as a postdoctoral researcher in the Urban Robotics Laboratory at the Korea Advanced Institute of Science and Technology (KAIST), a visiting student in StachnissLab at the University of Bonn, and a research intern at Naver Labs.
+
+  He earned his Ph.D. and M.S. degrees in Electrical Engineering from KAIST under the supervision of Prof. Hyun Myung, and his Bachelor's degree in Mechanical Engineering from KAIST.
+</details>
+
+---
 
 ## Highlights
 
@@ -37,8 +50,6 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 * Research intern of vision/deep learning team of [NAVER LABS](https://www.naverlabs.com/), Republic of Korea
 * 1st prize in [Hitachi-LG Data Storage](https://hitachi-lg.com/) LiDAR application competition, Republic of Korea
 
----
-
 ## Field of Research Interest
 
 My research interest includes, but not confined to:
@@ -53,8 +64,6 @@ My research interest includes, but not confined to:
 * Static map building by updating a prior 3D point cloud map
 * Robust visual(-inertial) odometry
 * Analytical redundancy
-
----
 
 ## Detailed Education
 
