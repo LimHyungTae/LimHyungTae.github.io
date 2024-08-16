@@ -15,11 +15,11 @@ comments: true
 **해당 library의 파일들 위치 찾기**
 
 ```bash
-sudo find /usr/local -name "*${FILE_NAME}*"
+sudo find /usr -name "*${FILE_NAME}*"
 ```
 
 e.g. 내가 제거하려는 대상이 `gtsam`이라면:
 
 ```bash
-sudo find /usr/local -name "*gtsam*"
+sudo find /usr -name "*gtsam*"
 ```
