@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Kimera-Multi 빌드 시 something wrong with flag 'logtostderr' 해결 방법
+title: Kimera-Multi 빌드 시 glog 관련 에러 해결 방법
 subtitle: 
 tags: [Ubuntu, filesystem, library]
 comments: true
