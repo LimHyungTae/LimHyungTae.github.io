@@ -34,13 +34,22 @@ Initiating shutdown!
 /usr/include/glog
 ```
 
-그 후 위의 파일들을 제거해준다: 
+컴퓨터 내 glog 충돌을 해결하기 위해 위의 파일들을 제거해준다: 
 
 ```angular2html
 sudo rm -rf /usr/local/include/glog /usr/local/lib/libglog* /usr/local/lib/cmake/glog
 ```
 
-그 후, 에러의 꼴이 바뀌었는데, vdb_fusion을 설치할 때 남아있던 glog가 이번에는 잡혀서 에러가 일어났다.
+그리고 
+
+```angular2html
+sudo apt-get purge libgoogle-glog-dev   
+```
+
+를 통해 혹여나 남아있는 파일도 완전히 제거해준다.
+
+
+그 후, 에러의 꼴이 바뀌었는데, 나의 컴퓨터에서는 vdb_fusion을 설치할 때 남아있던 glog가 또 잡혀서 에러가 일어났다.
 
 ```angular2html
 ERROR: something wrong with flag 'logtostderr' in file '/home/shapelim/kimera_multi_lio_ws/src/vdbfusion_mapping/assets/scripts/glog/src/logging.cc'.  One possibility: file '/home/shapelim/kimera_multi_lio_ws/src/vdbfusion_mapping/assets/scripts/glog/src/logging.cc' is being linked both statically and dynamically into this executable.
@@ -51,5 +60,6 @@ Initiating shutdown!
 ================================================================================
 ```
 
-이또한 제거해준 후 다시 빌드를 해서 실행시키면 정상적으로 실행된다.
+이또한 완전히 제거해준 후, `catkin clean`으로 해당 workspace 상에서 잘못 link된 것들을 모두 제거한 후, 다시 빌드를 해서 실행시키면 정상적으로 실행된다.
+
 
