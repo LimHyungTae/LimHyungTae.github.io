@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modern C++ for Robotics 9. std::all_of(), std::any_of(), std::none_of() 쉬운 설명 & 예제
+title: Modern C++ for Robotics 9. std::all_of(), std::any_of(), std::none_of() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::all_of(), std::any_of(), and std::none_of()
 tags: [C++, Eigen, Robotics]
 comments: true

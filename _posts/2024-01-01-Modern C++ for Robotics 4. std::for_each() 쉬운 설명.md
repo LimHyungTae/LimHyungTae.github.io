@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modern C++ for Robotics 4. std::for_each() 쉬운 설명 & 예제
+title: Modern C++ for Robotics 4. std::for_each() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::for_each()
 tags: [C++, Eigen, Robotics]
 comments: true
