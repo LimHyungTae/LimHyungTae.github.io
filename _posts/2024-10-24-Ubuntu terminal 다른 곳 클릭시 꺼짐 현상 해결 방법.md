@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu terminal 다른 곳 클릭시 꺼짐현상 해결 방법
+title: Ubuntu terminal 다른 곳 클릭시 꺼짐 현상 해결 방법
 subtitle:
 tags: [Ubuntu, GitHub]
 comments: true
