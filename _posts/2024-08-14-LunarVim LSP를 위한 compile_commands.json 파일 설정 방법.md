@@ -107,6 +107,7 @@ clangd는 이 파일을 찾지 못할 경우 기본적으로 "fallback" 모드�
 ![compile](/img/compile_commands.png)
 
 이를 복사하거나 링크를 해서 `src/${PACKAGE_NAME}/compile_commands.json`에 배치하면 된다.
+LSP가 잘 동작했다면 최종적으로 `.cache/clangd`라는 폴더가 생기고, 인덱싱 정보가 해당 폴더 내에 생성된다.
 
 ## **중요** ChatGPT가 잘 못 알려준 것들
 
@@ -127,4 +128,6 @@ require'lspconfig'.clangd.setup{
 
 ---
 
-여담으로 LaTex 같은 경우에도 `:MasonInstall texlab`을 설치하면 tex 파일을 위한 LSP가 지원이 가능한 것으로 보인다. 
+여담 1. LaTex 같은 경우에도 `:MasonInstall texlab`을 설치하면 tex 파일을 위한 LSP가 지원이 가능한 것으로 보인다. 
+
+여담 2. 계속 해서 `cpp` 실행 파일이 늘어날 수 있는 상황이라면 `ln -s` 옵션을 통해 파일을 링크해도 잘 동작함을 확인했다.  
