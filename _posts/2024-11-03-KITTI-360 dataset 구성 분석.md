@@ -116,7 +116,8 @@ comments: true
 
 ### How To Parse
 
-현재 [이 코드](https://github.com/LimHyungTae/kitti360Scripts)에 돌아가게 고쳐두었으니, 혹시 KITTI-360을 돌려야 하는 이는 이를 참고하길 바란다.
+원 저자들이 제공하던 코드가 version 이슈로 segmentation fault error가 발생해서,
+현재 [이 코드](https://github.com/LimHyungTae/kitti360Scripts)에 돌아가게 고쳐두었다 혹시 KITTI-360을 돌려야 하는 이는 이를 참고하길 바란다.
 불러 오는 것은 아래 코드처럼 하면 저 submap을 불러올 수 있는데: 
 
 ```angular2html
@@ -158,9 +159,13 @@ def global2local(globalId):
 ### 결론
 
 우리는 각 scan의 pose를 알기 때문에
+
 1) scan과 submap을 같은 좌표계로 transformation을 해준 후,
-2) scan의 각 i번째 point를 query로 submap을 target clode로 지정 후, Nearest neighbor search를 해서 
+
+2) scan의 각 i번째 point를 query로 submap을 target clode로 지정 후, Nearest neighbor search를 해서
+
 3) submap의 point와 대응되는 global instance 값을 `global2local` 함수로 파싱해서
+
 4) scan의 i번째에 해당하는 semantic 정보로 위의 `int(semanticId)`를 채워주면 끝!
 
 
