@@ -114,6 +114,7 @@ comments: true
 
 ![](/img/semantic_kitti.png)
 
+(Colormap의 정보는 [여기 helper folder 내](https://github.com/LimHyungTae/kitti360Scripts/blob/009642efe806253cd870357e4baf87feb7a07dab/kitti360scripts/helpers/labels.py#L69)를 보면 확인할 수 있다)
 ### How To Parse
 
 원 저자들이 제공하던 코드가 version 이슈로 segmentation fault error가 발생해서,
