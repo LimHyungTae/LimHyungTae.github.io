@@ -33,8 +33,10 @@ comments: true
 
 ---
 
-**Case (a)** Point 관점에서의 tranformation matrix. LiDAR 좌표계를 원점으로 한 point를 $$^\text{L}\mathbf{p}$$라 했을 때, point를 camera 좌표계를 기준으로 옮길 때의 matrix를 뜻함. 즉, *with respect to camera coorinate (카메라 좌표계를 기준점으로 바라봤을 때)*라는 의미로 쓰였으나 "with respect"를 생략된 경우로, 4x1의 point의 **왼 쪽에** 곱해져서 추정하고자 하는 point의 축을 camera 좌표계로 바꿀 때. 즉, `T_LiDAR_TO_CAM`을 $${^{\text{C}}_\text{L}\mathbf{T}}$$라고 표현하면, $${^{\text{C}}_\text{L}\mathbf{T}} * {^\text{L}\mathbf{p}} \rightarrow {^\text{C}\mathbf{p}}$$의 의미로 사용됨 ($$\text{L}$$: LiDAR 좌표계, $$\text{C}$$: 카메라 좌표계를 뜻함)
-표기가 익숙치 않은 분들은 *Introduction to Robotics*의 chapter 2 정독을 추천드립니다! 
+### Case A. Point Cloud 관점에서의 Transformation Matrix
+
+LiDAR 좌표계를 원점으로 한 point를 $$^\text{L}\mathbf{p}$$라 했을 때, point를 camera 좌표계를 기준으로 옮길 때의 matrix를 뜻함. 즉, *with respect to camera coorinate (카메라 좌표계를 기준점으로 바라봤을 때)*라는 의미로 쓰였으나 "with respect"를 생략된 경우로, 4x1의 point의 **왼 쪽**에 곱해져서 추정하고자 하는 point의 축을 camera 좌표계로 바꿀 때. 즉, `T_LiDAR_TO_CAM`을 $${^{\text{C}}_\text{L}\mathbf{T}}$$라고 표현하면, $${^{\text{C}}_\text{L}\mathbf{T}} * {^\text{L}\mathbf{p}} \rightarrow {^\text{C}\mathbf{p}}$$의 의미로 사용됨 ($$\text{L}$$: LiDAR 좌표계, $$\text{C}$$: 카메라 좌표계를 뜻함)
+표기가 익숙치 않은 분들은 *Introduction to Robotics* textbook의 chapter 2 정독을 추천드립니다! 
 
 **예시:** 아래의 [ERASOR](https://github.com/LimHyungTae/ERASOR)의 코드 내부에서 i) PointCloud2 msg를 `ptr_query`로 할당한 후, ii) voxelization을 하고, ii) `tf_lidar2body_`라는 변수를 통해 LiDAR 좌표계 기준인 point cloud를 world 좌표계 기준 좌표계로 옮기는 것을 볼 수 있다 (다시 보니 `tf_lidar2world_`가 좀 더 바람직한 변수명일듯 싶다. ~~이래서 리팩토링이 중요하다!~~).
 
@@ -47,7 +49,9 @@ pcl::transformPointCloud(*ptr_query_voxel, *ptr_query_body, tf_lidar2body_);
 
 ---
 
-**Case (b)** Pose 관점에서의 transformation matrix. 현재의 pose가 world frame 관점에서 바라본(*with respect to world frame*) LiDAR의 pose라 할때, transformation matrix **오른쪽에** 곱해져서 추정하고자 하는 pose의 축을 camera 좌표계로 바꿀 때. 
+### Case B. Pose 관점에서의 Transformation Matrix
+
+현재의 pose가 world frame 관점에서 바라본(*with respect to world frame*) LiDAR의 pose라 할때, transformation matrix **오른쪽에** 곱해져서 추정하고자 하는 pose의 축을 camera 좌표계로 바꿀 때. 
 다시 말해, `T_LiDAR_TO_CAM`은 $${^{\text{L}}_\text{C}\mathbf{T}}$$로, $${^{\text{W}}_\text{L}\mathbf{T}} * {^{\text{L}}_\text{C}\mathbf{T}} \rightarrow {^{\text{W}}_\text{C}\mathbf{T}}$$ ($${^\text{W}_\text{L}\mathbf{T}}$$: World 좌표계 기준에서 본 LiDAR의 pose) 
 
 
@@ -93,6 +97,8 @@ void loadAllKittiPoses(string txt, vector<Eigen::Matrix4f> &poses) {
 
 무심코 사용한 `tf_A_to_B`나 `T_A_to_B`라는 표현이 누군가에게는 다르게 해석되어서 코드를 잘못 이해하거나, 변수의 의미를 이해하기 위해서는 변수의 사용처를 찾아봐야 하다보니 큰 피로감을 야기할 수도 있다. 따라서 여럿이서 코드를 작성한다면, 이러한 네이밍 컨벤션(naming convention)을 처음에 한 번 토의를 한 후에 코드를 작성하면 좀 더 이런 귀찮은 이슈를 줄일 수 있을 것이다. 
 예로 들어, case (a)를 표현하고자 할 때는 `A_wrt_B`(`B` 좌표계 관점에서 바라본 `A`)로 사용하고 case (b)의 경우에는 `A_to_C`(`A` 좌표계를 `C` 좌표계로 transformation)라고 표현하자던가 등등. 
+
+개인적으로 [GTSAM convention](https://gtsam.org/gtsam.org/2020/06/28/gtsam-conventions.html)도 굉장히 깔끔하다고 생각한다, i.e., aTb와 같이 표기하기. 
 
 ---
 
