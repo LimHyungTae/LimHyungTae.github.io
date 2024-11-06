@@ -36,4 +36,29 @@ result = gnc_optimizer.optimize();
 예를 들어, 높은 확률 (예: 0.7 이상)을 설정하면 threshold가 증가하여 더 많은 edge들이 outlier로 분류될 가능성이 커지고, 더 conservative하게 동작한다. 
 반대로 낮은 확률을 설정하면 threshold가 낮아져 더 많은 edge들이 inlier로 간주될 수 있어 상대적으로 덜 conservative하게 동작하게 된다.
 
+---
 
+Kimera-RPGO의 `SolverParams.h`를 보면 해당 GncSolver를 사용하기 위해 어떻게 parameter를 관리하는지도 볼 수 있다.
+
+```
+void setGncInlierCostThresholdsAtProbability(
+      const double& alpha,
+      const size_t& max_iterations = 100,
+      const double& mu_step = 1.4,
+      const double& rel_cost_tol = 1e-5,
+      const double& weight_tol = 1e-4,
+      const bool& fix_prev_inliers = false,
+      const bool& bias_odom = false) {
+    use_gnc_ = true;
+    gnc_params.gnc_threshold_mode_ = GncParams::GncThresholdMode::PROBABILITY;
+    gnc_params.gnc_inlier_threshold_ = alpha;
+    gnc_params.max_iterations_ = max_iterations;
+    gnc_params.mu_step_ = mu_step;
+    gnc_params.relative_cost_tol_ = rel_cost_tol;
+    gnc_params.weights_tol_ = weight_tol;
+    gnc_params.fix_prev_inliers_ = fix_prev_inliers;
+    gnc_params.bias_odom_ = bias_odom;
+  }
+```
+
+나의 경헙에 비추어 보았을 때, `alpha`이외의 변수들은 성능에 그리 큰 영향을 미치지 않았다.
