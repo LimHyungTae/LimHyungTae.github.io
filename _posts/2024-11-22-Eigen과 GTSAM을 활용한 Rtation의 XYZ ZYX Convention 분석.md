@@ -351,7 +351,7 @@ Vector3 Rot3::ypr(OptionalJacobian<3, 3> H) const {
 
 이 회전 decomposition은 [Tait-Bryan angles의 ZYX 방식](https://en.wikipedia.org/wiki/Euler_angles)을 따른 것이다. 
 한 가지 신기한 점은,GTSAM 코드를 살펴보면 XYZ 순으로 계산했더라도 그 값이  `R2ypr`의 결과와 정확히 동일하다는 점이다.
-즉, **단순히 decomposition의 순서에 따라 ZYX, XYZ로 불리는 것이 아니라** decomposition을 하는 기준 축을 어떻게 지정하느냐에 따라 그 결과가 ZYX인지 XYZ인지 결정된다는 것을 확인했다.
+즉, **단순히 decomposition의 순서에 따라 ZYX, XYZ로 불리는 것이 아니라** decomposition을 하는 기준 축을 어떻게 지정하느냐에 따라 그 결과가 ZYX인지 XYZ인지 결정되는 것 같다 (왜냐하면 XYZ 순으로 분해했는데소 ZYX 순서 decomposition과 각도 값이 동일하게 나왔기 때문): 
 
 ### 수치 해석적 안정성
 
