@@ -18,8 +18,6 @@ Rotation을 공부한 이라면 한번쯤 3D rotation이 XYZ, ZYX등 분해하�
 
 그래서 아래와 같이 테스트를 해보았다:
 
-##
-
 ```cpp
 #include <gtsam/geometry/Pose3.h>
 #include <gtsam/geometry/Rot3.h>
@@ -212,7 +210,7 @@ int main() {
 ```
 ## 분석 및 설명
 
-1. Eigen 관련
+### 1. Eigen 관련
 
 Eigen의 `EulerAngles.h`는 아래와 같이 구현되어 있다 ([여기](https://eigen.tuxfamily.org/dox/EulerAngles_8h_source.html) 참조):
 
@@ -315,7 +313,7 @@ Eigen의 `EulerAngles.h`는 아래와 같이 구현되어 있다 ([여기](https
  #endif // EIGEN_EULERANGLES_H
 ```
 
-2. GTSAM 관련
+### 2. GTSAM 관련
 
 GTSAM에서는 아래와 같이 RQ() 함수를 통해 roll, pitch, yaw를 구하는데, 
 
@@ -349,7 +347,7 @@ Vector3 Rot3::ypr(OptionalJacobian<3, 3> H) const {
 }
 ```
 
-3. Ours 관련
+### 3. Ours 관련
 
 이 회전 decomposition은 [Tait-Bryan angles의 ZYX 방식](https://en.wikipedia.org/wiki/Euler_angles)을 따른 것이다. 
 한 가지 신기한 점은,GTSAM 코드를 살펴보면 XYZ 순으로 계산했더라도 그 값이  `R2ypr`의 결과와 정확히 동일하다는 점이다.
@@ -376,10 +374,17 @@ R: [
 [Ours]   Roll: -0.148056, Pitch: -0.700608, Yaw: -0.468394 // <- zyx
 ```
 
-위의 나온 출력값인 각도들을 활용해서 아래와 같이 online rotation convertor site에서 다시 입력값인 R을 역추적했을 때: 
+위의 나온 출력값인 각도들을 활용해서 아래와 같이 online rotation convertor site에서 다시 입력값인 R을 역추적했을 때:
+
+* **Eigen with `XYZ` style**
+
 ![a](/img/rotation_eigen_xyz.png)
 
+* **Eigen with `ZYX` style**
+
 ![b](/img/rotation_eigen_zyx.png)
+
+* From `R2ypr` function (which follows `ZYX` format)
 
 ![c](/img/rotation_ours_zyx.png)
 
