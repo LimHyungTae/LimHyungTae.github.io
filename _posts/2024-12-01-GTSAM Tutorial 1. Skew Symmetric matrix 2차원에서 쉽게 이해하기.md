@@ -112,3 +112,6 @@ $$\hat{\Omega}=\left[\begin{array}{cc}
 1 & 0
 \end{array}\right]$$
 
+## Derivative Rotation Matrix의 물리적 의미
+
+![](/img/circular_motion.png)
