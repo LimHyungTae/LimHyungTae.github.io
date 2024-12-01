@@ -116,7 +116,7 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 \end{array}\right]   \; \; \; \; \text{[6]}$$
 
 여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**이다. 
-즉, 최종적으로 [5]의 $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 [6]을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 되고, 이는 회전한 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
+즉, 최종적으로 [5]의 $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 [6]을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 되고, 이는 $$\mathbf{x}$$를 $$R(\theta)$$로 회전시킨 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
 
 ## Derivative Rotation Matrix의 물리적 의미
 
@@ -125,9 +125,12 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 </p>
 (위의 그림은 [여기](https://simagebank.net/wp/5257/)에서 발췌)
 
-
-물리적 의미를 살펴보자면 더 직관적일 것이다.
+그렇다면 이게 물리적으로 어떤 의미를 뜻할까?
 크게 두 가지를 대표적으로 설명할 수 있을 것 같은데, 첫번 째로는 skew-symmetric matrix로 변형된 vector는 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
-즉, 회전에 접선 방향에 대한 움직임을 나타내느 것이라고 해석될 수 있다.
-예로 들어서, 
+즉, 회전에 접선 방향에 대한 움직임을 나타내는 것이라고 해석될 수 있다.
+예로 들어서, rotation matrix로 회전된 값이 $$(\frac{1}{2}, \frac{1}{2})$$라고 할 때, 여기에 $$\hat{\Omega}$$을 곱하게 되면 $$(-\frac{1}{2}, \frac{1}{2})$$ 값이 되는데, 이를 그려보면 정확히 원의 접선 vector와 일치하는 것을 볼 수 있다.
+
+두 번째로는, rotation의 회전의 경우 기존 값 $$x$$와 $$y$$의 영향을 받는다는 것인데, 이는 자명하다.
+왜냐하면 동일한 회전을 하더라도 회전을 하고자하는 길이(위의 그림에서의 $$r$$ 부분)가 길어지게 되면 각도가 동일하게 변경되더라도 더 많은 움직임이 발생하기 때문이다.
+
 
