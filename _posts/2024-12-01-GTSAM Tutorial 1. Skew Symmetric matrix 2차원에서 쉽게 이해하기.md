@@ -88,6 +88,19 @@ $$J=\left[\begin{array}{ll}
 
 여기서 궁금한 것은, $$\frac{\partial T}{\partial \theta}$$가 왜 위와 같이 되는 걸까?
 
+## Derivative Rotation Matrix
+
+나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
+
+$$R(\theta)=\left[\begin{array}{cc}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta
+\end{array}\right]$$
+
+이를 손으로 직접 미분하면 아래와 같은 값을 구할 수 있다:
+
+
+
 $$\frac{d R(\theta)}{d \theta}=R(\theta) \hat{\Omega}$$
 
 $$\hat{\Omega}=\left[\begin{array}{cc}
