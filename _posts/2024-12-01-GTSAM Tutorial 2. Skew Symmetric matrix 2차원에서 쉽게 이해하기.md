@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GTSAM Tutorial 3. Skew Symmetric matrix 2차원에서 쉽게 이해하기
+title: GTSAM Tutorial 2. Skew Symmetric matrix 2차원에서 쉽게 이해하기
 subtitle: Skew Symmetric
 tags: [Jacobian, GTSAM]
 comments: true
@@ -8,7 +8,7 @@ comments: true
 
 ## Introduction 
 
-나는 3차원에서의 설명을 하기 앞서 저차원에서 현상에 대한 이해를 설명하는 것을 선호하는 편인데, 오늘은 rotation의 skew symmetric matrix에 대해 쉽게 설명하고자 한다.
+나는 3차원에서의 설명을 하기 앞서 저차원에서 현상에 대한 이해를 설명하는 것을 선호하는 편인데, 오늘은 rotation의 skew symmetric matrix에 대해 쉽게 설명하고자 한다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-1.-SE(2)-Transformation-matrix%EC%99%80-Jacobian-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)과 이어짐).
 
 ## Derivative Rotation Matrix
 
