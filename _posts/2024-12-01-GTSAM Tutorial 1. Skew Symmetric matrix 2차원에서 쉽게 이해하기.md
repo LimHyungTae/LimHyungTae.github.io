@@ -34,10 +34,10 @@ y \\
 x \\
 y \\
 1
-\end{array}\right] $$
+\end{array}\right] \; \; \; \; \text{[1]}$$
 
 위의 식을 살펴 보면 우리가 늘 봐왔듯이 $$\left[\begin{array}{cc}
-\mathbf{R}(\theta) & \mathbf{t} \\
+\mathbf{R} & \mathbf{t} \\
 0 & 1
 \end{array}\right]$$의 꼴로 구성되어 있는 것을 볼 수 있다(note: IEEE format에서는 matrix나 vector는 bold체로 써야한다. 이해를 할 때 참고).
 
@@ -56,7 +56,7 @@ x \sin \theta+y \cos \theta+t_y \\
 
 위의 식의 Jacobian을 구해 보자. Jacobian의 각 row는 equation, column은 각 변수에 대한 미분 값을 나타내므로, Jacobian $$J$$는 아래와 같이 쓰여지고:
 
-$$J=\left[\begin{array}{lll}
+$J=\left[\begin{array}{lll}
 \frac{\partial x^{\prime}}{\partial t_x} & \frac{\partial x^{\prime}}{\partial t_y} & \frac{\partial x^{\prime}}{\partial \theta} \\
 \frac{\partial y^{\prime}}{\partial t_x} & \frac{\partial y^{\prime}}{\partial t_y} & \frac{\partial y^{\prime}}{\partial \theta}
 \end{array}\right]$$
@@ -72,8 +72,15 @@ $$J=\left[\begin{array}{ccc}
 
 ## Block Operation
 
-$$\frac{\partial x^{\prime}}{\partial t_x}=1, \quad \frac{\partial y^{\prime}}{\partial t_x}=0, \frac{\partial x^{\prime}}{\partial t_y}=0, \quad \frac{\partial y^{\prime}}{\partial t_y}=1$$ 
+그런데 Frank Dellaert 교수님 자료를 보면 위의 식을 좀더 섹시(?)하게 block operation으로 기입하는 것을 볼 수 있다.
+수식 [1]을 좀더 간결히 쓰면 아래와 같이 쓸 수 있는데: 
 
-$$\mathbf{x}^{\prime} = \mathbf{R}\mathbf{x} + \mathbf{t}$$
+$$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t}$$
 
+이를 통해 Jacobian을 좀더 간결히 적으면 아래와 같이 적을 수 있다:
+
+$J=\left[\begin{array}{ll}
+\frac{\partial T}{\partial \mathbf{t}} & \frac{\partial T}{\partial \theta} \end{array}\right]$$
+
+$\frac{\partial T}{\partial \mathbf{t}}$
 위의 식을 $$\mathbf{t}$$에 대해 미분하면 
