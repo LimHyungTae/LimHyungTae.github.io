@@ -22,11 +22,13 @@ Point2 Rot2::unrotate(const Point2& p,
 }
 ```
 
-현재 이 수식을 $$\mathbf{R}^{\intercal}\mathbf{p}$$라 표현한다면,
+현재 위의 `unroate`에서 일어나는 이 수식을 $$f = \mathbf{R}^{\intercal}\mathbf{p}$$라 표현한다면,
 
 * `H1`: 회전 각 $$\theta$$에 대한 Jacobian
 
-$$\frac{\partial R(\theta)^\intercal}{\partial \theta}=\left[\begin{array}{cc}
+앞선 글에서 처럼 이번에는 transposed rotation을 $$\theta$$에 대해 미분하면 아래의 결과를 얻을 수 있다:
+
+$$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}=\left[\begin{array}{cc}
 -\sin \theta & \cos \theta \\
 -\cos \theta & -\sin \theta
 \end{array}\right] = - \left[\begin{array}{cc}
@@ -34,9 +36,16 @@ $$\frac{\partial R(\theta)^\intercal}{\partial \theta}=\left[\begin{array}{cc}
 1 & 0
 \end{array}\right] \mathbf{R}^{\intercal}$$
 
-* `H2`: $$\mathbf{p}$$에 대한 Jacobian이므로, $$\mathbf{R}^{\intercal}$$ (i.e., 미분하면 $$\mathbf{p}$$에 곱해져있던 계수와 대응되는 $$\mathbf{R}^{\intercal}$$이 남음) 
+따라서 $$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}\mathbf{p}$$는 위의 코드에서 `q`$$=\mathbf{R}^{\intercal}\mathbf{p}$$를 계산한 후, 음의 방향인 skew-symmetric matrix인 $$\left[\begin{array}{cc}
+0 & 1 \\
+-1 & 0
+\end{array}\right]$$을 곱해서 최종적으로 `*H1 << q.y(), -q.x()`로 할당되는 것을 볼 수 있다.
 
+* `H2`: $$\mathbf{p}$$에 대한 Jacobian이므로, $$\mathbf{R}^{\intercal}$$ (i.e., $$f$$를 미분하면 $$\mathbf{p}$$에 곱해져있던 계수와 대응되는 $$\mathbf{R}^{\intercal}$$이 남음) 
 
+이처럼 block operation을 통한 미분에 친숙해져야지 GTSAM을 더 잘 이해할 수 있게 된다.
+
+시간이 될때 다른 error term에 대한 Jacobian도 종종 업데이트할 예정...
 
 ---
 
