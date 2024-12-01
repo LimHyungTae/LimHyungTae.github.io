@@ -86,7 +86,11 @@ $$J=\left[\begin{array}{ll}
 이제 수식 [3]을 scalar로 구성된 equation이랑 동일하게 취급해보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$T(\mathbf{x})$$ (i.e., [3])에서의 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
 하지만 우리는 현재 matrix의 세계에 있으므로, 이 값은 identity matrix $$\mathbf{I}_{2\times2}$$가 된다. 그리고 이는 [2]의 앞쪽 $$2\times2$$구간과 일치한다.
 
-그리고 뒤의 $$2\times1$$ 구간은 $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}$$가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
+그리고 뒤의 $$2\times1$$ 구간은 
+
+$$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}  \; \; \; \; \text{[5}}$$
+
+가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
 
 ## Derivative Rotation Matrix
 
@@ -108,13 +112,13 @@ $$\frac{\partial R(\theta)}{\partial \theta}=\left[\begin{array}{cc}
 
 $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta)$$
 
-여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew symmetric matrix**이다. 
-$$\hat{\Omega}=\left[\begin{array}{cc}
+where $$\hat{\Omega}=\left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
 \end{array}\right]$$
 
-https://blog.naver.com/spacebug/220102117054
+여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew symmetric matrix**이다. 
+즉, 최종적으로 $$\frac{\partial \mathbf{R}}{\partial \theta}$$를 해석해보자면, 
 
 ## Derivative Rotation Matrix의 물리적 의미
 
