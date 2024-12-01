@@ -86,32 +86,37 @@ $$J=\left[\begin{array}{ll}
 이제 수식 [3]을 scalar로 구성된 equation이랑 동일하게 취급해보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$T(\mathbf{x})$$ (i.e., [3])에서의 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
 하지만 우리는 현재 matrix의 세계에 있으므로, 이 값은 identity matrix $$\mathbf{I}_{2\times2}$$가 된다. 그리고 이는 [2]의 앞쪽 $$2\times2$$구간과 일치한다.
 
-그리고 뒤의 $$2\times1$$ 구간은 $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial R}{\partial \theta}\mathbf{x}$$가 될 것이다. 그럼 여기서, $$\frac{\partial R}{\partial \theta}$$는 어떻게 구할 수 있을까? 
+그리고 뒤의 $$2\times1$$ 구간은 $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}$$가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
 
 ## Derivative Rotation Matrix
 
-나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
+나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 각도 $$\theta$$에 대한 표현식으로 나타낼 수 있고, 이는 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
 
-$$R(\theta)=\left[\begin{array}{cc}
+$$\mathbf{R} = R(\theta)=\left[\begin{array}{cc}
 \cos \theta & -\sin \theta \\
 \sin \theta & \cos \theta
 \end{array}\right]$$
 
 이를 손으로 직접 미분하면 아래와 같은 값을 구할 수 있다:
 
-$$\frac{d R(\theta)}{d \theta}=\left[\begin{array}{cc}
+$$\frac{\partial R(\theta)}{\partial \theta}=\left[\begin{array}{cc}
 -\sin \theta & -\cos \theta \\
 \cos \theta & -\sin \theta
 \end{array}\right]$$
 
+그리고 이를 다시 표현하면 아래와 같이 표현할 수 있는데, 
 
-$$\frac{d R(\theta)}{d \theta}=R(\theta) \hat{\Omega}$$
+$$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta)$$
 
 $$\hat{\Omega}=\left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
 \end{array}\right]$$
 
+https://blog.naver.com/spacebug/220102117054
+
 ## Derivative Rotation Matrix의 물리적 의미
 
-![](/img/circular_motion.png)
+<p align="center">
+  <img src="/img/circular_motion.png" alt="Circular Motion">
+</p>
