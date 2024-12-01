@@ -110,13 +110,13 @@ $$\frac{\partial R(\theta)}{\partial \theta}=\left[\begin{array}{cc}
 
 그리고 이를 다시 rotation matrix $$R(\theta)$$로 표현하면 아래와 같이 표현할 수 있는데, 
 
-$$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta) \text{where} $$\hat{\Omega}=\left[\begin{array}{cc}
+$$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta) \; \; \text{where} \; \; \hat{\Omega}=\left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
-\end{array}\right]$$
+\end{array}\right]   \; \; \; \; \text{[6]}$$
 
 여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**이다. 
-즉, 최종적으로 $$\frac{\partial \mathbf{R}}{\partial \theta}$$를 해석해보자면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 되고, 이는 회전한 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
+즉, 최종적으로 [5]의 $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 [6]을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 되고, 이는 회전한 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
 
 ## Derivative Rotation Matrix의 물리적 의미
 
