@@ -72,14 +72,18 @@ Point2 Rot2::unrotate(const Point2& p,
 
 * `H1`: 회전 각 $$\theta$$에 대한 Jacobian
 
+$$\frac{d R(\theta)^T}{d \theta}=\left[\begin{array}{cc}
+-\sin \theta & \cos \theta \\
+-\cos \theta & -\sin \theta
+\end{array}\right] = - \left[\begin{array}{cc}
+0 & -1 \\
+1 & 0
+\end{array}\right] \mathbf{R}^{\intercal}$$
+
 
 * `H2`: $$\mathbf{p}$$에 대한 Jacobian
 
 
-$$\frac{d R(\theta)^T}{d \theta}=\left[\begin{array}{cc}
--\sin \theta & \cos \theta \\
--\cos \theta & -\sin \theta
-\end{array}\right]$$
 
 ---
 
