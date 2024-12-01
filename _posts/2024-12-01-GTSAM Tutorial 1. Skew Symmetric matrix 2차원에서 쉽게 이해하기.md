@@ -88,7 +88,7 @@ $$J=\left[\begin{array}{ll}
 
 그리고 뒤의 $$2\times1$$ 구간은 
 
-$$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}  \; \; \; \; \text{[5}}$$
+$$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}  \; \; \; \; \text{[5]}$$
 
 가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
 
@@ -96,7 +96,7 @@ $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\p
 
 나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 각도 $$\theta$$에 대한 표현식으로 나타낼 수 있고, 이는 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
 
-$$\mathbf{R} =\left[\begin{array}{cc}
+$$\mathbf{R} = {R}(\theta) =\left[\begin{array}{cc}
 \cos \theta & -\sin \theta \\
 \sin \theta & \cos \theta
 \end{array}\right]$$
@@ -110,9 +110,7 @@ $$\frac{\partial R(\theta)}{\partial \theta}=\left[\begin{array}{cc}
 
 그리고 이를 다시 rotation matrix $$R(\theta)$$로 표현하면 아래와 같이 표현할 수 있는데, 
 
-$$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta)$$
-
-where $$\hat{\Omega}=\left[\begin{array}{cc}
+$$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta) \text{where} $$\hat{\Omega}=\left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
 \end{array}\right]$$
@@ -128,5 +126,8 @@ where $$\hat{\Omega}=\left[\begin{array}{cc}
 (위의 그림은 [여기](https://simagebank.net/wp/5257/)에서 발췌)
 
 
-물리적 의미를 살펴보자면, skew-symmetric matrix로 변형된 vector는 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
+물리적 의미를 살펴보자면 더 직관적일 것이다.
+크게 두 가지를 대표적으로 설명할 수 있을 것 같은데, 첫번 째로는 skew-symmetric matrix로 변형된 vector는 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
+즉, 회전에 접선 방향에 대한 움직임을 나타내느 것이라고 해석될 수 있다.
+예로 들어서, 
 
