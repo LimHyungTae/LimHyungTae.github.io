@@ -117,11 +117,16 @@ where $$\hat{\Omega}=\left[\begin{array}{cc}
 1 & 0
 \end{array}\right]$$
 
-여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew symmetric matrix**이다. 
-즉, 최종적으로 $$\frac{\partial \mathbf{R}}{\partial \theta}$$를 해석해보자면, 
+여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**이다. 
+즉, 최종적으로 $$\frac{\partial \mathbf{R}}{\partial \theta}$$를 해석해보자면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 되고, 이는 회전한 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
 
 ## Derivative Rotation Matrix의 물리적 의미
 
 <p align="center">
   <img src="/img/circular_motion.png" alt="Circular Motion">
 </p>
+(위의 그림은 [여기](https://simagebank.net/wp/5257/)에서 발췌)
+
+
+물리적 의미를 살펴보자면, skew-symmetric matrix로 변형된 vector는 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
+
