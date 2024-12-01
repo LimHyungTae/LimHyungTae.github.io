@@ -56,7 +56,7 @@ x \sin \theta+y \cos \theta+t_y \\
 
 위의 식의 Jacobian을 구해 보자. Jacobian의 각 row는 equation, column은 각 변수에 대한 미분 값을 나타내므로, Jacobian $$J$$는 아래와 같이 쓰여지고:
 
-$J=\left[\begin{array}{lll}
+$$J=\left[\begin{array}{lll}
 \frac{\partial x^{\prime}}{\partial t_x} & \frac{\partial x^{\prime}}{\partial t_y} & \frac{\partial x^{\prime}}{\partial \theta} \\
 \frac{\partial y^{\prime}}{\partial t_x} & \frac{\partial y^{\prime}}{\partial t_y} & \frac{\partial y^{\prime}}{\partial \theta}
 \end{array}\right]$$
@@ -66,7 +66,7 @@ $J=\left[\begin{array}{lll}
 $$J=\left[\begin{array}{ccc}
 1 & 0 & -x \sin \theta-y \cos \theta \\
 0 & 1 & x \cos \theta-y \sin \theta
-\end{array}\right]$$
+\end{array}\right] \; \; \; \; \text{[2]}$$
 
 ---
 
@@ -75,12 +75,12 @@ $$J=\left[\begin{array}{ccc}
 그런데 Frank Dellaert 교수님 자료를 보면 위의 식을 좀더 섹시(?)하게 block operation으로 기입하는 것을 볼 수 있다.
 수식 [1]을 좀더 간결히 쓰면 아래와 같이 쓸 수 있는데: 
 
-$$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t}$$
+$$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t} \; \; \; \; \text{[3]}$$
 
-이를 통해 Jacobian을 block operation으로 간결히 적으면 아래와 같이 적을 수 있다:
+이를 통해 수식 [2]의 Jacobian을 block operation으로 간결히 적으면 아래와 같이 적을 수 있다:
 
 $$J=\left[\begin{array}{ll}
-\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}} & \frac{\partial T(\mathbf{x})}{\partial \theta} \end{array}\right]$$
+\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}} & \frac{\partial T(\mathbf{x})}{\partial \theta} \end{array}\right] \; \; \; \; \text{[4]}$$
 
 위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 2 by 1의 vector에 대한 partial derivative이므로 2x2의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 derivative이기 때문에 2x1의 matrix가 된다. 
 
@@ -89,4 +89,9 @@ $$\frac{d R(\theta)}{d \theta}=R(\theta) \hat{\Omega}$$
 $$\hat{\Omega}=\left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
+\end{array}\right]$$
+
+$$\frac{d R(\theta)}{d \theta}=\left[\begin{array}{cc}
+-\sin \theta & -\cos \theta \\
+\cos \theta & -\sin \theta
 \end{array}\right]$$
