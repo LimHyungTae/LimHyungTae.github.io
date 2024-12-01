@@ -82,9 +82,9 @@ $$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t} \; \; 
 $$J=\left[\begin{array}{ll}
 \frac{\partial T(\mathbf{x})}{\partial \mathbf{t}} & \frac{\partial T(\mathbf{x})}{\partial \theta} \end{array}\right] \; \; \; \; \text{[4]}$$
 
-위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 2 by 1의 vector에 대한 partial derivative이므로 2x2의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 derivative이기 때문에 2x1의 matrix가 된다. 
-이제 수식 [3]을 scalar로 구성된 equation이랑 동일하게 취급해보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
-하지만 우리는 현재 matrix의 세계에 있으므로, 이 값은 identity matrix $$I_{2\times2}$$가 된다.
+위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 $$2\times1$$의 vector에 대한 partial derivative이므로 $$2\times2$$의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 derivative이기 때문에 $$2\times1$$의 matrix가 된다. 
+이제 수식 [3]을 scalar로 구성된 equation이랑 동일하게 취급해보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$T(\mathbf{x})$$ (i.e., [3])에서의 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
+하지만 우리는 현재 matrix의 세계에 있으므로, 이 값은 identity matrix $$\mathbf{I}_{2\times2}$$가 된다. 그리고 이는 [2]의 앞쪽 $$2\times2$$구간과 일치한다.
 
 여기서 궁금한 것은, $$\frac{\partial T}{\partial \theta}$$가 왜 위와 같이 되는 걸까?
 
