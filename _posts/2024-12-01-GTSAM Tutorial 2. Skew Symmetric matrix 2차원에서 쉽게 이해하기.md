@@ -68,7 +68,7 @@ Point2 Rot2::unrotate(const Point2& p,
 }
 ```
 
-현재 이 수식을 $$\mathbf{R}^{\mathcal}\mathbf{p}$$라 표현한다면,
+현재 이 수식을 $$\mathbf{R}^{\intercal}\mathbf{p}$$라 표현한다면,
 
 * `H1`: 회전 각 $$\theta$$에 대한 Jacobian
 
