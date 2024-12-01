@@ -34,7 +34,9 @@ $$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}=\left[\begin{array}{cc}
 \end{array}\right] = - \left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
-\end{array}\right] \mathbf{R}^{\intercal}$$
+\end{array}\right] \mathbf{R}^{\intercal} = -\hat{\Omega}\mathbf{R}^{\intercal}$$
+
+([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-2.-Skew-Symmetric-matrix-2%EC%B0%A8%EC%9B%90%EC%97%90%EC%84%9C-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 $$\hat{\Omega}$$를 skew-symmetric matrix라 설명하였다). 
 
 따라서 $$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}\mathbf{p}$$는 위의 코드에서 `q`$$=\mathbf{R}^{\intercal}\mathbf{p}$$를 계산한 후, 음의 방향인 skew-symmetric matrix인 $$\left[\begin{array}{cc}
 0 & 1 \\
