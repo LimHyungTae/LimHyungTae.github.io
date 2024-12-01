@@ -77,10 +77,12 @@ $$J=\left[\begin{array}{ccc}
 
 $$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t}$$
 
-이를 통해 Jacobian을 좀더 간결히 적으면 아래와 같이 적을 수 있다:
+이를 통해 Jacobian을 block operation으로 간결히 적으면 아래와 같이 적을 수 있다:
 
 $J=\left[\begin{array}{ll}
 \frac{\partial T}{\partial \mathbf{t}} & \frac{\partial T}{\partial \theta} \end{array}\right]$$
 
+위에서 $$\frac{\partial T}{\partial \mathbf{t}}$$는 2 by 1의 vector에 대한 partial derivative이므로 2x2의 크기가 되고, 
+\frac{\partial T}{\partial \theta}
 $\frac{\partial T}{\partial \mathbf{t}}$
 위의 식을 $$\mathbf{t}$$에 대해 미분하면 
