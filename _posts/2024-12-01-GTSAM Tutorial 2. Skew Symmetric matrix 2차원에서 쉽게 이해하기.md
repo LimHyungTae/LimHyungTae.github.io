@@ -53,9 +53,10 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 
 --- 
 
-## 활용
+## Jacobian을 이해하는 데에 활용
 
-예를 들어, GTSAM에서는 아래와 같이 unrotate를 하면 Jacobian `H1`과 `H2` 또한 return하는데,
+Skew-symmetric matrix를 잘 이해하면, 아래의 코드도 이제 잘 이해가 될 것이다.
+예를 들어, GTSAM의 `Pose2.cpp` 파일에서는 아래와 같이 unrotate를 하면 Jacobian `H1`과 `H2` 또한 return하는데,
 
 ```cpp
 Point2 Rot2::unrotate(const Point2& p,
@@ -67,7 +68,13 @@ Point2 Rot2::unrotate(const Point2& p,
 }
 ```
 
-이 수식을 $$\mathbf{R}^{\mathcal}\mathbf{p}$$라 표현한다면, 
+현재 이 수식을 $$\mathbf{R}^{\mathcal}\mathbf{p}$$라 표현한다면,
+
+* `H1`: 회전 각 $$\theta$$에 대한 Jacobian
+
+
+* `H2`: $$\mathbf{p}$$에 대한 Jacobian
+
 
 $$\frac{d R(\theta)^T}{d \theta}=\left[\begin{array}{cc}
 -\sin \theta & \cos \theta \\
