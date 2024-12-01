@@ -1,7 +1,7 @@
 ---
 layout: post
-title: GTSAM Tutorial 1. Skew Symmetric matrix 2차원에서 쉽게 이해하기
-subtitle: Skew Symmetric
+title: GTSAM Tutorial 2. Block Operation in Matrix
+subtitle: Block Operation
 tags: [Jacobian, GTSAM]
 comments: true
 ---
@@ -29,3 +29,8 @@ $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\p
 가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
 이는 다음 글에서 살펴보자. 
 
+---
+
+GTSAM Tutorial 시리즈입니다.
+
+{% include post_links_gtsam.html %}

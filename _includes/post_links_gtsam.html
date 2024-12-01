@@ -1,0 +1,10 @@
+<!-- _includes/post_list.html -->
+{% assign reversed_posts = site.posts | reverse %}
+
+<ol>
+    {% for post in reversed_posts %}
+        {% if post.title contains 'GTSAM Tutorial' %}
+            <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ol>

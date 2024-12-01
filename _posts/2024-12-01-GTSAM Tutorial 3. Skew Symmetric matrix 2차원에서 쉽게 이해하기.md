@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GTSAM Tutorial 1. Skew Symmetric matrix 2차원에서 쉽게 이해하기
+title: GTSAM Tutorial 3. Skew Symmetric matrix 2차원에서 쉽게 이해하기
 subtitle: Skew Symmetric
 tags: [Jacobian, GTSAM]
 comments: true
@@ -51,4 +51,8 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 두 번째로는, rotation의 회전의 경우 기존 값 $$x$$와 $$y$$의 영향을 받는다는 것인데, 이 또한 자명하다.
 왜냐하면 동일한 회전을 하더라도 회전을 하고자하는 길이(위의 그림에서의 $$r$$ 부분)가 길어지게 되면 각도가 동일하게 변경되더라도 더 많은 움직임이 발생하기 때문이다.
 
+---
 
+GTSAM Tutorial 시리즈입니다.
+
+{% include post_links_gtsam.html %}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GTSAM Tutorial 1. SE(2) Transformation matrix와 Jacobian 쉽게 이해하기
-subtitle: Skew Symmetric
+subtitle: Transformation matrix and Jacobian 
 tags: [Jacobian, GTSAM]
 comments: true
 ---
@@ -93,3 +93,8 @@ $$J=\left[\begin{array}{ccc}
 0 & 1 & x \cos \theta-y \sin \theta
 \end{array}\right] \; \; \; \; \text{[2]}$$
 
+---
+
+GTSAM Tutorial 시리즈입니다.
+
+{% include post_links_gtsam.html %}

@@ -87,15 +87,18 @@ environment = "MACOSX_DEPLOYMENT_TARGET=10.14"
 archs = ["auto64", "arm64"]
 ```
 
+scikit-build-core는 Python 빌드 시스템(Python build 라이브러리)과 C++ 빌드 시스템(CMake) 사이의 다리 역할을 합니다.
+
+
 2. `pyproject.toml` 파일을 통한 빌드 
 
 먼저 향후 빌드에 필요한 library들을 미리 설치해보자:
 
 ```angular2html
-pip3 install setuptools build wheel twine
+pip3 install build twine auditwheel
 ```
 
-그 후, 아래의 명령어를 `pyproject.toml` 파일에서 입력하면 아마 프로젝트가 빌드 될것이다:
+그 후, 아래의 명령어를 `pyproject.toml` 파일에서 입력하면 아마 프로젝트가 빌드가 될 것이다:
 
 ```
 python3 -m build
@@ -106,4 +109,43 @@ python3 -m build
 
 ![](/img/1127_buid_done.png)
 
+3. [Pypi.org](https://pypi.org/)에 가서 ID를 가입하자(가입 절차는 알잘딱 따라가기만 하면 되니 설명은 생략한다). 가입 후, 해야할 것이 있는데, GitHub의 SSH key를 등록하듯이, Pypi에도 토큰을 등록해야 한다. 등록하는 방법 절차는 아래와 같다 (ChatGPT 선생님이 알려줬다).
+
+    1. 로그인 후 오른쪽 상단의 계정 아이콘을 클릭하여 **"Account settings"**로 이동
+    2. "API tokens" 섹션에서 "Add API token" 버튼을 클릭
+    3. 토큰 이름(자유롭게 지정하면 됨)과 권한 범위(마다 **Entire account** 밖에 없을 것이다. 그거 누루면 됨)를 설정
+    4. **"Add token"**을 클릭하면, API 토큰이 생성됩
+
+이때 표시되는 토큰은 한 번만 확인할 수 있으므로 반드시 안전한 곳에 저장해야 한다고 한다. 그리고 저 `pypi-`로 시작되는 토큰을 복사한 후, '~/.pypirc`에 아래와 같이 작성하면 된다:
+
+```
+[pypi]
+username = __token__
+password = pypi-${FOLLOWING PASSWORD}
+```
+
+4. 그 후 `python3 -m twine upload dist/*`를 치면 된다. 만약 Step 3을 하지 않으면 `Enter your API token:` 라고 되물을 것이지만, 우리는 token을 컴퓨터 상에 등록했으므로 token을 치지 않아도 된다.
+
+
 ![](/img/1127_linux_x86_64_error.png)
+
+`teaserpp_python-1.1.0-cp38-cp38-linux_x86_64.whl`
+
+디버깅 방법
+
+unzip dist/teaserpp_python-1.1.0-cp38-cp38-linux_x86_64.whl -d extracted_wheel
+
+readelf -s extracted_wheel/*.so | grep GLIBC_
+zsh: no matches found: extracted_wheel/*.so
+
+---
+
+여전히 wheel 파일에 so 파일이 포함이 안돼. 현재 출력되는 커맨드라인 보면 아래와 같은 줄이 있는데:
+
+-- Build files have been written to: /tmp/build-via-sdist-hetxxz1d/teaserpp_python-1.1.0/build/cp38-cp38-linux_x86_64
+*** Building project with Ninja...
+[43/43] Linking CXX shared module python/python/teaserpp_python/teaserpp_python.cpython-38-x86_64-linux-gnu.so
+
+여기서 python/python/teaserpp_python/이라고 돼있는 주소가 좀 의심스러워. 
+${CMAKE_CURRENT_BINARY_DIR} 즉, ${CMAKE_CURRENT_BINARY_DIR}가 `python` 이라는 뜻인데? 
+
