@@ -51,6 +51,29 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 두 번째로는, rotation의 회전의 경우 기존 값 $$x$$와 $$y$$의 영향을 받는다는 것인데, 이 또한 자명하다.
 왜냐하면 동일한 회전을 하더라도 회전을 하고자하는 길이(위의 그림에서의 $$r$$ 부분)가 길어지게 되면 각도가 동일하게 변경되더라도 더 많은 움직임이 발생하기 때문이다.
 
+--- 
+
+## 활용
+
+예를 들어, GTSAM에서는 아래와 같이 unrotate를 하면 Jacobian `H1`과 `H2` 또한 return하는데,
+
+```cpp
+Point2 Rot2::unrotate(const Point2& p,
+    OptionalJacobian<2, 1> H1, OptionalJacobian<2, 2> H2) const {
+  const Point2 q = Point2(c_ * p.x() + s_ * p.y(), -s_ * p.x() + c_ * p.y());
+  if (H1) *H1 << q.y(), -q.x();
+  if (H2) *H2 = transpose();
+  return q;
+}
+```
+
+이 수식을 $$\mathbf{R}^{\mathcal}\mathbf{p}$$라 표현한다면, 
+
+$$\frac{d R(\theta)^T}{d \theta}=\left[\begin{array}{cc}
+-\sin \theta & \cos \theta \\
+-\cos \theta & -\sin \theta
+\end{array}\right]$$
+
 ---
 
 GTSAM Tutorial 시리즈입니다.
