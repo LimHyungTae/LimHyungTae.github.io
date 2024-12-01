@@ -51,7 +51,7 @@ $$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}=\left[\begin{array}{cc}
 
 이처럼 block operation을 통한 미분에 친숙해져야지 GTSAM을 더 잘 이해할 수 있게 된다.
 
-시간이 될때 다른 error term에 대한 Jacobian도 종종 업데이트할 예정...
+시간이 될때 다른 error term에 대한 Jacobian도 종종 업데이트할 예정이다. 
 
 ---
 
