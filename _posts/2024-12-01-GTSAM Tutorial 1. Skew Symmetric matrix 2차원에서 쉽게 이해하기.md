@@ -104,10 +104,11 @@ $$\frac{\partial R(\theta)}{\partial \theta}=\left[\begin{array}{cc}
 \cos \theta & -\sin \theta
 \end{array}\right]$$
 
-그리고 이를 다시 표현하면 아래와 같이 표현할 수 있는데, 
+그리고 이를 다시 rotation matrix $$R(\theta)$$로 표현하면 아래와 같이 표현할 수 있는데, 
 
 $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta)$$
 
+여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew symmetric matrix**이다. 
 $$\hat{\Omega}=\left[\begin{array}{cc}
 0 & -1 \\
 1 & 0
