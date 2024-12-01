@@ -96,7 +96,7 @@ $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\p
 
 나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 각도 $$\theta$$에 대한 표현식으로 나타낼 수 있고, 이는 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
 
-$$\mathbf{R} = R(\theta)=\left[\begin{array}{cc}
+$$\mathbf{R} =\left[\begin{array}{cc}
 \cos \theta & -\sin \theta \\
 \sin \theta & \cos \theta
 \end{array}\right]$$
