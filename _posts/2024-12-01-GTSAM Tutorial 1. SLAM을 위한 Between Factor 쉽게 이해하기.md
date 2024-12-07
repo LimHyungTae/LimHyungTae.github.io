@@ -179,13 +179,16 @@ gtsam::Pose3 pose_to = poseEigToGtsamPose(current_frame_.pose_corrected_eig_);
 그러나 현재 내가 지금 무슨 행위를 하고 있는지 완벽히 이해하고 구현하는 것이 이 ChatGPT에 먹혀버린 시대의 연구자들이 지녀야 할 바람직한 자세이지 않나 싶다.
 마지막은 올해 Frank 교수님과 함께 RSS 학회/MIT에서 얘기하고 찍은 사진과 함께, GTSAM library에 힘쓴 Frank 교수님에게 kudos to Frank를 하며 마무리한다. 
 
-<table>
-  <tr>
-    <td><img src="/img/w_frank1.jpg" alt="In RSS" width="300"/></td>
-    <td><img src="/img/w_frank2.jpg" alt="In MIT" width="300"/></td>
+<table style="margin: 0 auto; border-collapse: collapse; border: none;">
+  <tr style="border: none;">
+    <td style="border: none; text-align: center;">
+      <img src="/img/w_frank1.jpg" alt="In RSS" width="300"/>
+    </td>
+    <td style="border: none; text-align: center;">
+      <img src="/img/w_frank2.jpg" alt="In MIT" width="300"/>
+    </td>
   </tr>
 </table>
-
 ---
 
 GTSAM Tutorial 시리즈입니다.
