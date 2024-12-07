@@ -168,7 +168,9 @@ incremental: false
 
 kramdown:
   input: GFM
-
+  syntax_highlighter_opts:
+    disable: true
+    
 # Default YAML values (more information on Jekyll's site)
 defaults:
   -
