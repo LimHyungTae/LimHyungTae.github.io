@@ -22,7 +22,7 @@ GTSAM을 기반으로 코드를 짜야할 일이 많아졌다. 그래서 GTSAM�
 
 위의 `Pose2SLAMExample.cpp`에 보면 알겠지만, pose graph optimization은 
 
-* 1) `NonlinearFactorGraph ` 클래스에다 우리가 원하고자 하는 constraint(혹은 factor. 이 SLAM 예제의 경우에는 `BetweenFactor`를 사용함)를 추가해서 graph 구조 생성,
+  1) `NonlinearFactorGraph ` 클래스에다 우리가 원하고자 하는 constraint(혹은 factor. 이 SLAM 예제의 경우에는 `BetweenFactor`를 사용함)를 추가해서 graph 구조 생성,
   2) `Values` 클래스로 정의한 graph 구조에 필요한 initial value 제공,
   3) Optimizer로 optimize하면 끝난다.
      
@@ -149,7 +149,7 @@ $$\xi^{t+1}_i = \xi^{t}_i \oplus \delta_i$$
 ## 실제 SLAM System에서는
 
 그렇다면 실제 SLAM system에서는 무엇을 고려해주어야 할까? 
-예제 코드와 다른 점은 실제 SLAM system은 실시간으로 코드를 받아온 후, 1) graph 구조를 생성하고 2) 해당 graph에 해당하는 초기 값들을 initial values로 점진적으로 넣어주는 것이 중요하다.
+예제 코드와 다른 점은 실제 SLAM system은 실시간으로 코드를 받아온 후, 1) graph 구조를 생성하고 2) 해당 graph에 해당하는 초기 값들을 initial values로 점진적으로 업데이트시켜줘야 한다.
 따라서 [FAST-LIO-SAM-QN](https://github.com/engcang/FAST-LIO-SAM-QN/blob/c586b8955a1b726243f4c44b56fe9ef9100b0e61/fast_lio_sam_qn/src/fast_lio_sam_qn.cpp#L132) 예제 코드에서 볼 수 있듯이 이전 node의 pose 대비 충분한 pose 차이가 났을 때, 아래와 같이 graph 부분에 대응되는 `gtsam_graph_`를 업데이트하고, 그 graph 구조에 대응되는 초기값(여기서는 `current_keyframe_idx_`번째의 pose)를 `init_esti_`에 업데이트해주는 것을 볼 수 있다.
 
 ```cpp
@@ -168,16 +168,23 @@ gtsam::Pose3 pose_to = poseEigToGtsamPose(current_frame_.pose_corrected_eig_);
 ```
 
 참고로, 
-* `std::lock_guard<std::mutex>` 부분은 여러 프로세스가 비동기적으로 동시에 돌아갈 때 segmentation fault를 방지하기 위한 부분인데, 이렇게 그래프/initial value를 생성해주는 부분과 뒷단에서 optimization한 후 initial value를 업데이트해주는 부분에서 동시에 `init_esti_`와 `gtsam_graph_`에 접근하면 segmentation fault가 일어나기 때문에, 이를 방지해주는 코드이다. 
-* 3차원에서 covariance의 값은 {rot, rot, rot, trans, trans, trans} 순이다(즉, {x, y, z, rotation vector} 순이 아닌, rotation 후 translation 순임!)
+* `std::lock_guard<std::mutex>` 부분은 여러 프로세스가 비동기적으로 동시에 돌아갈 때 segmentation fault를 방지하기 위한 부분이다 (잘 모르는 이는 mutex lock에 대해 읽어보자) 이렇게 그래프/initial value를 생성해주는 부분과 뒷단에서 optimization한 후 initial value를 업데이트해주는 부분에서 동시에 `init_esti_`와 `gtsam_graph_`에 접근하면 segmentation fault가 일어날 수 있기 때문에, 이를 방지해주기 위함이다. 
+* 참고로, 2차원에서 covariance의 순은 {trans, trans, rot}의 순인데, 3차원에서 covariance의 값은 {rot, rot, rot, trans, trans, trans} 순이다(즉, {x, y, z, rotation vector} 순이 아닌, rotation 후 translation 순임!)
 
 위의 SLAM 예제가 이해하기 쉽게 되어 있으므로 online SLAM 전체 파이프라인 공부할 겸 살펴보는 것을 추천한다.
 
 ## 결론
 
-사실, GTSAM이 제공해주는 class를 통한 factor graph optimization을 할 때에는 전혀 몰라도 되는 매우 deep한 부분이다.
-그러나 현재 내가 지금 무슨 행위를 하고 있는지 완벽히 이해하고 구현하는 게 이 ChatGPT에 먹혀버린 시대에 바람직한 자세이지 않나 싶다.
-마지막은 올해 Frank 교수님과 함께 RSS 학회/MIT에서 만난 사진과 함께 kudos to Frank를 하며 마무리한다. 
+'쉽게 이해하기'라고 했지만 '깊게 이해하기'가 더 적절한 제목이 아닌가 싶다. 사실, GTSAM에서 이미 제공하는 class를 통해 factor graph optimization을 할 때에는 전혀 몰라도 되는 매우 deep한 부분이다.
+그러나 현재 내가 지금 무슨 행위를 하고 있는지 완벽히 이해하고 구현하는 것이 이 ChatGPT에 먹혀버린 시대의 연구자들이 지녀야 할 바람직한 자세이지 않나 싶다.
+마지막은 올해 Frank 교수님과 함께 RSS 학회/MIT에서 얘기하고 찍은 사진과 함께, GTSAM library에 힘쓴 Frank 교수님에게 kudos to Frank를 하며 마무리한다. 
+
+<table>
+  <tr>
+    <td><img src="/img/w_frank1.jpg" alt="In RSS" width="300"/></td>
+    <td><img src="/img/w_frank2.jpg" alt="In MIT" width="300"/></td>
+  </tr>
+</table>
 
 ---
 
