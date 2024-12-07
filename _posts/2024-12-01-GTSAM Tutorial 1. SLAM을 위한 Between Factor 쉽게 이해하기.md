@@ -79,7 +79,9 @@ Vector evaluateError(const T& p1, const T& p2,
 
 ~~호우쮖 뭔가가 굉장히 복잡하게 생겼다.~~ 찬찬히 line-by-line으로 살펴보면,
 
-1. `traits<T>::Between`을 통해 `p1`과 `p2`에 해당하는 class의 `between` 함수 불러 옴. between 함수들은 모든 Lie Group의 엄마 객체인 `gtsam/base/Lie.h`에 정의되어 있다: 
+### Step 1
+
+`traits<T>::Between`을 통해 `p1`과 `p2`에 해당하는 class의 `between` 함수 불러 옴. between 함수들은 모든 Lie Group의 엄마 객체인 [gtsam/base/Lie.h](https://github.com/borglab/gtsam/blob/7150f284a8b6356cbefe78f066b50ad31ea6cbcc/gtsam/base/Lie.h#L52)에 정의되어 있다: 
 
 ```cpp
 Class between(const Class& g) const {
@@ -97,7 +99,7 @@ Class between(const Class& g, ChartJacobian H1,
 }
 ```
 
-그럼 여기서 '`p1`과 `p2`가 무엇일까?'하는 의문이 드는데, 이 변수들은 우리가 처음 아래처럼 할당해준 initial value 값에 대응된다.
+그럼 여기서 '`p1`과 `p2`가 무엇일까?'하는 의문이 드는데, 이 변수들은 우리가 처음 아래처럼 할당해준 initial value 값에 대응된다:
 
 ```cpp
 Values initialEstimate;
@@ -108,18 +110,20 @@ initialEstimate.insert(4, Pose2(4.0, 2.0,  M_PI  ));
 initialEstimate.insert(5, Pose2(2.1, 2.1, -M_PI_2));
 ```
 
-예를 들어서, `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));` 의 `BetweenFactor`는 optimization 시 `2`에 해당되는 `Pose2`를 `p1`에, `3`에 해당되는 `Pose2`를 `p2`에 대입하여서 relative pose를 계산한다. 즉, $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2$$를 통해 $$\mathbf{T}^{1}_2$$를 얻는 것이다 
+예를 들어서, `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));` 의 `BetweenFactor`는 optimization 시 `2`에 해당되는 `Pose2`를 `p1`에, `3`에 해당되는 `Pose2`를 `p2`에 대입하여 relative pose를 계산한다. 즉, $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2$$를 통해 $$\mathbf{T}^{1}_2$$를 얻는 것이다 
 
-[GTSAM convention](https://gtsam.org/gtsam.org/2020/06/28/gtsam-conventions.html)에 따르면 1이 `from`(i.e., pose의 기준이 되는 좌표계)이 되고 2가 `to`=가 된다. 즉, `from`이 'with respect to'(어느 축을 기준으로 보았을 때)의 의미를 지닌다. 이는 관점에 따라 2가 `from`이 되고 1가 `to`가 될 때도 있는데, [이 글 3번째](www.naver.com)를 다시 읽어보길).
+[GTSAM convention](https://gtsam.org/gtsam.org/2020/06/28/gtsam-conventions.html)에 따르면 1이 `from`(i.e., pose의 기준이 되는 좌표계)이 되고 2가 `to`가 된다. 즉, `from`이 'with respect to'(어느 축을 기준으로 보았을 때)의 의미를 지닌다. 사실 registration의 경우에는 2를 `from`, 1을 `to`라고 쓰는데, 잘 이해가 안 가는 이는 [이 글]([www.naver.com](https://limhyungtae.github.io/2022-09-04-SLAM,-Robotics-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%84-%EC%9C%84%ED%95%9C-3%EA%B0%80%EC%A7%80-%EC%BD%94%EB%94%A9-%EA%BF%80%ED%8C%81-(1)/))를 다시 읽어보길.
 
-2. Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual `rval` 계산
+### Step 2
+
+Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual `rval` 계산
 
 `Vector rval = traits<T>::Local(measured_, hx, OptionalNone, (H1 || H2) ? &Hlocal : 0);` 줄에 `Local`이라는 함수가 있는데, 이는 Lie Group에서 SE(2)나 SE(3)를 Log mapping을 통해 vector화 하는 과정이다. 만약 `measured_`와 `hx`가 덧셈/뺄셈이 가능한 값들이었다면, `hx - measured_`를 하면 되었을 것이다. 
 하지만 알고 있다시피, 2D/3D pose는 곱셈의 세계(?)로 정의되어 있다보니깐, `hx.inverse() * measured_`를 계산해서 측정된 상대 pose(i.e., `measured_`)와 추정된 상대 pose(i.e., `hx`)간의 차이를 `Log()` 함수를 표현한다.
 
 여기서 Jacobians인 `H1`과 `H2`도 구해지지만, 이 구해지는 과정은 다른 글에서 심도 있게 다루도록 한다.
 
-3. What's Next?: Solving objective function
+### Step 3 What's Next?: Solving objective function
 
 그 다음엔 무슨 일이 일어날까? 이런 factor graph 상에서 모든 factor를 `evaluateError()` 함수로 계산하고 난 후, 아래와 같이 optimization을 시행한다([2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)에서 발췌)
 
