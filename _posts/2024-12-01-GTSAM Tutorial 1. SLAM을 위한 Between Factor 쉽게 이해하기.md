@@ -77,7 +77,7 @@ Vector evaluateError(const T& p1, const T& p2,
 }
 ```
 
-~~호우쮖 뭔가가 굉장히 복잡하게 생겼다.~~ 찬찬히 line-by-line으로 살펴보면,
+~~호우쮖 뭔가가 굉장히 복잡하게 생겼다.~~ 찬찬히 line-by-line으로 살펴보면, 크게 4 단계로 쪼개어 설명할 수 있다.
 
 ### Step 1
 
