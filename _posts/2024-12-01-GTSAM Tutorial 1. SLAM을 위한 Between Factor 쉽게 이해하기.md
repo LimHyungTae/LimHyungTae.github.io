@@ -142,7 +142,7 @@ Optimization을 한 후에는, 그 후에는 변화량을 기존 pose의 값에 
 
 $$\xi^{t+1}_i = \xi^{t}_i \oplus \delta_i$$
 
-를 통해 다음 iteration $$t+1$$에 쓸 pose를 업데이트한다. 여기서 $$\delta_i$$는 2D의 경우에는 $$\mathbb{R}^3$$(x, y, theta로 구성), 3차원의 경우 $$\mathbb{R}^6$$(rotation vector 3개와 x, y, z. 참고로 rotation vector $$\neq$$ (roll, pitch yaw)이다!)이다. 그 후, 다시 vector로 표현되어 있는 $$\xi^{t+1}_i$$을 2D의 경우 $$3\times3$$의 SE(2)로, 3D의 경우 $$4\times4$$의 SE(3)의 $$T_i$$로 변환해주는 것이 필요한데, 이 행위를 *retract*라고 부른다. 그 후 다시 Step 1로 돌아가서 이 values들이 수렴할 때까지(i.e., $$\delta_i$$의 크기가 0에 충분히 가까워질때 까지) 반복적으로 optimization을 시행한다. 이러한 동작 방식으로 인해 iterative opimization이라고 부르는 것이다.
+를 통해 다음 iteration $$t+1$$에 쓸 pose를 업데이트한다. 여기서 $$\delta_i$$는 2D의 경우에는 $$\mathbb{R}^3$$(x, y, theta로 구성), 3차원의 경우 $$\mathbb{R}^6$$(rotation vector 3개와 x, y, z. 참고로 rotation vector $$\neq$$ (roll, pitch yaw)이다!)이다. 그 후, 다시 vector로 표현되어 있는 $$\xi^{t+1}_i$$을 2D의 경우 $$3\times3$$의 SE(2)로, 3D의 경우 $$4\times4$$의 SE(3)의 $$\mathbf{T}_i$$로 다시 변환해주는 것이 필요한데, 이 행위를 *retract*라고 부른다. 그 후 다시 Step 1로 돌아가서 이 values들이 수렴할 때까지(i.e., $$\delta_i$$의 크기가 0에 충분히 가까워질때 까지) 반복적으로 optimization을 시행한다. 이러한 동작 방식으로 인해 iterative opimization이라고 부르는 것이다.
 
 ---
 
