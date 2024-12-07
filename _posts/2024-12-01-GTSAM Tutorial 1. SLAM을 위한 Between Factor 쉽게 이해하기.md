@@ -52,11 +52,11 @@ graph.add(BetweenFactor<Pose2>(5, 2, Pose2(2, 0, M_PI_2), model));
 
 ---
 
-## `BetweenFactor` 원리
+## `BetweenFactor`의 원리
 
-`BetweenFactor`는 Lie Group의 class 간의 차이를 measurement로 쓰기 위한 factor이다. 만약 pose-to-point distance를 기반으로 한 error term을 활용하려면 `PoseToPointFactor` 등을 써야 한다. 이래서 Frank Dellaert 교수님은 'factor graph'라고 부른다. 왜냐하면 pose 뿐만 아니라 다양한 형태의 측정 값을 활용해서 optimization을 할 수 있기 때문이다.
+`BetweenFactor`는 Lie group으로 정의된 두 객체 간의 거리 차이(여기서 '거리'는 position만 될 수도 있고, pose도 될수도 있다. 정의하기 나름)를 measurement로 쓰기 위한 factor이다. 만약 pose-to-point distance를 기반으로 한 error term을 활용하려면 `PoseToPointFactor`를 써야 한다. 이처럼 우리가 optimization하고자 하는 factor들만 설정해주면 GTSAM 내부적으로 어떻게 동작하는지 알지 못하더라도 optimization을 할 수 있다. 이러한 이유 때문에 Frank Dellaert 교수님은 이를 'factor graph'라고 부른다. 그리고 'pose graph'라는 용어는 이 factor graph에서 pose만 다루는 graph를 지칭하는, factor graph의 특수한 케이스라고 생각하면 된다.
 
-각설하고, 여기서는 간단하게 PoseToPose의 의미를 나타내는 `BetweenFactor`를 분석해보자.
+각설하고, 이 글에서는 pose간 차이를 나타내는 `BetweenFactor`를 분석해보자.
 `BetweenFactor`는 [여기](https://github.com/borglab/gtsam/blob/bb5cfb22840360a39e590cc19e5db84e58d6f897/gtsam/slam/BetweenFactor.h#L40) 코드에 보면 객체화되어 정의가 되어 있다.
 
 ```cpp
@@ -77,7 +77,7 @@ Vector evaluateError(const T& p1, const T& p2,
 }
 ```
 
-~호우쮖 뭔가가 굉장히 복잡하게 생겼다.~ 찬찬히 line-by-line으로 살펴보면,
+~~호우쮖 뭔가가 굉장히 복잡하게 생겼다.~~ 찬찬히 line-by-line으로 살펴보면,
 
 1. `traits<T>::Between`을 통해 `p1`과 `p2`에 해당하는 class의 `between` 함수 불러 옴. between 함수들은 모든 Lie Group의 엄마 객체인 `gtsam/base/Lie.h`에 정의되어 있다: 
 
