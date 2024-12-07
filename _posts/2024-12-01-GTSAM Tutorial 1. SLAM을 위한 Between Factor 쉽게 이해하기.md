@@ -131,7 +131,7 @@ Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual
 ![gtsam_solving](/img/gtsam_solving.png)
 ---
 
-즉, 위에서 열심히 구한 `H1`과 `H2`가 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`는 각각 $$h(\xi__{j1}, \xi__{j2})$$와 $$\Delta \xi_i$$에 대입되어 최종적으로는 $$b_i$$로 표현된다 위의 식에서 최종적으로 우리가 구해야하는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 것이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서 graph 구조 내의 두 번쨰 pose와 세 번째 pose에 한 iteration 동안 어느 정도 값을 update를 할지를 뜻한다). 
+즉, 위에서 열심히 구한 `H1`과 `H2`가 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`는 각각 $$h(\xi_{j1}, \xi_{j2})$$와 $$\Delta \xi_i$$에 대입되어 최종적으로는 $$b_i$$로 표현된다 위의 식에서 최종적으로 우리가 구해야하는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 것이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서 graph 구조 내의 두 번쨰 pose와 세 번째 pose에 한 iteration 동안 어느 정도 값을 update를 할지를 뜻한다). 
 
 이를 통해 GTSAM이 어떻게 `BetweenFactor`를 활용해 optimization을 하는지 clear하게 이해할 수 있다!
 
