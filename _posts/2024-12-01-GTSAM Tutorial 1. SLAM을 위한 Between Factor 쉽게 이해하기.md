@@ -10,9 +10,9 @@ comments: true
 ## Introduction 
 
 나는 지금 GTSAM의 주 관리자인 Luca Carlone 교수님네에 포닥으로 와있다보니, 
-GTSAM을 기반으로 코드를 짜야할 일이 많아졌다. 그래서 이번에는 GTSAM을 처음 써보는 이들을 위한 포스팅을 하고자 한다. GTSAM의 예제를 통해 SLAM을 이해함과 동시에 좀더 깊게 Lie group 상에서 optimization을 어떻게 해야하는 지에 대해 면밀히 다뤄보도록 한다.
+GTSAM을 기반으로 코드를 짜야할 일이 많아졌다. 그래서 GTSAM에 대해 깊게 공부할 일이 많아졌는데, 이번에는 이를 활용해서 GTSAM을 처음 써보는 이들을 위한 포스팅을 하고자 한다. 특히, GTSAM 내부적으로 어떻게 동작하는지에 대해 설명하는 글이 생각보다 없어서, GTSAM에서 제공하는 pose graph optimization(혹은 factor graph optimization)을 이해함과 동시에 좀더 깊게 Lie group 상에서 optimization이 어떻게 동작하는 지에 대해 면밀히 다뤄보도록 한다.
 
-이 글은 [이미 GTSAM에서 제공하는 튜토리얼](https://gtsam.org/tutorials/intro.html)에 대한 이해를 돕기 위한 설명글로 출발해서, GTSAM 내부에서 어떤 일이 일어나고 있는지 분석해볼 것이다. 그러니, 이 글은 SLAM을 처음 접하는 이에게는 적절하지 않을 수도 있다. 오히려 SLAM을 돌려보긴 했으나 내부적으로 어떤 과정이 일어나서 optimization이 되는지 자세히 살펴보고자 하는 이들에게 큰 도움이 되리라 생각된다.
+따라서 이 글에서는 [이미 GTSAM에서 제공하는 튜토리얼](https://gtsam.org/tutorials/intro.html)에 대한 이해를 돕기 위한 설명글로 출발해서, GTSAM 내부에서 어떤 일이 일어나고 있는지 분석해볼 것이다. 그러니, 이 글은 SLAM을 처음 접하는 이에게는 적절하지 않을 수도 있다. 오히려 SLAM을 돌려보긴 했으나 내부적으로 어떤 과정이 일어나서 optimization이 되는지 자세히 살펴보고자 하는 이들에게 큰 도움이 되리라 생각된다.
 이 시리즈 글을 읽어보기 전 [Pose2SLAMExample.cpp](https://github.com/devbharat/gtsam/blob/master/examples/Pose2SLAMExample.cpp) 코드를 한번 보면서 읽어보기를 추천한다.
 그리고 SLAM 자체에 대해 잘 모르는 이는 [김기섭 박사가 쓴 SLAM에 대한 intro 글](https://gisbi-kim.github.io/blog/2021/03/04/slambackend-1.html)을 과 Frank Dellaert 교수님의 [2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)을 읽어보는 것을 추천한다.
 
@@ -20,10 +20,15 @@ GTSAM을 기반으로 코드를 짜야할 일이 많아졌다. 그래서 이번�
 
 ## Pose Graph Optimization과 BetweenFactor
 
-위의 `Pose2SLAMExample.cpp`에 보면 알겠지만, pose graph optimization은 1) `NonlinearFactorGraph ` 클래스로 graph 구조 생성, 2) `Values` 클래스로 정의한 graph 구조에 필요한 initial value 제공, 3) Optimizer로 optimize하면 끝난다.
-그렇다면 아래의 `BetweenFactor`는 어떻게 동작할까?
+위의 `Pose2SLAMExample.cpp`에 보면 알겠지만, pose graph optimization은 
 
-```angular2html
+* 1) `NonlinearFactorGraph ` 클래스에다 우리가 원하고자 하는 constraint(혹은 factor. 이 SLAM 예제의 경우에는 `BetweenFactor`를 사용함)를 추가해서 graph 구조 생성,
+  2) `Values` 클래스로 정의한 graph 구조에 필요한 initial value 제공,
+  3) Optimizer로 optimize하면 끝난다.
+     
+그렇다면 아래의 `BetweenFactor`는 내부적으로 어떻게 동작해서 optimization을 할 수 있게 해줄까?
+
+```cpp
 graph.add(PriorFactor<Pose2>(1, Pose2(0, 0, 0), priorNoise));
 
 // For simplicity, we will use the same noise model for odometry and loop closures
