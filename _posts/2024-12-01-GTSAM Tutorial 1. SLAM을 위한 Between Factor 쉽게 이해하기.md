@@ -127,15 +127,15 @@ Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual
 
 그 다음엔 무슨 일이 일어날까? 이런 factor graph 상에서 모든 factor를 `evaluateError()` 함수로 계산하고 난 후, 아래와 같이 optimization을 시행한다([2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)에서 발췌)
 
-![](img/gtsam_solving.png)
+![gtsam_solving](/img/gtsam_solving.png)
 
 즉, 위에서 열심히 구한 `H1`과 `H2`가 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`를 통해 구한 차이는 $$b_i$$가 된다. 위의 식에서 최종적으로 관심있는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 것이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서 2번 째 pose와 3번 째 pose에 한 iteration 동안 어느 정도 값을 update를 할지를 뜻한다). 
 
 이를 통해 GTSAM이 어떻게 동작하는지 clear하게 이해할 수 있다!
 
-4. Retract
+### Step 4. Retract
 
-Optimization을 한 후에는 어떻게 될까? 그 후에는 변화량을 기존 pose의 값에 추가해줘야 한다.
+Optimization을 한 후에는, 그 후에는 변화량을 기존 pose의 값에 추가해줘야 한다.
 이를 위해 제일 마지막 줄인 
 
 $$\xi^{t+1}_i = \xi^{t}_i \oplus \delta_i$$
