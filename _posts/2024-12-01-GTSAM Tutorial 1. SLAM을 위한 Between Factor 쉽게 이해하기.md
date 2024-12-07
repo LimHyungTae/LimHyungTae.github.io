@@ -1,8 +1,8 @@
 ---
 layout: post
 title: GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기
-subtitle: Transformation matrix and Jacobian 
-tags: [Jacobian, GTSAM]
+subtitle: How does GTSAM work? 
+tags: [Jacobian, GTSAM, Optimization]
 comments: true
 
 ---
