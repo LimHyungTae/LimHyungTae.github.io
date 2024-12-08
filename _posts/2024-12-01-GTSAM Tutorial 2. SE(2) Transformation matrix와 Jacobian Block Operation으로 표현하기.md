@@ -109,10 +109,10 @@ $$J=\left[\begin{array}{ll}
 
 그리고 뒤의 $$2\times1$$ 구간은 
 
-$$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}  \; \; \; \; \text{[5]}$$
+$$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}  \; \; \; \; \text{(5)}$$
 
 가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
-이는 다음 글에서 살펴보자. 
+이를 위해서는 skew symmetric에 대한 이해가 필요한데, 이는 다음 글에서 살펴보자. 
 
 ---
 

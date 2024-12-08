@@ -8,9 +8,9 @@ comments: true
 
 ## Introduction 
 
-나는 3차원에서의 설명을 하기 앞서 저차원에서 현상에 대한 이해를 설명하는 것을 선호하는 편인데, 오늘은 rotation의 skew symmetric matrix에 대해 쉽게 설명하고자 한다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-1.-SE(2)-Transformation-matrix%EC%99%80-Jacobian-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)과 이어짐).
+나는 3차원에서의 설명을 하기 앞서 저차원에서 현상에 대한 이해를 설명하는 것을 선호하는 편인데, 오늘은 rotation의 skew symmetric matrix에 대해 쉽게 설명하고자 한다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-2.-SE(2)-Transformation-matrix%EC%99%80-Jacobian-Block-Operation%EC%9C%BC%EB%A1%9C-%ED%91%9C%ED%98%84%ED%95%98%EA%B8%B0/)과 이어짐).
 
-## Derivative Rotation Matrix
+## Derivative of Rotation Matrix
 
 나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 각도 $$\theta$$에 대한 표현식으로 나타낼 수 있고, 이는 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
 
@@ -34,7 +34,7 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 \end{array}\right]   \; \; \; \; \text{(6)}$$
 
 여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**이다. 
-즉, 최종적으로 [5]의 $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 수식 (6)을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 되고, 이는 $$\mathbf{x}$$를 $$R(\theta)$$로 회전시킨 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
+즉, 최종적으로 이전 글에서 수식 (5) $$\frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}$$의  $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 수식 (6)을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 된다. 이는 $$\mathbf{x}$$를 $$R(\theta)$$로 회전시킨 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
 
 ## Derivative Rotation Matrix의 물리적 의미
 
