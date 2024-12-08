@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mac Apple chip에서 Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 에러 해결하기
-subtitle:
+subtitle: Run Algorithms on Mac
 tags: [MacOS, C++]
 comments: true
 ---
