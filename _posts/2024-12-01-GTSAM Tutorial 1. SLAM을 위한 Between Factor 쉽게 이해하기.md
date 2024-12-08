@@ -128,18 +128,18 @@ Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual
 ---
 
 즉, 
-`evaluateError` 함수가 실행될 때 `OptionalMatrixType H1`와 `OptionalMatrixType H2`에 저장된 값이 위의 첨부 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`는 각각 $$h(\xi_{j1}, \xi_{j2})$$와 $$\Delta \xi_i$$에 대입되어 최종적으로는 $$b_i$$로 표현된다 위의 식에서 최종적으로 우리가 구해야하는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 것이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서 graph 구조 내의 두 번쨰 pose와 세 번째 pose에 한 iteration 동안 어느 정도 값을 update를 할지를 뜻한다). 
+`evaluateError` 함수가 실행될 때 `OptionalMatrixType H1`와 `OptionalMatrixType H2`에 저장된 값이 위의 첨부 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`는 각각 $$h(\xi_{j1}, \xi_{j2})$$와 $$\Delta \xi_i$$에 대입되어 최종적으로는 $$b_i$$로 표현된다 위의 식에서 최종적으로 우리가 구해야하는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 값이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서, optimization을 하는 과정 중 graph 구조 내의 두 번째 pose와 세 번째 pose에 한 iteration 동안 어느 정도의 값을 update를 할지를 뜻한다). 
 
 이를 통해 GTSAM이 어떻게 `BetweenFactor`를 활용해 optimization을 하는지 clear하게 이해할 수 있다!
 
 ### Step 4. Update Values in Vector Space → Retract
 
 Optimization을 한 후에는, 그 후에는 변화량을 기존 pose의 값에 추가해줘야 한다.
-이를 위해 제일 마지막 줄인 
+이는 위에 나와 있는 제일 마지막 줄처럼 
 
 $$\xi^{t+1}_i = \xi^{t}_i \oplus \delta_i$$
 
-를 통해 다음 iteration $$t+1$$에 쓸 pose를 업데이트한다. 여기서 $$\delta_i$$는 2D의 경우에는 $$\mathbb{R}^3$$(x, y, theta로 구성), 3차원의 경우 $$\mathbb{R}^6$$(rotation vector 3개와 x, y, z. 참고로 rotation vector $$\neq$$ (roll, pitch yaw)이다!)이다. 그 후, 다시 vector로 표현되어 있는 $$\xi^{t+1}_i$$을 2D의 경우 $$3\times3$$의 SE(2)로, 3D의 경우 $$4\times4$$의 SE(3)의 $$\mathbf{T}_i$$로 다시 변환해주는 것이 필요한데, 이 행위를 *retract*라고 부른다. 그 후 다시 Step 1로 돌아가서 이 values들이 수렴할 때까지(i.e., $$\delta_i$$의 크기가 0에 충분히 가까워질때 까지) 반복적으로 optimization을 시행한다. 이러한 동작 방식으로 인해 iterative opimization이라고 부르는 것이다.
+를 통해 다음 iteration $$t+1$$에 쓸 pose를 업데이트한다. 위의 경우에는 $$j1$$ 번째 pose와 $$j2$$ 번째 포즈를 $$\xi^{t}_i$$로 간단하게 나타내었지만, 단순화를 위해 임의로 $$\xi^{t}_i$$가 단일 node의 pose라고 가정하자. 여기서 $$\delta_i$$는 2D의 경우에는 $$\mathbb{R}^3$$(x, y, theta로 구성), 3차원의 경우 $$\mathbb{R}^6$$(rotation vector 3개와 x, y, z. 참고로 rotation vector $$\neq$$ (roll, pitch yaw)이다!)이다. 그 후, 다시 vector로 표현되어 있는 $$\xi^{t+1}_i$$을 2D의 경우 $$3\times3$$의 SE(2)로, 3D의 경우 $$4\times4$$의 SE(3)의 $$\mathbf{T}_i$$로 다시 변환해주는 것이 필요한데, 이 행위를 *retract*라고 부른다. 그 후 다시 Step 1로 돌아가서 이 values들이 수렴할 때까지(i.e., $$\delta_i$$의 크기가 0에 충분히 가까워질때 까지) 반복적으로 optimization을 시행한다. 이러한 동작 방식으로 인해 iterative opimization이라고 부르는 것이다.
 
 ---
 
@@ -165,7 +165,7 @@ gtsam::Pose3 pose_to = poseEigToGtsamPose(current_frame_.pose_corrected_eig_);
 ```
 
 참고로, 
-* `std::lock_guard<std::mutex>` 부분은 여러 프로세스가 비동기적으로 동시에 돌아갈 때 segmentation fault를 방지하기 위한 부분이다 (잘 모르는 이는 mutex lock에 대해 읽어보자) 이렇게 그래프/initial value를 생성해주는 부분과 뒷단에서 optimization한 후 initial value를 업데이트해주는 부분에서 동시에 `init_esti_`와 `gtsam_graph_`에 접근하면 segmentation fault가 일어날 수 있기 때문에, 이를 방지해주기 위함이다. 
+* `std::lock_guard<std::mutex>` 부분은 여러 프로세스가 비동기적으로 동시에 돌아갈 때 segmentation fault를 방지하기 위한 부분이다 (잘 모르는 이는 mutex lock에 대해 공부해 보자) 이렇게 그래프/initial value를 생성해주는 부분과 뒷단에서 optimization한 후 initial value를 업데이트해주는 부분에서 동시에 `init_esti_`와 `gtsam_graph_`에 접근하면 segmentation fault가 일어날 수 있기 때문에, 이를 방지해주기 위함이다. 
 * 참고로, 2차원에서 covariance의 순은 {trans, trans, rot}의 순인데, 3차원에서 covariance의 값은 {rot, rot, rot, trans, trans, trans} 순이다(즉, {x, y, z, rotation vector} 순이 아닌, rotation 후 translation 순임!)
 
 위의 SLAM 예제가 이해하기 쉽게 되어 있으므로 online SLAM 전체 파이프라인 공부할 겸 살펴보는 것을 추천한다.
