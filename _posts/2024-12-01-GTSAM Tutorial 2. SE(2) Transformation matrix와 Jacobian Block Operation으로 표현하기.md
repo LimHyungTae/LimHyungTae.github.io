@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GTSAM Tutorial 2. SE(2) Transformation matrix와 Jacobian 쉽게 이해하기
+title: GTSAM Tutorial 2. SE(2) Transformation matrix와 Jacobian Block Operation으로 표현하기
 subtitle: Transformation matrix and Jacobian 
 tags: [Jacobian, GTSAM]
 comments: true
@@ -30,7 +30,7 @@ Vector evaluateError(const T& p1, const T& p2,
 
 사실 이러한 Jacobian 매트릭스는 이미 기존에 짜있는 factor를 이용할 경우에는 깊은 생각 없이 그냥 가져다 쓰면 된다. 하지만 자신이 새로운 factor를 만들어 optimization을 하고자 할 때는 이 Jacobian들도 적절히 유도를 해주어야 한다(개인적으로 이러한 이유 때문에 사용자 입장에서는 GTSAM이 Ceres에 비해 진입 장벽이 좀 높다고 생각된다~~옆집 Ceres Solver는 아묻따 `autodiff`로 Jacobian 알아서 구해줌~~)).
 
-그래서 이번에는 pose의 Jacobian을 구할 때 알아두면 좋을 개념에 대해 설명하고자 한다.
+그래서 이번에는 pose를 표현할 때와 Jacobian을 구할 때 알아두면 좋을 개념에 대해 미리 설명하고자 한다.
 
 ## Jacobian of SE(2) Transformation?
 
@@ -52,9 +52,9 @@ y \\
 x \\
 y \\
 1
-\end{array}\right] \; \; \; \; \text{[1]}$$
+\end{array}\right]. \; \; \; \; \text{(1)}$$
 
-위의 식을 살펴 보면 우리가 늘 봐왔듯이 $$\left[\begin{array}{cc}
+위의 식을 살펴 보면, $$\mathbf{R}$$을 rotation matrix, $$\mathbf{t}$$라 정의했을 때, 위의 $$T\left(\theta, t_x, t_y\right)$$가 $$\left[\begin{array}{cc}
 \mathbf{R} & \mathbf{t} \\
 0 & 1
 \end{array}\right]$$의 꼴로 구성되어 있는 것을 볼 수 있다(note: IEEE format에서는 matrix나 vector는 bold체로 써야한다. 이해를 할 때 참고).
@@ -84,25 +84,28 @@ $$J=\left[\begin{array}{lll}
 $$J=\left[\begin{array}{ccc}
 1 & 0 & -x \sin \theta-y \cos \theta \\
 0 & 1 & x \cos \theta-y \sin \theta
-\end{array}\right] \; \; \; \; \text{[2]}$$
+\end{array}\right] \; \; \; \; \text{(2)}$$
+
+$$J$$의 가로축(row)에는 관계에 대한 표현식의 갯수, 세로축(column)에는 우리가 풀고자 하는 다 변수를 구성하는 요소의 개수로 구성되어 있는 것을 알 수 있다.
 
 --- 
 
 ## Block Operation
 
 그런데 Frank Dellaert 교수님 자료를 보면 위의 식을 좀더 섹시(?)하게 block operation으로 기입하는 것을 볼 수 있다.
-수식 [1]을 좀더 간결히 쓰면 아래와 같이 쓸 수 있는데: 
+수식 (1)을 좀더 간결히 쓰면 아래와 같이 쓸 수 있는데: 
 
-$$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t} \; \; \; \; \text{[3]}$$
+$$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t} \; \; \; \; \text{(3)}$$
 
-이를 통해 수식 [2]의 Jacobian을 block operation으로 간결히 적으면 아래와 같이 적을 수 있다:
+이를 통해 수식 (2)의 Jacobian을 block operation으로 간결히 적으면 아래와 같이 적을 수 있다:
 
 $$J=\left[\begin{array}{ll}
-\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}} & \frac{\partial T(\mathbf{x})}{\partial \theta} \end{array}\right] \; \; \; \; \text{[4]}$$
+\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}} & \frac{\partial T(\mathbf{x})}{\partial \theta} \end{array}\right] \; \; \; \; \text{(4)}$$
 
-위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 $$2\times1$$의 vector에 대한 partial derivative이므로 $$2\times2$$의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 derivative이기 때문에 $$2\times1$$의 matrix가 된다. 
-이제 수식 [3]을 scalar로 구성된 equation이랑 동일하게 취급해보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$T(\mathbf{x})$$ (i.e., [3])에서의 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
-하지만 우리는 현재 matrix의 세계에 있으므로, 이 값은 identity matrix $$\mathbf{I}_{2\times2}$$가 된다. 그리고 이는 [2]의 앞쪽 $$2\times2$$구간과 일치한다.
+위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 크기가 2인 vector($$t_x$$와 $$t_y$$로 구성되어 있으므로)에 대한 partial derivative이므로 $$2\times2$$의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 partial derivative이기 때문에 $$2\times1$$의 matrix가 된다. 
+
+이제 수식 (3)을 scalar로 구성된 equation처럼 여겨서 수식 (4)를 풀어 보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$T(\mathbf{x})$$ (i.e., (3))에서의 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
+하지만 우리는 현재 matrix의 세계에 있으므로, 이 partial derivative $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 identity matrix $$\mathbf{I}_{2\times2}$$가 된다. 그리고 이는 수식 (2)의 앞쪽 $$2\times2$$ 구간과 일치한다.
 
 그리고 뒤의 $$2\times1$$ 구간은 
 
