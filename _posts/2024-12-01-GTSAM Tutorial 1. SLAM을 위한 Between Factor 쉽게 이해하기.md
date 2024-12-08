@@ -20,11 +20,7 @@ GTSAM을 기반으로 코드를 짜야할 일이 많아졌다. 그래서 GTSAM�
 
 ## Pose Graph Optimization과 BetweenFactor
 
-위의 `Pose2SLAMExample.cpp`에 보면 알겠지만, pose graph optimization은 
-
-  1) `NonlinearFactorGraph ` 클래스에다 우리가 원하고자 하는 constraint(혹은 factor. 이 SLAM 예제의 경우에는 `BetweenFactor`를 사용함)를 추가해서 graph 구조 생성,
-  2) `Values` 클래스로 정의한 graph 구조에 필요한 initial value 제공,
-  3) Optimizer로 optimize하면 끝난다.
+위의 `Pose2SLAMExample.cpp`에 보면 알겠지만, pose graph optimization은 (i) `NonlinearFactorGraph ` 클래스에다 우리가 원하고자 하는 constraint(혹은 factor. 이 SLAM 예제의 경우에는 `BetweenFactor`를 사용함)를 추가해서 graph 구조 생성, (ii) `Values` 클래스로 정의한 graph 구조에 필요한 initial value 제공, (iii) Optimizer로 optimize하면 끝난다.
      
 그렇다면 아래의 `BetweenFactor`는 내부적으로 어떻게 동작해서 optimization을 할 수 있게 해줄까?
 
@@ -116,22 +112,23 @@ initialEstimate.insert(5, Pose2(2.1, 2.1, -M_PI_2));
 
 ### Step 2
 
-Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual `rval` 계산
-
-`Vector rval = traits<T>::Local(measured_, hx, OptionalNone, (H1 || H2) ? &Hlocal : 0);` 줄에 `Local`이라는 함수가 있는데, 이는 Lie Group에서 SE(2)나 SE(3)를 Log mapping을 통해 vector화 하는 과정이다. 만약 `measured_`와 `hx`가 덧셈/뺄셈이 가능한 값들이었다면, `hx - measured_`를 하면 되었을 것이다. 
+Measurement `measured_` 값과 relative 추정 값인 `hx` 비교해서 residual `rval` 계산한다. `Vector rval = traits<T>::Local(measured_, hx, OptionalNone, (H1 || H2) ? &Hlocal : 0);` 줄에 `Local`이라는 함수가 있는데, 이는 Lie Group에서 SE(2)나 SE(3)를 Log mapping을 통해 vector화 하는 과정이다. 만약 `measured_`와 `hx`가 덧셈/뺄셈이 가능한 값들이었다면, `hx - measured_`를 하면 되었을 것이다. 
 하지만 알고 있다시피, 2D/3D pose에서는 덧셈은 곱셈으로, 뺄셈은 inverse matrix와의 곱셈으로 표현되는 곱셈의 세계(?)이기 때문에, `hx.inverse() * measured_`를 계산해서 측정된 상대 pose(i.e., `measured_`)와 추정된 상대 pose(i.e., `hx`)간의 차이를 `Log()` 함수를 통해 최종적으로 vector인 `rval`로 표현한다.
 
 여기서 Jacobians인 `H1`과 `H2`도 구해지지만, 이 구해지는 과정은 다른 글에서 심도 있게 다루도록 한다.
 
 ### Step 3 What's Next?: Solving objective function
 
-그 다음엔 무슨 일이 일어날까? 이런 factor graph 상에서 모든 factor를 `evaluateError()` 함수로 계산하고 난 후, 아래와 같이 optimization을 시행한다([2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)에서 발췌)
+그 다음엔 무슨 일이 일어날까? 이런 factor graph 상에서 모든 factor의 `evaluateError()` 함수를 통해 error와 Jacobian term들을 계산하고 난 후, 아래와 같이 optimization을 시행한다([2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)에서 발췌)
 
 ---
+
 ![gtsam_solving](/img/gtsam_solving.png)
+
 ---
 
-즉, 위에서 열심히 구한 `H1`과 `H2`가 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`는 각각 $$h(\xi_{j1}, \xi_{j2})$$와 $$\Delta \xi_i$$에 대입되어 최종적으로는 $$b_i$$로 표현된다 위의 식에서 최종적으로 우리가 구해야하는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 것이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서 graph 구조 내의 두 번쨰 pose와 세 번째 pose에 한 iteration 동안 어느 정도 값을 update를 할지를 뜻한다). 
+즉, 
+`evaluateError` 함수가 실행될 때 `OptionalMatrixType H1`와 `OptionalMatrixType H2`에 저장된 값이 위의 첨부 수식 상의 $$H_{j1}$$, $$H_{j2}$$로 각각 대입되고, `hx`와 `measured_`는 각각 $$h(\xi_{j1}, \xi_{j2})$$와 $$\Delta \xi_i$$에 대입되어 최종적으로는 $$b_i$$로 표현된다 위의 식에서 최종적으로 우리가 구해야하는 값은 $$\delta_{j1}$$과 $$\delta_{j2}$$인데, 이 두 값은 각각 initialal values에 업데이트되는, pose의 변화량을 vector의 형태로 나타낸 것이다(예로 들자면, 위의 `graph.add(BetweenFactor<Pose2>(2, 3, Pose2(2, 0, M_PI_2), model));`에서 graph 구조 내의 두 번쨰 pose와 세 번째 pose에 한 iteration 동안 어느 정도 값을 update를 할지를 뜻한다). 
 
 이를 통해 GTSAM이 어떻게 `BetweenFactor`를 활용해 optimization을 하는지 clear하게 이해할 수 있다!
 
