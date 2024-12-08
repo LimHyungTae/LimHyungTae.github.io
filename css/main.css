@@ -2,7 +2,9 @@
 layout: null
 ---
 
-@import url("pygment_highlights.css");
+/* @import url("pygment_highlights.css"); */
+@import 'syntax-highlighting'
+
 
 /* --- General --- */
 
