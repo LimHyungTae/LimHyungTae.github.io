@@ -159,7 +159,7 @@ date_format: "%B %-d, %Y"
 # Output options (more information on Jekyll's site)
 timezone: "Asia/Seoul"
 markdown: kramdown
-highlighter: false
+highlighter: rouge
 permalink: /:year-:month-:day-:title/
 paginate: 20
 lsi: false
@@ -168,9 +168,7 @@ incremental: false
 
 kramdown:
   input: GFM
-#  NOTE(ht): The below code rather off every highlights
-#  syntax_highlighter_opts:
-#    disable: true
+  syntax_highlighter: rouge
     
 # Default YAML values (more information on Jekyll's site)
 defaults:
