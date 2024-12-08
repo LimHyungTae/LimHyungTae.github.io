@@ -219,7 +219,7 @@ img {
 .navbar-custom .nav .navlinks-children {
   width: 100%;
   display: none;
-  word-break: break-word;
+  word-break: normal;
 }
 .navbar-custom .nav .navlinks-container .navlinks-children a {
   display: block;
@@ -343,6 +343,14 @@ footer .theme-by {
   font-weight: 300;
   margin-bottom: 10px;
 }
+
+/* To prevent line break */
+.post-preview .post-title, .post-preview .post-subtitle {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 .post-preview .post-meta,
 .post-heading .post-meta {
   color: #808080;
