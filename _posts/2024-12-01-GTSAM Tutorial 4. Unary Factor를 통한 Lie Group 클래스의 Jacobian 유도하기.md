@@ -43,31 +43,36 @@ $$f_2=t_y - m_y$$(`q.y() - my_`에 대응되는 부분)라 정의해보자.
 
 ## 정답: Retract 때문
 
-`H`
-여기서 `H`가 우리가 생각한 것과 다른 형태로 유도되는 것은 바로 우리가 optimize하고자 하는 값이 Lie Group에 속하는 값이기 때문이다.
+
+여기서 `H`가 우리가 생각한 것과 다른 형태로 유도되는 것은 바로 우리가 optimize하고자 하는 값이 Lie Group에 속하는 값이기 때문이다(`H`의 의미는 Conclusion에서 최종적으로 언급하겠다).
 Lie Group의 세계에서는 pose는 transformation matrix 꼴로 표현되어 있다. 
 그리고 optimization 시에는 (i) pose를 업데이트할 미소 pose를 vector의 형태로 취득한 후 이를 (ii) transformation matrix의 꼴로 되돌려서 pose의 우측에 곱해주어 pose를 업데이트한다는 것을 기억하자.
-즉, pose를
+즉, pose $$\mathbf{T}$$를 업데이트하는 것을
 
 $$\mathbf{T} \leftarrow \mathbf{T}\Delta\mathbf{T}\;\;\;\;(1)$$
 
-와 같이 표현할 수 있다. 수식 (1)을 vector의 형태로 표현(이를 parameterize라 부른다)했을 때, 미소 vector $$\boldsymbol{\delta}$$에 의해 vector꼴로 표현된 pose $$\boldsymbol{\xi}$$가 증분되는 것은 아래와 같이 표현할 수 있었다:
+와 같이 표현할 수 있다. 
+수식 (1)을 vector의 형태로 표현(이를 parameterize라 부른다)해보면 미소 vector $$\boldsymbol{\delta}$$에 의해 vector꼴로 표현된 pose $$\boldsymbol{\xi}$$가 증분되는 것은 아래와 같이 표현할 수 있었다:
 
 $$\boldsymbol{\xi} \leftarrow \boldsymbol{\xi} \oplus \boldsymbol{\delta}\;\;\;\;(2)$$
 
----
+Lie Group의 세계에서는 우리가 최적화하고자 하는 값의 변화량이 수식 (1)과 같은 비선형 함수(즉, 변수들의 단순한 덧셈으로 표현되지 않는 함수)로 나타난다.
+특히, 최적화를 수행할 때 관측값과 이를 모델링한 함수인 measurement function 역시 비선형 함수로 표현되기 때문에, 이를 그대로 사용하면 계산 과정이 복잡해지고 최적화가 어려워진다.
+따라서 최적화를 보다 효율적으로 수행하려면 이러한 수식을 선형화하는 과정이 필요하다.
 
-그렇기 때문에 우리가 optimization하고자 하는 값의 상대 값을 표현하는 measurement function이 non-linear 함수(즉, 어떤 함수가 변수들의 덧셈만으로 표현되지 않는 꼴)이기 때문에, 
-optimization을 쉽게 하기 위해서는 해당 수식을 선형화해주어야 한다.
-Unary factor의 경우에는, 두 pose를 다루었던 between factor와 다르게 업데이트하고자 하는 변수가 하나이므로,
-이는 아래와 같이 수식으로 표현할 수 있다:
+Unary factor의 경우에는, [두 pose를 다루었던 between factor](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-1.-SLAM%EC%9D%84-%EC%9C%84%ED%95%9C-Between-Factor-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)와 다르게 업데이트하고자 하는 변수가 하나이므로,
+이는 아래와 같이 수식으로 표현할 수 있으며:
 
-$$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{xi}) + \mathbf{H}\boldsymbol{\delta}$$
+$$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{\xi}) + \mathbf{H}\boldsymbol{\delta}$$
 
-여기서 $$h(\cdot)$$은 Lie Group pose의 translation 값만 return해주는 함수이다. 
+여기서 unary factor의 measurement function $$h(\cdot)$$은 Lie Group pose의 translation 값만 return해주는 함수이다. 
 위와 같이 선형화를 해주어야, 처음 글에서 보았듯이, 아래의 objective function을 $$||\mathbf{A}\mathbf{x} - \mathbf{b}||_2$$꼴로 표현할 수 있게 된다 (첫 글에서 본 아래의 스크린샷을 다시 살펴보자):
 
+---
+
 ![](/img/gtsam_solving.png)
+
+---
 
 이 unary factor의 경우에는 수식이 아래와 같아진다:
 
