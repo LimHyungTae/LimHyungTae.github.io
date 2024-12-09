@@ -49,26 +49,19 @@ $$R\left(-\delta \theta \right)=\left[\begin{array}{cc}
 \end{array}\right] \approx\left[\begin{array}{cc}
 1 & \delta \theta  \\
 -\delta \theta  & 1
-\end{array}\right]=\mathbf{I}-R(\pi / 2) \delta \theta_1  \;\;\;\;(3)$$
+\end{array}\right]=\mathbf{I}-R(\pi / 2) \delta \theta  \;\;\;\;(3)$$
 
+따라서, 2D에서는 $$R(-\theta - \delta\theta) = R(-\theta) R(- \delta\theta)$$임을 이용하면 $$\mathbf{R}^\intercal \left(\mathbf{I}-R(\pi / 2) \delta \theta\right)$$와 같이 표현할 수 있고, 이를 다시 수식 (2)에 대입해서 전개하면 아래와 같이 표현할 수 있다:
 
-$$R(-\theta - \delta\theta) = \mathbf{R}^\intercal \left[\begin{array}{cc}
-\cos \delta \theta & -\sin \delta \theta \\
-\sin \delta \theta & \cos \delta \theta
-\end{array}\right]$$
+$$\begin{align}
+R(-\theta - \delta\theta)\left(\mathbf{p} + \delta\mathbf{p}\right) 
+&= \mathbf{R}^\intercal \left(\mathbf{I}-R(\pi / 2) \delta \theta\right)\left(\mathbf{p} + \delta\mathbf{p}\right) \\
+&= \mathbf{R}^\intercal \mathbf{p} 
+   + \mathbf{R}^\intercal \delta\mathbf{p} 
+   - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \mathbf{p} 
+   - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p}.
+\end{align}$$
 
-
-[앞선 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-3.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/)에서 $$R(\theta)$$의 미분 값을 구했던 것 처럼, 이번에는 transposed rotation을 $$\theta$$에 대해 미분하면 아래의 결과를 얻을 수 있다:
-
-
-$$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}=
-\left[\begin{array}{cc}
--\sin \theta & \cos \theta \\
--\cos \theta & -\sin \theta
-\end{array}\right] = - \left[\begin{array}{cc}
-0 & -1 \\
-1 & 0
-\end{array}\right] \mathbf{R}^{\intercal} = -\hat{\Omega}\mathbf{R}^{\intercal}$$
 
 여기서 $$\hat{\Omega}$$는 skew-symmetric matrix이다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-3.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/)에서 설명하였다). 
 
@@ -84,9 +77,9 @@ $$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}=
 
 ## Conclusion
 
-이처럼 block operation으로 표현된 수식에 대한 Jacobian을 구하는 방법에 친숙해져야지 GTSAM을 더 잘 이해할 수 있게 된다.
+여기서는 2차원이어서 block operation을 적극 활용하지는 않았으나, 3차원의 경우에는 표현된 수식을 block operation을 통해 Jacobian을 구하는 방법에 친숙해져야지 GTSAM을 더 잘 이해할 수 있게 된다.
 
-이제 skew-symmetric matrix에 대한 이해를 했으니, 다양한 factor에 대한 Jacobian을 유도해보자.
+이제 skew-symmetric matrix에 대한 이해를 했으니, 첫 글에서 무시하고 지나왔던 `Pose2`와 `Pose3`으 `BetweenFactor`의 `H1`와 `H2`를 다음 글부터 유도해 보자.
 
 ---
 
