@@ -33,10 +33,11 @@ GTSAM에서 `H1`는 해당 객체를 위한 Jacobian(e.g., 위의 예제에서�
 
 현재 위의 `unrotate`에서 일어나는 이 수식을 $$f(\theta, \mathbf{p}) = \mathbf{R}^{\intercal}\mathbf{p}$$라 표현한다면, 우리는 이전 글에서 했듯이 아래와 같은 관계식을 풀어야 한다:
 
-$$f(\theta + \delta \theta,  \mathbf{p} + \delta \mathbf{p}) = \mathbf{H}_1 \delta \theta + \mathbf{H}_2 \delta \mathbf{p}\;\;\;\;(3)$$
+$$f(\theta + \delta \theta,  \mathbf{p} + \delta \mathbf{p}) = \mathbf{H}_1 \delta \theta + \mathbf{H}_2 \delta \mathbf{p}\;\;\;\;(1)$$
 
 그리고 $$f(\theta, \mathbf{p}) = \mathbf{R}^\intercal \mathbf{p}$$이므로, 
 
+$$f(\theta + \delta \theta, \mathbf{p} + \delta \mathbf{p}) = R(\theta + \delta\theta)^\intercal \left(\mathbf{p} + \delta\mathbf{p}\right) \;\;\;\;(2)$$
 (작성 중)
 
 [앞선 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-3.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/)에서 $$R(\theta)$$의 미분 값을 구했던 것 처럼, 이번에는 transposed rotation을 $$\theta$$에 대해 미분하면 아래의 결과를 얻을 수 있다:
