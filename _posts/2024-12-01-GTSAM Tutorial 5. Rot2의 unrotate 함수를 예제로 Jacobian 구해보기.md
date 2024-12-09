@@ -59,20 +59,16 @@ R(-\theta - \delta\theta)\left(\mathbf{p} + \delta\mathbf{p}\right)
 &= \mathbf{R}^\intercal \mathbf{p} 
    + \mathbf{R}^\intercal \delta\mathbf{p} 
    - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \mathbf{p} 
-   - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p}.
+   - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p} \\
+&\simeq f(\theta, \mathbf{p}) 
+   + \mathbf{R}^\intercal \delta\mathbf{p} 
+   - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \mathbf{p} \\.  \;\;\;\;(4)
 \end{align}$$
 
+수식 (4)에서 $$\mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p}$$가 생략된 이유는, approximation을 할 때 자주 활용하는 기법인데, 미소 값을 두 번 곱하게 되면(i.e., $$\delta \theta$$와 $$\delta \mathbf{p}$$를 곱하는 행위) 그 값이 다른 term들에 비해 월등히 작아지기 때문이다. 따라서, 이미 이 term이 위의 수식 (4)에 영향이 미미하기 때문에, 계산 효율성을 위해 생략이 가능해진다. 그리고 $$\delta \theta$$는 현재 $$\mathbb{R}^1$$인 scalar 값이므로, 세번 째 항의 제일 뒷쪽으로 보내는 것이 가능하다. 따라서 수식 (4)를 통해 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같게 된다:
 
-여기서 $$\hat{\Omega}$$는 skew-symmetric matrix이다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-3.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/)에서 설명하였다). 
+$$$$\mathbf{H}_1 = - \mathbf{R}^\intercal R(\pi / 2) \mathbf{p}, \;\; \mathbf{H}_2$ = \mathbf{R}^\intercal$$
 
-따라서 $$\frac{\partial \mathbf{f}}{\partial \theta} = \frac{\partial {R(\theta)^\intercal}}{\partial \theta}\mathbf{p}$$는 위의 코드에서 `const Point 2 q`$$=\mathbf{R}^{\intercal}\mathbf{p}$$를 계산한 후, 음의 방향인 skew-symmetric matrix인 $$\left[\begin{array}{cc}
-0 & 1 \\
--1 & 0
-\end{array}\right]$$을 곱해서 최종적으로 `*H1 << q.y(), -q.x()`로 할당되는 것을 볼 수 있다.
-
---- 
-
-`H2`의 경우, $$\mathbf{p}$$에 대한 Jacobian, i.e., $$\frac{\partial \mathbf{f}}{\partial \mathbf{p}}$$, 인데 $$\mathbf{f}$$를 미분하면 $$\mathbf{p}$$에 곱해져있던 계수와 대응되는 $$\mathbf{R}^{\intercal}$$이 남기 때문에 최종적으로 $$\mathbf{R}^{\intercal}$$가 되는 것을 
 ---
 
 ## Conclusion
