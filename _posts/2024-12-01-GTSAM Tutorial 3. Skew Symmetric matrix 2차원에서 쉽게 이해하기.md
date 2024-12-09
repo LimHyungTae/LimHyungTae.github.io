@@ -33,10 +33,10 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 1 & 0
 \end{array}\right]   \; \; \; \; \text{(6)}$$
 
-여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**이다. 
+여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**의 꼴을 띈다. 
 즉, 최종적으로 이전 글에서 수식 (5) $$\frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}$$의  $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 수식 (6)을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 된다. 이는 $$\mathbf{x}$$를 $$R(\theta)$$로 회전시킨 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
 
-## Derivative Rotation Matrix의 물리적 의미
+## Skew-Symmetric Matrix의 물리적 의미
 
 <p align="center">
   <img src="/img/circular_motion.png" alt="Circular Motion">
@@ -48,8 +48,15 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 즉, 회전에 접선 방향에 대한 움직임을 나타내는 것이라고 해석될 수 있다.
 예로 들어서, rotation matrix로 회전된 값이 $$(\frac{1}{2}, \frac{1}{2})$$라고 할 때, 여기에 $$\hat{\Omega}$$을 곱하게 되면 $$(-\frac{1}{2}, \frac{1}{2})$$ 값이 되는데, 이를 그려보면 정확히 원의 접선 vector와 일치하는 것을 볼 수 있다(대강 위의 그림의 $$\mathbf{Q}$$ 의 화살표 방향 일치함).
 
-두 번째로는, rotation의 회전의 경우 기존 값 $$x$$와 $$y$$의 영향을 받는다는 것인데, 이 또한 자명하다.
-왜냐하면 동일한 회전을 하더라도 회전을 하고자하는 길이(위의 그림에서의 $$r$$ 부분)가 길어지게 되면 각도가 동일하게 변경되더라도 더 많은 움직임이 발생하기 때문이다. 
+두 번째로는, 이전 글에서 Jacobian이 아래와 같았는데:
+
+$$J=\left[\begin{array}{ccc}
+1 & 0 & -x \sin \theta-y \cos \theta \\
+0 & 1 & x \cos \theta-y \sin \theta
+\end{array}\right] \; \; \; \; \text{(2)}$$
+
+단순히 미분 값이 $$\mathbf{I}_{2\times2}$$인 translation과는 다르게 rotation의 미분값의 경우 기존 값 $$x$$와 $$y$$의 영향을 받는다는 것이다. 
+이는 자명한데, 왜냐하면 동일한 회전을 하더라도 회전을 하고자하는 길이(위의 그림에서의 $$r$$ 부분)가 길어지게 되면 각도가 동일하게 변경되더라도 더 많은 움직임이 발생하기 때문이다. 
 
 --- 
 
