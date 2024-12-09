@@ -83,7 +83,7 @@ $$\frac{1}{2}||h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) - \mathbf{m}||_2 \
  
 ---
 
-## 수식 유도
+## 수식 유도 과정
 
 자, 이제 어느 정도 이해를 했으니 직접 `H` 값을 유도해 보자.
 수식 (2)의 변수들을 각각 $$\boldsymbol{\xi} = [t_x, t_y, \theta]^{\intercal}$$, $$\boldsymbol{\delta} = [\delta_x, \delta_y, \delta_\theta]^{\intercal}$$라 표현해보자.
@@ -99,7 +99,8 @@ $$\left[\begin{array}{ccc}
 0 & 0 & 1
 \end{array}\right] \; \; \; \; \text{(4)}$$
 
-수식 (4)에서 $$\delta_{\theta} \simeq 0$$이면 $$\cos \delta_{\theta} \simeq 1$$, $$\sin \delta_{\theta} \simeq \delta_{\theta}$$로 근사가 가능하므로(이를 small angle approximation이라 부름),
+수식 (4)에서 $$\delta_{\theta}$$는 굉장히 작은 각도 값이므로, $$\delta_{\theta} \simeq 0$$라고 가정할 수 있다(이를 small angle approximation이라 부름).
+이를 통해 $$\cos \delta_{\theta} \simeq 1$$, $$\sin \delta_{\theta} \simeq \delta_{\theta}$$로 근사가 가능하므로,
 (4)는 아래와 같이 간소화되어 표현이 가능하다:
 
 $$\left[\begin{array}{ccc}
@@ -107,8 +108,8 @@ $$\left[\begin{array}{ccc}
 \sin \theta & \cos \theta & t_y \\
 0 & 0 & 1
 \end{array}\right]\left[\begin{array}{ccc}
-1 & -\delta_{theta} & \delta_x \\
-\delta_{theta} & 1 & \delta_y \\
+1 & -\delta_{\theta} & \delta_x \\
+\delta_{\theta} & 1 & \delta_y \\
 0 & 0 & 1
 \end{array}\right].\; \; \; \; \text{(5)}$$
 
@@ -118,15 +119,15 @@ $$\left[\begin{array}{ccc}
 $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) = \mathbf{t} + R(\theta)\boldsymbol{\delta}_{\mathbf{t}} = h(\boldsymbol{\xi}) + R(\theta)\boldsymbol{\delta}_{\mathbf{t}}\; \; \; \; \text{(6)}$$
 
 이 된다.
-따라서 우리가 최종적으로 구하고자 하는 $$\mathbf{H}$$는 위의 (6)를 표현하기 위해 $$\boldsymbol{\delta}$$ 앞에 곱해지는 matrix이므로,
-$$\mathbf{H} = [R(\theta) \,\; \mathbf{0}_{2\times1}] \in \mathbb{R}^{2\times3}$$이 되는 것을 확인할 수 있다 (위의 수식 내에 $$\delta_{\theta}$$가 존재하지 않으므로, $$\delta_{\theta}$$에 대한 partial derivative는 모두 다 0이 되는 것은 자명하다).
+따라서 우리가 최종적으로 구하고자 하는 $$\mathbf{H}$$는 위의 (6)를 표현하기 위해 $$\boldsymbol{\delta}$$($$\boldsymbol{\delta}_{\mathbf{t}}$$ 아니고 $$\boldsymbol{\delta}$$임 주의) 앞에 곱해지는 matrix이므로,
+$$\mathbf{H} = [R(\theta) \,\; \mathbf{0}_{2\times1}] \in \mathbb{R}^{2\times3}$$이 되는 것을 확인할 수 있다 (위의 수식 내에 $$\delta_{\theta}$$가 존재하지 않으므로, $$\delta_{\theta}$$에 대한 partial derivative는 모두 다 0이 되기 때문이다).
 
 ## Conclusion
 
-따라서, GTSAM에서 optimization을 할 때 필요한 Jacobian matrix `H`는 단순히 $$\left[\begin{array}{ccc}
-\frac{df_1}{t_x} & \frac{df_1}{t_y} & \frac{df_1}{\theta} \\
-\frac{df_2}{t_x} & \frac{df_2}{t_y} & \frac{df_2}{\theta} \\
-\end{array}\right]$$가 아님을 주의하자! `H`는 미소 증분 vector인 $$\boldsymbol{\delta}$$를 표현하기 위한 matrix임을 잊지 말자.
+따라서, GTSAM에서 어떤 factor를 새로 정의할 때 필요한 Jacobian matrix `H`는 단순히 $$\left[\begin{array}{ccc}
+\frac{df_1}{dt_x} & \frac{df_1}{dt_y} & \frac{df_1}{d\theta} \\
+\frac{df_2}{dt_x} & \frac{df_2}{dt_y} & \frac{df_2}{d\theta} \\
+\end{array}\right]$$가 아닌, 미소 증분 vector인 $$\boldsymbol{\delta}$$를 위한 행렬임을 주의하자.
 
 ---
 
