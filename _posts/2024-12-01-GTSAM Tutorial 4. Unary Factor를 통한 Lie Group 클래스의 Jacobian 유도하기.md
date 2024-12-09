@@ -63,10 +63,10 @@ Lie Group의 세계에서는 우리가 최적화하고자 하는 값의 변화�
 Unary factor의 경우에는, [두 pose를 다루었던 between factor](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-1.-SLAM%EC%9D%84-%EC%9C%84%ED%95%9C-Between-Factor-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)와 다르게 업데이트하고자 하는 변수가 하나이므로,
 이는 아래와 같이 수식으로 표현할 수 있으며:
 
-$$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{\xi}) + \mathbf{H}\boldsymbol{\delta}$$
+$$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{\xi}) + \mathbf{H}\boldsymbol{\delta}\;\;\;\;(3)$$
 
 여기서 unary factor의 measurement function $$h(\cdot)$$은 Lie Group pose의 translation 값만 return해주는 함수이다. 
-위와 같이 선형화를 해주어야, 처음 글에서 보았듯이, 아래의 objective function을 $$||\mathbf{A}\mathbf{x} - \mathbf{b}||_2$$꼴로 표현할 수 있게 된다 (첫 글에서 본 아래의 스크린샷을 다시 살펴보자):
+수식 (3)과 같이 선형화를 해주어야, 처음 글에서 보았듯이, 아래의 objective function을 $$||\mathbf{A}\mathbf{x} - \mathbf{b}||_2$$꼴로 표현할 수 있게 된다 (첫 글에서 본 아래의 스크린샷을 다시 살펴보자):
 
 ---
 
@@ -76,16 +76,17 @@ $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{\xi}) + \m
 
 이 unary factor의 경우에는 수식이 아래와 같아진다:
 
-$$\frac{1}{2}||h(\boldsymbol{xi} \oplus \boldsymbol{\delta}) - \mathbf{m}||_2 \simeq \frac{1}{2}||h(\boldsymbol{xi}) + \mathbf{H}\boldsymbol{\delta} - \mathbf{m}||_2 = \frac{1}{2}||\mathbf{H}\boldsymbol{\delta} - \mathbf{b}||_2 $$
+$$\frac{1}{2}||h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) - \mathbf{m}||_2 \simeq \frac{1}{2}||h(\boldsymbol{\xi}) + \mathbf{H}\boldsymbol{\delta} - \mathbf{m}||_2 = \frac{1}{2}||\mathbf{H}\boldsymbol{\delta} - \mathbf{b}||_2 $$
 
-위와 같이 되어야 이제 각 iteration 별 최적의 $$\delta$$를 구할 수 있게 되기 때문이다.
-즉, optimization을 하기 위해서 근사하는 행위에 필요한 게 바로 저 `H` matrix의 역할이다.
+위와 같이 되어야 이제 각 iteration 별 최적의 $$\boldsymbol{\delta}$$를 구할 수 있게 되기 때문이다.
+즉, optimization을 하기 위해서 $$\boldsymbol{\delta}$$에 대한 표현식이 바로 우리가 구하고자 하는 `H` matrix인 것이다.
  
 ---
 
 ## 수식 유도
 
-수식 (1)의 변수들을 각각 $$\boldsymbol{\xi}^{t} = [t_x, t_y, \theta]^{\intercal}$$, $$\boldsymbol{\delta}^{i} = [\delta_x, \delta_y, \delta_\theta]^{\intercal}$$라 표현해보자.
+자, 이제 어느 정도 이해를 했으니 직접 `H` 값을 유도해 보자.
+수식 (2)의 변수들을 각각 $$\boldsymbol{\xi} = [t_x, t_y, \theta]^{\intercal}$$, $$\boldsymbol{\delta} = [\delta_x, \delta_y, \delta_\theta]^{\intercal}$$라 표현해보자.
 그러면 SE(2)에서의 증분은 아래와 같이 표현된다:
 
 $$\left[\begin{array}{ccc}
@@ -93,13 +94,13 @@ $$\left[\begin{array}{ccc}
 \sin \theta & \cos \theta & t_y \\
 0 & 0 & 1
 \end{array}\right]\left[\begin{array}{ccc}
-\cos \delta_{theta} & -\sin \delta_{theta} & \delta_x \\
-\sin \delta_{theta} & \cos \delta_{theta} & \delta_x \\
+\cos \delta_{\theta} & -\sin \delta_{\theta} & \delta_x \\
+\sin \delta_{\theta} & \cos \delta_{\theta} & \delta_x \\
 0 & 0 & 1
-\end{array}\right] \; \; \; \; \text{(2)}$$
+\end{array}\right] \; \; \; \; \text{(4)}$$
 
-(2)에서 $$\delta_{theta} \sim 0$$이면 $$\cos \delta_{theta} \sim 1$$, $$\sin \delta_{theta} \sim \delta_{theta}$$로 근사가 가능하므로(small angle approximation),
-(2)는 아래와 같이 간소화되어 표현이 가능하다:
+수식 (4)에서 $$\delta_{\theta} \simeq 0$$이면 $$\cos \delta_{\theta} \simeq 1$$, $$\sin \delta_{\theta} \simeq \delta_{\theta}$$로 근사가 가능하므로(이를 small angle approximation이라 부름),
+(4)는 아래와 같이 간소화되어 표현이 가능하다:
 
 $$\left[\begin{array}{ccc}
 \cos \theta & -\sin \theta & t_x \\
@@ -109,17 +110,16 @@ $$\left[\begin{array}{ccc}
 1 & -\delta_{theta} & \delta_x \\
 \delta_{theta} & 1 & \delta_y \\
 0 & 0 & 1
-\end{array}\right].\; \; \; \; \text{(3)}$$
+\end{array}\right].\; \; \; \; \text{(5)}$$
 
-따라서 위의 수식을 전개한 후의 translation 값이 $$h(\boldsymbol{xi} \oplus \boldsymbol{\delta})$$와 대응되는 값이다.
-편의를 위해 $$\mathbf{t} = [t_x, t_y]^\intercal$$, $$\delta_{\mathbf{t}} = [\delta_x, \delta_y]^\intercal$$라 표현하면,  
-$$h(\boldsymbol{xi} \oplus \boldsymbol{\delta})$$에 해당하는 값은 
+따라서 위의 수식을 전개한 후의 translation 값이 $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta})$$와 대응되는 값이다.
+편의를 위해 $$\mathbf{t} = [t_x, \, t_y]^\intercal$$, $$\boldsymbol{\delta}_{\mathbf{t}} = [\delta_x, \, \delta_y]^\intercal$$라 표현하면, $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta})$$에 해당하는 값은 
 
-$$\mathbf{t} + R(\theta)\delta_{\mathbf{t}} = h(\boldsymbol{xi}) + R(\theta)\delta_{\mathbf{t}}\; \; \; \; \text{(4)}$$
+$$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) = \mathbf{t} + R(\theta)\boldsymbol{\delta}_{\mathbf{t}} = h(\boldsymbol{\xi}) + R(\theta)\boldsymbol{\delta}_{\mathbf{t}}\; \; \; \; \text{(6)}$$
 
 이 된다.
-따라서 우리가 최종적으로 구하고자 하는 $$\mathbf{H}$$는 위의 (4)를 표현하기 위해 $$\boldsymbol{\delta}$$ 앞에 곱해지는 matrix이므로,
-$$\mathbf{H} = [\mathbf{R} \mathbf{0}_{2\times1}] \in \mathbb{R}^{2\times3}$$이 되는 것을 확인할 수 있다 (위의 수식 내에 $$\delta_{theta}$$가 존재하지 않으므로, $$\delta_{theta}$$에 대한 partial derivative는 모두 다 0이 되는 것은 자명하다).
+따라서 우리가 최종적으로 구하고자 하는 $$\mathbf{H}$$는 위의 (6)를 표현하기 위해 $$\boldsymbol{\delta}$$ 앞에 곱해지는 matrix이므로,
+$$\mathbf{H} = [R(\theta) \,\; \mathbf{0}_{2\times1}] \in \mathbb{R}^{2\times3}$$이 되는 것을 확인할 수 있다 (위의 수식 내에 $$\delta_{\theta}$$가 존재하지 않으므로, $$\delta_{\theta}$$에 대한 partial derivative는 모두 다 0이 되는 것은 자명하다).
 
 ## Conclusion
 
