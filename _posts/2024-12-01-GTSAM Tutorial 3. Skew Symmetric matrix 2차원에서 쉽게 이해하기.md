@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GTSAM Tutorial 3. Skew Symmetric matrix 2차원에서 쉽게 이해하기
-subtitle: Skew Symmetric
+subtitle: Meaning of Skew-Symmetric Matrix
 tags: [Jacobian, GTSAM]
 comments: true
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GTSAM Tutorial 2. SE(2) Transformation matrix와 Jacobian Block Operation으로 표현하기
-subtitle: Transformation matrix and Jacobian 
+subtitle: Transformation matrix, Jacobian, and Block Operation 
 tags: [Jacobian, GTSAM]
 comments: true
 ---
