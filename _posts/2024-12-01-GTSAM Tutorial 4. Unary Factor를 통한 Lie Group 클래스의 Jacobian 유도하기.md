@@ -39,15 +39,23 @@ public:
 $$f_2=t_y - m_y$$(`q.y() - my_`에 대응되는 부분)라 정의해보자.
 그러면 분명히 유도되는 미분값은 $$\frac{df_1}{dt_{x}}=1, \frac{df_1}{dt_{y}}=0, \frac{df_2}{dt_{x}}=0, \frac{df_2}{t_{y}}=1$$로
 매트릭스의 앞의 $$2\times2$$ 부분이 $$\mathbf{I}_{2\times2}$$가 되어야 할 것 같은데, translation의 Jacobian에 해당하는 부분이 $$\mathbf{R}$$로 되어 있는 것을 볼 수 있다.
+그렇다면 이 `H`는 어떻게 유도되는 것일까?
 
 ## 정답: Retract 때문
 
-여기서 아주 중요한 부분이 있는데, `H`를 구할 때에는 해당 객체가 Lie Group에 속하는지를 꼭! 확인해야 한다.
-여기서 Lie Group의 세계에서는 pose를 업데이트할 미소 pose를 vector의 형태로 취득한 후, 이를 다시 SE(N)으로 되돌려서 pose를 업데이트한다는 것에 주의해야 한다.
-Lie Group 세계에서는 SE(N)으로 표현된 pose 간의 변화는 $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 = \mathbf{T}^{1}_2$$
-와 같이 곱셈으로 표현한다는 것을 떠올려 보자. 그리고 SE(N)의 pose를 어떤 vector의 형태로 표현(이를 parameterize라 부른다)했을 때, 미소 vector에 의해 증분되는 것은 아래와 같이 표편할 수 있었다:
+`H`
+여기서 `H`가 우리가 생각한 것과 다른 형태로 유도되는 것은 바로 우리가 optimize하고자 하는 값이 Lie Group에 속하는 값이기 때문이다.
+Lie Group의 세계에서는 pose는 transformation matrix 꼴로 표현되어 있다. 
+그리고 optimization 시에는 (i) pose를 업데이트할 미소 pose를 vector의 형태로 취득한 후 이를 (ii) transformation matrix의 꼴로 되돌려서 pose의 우측에 곱해주어 pose를 업데이트한다는 것을 기억하자.
+즉, pose를
 
-$$\boldsymbol{\xi}^{t+1}_i = \boldsymbol{\xi}^{t}_i \oplus \boldsymbol{\delta}_i\;\;\;\;(1)$$
+$$\mathbf{T} \leftarrow \mathbf{T}\Delta\mathbf{T}\;\;\;\;(1)$$
+
+와 같이 표현할 수 있다. 수식 (1)을 vector의 형태로 표현(이를 parameterize라 부른다)했을 때, 미소 vector $$\boldsymbol{\delta}$$에 의해 vector꼴로 표현된 pose $$\boldsymbol{\xi}$$가 증분되는 것은 아래와 같이 표현할 수 있었다:
+
+$$\boldsymbol{\xi} \leftarrow \boldsymbol{\xi} \oplus \boldsymbol{\delta}\;\;\;\;(2)$$
+
+---
 
 그렇기 때문에 우리가 optimization하고자 하는 값의 상대 값을 표현하는 measurement function이 non-linear 함수(즉, 어떤 함수가 변수들의 덧셈만으로 표현되지 않는 꼴)이기 때문에, 
 optimization을 쉽게 하기 위해서는 해당 수식을 선형화해주어야 한다.
@@ -59,7 +67,7 @@ $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{xi}) + \ma
 여기서 $$h(\cdot)$$은 Lie Group pose의 translation 값만 return해주는 함수이다. 
 위와 같이 선형화를 해주어야, 처음 글에서 보았듯이, 아래의 objective function을 $$||\mathbf{A}\mathbf{x} - \mathbf{b}||_2$$꼴로 표현할 수 있게 된다 (첫 글에서 본 아래의 스크린샷을 다시 살펴보자):
 
-![](img/gtsam_solving.png)
+![](/img/gtsam_solving.png)
 
 이 unary factor의 경우에는 수식이 아래와 같아진다:
 
