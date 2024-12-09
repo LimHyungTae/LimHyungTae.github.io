@@ -37,10 +37,29 @@ $$f(\theta + \delta \theta,  \mathbf{p} + \delta \mathbf{p}) = \mathbf{H}_1 \del
 
 그리고 $$f(\theta, \mathbf{p}) = \mathbf{R}^\intercal \mathbf{p}$$이므로, 
 
-$$f(\theta + \delta \theta, \mathbf{p} + \delta \mathbf{p}) = R(\theta + \delta\theta)^\intercal \left(\mathbf{p} + \delta\mathbf{p}\right) \;\;\;\;(2)$$
-(작성 중)
+$$f(\theta + \delta \theta, \mathbf{p} + \delta \mathbf{p}) = R(\theta + \delta\theta)^\intercal \left(\mathbf{p} + \delta\mathbf{p}\right) = R(-\theta - \delta\theta)\left(\mathbf{p} + \delta\mathbf{p}\right)  \;\;\;\;(2)$$
+
+이고, 
+
+$$R(- \delta\theta)$$는 small angle approximation을 활용하여 아래와 같이 표현할 수 있다:
+
+$$R\left(-\delta \theta \right)=\left[\begin{array}{cc}
+\cos \left(-\delta \theta \right) & -\sin \left(-\delta \theta \right) \\
+\sin \left(-\delta \theta \right) & \cos \left(-\delta \theta \right)
+\end{array}\right] \approx\left[\begin{array}{cc}
+1 & \delta \theta  \\
+-\delta \theta  & 1
+\end{array}\right]=\mathbf{I}-R(\pi / 2) \delta \theta_1  \;\;\;\;(3)$$
+
+
+$$R(-\theta - \delta\theta) = \mathbf{R}^\intercal \left[\begin{array}{cc}
+\cos \delta \theta & -\sin \delta \theta \\
+\sin \delta \theta & \cos \delta \theta
+\end{array}\right]$$
+
 
 [앞선 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-3.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/)에서 $$R(\theta)$$의 미분 값을 구했던 것 처럼, 이번에는 transposed rotation을 $$\theta$$에 대해 미분하면 아래의 결과를 얻을 수 있다:
+
 
 $$\frac{\partial {R(\theta)^\intercal}}{\partial \theta}=
 \left[\begin{array}{cc}
