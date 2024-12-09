@@ -67,7 +67,7 @@ R(-\theta - \delta\theta)\left(\mathbf{p} + \delta\mathbf{p}\right)
 
 수식 (4)에서 두번 째 줄의 제일 마지막 항인 $$\mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p}$$가 생략된 이유는, approximation을 할 때 자주 활용하는 기법인데, 미소 값을 두 번 곱하게 되면(i.e., $$\delta \theta$$와 $$\delta \mathbf{p}$$를 곱하는 행위) 그 값이 다른 term들에 비해 월등히 작아지기 때문이다. 따라서, 이미 이 term이 위의 수식 (4)에 영향이 미미하기 때문에, 계산 효율성을 위해 생략이 가능해진다. 그리고 $$\delta \theta$$는 현재 $$\mathbb{R}^1$$인 scalar 값이므로, 세번 째 항의 제일 뒷쪽으로 보내는 것이 가능하다. 따라서 수식 (4)를 통해 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같게 된다:
 
-$$\mathbf{H}_1 = - \mathbf{R}^\intercal R(\pi / 2) \mathbf{p}, \;\; \mathbf{H}_2$ = \mathbf{R}^\intercal$$
+$$\mathbf{H}_1 = - \mathbf{R}^\intercal R(\pi / 2) \mathbf{p}, \;\; \mathbf{H}_2 = \mathbf{R}^\intercal$$
 
 ---
 
