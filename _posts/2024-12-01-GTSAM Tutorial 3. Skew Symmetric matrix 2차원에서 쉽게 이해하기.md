@@ -43,7 +43,7 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 어떤 미소 각 $$\delta_{\theta}$$에 대해 회전을 하는 rotation matrix는 다음과 같은데:
 
 $$R(\delta_{\theta}) = 
-\end{array}\right]\left[\begin{array}{cc}
+\left[\begin{array}{cc}
 \cos \delta_{\theta} & -\sin \delta_{\theta} \\
 \sin \delta_{\theta} & \cos \delta_{\theta} 
 \end{array}\right]. \; \; \; \; \text{(7)}$$
@@ -56,26 +56,34 @@ $$R(\delta_{\theta}) \simeq
 \left[\begin{array}{cc}
 1 & -\delta_{\theta}  \\
 \delta_{\theta} & 1 
-\end{array}\right] = \mathbf{I} + \hat{\Omega}\delta_{\theta}.\; \; \; \; \text{(8)}$$
+\end{array}\right] = \mathbf{I}_{2 \times 2} + \hat{\Omega}\delta_{\theta}.\; \; \; \; \text{(8)}$$
 
 수식 (8)에 $$R(\theta)$$를 곱해 보자. 그러면 아래와 같은 수식이 전개된다:
 
-$$R(\theta)R(\delta_{\theta}) = R(\theta)(\mathbf{I}_{2 \times 2} + \hat{\Omega}\delta_{\theta}) = R(\theta) + \frac{\partial R(\theta)}{\partial \theta}\delta_{\theta}.\; \; \; \; \text{(9)}$$
+$$R(\theta)R(\delta_{\theta}) \simeq R(\theta)(\mathbf{I}_{2 \times 2} + \hat{\Omega}\delta_{\theta}) = R(\theta) + \frac{\partial R(\theta)}{\partial \theta}\delta_{\theta}.\; \; \; \; \text{(9)}$$
 
 아주 놀랍게도, 수식 (9)에서 볼 수 있듯이, 이 $$\hat{\Omega}$$를 활용하게 되면, rotation의 변화량도 **덧셈으로 표현을 하는게 가능해진다.** 즉, 업데이트하고자 하는 각도의 양 $$\delta_{\theta}$$가 충분히 작다면, rotation의 상태 변화를 덧셈을 통해 표현이 가능해진다는 것을 확인할 수 있다. 그리고 이러한 특성은 뒤에 GTSAM에 쓰이는, `H`라 불리는, Jacobian의 수식 유도를 할 때 활발히 사용된다. 
 
+
+## 3차원에서 Skew-Symmetric Matrix 가볍게 접해보기
+
 그리고 유도되는 과정을 쉽게 설명하기 위해 2차원에서만 설명을 진행하였는데, 3차원에서도 이는 똑같이 적용된다.
-3차원의 회전을 어떤 3D vector $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$가 있다고 가정하면, 3차원에서도 회전의 변화를 아래와 같이 표현할 수 있다:
+우리가 2차원의 회전의 미소 변화량을 $$\delta \theta$$로 편히 나타냈던 것 처럼, 3차원의 회전의 미소 변화량을 어떤 3D vector $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$로 표현할 수 있다고 해보자. 그러면 3차원에서도 회전의 변화를 아래와 같이 표현할 수 있다:
 
-$$\mathbf{R}R(\delta \boldsymbol{\omega}) \simeq R(\theta)(\mathbf{I}_{3\times 3} + [\boldsymbol{\omega}]_\times.\; \; \; \; \text{(9)}$$
-
-
+$$\mathbf{R}R(\boldsymbol{\omega}) \simeq R(\theta)\left(\mathbf{I}_{3\times 3} + [\boldsymbol{\omega}]_\times\right),\; \; \; \; \text{(10)}$$
 
 $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 0 & -\omega_z & \omega_y \\
 \omega_z & 0 & -\omega_x \\
 -\omega_y & \omega_x & 0
-\end{array}\right]$$
+\end{array}\right].$$
+
+그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 복잡해진 이유는, 회전축이 2차원에서는 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 단일 scalar 값으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문이다. 그로 인해서 회전의 정도를 $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$의 꼴로 표현하여 수식이 좀 복잡하게 생겨졌는데, 원리는 2차원에서의 미소 회전을 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 (0, 0, \delta \theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
+0 & -1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 0
+\end{array}\right]\delta\theta$$로 표현해질 수 있게 되는데, 이는 2차원에서 $$\hat{\Omega}\delta_{\theta}$$의 표현과 일치하는 것을 엿볼 수 있다.
+
 
 
 ## Skew-Symmetric Matrix의 물리적 의미
@@ -86,7 +94,7 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 (위의 그림은 [여기](https://simagebank.net/wp/5257/)에서 발췌)
 
 그렇다면 이게 물리적으로 어떤 의미를 뜻할까?
-크게 두 가지로 해석할 수 있을 것 같은데, 첫번 째로는 skew-symmetric matrix로 변형된 vector는 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
+크게 두 가지로 해석할 수 있을 것 같은데, 첫번 째로는 skew-symmetric matrix로 변형된 vector는 물리적으로 angular velocity를 의미하는데, 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
 즉, 회전에 접선 방향에 대한 움직임을 나타내는 것이라고 해석될 수 있다.
 예로 들어서, rotation matrix로 회전된 값이 $$(\frac{1}{2}, \frac{1}{2})$$라고 할 때, 여기에 $$\hat{\Omega}$$을 곱하게 되면 $$(-\frac{1}{2}, \frac{1}{2})$$ 값이 되는데, 이를 그려보면 정확히 원의 접선 vector와 일치하는 것을 볼 수 있다(대강 위의 그림의 $$\mathbf{Q}$$ 의 화살표 방향 일치함).
 
