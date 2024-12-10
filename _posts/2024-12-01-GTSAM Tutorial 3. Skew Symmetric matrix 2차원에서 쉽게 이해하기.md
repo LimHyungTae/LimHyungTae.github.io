@@ -78,13 +78,13 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 -\omega_y & \omega_x & 0
 \end{array}\right].$$
 
-그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 복잡해진 이유는, 회전축이 2차원에서는 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 단일 scalar 값으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문이다. 그로 인해서 회전의 정도를 $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$의 꼴로 표현하여 수식이 좀 복잡하게 생겨졌는데, 원리는 2차원에서의 미소 회전을 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta \theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
+그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 수식 (10)이 복잡해보이는 이유는, 회전축이 2차원에서는 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 단일 scalar 값으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문이다. 그로 인해서 회전의 정도를 $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$의 꼴로 표현하여 수식이 좀 복잡하게 생겨졌는데, 원리는 2차원에서의 미소 회전을 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta \theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
 0 & -1 & 0 \\
 1 & 0 & 0 \\
 0 & 0 & 0
-\end{array}\right]\delta\theta$$로 표현해질 수 있게 되는데, 이는 2차원에서 $$\hat{\Omega}\delta_{\theta}$$의 표현과 일치하는 것을 엿볼 수 있다.
+\end{array}\right]\delta\theta$$로 표현해질 수 있게 되는데, 이는 2차원에서 $$\hat{\Omega}\delta_{\theta}$$의 꼴과 정확히 일치하는 것을 엿볼 수 있다.
 
-
+즉, 어떤 회전 $$\mathbf{R}$$의 증분을 표현할 때는 해당 rotation matrix $$\mathbf{R}$$, skew-symmetric matrix 형태로 표현된 회전 축, 그리고 회전량(i.e., scalar/vector의 형태)의 세가지 항의 곱으로 나타낼 수 있다는 것을 최종적으로 알 수 있다.  
 
 ## Skew-Symmetric Matrix의 물리적 의미
 
@@ -94,19 +94,11 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 (위의 그림은 [여기](https://simagebank.net/wp/5257/)에서 발췌)
 
 그렇다면 이게 물리적으로 어떤 의미를 뜻할까?
-크게 두 가지로 해석할 수 있을 것 같은데, 첫번 째로는 skew-symmetric matrix로 변형된 vector는 물리적으로 angular velocity를 의미하는데, 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
+이는 skew-symmetric matrix로 변형된 vector는 물리적으로 angular velocity를 의미하는데, 위의 그림의 검은 진한 화살표와 동일하다는 것을 알 수 있다.
 즉, 회전에 접선 방향에 대한 움직임을 나타내는 것이라고 해석될 수 있다.
 예로 들어서, rotation matrix로 회전된 값이 $$(\frac{1}{2}, \frac{1}{2})$$라고 할 때, 여기에 $$\hat{\Omega}$$을 곱하게 되면 $$(-\frac{1}{2}, \frac{1}{2})$$ 값이 되는데, 이를 그려보면 정확히 원의 접선 vector와 일치하는 것을 볼 수 있다(대강 위의 그림의 $$\mathbf{Q}$$ 의 화살표 방향 일치함).
 
-두 번째로는, 이전 글에서 Jacobian이 아래와 같았는데:
-
-$$J=\left[\begin{array}{ccc}
-1 & 0 & -x \sin \theta-y \cos \theta \\
-0 & 1 & x \cos \theta-y \sin \theta
-\end{array}\right] \; \; \; \; \text{(2)}$$
-
-단순히 미분 값이 $$\mathbf{I}_{2\times2}$$인 translation과는 다르게 rotation의 미분값의 경우 기존 값 $$x$$와 $$y$$의 영향을 받는다는 것이다. 
-이는 자명한데, 왜냐하면 동일한 회전을 하더라도 회전을 하고자하는 길이(위의 그림에서의 $$r$$ 부분)가 길어지게 되면 각도가 동일하게 변경되더라도 더 많은 움직임이 발생하기 때문이다. 
+3차원에서도 마찬가지로, 어떤 공간 상의 움직임에 접하는 평면 상의 vector를 뜻하게 된다. 사실 SLAM을 깊게 공부해보려 한 이라면 Lie group이니 Lie algebra이니 하는 말을 들어 보았을텐데, 이를 쉽게 해석해보자면 원래의 곱셈 연산을 통해 표현되는 어떤 값(group)을 덧셈/뺄셈을 통해 표현(algebra)할 수 있게 됨을 의미한다. 
 
 --- 
 
