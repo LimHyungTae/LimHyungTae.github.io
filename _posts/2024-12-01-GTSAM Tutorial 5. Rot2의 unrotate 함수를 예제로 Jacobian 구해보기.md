@@ -65,17 +65,42 @@ R(-\theta - \delta\theta)\left(\mathbf{p} + \delta\mathbf{p}\right)
    - \mathbf{R}^\intercal R(\pi / 2) \delta \theta \mathbf{p}.  \;\;\;\;(4)
 \end{align}$$
 
-수식 (4)에서 두번 째 줄의 제일 마지막 항인 $$\mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p}$$가 생략된 이유는, approximation을 할 때 자주 활용하는 기법인데, 미소 값을 두 번 곱하게 되면(i.e., $$\delta \theta$$와 $$\delta \mathbf{p}$$를 곱하는 행위) 그 값이 다른 term들에 비해 월등히 작아지기 때문이다. 따라서, 이미 이 term이 위의 수식 (4)에 영향이 미미하기 때문에, 계산 효율성을 위해 생략이 가능해진다. 그리고 $$\delta \theta$$는 현재 $$\mathbb{R}^1$$인 scalar 값이므로, 세번 째 항의 제일 뒷쪽으로 보내는 것이 가능하다. 따라서 수식 (4)를 통해 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같게 된다:
+수식 (4)에서 두번 째 줄의 제일 마지막 항인 $$\mathbf{R}^\intercal R(\pi / 2) \delta \theta \delta \mathbf{p}$$가 생략된 이유는, approximation을 할 때 자주 활용하는 기법인데, 미소 값을 두 번 곱하게 되면(i.e., $$\delta \theta$$와 $$\delta \mathbf{p}$$를 곱하는 행위) 그 값이 다른 term들에 비해 월등히 작아지기 때문이다. 따라서, 이미 이 term이 위의 수식 (4)에 영향이 미미하기 때문에, 계산 효율성을 위해 생략이 가능해진다.  
 
-$$\mathbf{H}_1 = - \mathbf{R}^\intercal R(\pi / 2) \mathbf{p}, \;\; \mathbf{H}_2 = \mathbf{R}^\intercal$$
+위의 식을 다시 살펴보면 $$\delta\mathbf{p}$$에 대한 $$\mathbf{H}_2$$는 $$\mathbf{H}_2 = \mathbf{R}^\intercal$$로 구해진 것을 확인할 수 있다. $$\delta \theta$$는 현재 term의 중간에 있는데,$$\mathbb{R}^1$$인 scalar 값이므로, 세번 째 항의 제일 뒷쪽으로 보내는 것이 가능하다. 그리고 이전에 skew-symmetric matrix에 대해 설명할 때 아래 수식을 상기해보자:
+
+
+$$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}R(\theta) \; \; \text{where} \; \; \hat{\Omega}=\left[\begin{array}{cc}
+0 & -1 \\
+1 & 0
+\end{array}\right]   \; \; \; \; \text{(5)}$$
+
+현재 $$\hat{\Omega} = R(\pi/2)$$로 표현만 다를 뿐 동일한 matrix를 가리키고 있다. 따라서 수식 (5)를 활용하면 교환 법칙에 의거하여 $$\mathbf{R}^\intercal$$와 $$R(\pi / 2)$$의 위치를 뒤바꿀 수 있다(i.e., $$\mathbf{R}^\intercal R(\pi / 2) = R(\pi / 2)\mathbf{R}^\intercal$$).
+
+따라서 최종적으로 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같게 된다:
+
+$$\mathbf{H}_1 = - R(\pi / 2) \mathbf{R}^\intercal \mathbf{p}, \;\; \mathbf{H}_2 = \mathbf{R}^\intercal$$
+
+아래 코드를 다시 살펴보면, `q`를 계산하는 부분이 $$\mathbf{R}^\intercal \mathbf{p}$$이고, 그 이후 $$- R(\pi / 2)$$가 곱해져 `*H1 << q.y(), -q.x();`가 되는 것을 볼 수 있다.
+
+```cpp
+Point2 Rot2::unrotate(const Point2& p,
+    OptionalJacobian<2, 1> H1, OptionalJacobian<2, 2> H2) const {
+  const Point2 q = Point2(c_ * p.x() + s_ * p.y(), -s_ * p.x() + c_ * p.y());
+  if (H1) *H1 << q.y(), -q.x();
+  if (H2) *H2 = transpose();
+  return q;
+}
+```
 
 ---
 
 ## Conclusion
 
-여기서는 2차원이어서 block operation을 적극 활용하지는 않았으나, 3차원의 경우에는 표현된 수식을 block operation을 통해 Jacobian을 구하는 방법에 친숙해져야지 GTSAM을 더 잘 이해할 수 있게 된다.
+결국 GTSAM은 delta 값에 대한 이해를 잘 하고 있느냐가 굉장히 중요하다고 볼 수 있다.
+참고로 여기서는 $$h(\cdot)$$이라고 안 쓰고 $$f(\cdot)$$라고 표현했는데, 여기서 $$f$$는 멋있는 말로 'action'이라고 부르고, 이는 $$N$$ 차원의 point를 $$N \times N$$ transformation matrix로 transform하는 것을 뜻한다. 그리고 measurement function $$h(\cdot)$$과는 다르게 이 $$f(\cdot)$$로 기인한 `H` matrix들은 chain rule을 통해 최종적으로 
 
-이제 skew-symmetric matrix에 대한 이해를 했으니, 첫 글에서 무시하고 지나왔던 `Pose2`와 `Pose3`으 `BetweenFactor`의 `H1`와 `H2`를 다음 글부터 유도해 보자.
+이제 어느 정도 `H` 값을 정하는 방법에 친숙해졌으니, 첫 글에서 무시하고 지나왔던 `Pose2`와 `Pose3`를 입력으로 하는 `BetweenFactor`의 `H1`와 `H2`를 다음 글부터 유도해 보자.
 
 ---
 
