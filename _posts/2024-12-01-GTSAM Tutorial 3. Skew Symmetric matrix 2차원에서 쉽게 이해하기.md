@@ -78,13 +78,9 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 -\omega_y & \omega_x & 0
 \end{array}\right].$$
 
-그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 수식 (10)이 복잡해보이는 이유는 아마 새로운 operator인 $$[\cdot]_\times$$ 때문일 것인데, 이 연산은 회전축이 2차원에서는 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 $$\hat{\Omega}$$와 단일 scalar 값의 곱으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문이다. 위의 $$[\cdot]_\times$$를 풀어서 작성하면 아래와 같이 표현할 수 있는데:
+그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 수식 (10)이 복잡해보이는 이유는 아마 익숙치 않은 operator인 $$[\cdot]_\times$$ 때문일 것이다.2차원에서는 회전축이 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 $$\hat{\Omega}$$와 단일 scalar 값의 곱으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문에 이를 표현하기 위해 위의 operator가 필요하다. 위의 $$[\boldsymbol{\omega}]_\times$$를 풀어서 작성하면 아래와 같이 표현할 수 있는데:
 
-$$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
-0 & -\omega_z & \omega_y \\
-\omega_z & 0 & -\omega_x \\
--\omega_y & \omega_x & 0
-\end{array}\right]. = \left[\begin{array}{ccc}
+$$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{ccc}
 0 & -1 & 0 \\
 1 & 0 & 0 \\
 0 & 0 & 0
