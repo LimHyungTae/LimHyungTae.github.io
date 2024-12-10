@@ -70,7 +70,7 @@ $$R(\theta)R(\delta_{\theta}) \simeq R(\theta)(\mathbf{I}_{2 \times 2} + \hat{\O
 그리고 유도되는 과정을 쉽게 설명하기 위해 2차원에서만 설명을 진행하였는데, 3차원에서도 이는 똑같이 적용된다.
 우리가 2차원의 회전의 미소 변화량을 $$\delta \theta$$로 편히 나타냈던 것 처럼, 3차원의 회전의 미소 변화량을 어떤 3D vector $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$로 표현할 수 있다고 해보자. 그러면 3차원에서도 회전의 변화를 아래와 같이 표현할 수 있다:
 
-$$\mathbf{R}R(\boldsymbol{\omega}) \simeq R(\theta)\left(\mathbf{I}_{3\times 3} + [\boldsymbol{\omega}]_\times\right),\; \; \; \; \text{(10)}$$
+$$\mathbf{R}R(\boldsymbol{\omega}) \simeq \mathbf{R}\left(\mathbf{I}_{3\times 3} + [\boldsymbol{\omega}]_\times\right),\; \; \; \; \text{(10)}$$
 
 $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 0 & -\omega_z & \omega_y \\
@@ -78,7 +78,7 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 -\omega_y & \omega_x & 0
 \end{array}\right].$$
 
-그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 복잡해진 이유는, 회전축이 2차원에서는 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 단일 scalar 값으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문이다. 그로 인해서 회전의 정도를 $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$의 꼴로 표현하여 수식이 좀 복잡하게 생겨졌는데, 원리는 2차원에서의 미소 회전을 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 (0, 0, \delta \theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
+그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 복잡해진 이유는, 회전축이 2차원에서는 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 단일 scalar 값으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문이다. 그로 인해서 회전의 정도를 $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$의 꼴로 표현하여 수식이 좀 복잡하게 생겨졌는데, 원리는 2차원에서의 미소 회전을 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta \theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
 0 & -1 & 0 \\
 1 & 0 & 0 \\
 0 & 0 & 0
