@@ -36,6 +36,48 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 여기서 위의 $$\hat{\Omega}$$가 우리가 Lie algebra를 공부할 때 흔히 들었던 **skew-symmetric matrix**의 꼴을 띈다. 
 즉, 최종적으로 이전 글에서 수식 (5) $$\frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}$$의  $$\frac{\partial \mathbf{R}}{\partial \theta}$$에 수식 (6)을 대입해보면, $$\hat{\Omega}R(\theta)\mathbf{x}$$가 된다. 이는 $$\mathbf{x}$$를 $$R(\theta)$$로 회전시킨 후 skew-symmetric matrix를 곱한 것이 최종적으로 rotation matrix의 미분에 해당되는 값이라는 것을 알 수 있다. 
 
+## Rotation에서 Skew-Symmetric Matrix 활용
+
+즉, Skew-Symmetric Matrix는 rotation matrix의 변화량을 표현해줄 수 있는 중요한 수학적 tool이다. 만약 translation이었다면 우리는 변화량 $$\Delta\mathbf{t}$$가 단순히 덧셈을 통해(i.e., $$\mathbf{t} + \Delta \mathbf{t}$$) 값을 update할 수 있다는 것을 알고 있다. 그런데 회전의 경우에는 $$\mathbf{R}_1\mathbf{R}_2$$와 같이 곱하기로 값을 업데이트 하기 때문에, 단순히 덧셈으로 증분을 표현할 수는 없을 것이다. 그렇다면 rotation의 증분은 어떻게 표현할 수 있을까?
+
+어떤 미소 각 $$\delta_{\theta}$$에 대해 회전을 하는 rotation matrix는 다음과 같은데:
+
+$$R(\delta_{\theta}) = 
+\end{array}\right]\left[\begin{array}{cc}
+\cos \delta_{\theta} & -\sin \delta_{\theta} \\
+\sin \delta_{\theta} & \cos \delta_{\theta} 
+\end{array}\right]. \; \; \; \; \text{(7)}$$
+
+수식 (7)에 쓰인 $$\delta_{\theta}$$는 굉장히 작은 각도 값이므로, $$\delta_{\theta} \simeq 0$$라고 가정할 수 있다(이를 small angle approximation이라 부름).
+이를 통해 $$\cos \delta_{\theta} \simeq 1$$, $$\sin \delta_{\theta} \simeq \delta_{\theta}$$로 근사가 가능하므로,
+(7)는 아래와 같이 간소화되어 표현이 가능하다:
+
+$$R(\delta_{\theta}) \simeq 
+\left[\begin{array}{cc}
+1 & -\delta_{\theta}  \\
+\delta_{\theta} & 1 
+\end{array}\right] = \mathbf{I} + \hat{\Omega}\delta_{\theta}.\; \; \; \; \text{(8)}$$
+
+수식 (8)에 $$R(\theta)$$를 곱해 보자. 그러면 아래와 같은 수식이 전개된다:
+
+$$R(\theta)R(\delta_{\theta}) = R(\theta)(\mathbf{I}_{2 \times 2} + \hat{\Omega}\delta_{\theta}) = R(\theta) + \frac{\partial R(\theta)}{\partial \theta}\delta_{\theta}.\; \; \; \; \text{(9)}$$
+
+아주 놀랍게도, 수식 (9)에서 볼 수 있듯이, 이 $$\hat{\Omega}$$를 활용하게 되면, rotation의 변화량도 **덧셈으로 표현을 하는게 가능해진다.** 즉, 업데이트하고자 하는 각도의 양 $$\delta_{\theta}$$가 충분히 작다면, rotation의 상태 변화를 덧셈을 통해 표현이 가능해진다는 것을 확인할 수 있다. 그리고 이러한 특성은 뒤에 GTSAM에 쓰이는, `H`라 불리는, Jacobian의 수식 유도를 할 때 활발히 사용된다. 
+
+그리고 유도되는 과정을 쉽게 설명하기 위해 2차원에서만 설명을 진행하였는데, 3차원에서도 이는 똑같이 적용된다.
+3차원의 회전을 어떤 3D vector $$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$$가 있다고 가정하면, 3차원에서도 회전의 변화를 아래와 같이 표현할 수 있다:
+
+$$\mathbf{R}R(\delta \boldsymbol{\omega}) \simeq R(\theta)(\mathbf{I}_{3\times 3} + [\boldsymbol{\omega}]_\times.\; \; \; \; \text{(9)}$$
+
+
+
+$$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
+0 & -\omega_z & \omega_y \\
+\omega_z & 0 & -\omega_x \\
+-\omega_y & \omega_x & 0
+\end{array}\right]$$
+
+
 ## Skew-Symmetric Matrix의 물리적 의미
 
 <p align="center">
