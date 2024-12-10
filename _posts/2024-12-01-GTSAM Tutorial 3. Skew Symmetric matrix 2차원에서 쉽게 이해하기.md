@@ -84,7 +84,7 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 0 & 0 & 0
 \end{array}\right]\delta\theta$$로 표현해질 수 있게 되는데, 이는 2차원에서 $$\hat{\Omega}\delta_{\theta}$$의 꼴과 정확히 일치하는 것을 엿볼 수 있다.
 
-즉, 어떤 회전 $$\mathbf{R}$$의 증분을 표현할 때는 해당 rotation matrix $$\mathbf{R}$$, skew-symmetric matrix 형태로 표현된 회전 축, 그리고 회전량(i.e., scalar/vector의 형태)의 세가지 항의 곱으로 나타낼 수 있다는 것을 최종적으로 알 수 있다.  
+즉, 어떤 회전 $$\mathbf{R}$$의 증분을 표현할 때는 해당 (i) rotation matrix $$\mathbf{R}$$, (ii) skew-symmetric matrix 형태로 표현된 회전 축, 그리고 (iii) 회전량(i.e., scalar/vector의 형태)의 세가지 항의 곱으로 나타낼 수 있다는 것을 최종적으로 알 수 있다.  
 
 ## Skew-Symmetric Matrix의 물리적 의미
 
