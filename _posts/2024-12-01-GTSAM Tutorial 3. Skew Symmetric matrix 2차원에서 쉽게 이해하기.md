@@ -38,7 +38,7 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 
 ## Rotation에서 Skew-Symmetric Matrix 활용
 
-즉, Skew-Symmetric Matrix는 rotation matrix의 변화량을 표현해줄 수 있는 중요한 수학적 tool이다. 만약 translation이었다면 우리는 변화량 $$\Delta\mathbf{t}$$가 단순히 덧셈을 통해(i.e., $$\mathbf{t} + \Delta \mathbf{t}$$) 값을 update할 수 있다는 것을 알고 있다. 그런데 회전의 경우에는 $$\mathbf{R}_1\mathbf{R}_2$$와 같이 곱하기로 값을 업데이트 하기 때문에, 단순히 덧셈으로 증분을 표현할 수는 없을 것이다. 그렇다면 rotation의 증분은 어떻게 표현할 수 있을까?
+즉, Skew-Symmetric Matrix는 rotation matrix의 변화량을 표현해줄 수 있는 중요한 수학적 tool이다. 만약 translation이었다면 우리는 변화량 $$\Delta\mathbf{t}$$가 단순히 덧셈을 통해(i.e., $$\mathbf{t} + \Delta \mathbf{t}$$) 값을 update할 수 있다는 것을 알고 있다. 그런데 회전의 경우에는 $$\mathbf{R}_1\mathbf{R}_2$$와 같이 곱하기로 값을 업데이트 하기 때문에, 원래라면 단순히 덧셈으로 증분을 표현할 수는 없을 것이다. 그렇다면 rotation의 증분은 어떻게 표현할 수 있을까?
 
 어떤 미소 각 $$\delta_{\theta}$$에 대해 회전을 하는 rotation matrix는 다음과 같은데:
 
@@ -78,7 +78,7 @@ $$[\boldsymbol{\omega}]_{\times} \triangleq\left[\begin{array}{ccc}
 -\omega_y & \omega_x & 0
 \end{array}\right].$$
 
-그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 수식 (10)이 복잡해보이는 이유는 아마 익숙치 않은 operator인 $$[\cdot]_\times$$ 때문일 것이다.2차원에서는 회전축이 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 $$\hat{\Omega}$$와 단일 scalar 값의 곱으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문에 이를 표현하기 위해 위의 operator가 필요하다. 위의 $$[\boldsymbol{\omega}]_\times$$를 풀어서 작성하면 아래와 같이 표현할 수 있는데:
+그리고 이는 꼴이 수식 (9)와 정확히 일치한다. 수식 (10)이 복잡해보이는 이유는 아마 익숙치 않은 operator인 $$[\cdot]_\times$$ 때문일 것이다. 2차원에서는 회전축이 $$z$$ 방향으로 고정되어 있었다보니 회전의 변화를 $$\hat{\Omega}$$와 단일 scalar 값의 곱으로 표현할 수 있었던 반면, 3차원에서는 임의의 방향에 대한 회전이 가능해지기 때문에 이를 표현하기 위해 위의 operator가 필요하다. 위의 $$[\boldsymbol{\omega}]_\times$$를 풀어서 작성하면 아래와 같이 표현할 수 있는데:
 
 $$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{ccc}
 0 & -1 & 0 \\
@@ -92,15 +92,18 @@ $$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{ccc}
 0 & 0 & 0 \\
 0 & 0 & -1 \\
 0 & 1 & 0
-\end{array}\right]\omega_x$$
+\end{array}\right]\omega_x,\; \; \; \; \text{(11)}$$
 
-3차원이어서 skew-symmetric matrix의 형태로 표현된 회전 축이 3개가 되었을 뿐, 원리는 2차원에서의 미소 회전을 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta \theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
+3차원이어서 skew-symmetric matrix의 형태로 표현된 회전 축이 3개가 되었을 뿐, 원리 자체는 2차원에서의 미소 회전을 $$$$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{cc}
+0 & -1  \\
+1 & 0  
+\end{array}\right]\delta_\theta$$로 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta_\theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
 0 & -1 & 0 \\
 1 & 0 & 0 \\
 0 & 0 & 0
-\end{array}\right]\delta\theta$$로 표현해질 수 있게 되는데, 이는 2차원에서 $$\hat{\Omega}\delta_{\theta}$$의 꼴과 정확히 일치하는 것을 엿볼 수 있다.
+\end{array}\right]\delta_\theta$$로 표현해질 수 있게 되는데, 이는 2차원에서 $$\hat{\Omega}\delta_{\theta}$$의 꼴과 정확히 일치하는 것을 엿볼 수 있다.
 
-즉, 어떤 회전 $$\mathbf{R}$$의 증분을 표현할 때는 해당 (i) rotation matrix $$\mathbf{R}$$, (ii) skew-symmetric matrix 형태로 표현된 회전 축, 그리고 (iii) 회전량(i.e., scalar/vector의 형태)의 세가지 항의 곱으로 나타낼 수 있다는 것을 최종적으로 알 수 있다.  
+따라서, 2차원이든 3차원이든 어떤 회전 $$\mathbf{R}$$의 증분을 해당 (i) rotation matrix $$\mathbf{R}$$, (ii) skew-symmetric matrix 형태로 표현된 회전 축, 그리고 (iii) 회전량(i.e., scalar/vector의 형태)의 세 가지 항의 곱으로 나타낼 수 있다는 결론에 도달할 수 있다.  
 
 ## Skew-Symmetric Matrix의 물리적 의미
 
