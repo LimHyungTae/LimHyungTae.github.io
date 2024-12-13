@@ -78,7 +78,7 @@ $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{\xi}) + \m
 
 $$\frac{1}{2}||h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) - \mathbf{m}||_2 \simeq \frac{1}{2}||h(\boldsymbol{\xi}) + \mathbf{H}\boldsymbol{\delta} - \mathbf{m}||_2 = \frac{1}{2}||\mathbf{H}\boldsymbol{\delta} - \mathbf{b}||_2 $$
 
-위와 같이 되어야 이제 각 iteration 별 최적의 $$\boldsymbol{\delta}$$를 구할 수 있게 되기 때문이다.
+위와 같이 되어야 이제 각 iteration 별 최적의 $$\boldsymbol{\delta}$$를 구할 수 있게 되기 때문이다. 여기서 $$\mathbf{m}$$은 코드에서 `mx_`와 `my_`로 표현되어 있는 measurement에 대응되는 2D point이다.
 즉, 선형화를 하기 위해서 필요한 $$\boldsymbol{\delta}$$에 대한 표현식이 바로 우리가 구하고자 하는 `H`인 것이다.
  
 ---
