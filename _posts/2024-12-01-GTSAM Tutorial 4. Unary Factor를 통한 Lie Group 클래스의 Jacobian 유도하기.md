@@ -114,30 +114,29 @@ $$\left[\begin{array}{ccc}
 \end{array}\right].\; \; \; \; \text{(5)}$$
 
 따라서 위의 수식을 전개한 후의 translation에 해당하는 값이 $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta})$$와 대응되는 값이다.
-편의를 위해 $$\mathbf{t} = [t_x, \, t_y]^\intercal$$, $$\boldsymbol{\delta}_{\mathbf{t}} = [\delta_x, \, \delta_y]^\intercal$$라 표현하면, 수식 (5)는 아래와 같이 표현되고:
+편의를 위해 $$\mathbf{t} = [t_x, \, t_y]^\intercal$$, $$\boldsymbol{\delta}_{\mathbf{t}} = [\delta_x, \, \delta_y]^\intercal$$라 표현하면, 수식 (5)는 아래와 같이 block operation으로 표현되고:
 
 $$\left[\begin{array}{cc}
 R(\theta)  & \mathbf{t} \\
-\mathbf{0} & 1
+\mathbf{0}_{1\times 2} & 1
 \end{array}\right]\left[\begin{array}{cc}
  \mathbf{I}_{2 \times 2} + \hat{\Omega}\delta_{\theta} & \boldsymbol{\delta}_{\mathbf{t}} \\
-0  & 1
-\end{array}\right].\; \; \; \; \text{(6)}$$
+\mathbf{0}_{1\times 2}  & 1
+\end{array}\right],\; \; \; \; \text{(6)}$$
 
 따라서 $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta})$$는 아래와 같이 표현된다:
 
 $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) = \mathbf{t} + R(\theta)\boldsymbol{\delta}_{\mathbf{t}} = h(\boldsymbol{\xi}) + R(\theta)\boldsymbol{\delta}_{\mathbf{t}}\; \; \; \; \text{(7)}$$
 
-로 표현된다.
-따라서 우리가 최종적으로 구하고자 하는 $$\mathbf{H}$$는 $$\boldsymbol{\delta}$$($$\boldsymbol{\delta}_{\mathbf{t}}$$ 아니고 $$\boldsymbol{\delta}$$임 주의) 앞에 곱해지는 matrix이므로,
-수식 (7)을 기반으로 하여 $$\mathbf{H} = [R(\theta) \,\; \mathbf{0}_{2\times1}] \in \mathbb{R}^{2\times3}$$로 나타낼 수 있다 (수식 (7)내에 $$\delta_{\theta}$$가 존재하지 않으므로, $$\delta_{\theta}$$에 대한 partial derivative는 모두 다 0이 된다).
+우리가 최종적으로 구하고자 하는 $$\mathbf{H}$$는 $$\boldsymbol{\delta}$$($$\boldsymbol{\delta}_{\mathbf{t}}$$ 아니고 $$\boldsymbol{\delta}$$임 주의) 앞에 곱해지는 matrix이므로,
+수식 (7)을 기반으로 하여 $$\mathbf{H} = [R(\theta) \,\; \mathbf{0}_{2\times1}] \in \mathbb{R}^{2\times3}$$로 나타낼 수 있다 (수식 (7)내에 $$\delta_{\theta}$$가 존재하지 않으므로, $$\delta_{\theta}$$에 대한 partial derivative, i.e., Jacobian에서 $$\delta_{\theta}$$에 대한 column,는 모두 다 0이 된다).
 
 ## Conclusion
 
 따라서, GTSAM에서 어떤 factor를 새로 정의할 때 필요한 Jacobian matrix `H`는 단순히 $$\left[\begin{array}{ccc}
 \frac{df_1}{dt_x} & \frac{df_1}{dt_y} & \frac{df_1}{d\theta} \\
 \frac{df_2}{dt_x} & \frac{df_2}{dt_y} & \frac{df_2}{d\theta} \\
-\end{array}\right]$$가 아닌, 미소 증분 vector인 $$\boldsymbol{\delta}$$를 위한 행렬임을 주의하자. 그래서 이전 글들을 보면 Jacobian 자체를 가리킬 때는 $$J$$라고 칭한 반면, 이 $$\boldsymbol{\delta}$$를 위한 jacobian은 `H`라고 칭해 이를 구분하고자 하였다.
+\end{array}\right]$$가 아닌, 미소 증분 vector인 $$\boldsymbol{\delta}$$를 위한 행렬임을 주의하자. 그래서 이전 글들을 보면 Jacobian 자체를 가리킬 때는 $$\mathbf{J}$$라고 칭한 반면, 이 $$\boldsymbol{\delta}$$를 위한 jacobian은 `H`라고 칭해 이를 구분하고자 하였다.
 
 ---
 
