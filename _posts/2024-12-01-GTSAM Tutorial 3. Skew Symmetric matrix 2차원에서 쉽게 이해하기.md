@@ -94,7 +94,7 @@ $$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{ccc}
 0 & 1 & 0
 \end{array}\right]\omega_x,\; \; \; \; \text{(11)}$$
 
-3차원이어서 skew-symmetric matrix의 형태로 표현된 회전 축이 3개가 되었을 뿐, 원리 자체는 2차원에서의 미소 회전을 $$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{cc}
+3차원이어서 skew-symmetric matrix의 형태로 표현된 회전 축이 3개가 되었을 뿐, 원리 자체는 2차원에서의 미소 회전을 $$\hat{\Omega}\delta_{\theta} = \left[\begin{array}{cc}
 0 & -1  \\
 1 & 0  
 \end{array}\right]\delta_\theta$$로 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta_\theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
