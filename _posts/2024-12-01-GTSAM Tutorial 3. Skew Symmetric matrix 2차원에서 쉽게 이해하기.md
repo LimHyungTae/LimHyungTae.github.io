@@ -8,11 +8,11 @@ comments: true
 
 ## Introduction 
 
-나는 3차원에서의 설명을 하기 앞서 저차원에서 현상에 대한 이해를 설명하는 것을 선호하는 편인데, 오늘은 rotation의 skew symmetric matrix에 대해 쉽게 설명하고자 한다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-2.-SE(2)-Transformation-matrix%EC%99%80-Jacobian-Block-Operation%EC%9C%BC%EB%A1%9C-%ED%91%9C%ED%98%84%ED%95%98%EA%B8%B0/)과 이어짐).
+나는 3차원에서의 설명을 하기 앞서 저차원에서 현상에 대한 이해를 설명하는 것을 선호하는 편인데, 오늘은 rotation의 skew symmetric matrix에 대해 쉽게 설명하고자 한다 ([이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-2.-SE(2)-Transformation-matrix,-Jacobian,-그리고-Block-Operation/)과 이어짐).
 
 ## Derivative of Rotation Matrix
 
-나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 각도 $$\theta$$에 대한 표현식으로 나타낼 수 있고, 이는 코마신신코(요즘에는 고등학교 때 행렬을 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
+나와 유사한 교과 과정을 겪은 이라면 2차원의 rotation은 각도 $$\theta$$에 대한 표현식으로 나타낼 수 있고, 이는 코마신신코(요즘에는 고등학교 때 행렬 자체를 안 배운다고 하던데...)라는 것을 알고 있을 것이다:
 
 $$\mathbf{R} = {R}(\theta) =\left[\begin{array}{cc}
 \cos \theta & -\sin \theta \\
@@ -94,7 +94,7 @@ $$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{ccc}
 0 & 1 & 0
 \end{array}\right]\omega_x,\; \; \; \; \text{(11)}$$
 
-3차원이어서 skew-symmetric matrix의 형태로 표현된 회전 축이 3개가 되었을 뿐, 원리 자체는 2차원에서의 미소 회전을 $$$$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{cc}
+3차원이어서 skew-symmetric matrix의 형태로 표현된 회전 축이 3개가 되었을 뿐, 원리 자체는 2차원에서의 미소 회전을 $$[\boldsymbol{\omega}]_{\times} = \left[\begin{array}{cc}
 0 & -1  \\
 1 & 0  
 \end{array}\right]\delta_\theta$$로 표현할 때와 정확히 일치한다. 만약 $$\boldsymbol{\omega}$$에 $$(0, 0, \delta_\theta)$$를 대입해보면 $$[\boldsymbol{\omega}]_\times = \left[\begin{array}{ccc}
