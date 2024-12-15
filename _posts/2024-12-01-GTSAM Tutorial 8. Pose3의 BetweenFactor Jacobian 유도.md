@@ -12,13 +12,13 @@ comments: true
 
 ### Step 1. Update Function 정의
 
-Translation-rotation 순으로 적었던 2D와는 다르게 GTSAM에서 3D pose를 vector화해서 표현할 때는 rotation-translation 순으로 적는 것에 유의하자. 따라서, vector꼴로 표현된 rotation/translation 변화량을 각각 $$\boldsymbol{w} \in \mathbb{R}^3$$, $$\mathbf{v} \in \mathbb{R}^3$$라 하면, $$\boldsymbol{\delta} = [\boldsymbol{w}; \mathbf{v}]^\intercal \in \mathbb{R}^6$$로 표현이 된다. 그리고 2D 상에서 $$\mathrm{Rot}(\delta\theta) \simeq \mathbf{I} + \hat{\Omega} \delta \theta$$라고 표현했던 것이 3차원에서는 $$\mathbf{I} + [\delta \theta]_\times$$와 대응되기 때문에(이해가 되지 않는다면 Skew Symmetric matrix 관련 글을 다시 읽어보자), 이를 풀어서 쓰면 아래와 같고:
+Translation-rotation 순으로 적었던 2D와는 다르게 GTSAM에서 3D pose를 vector화해서 표현할 때는 rotation-translation 순으로 적는 것에 유의하자. 따라서, vector꼴로 표현된 rotation/translation 변화량을 각각 $$\boldsymbol{w} \in \mathbb{R}^3$$, $$\mathbf{v} \in \mathbb{R}^3$$라 하면, $$\boldsymbol{\delta} = [\boldsymbol{w}; \mathbf{v}]^\intercal \in \mathbb{R}^6$$로 표현이 된다. 그리고 2D 상에서 $$\mathrm{Rot}(\delta\theta) \simeq \mathbf{I} + \hat{\Omega} \delta \theta$$라고 표현했던 것이 3차원에서는 $$\mathbf{I} + [\boldsymbol{w}]_\times$$와 대응되기 때문에(이해가 되지 않는다면 Skew Symmetric matrix 관련 글을 다시 읽어보자), 이를 풀어서 쓰면 아래와 같고:
 
 $$\left[\begin{array}{cc}
 \mathbf{R} & \mathbf{t} \\
 \mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{cc}
-\mathbf{I} + [\delta \theta]_\times & {\delta\mathbf{t}} \\
+\mathbf{I} + [\boldsymbol{w}]_\times & {\delta\mathbf{t}} \\
 \mathbf{0} & 1
 \end{array}\right]$$
 
@@ -26,16 +26,16 @@ $$\left[\begin{array}{cc}
 
 $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =  
 \left[\begin{array}{c}
-\mathrm{Log}\left( \mathbf{R} \left(\mathbf{I} + [\delta \theta]_\times\right) \right) \\ 
+\mathrm{Log}\left( \mathbf{R} \left(\mathbf{I} + [\boldsymbol{w}]_\times\right) \right) \\ 
 \mathbf{t} + \mathbf{R} \delta\mathbf{t} 
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(1)}$$
 
-여기서 $$\mathrm{Log}\left( \cdot \right)$$는 우리가 2차원에서 $$\mathrm{Rot}(\theta)$$을 $$\theta$$의 scalar로 표현했던 것 처럼, 3차원 rotation matrix을 3차원 rotation vector로 변환해주는 함수라 보면 된다.
+여기서 $$\mathrm{Log}\left( \cdot \right)$$는 우리가 2차원에서 $$\mathrm{Rot}(\theta)$$을 $$\theta$$로 간단히 표현했던 것 처럼, 3차원 rotation matrix을 3차원 rotation vector로 변환해주는 함수라 보면 된다.
 우리가 사용하고자 하는 성질은 $$\mathrm{Log}\left(A\right) = \mathrm{Log}\left(B\right)$$이면 $$A=B$$라는 것이기 때문에, 저 $$\mathrm{Log}\left( \cdot \right)$$ 함수가 어떻게 동작하는지는 수식 전개 시 알 필요는 없다.
 
 ### Step 2. Measurement Function $$h(\cdot)$$ 정의
 
-Lie Group 상에서 두 pose간의 뺄셈과 대응되는 개념은 위의 코드에서 inverse된 `p1`의 transformation matrix와 $$\left(\mathbf{T}^{w}_1\right)^{-1}$$ `p2`의 transformation matrix $$\mathbf{T}^{w}_2$$를 곱하는 것이다. 따라서 아래 수식을 전개하면:
+2D의 transformation matrix와 같이 relative pose에 대응하는 measurement function은 아래와 같고:
 
 $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 \left[\begin{array}{cc}
@@ -61,11 +61,11 @@ $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 
 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = 
 \left[\begin{array}{c}
-\mathrm{Rot}(-\theta_1)(\mathbf{t}_2 - \mathbf{t}_1) \\
-\theta_2 - \theta_1
-\end{array}\right]\; \; \; \; \text{(3)}$$
+\mathrm{Log}\left(\mathbf{R}^{\intercal}_1 \mathbf{R}_2) \\
+\mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) 
+\end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(3)}$$
 
-로 표현할 수 있다 ($$\mathbf{R}^{\intercal}_1$$는 2D rotation에서 $$\mathrm{Rot}(-\theta_1)$$로 간소화해서 표현할 수 있고, $$\mathbf{R}^{\intercal}_1\mathbf{R}_2$$를 표현하는 rotation angle이 $$\theta_2 - \theta_1$$이기 때문). 
+로 표현할 수 있다. 2D에서 $$\theta_2 - \theta_1$$로 뺄셈으로 손쉽게 표현할 수 있었던 rotation이 차원이 증가함으로써 조금 복잡해졌을 뿐, 원리는 같다.
 
 ### Step 3. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$와 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기 
 
