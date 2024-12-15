@@ -32,8 +32,8 @@ result = gnc_optimizer.optimize();
 
 여기서 가장 중요한 것은 `setInlierCostThresholdsAtProbability` 함수이다.
 이 함수는 특정 확률에서 inlier와 outlier를 구분하는 cost threshold를 설정하는데, 
-이 `gnc_params.gnc_inlier_threshold_`의 값이 낮을수록 더 strict한 기준을 적용하여 더 많은 outlier를 filtering한다.
-예를 들어, 높은 확률 (예: 0.7 이상)을 설정하면 threshold가 증가하여 더 많은 outlier들이 inlier로 분류될 가능성이 커지고, 더 permissive하게 동작한다. 
+이 `alpha = 0.7`로 되어있는 값이 더 작아질수록 더 strict한 기준을 적용하여 더 많은 outlier를 filtering한다.
+예를 들어, 높은 확률 (예: 0.7 이상)을 설정하면 filtering해지는 기준이 유해져서 outlier들이 덜 reject될 가능성이 커지고, 더 permissive하게 동작한다. 
 반대로 낮은 값으로 설정하면 이 필터링이 보수적으로 동작하여서 더 conservative하게 동작하게 된다.
 
 ---
