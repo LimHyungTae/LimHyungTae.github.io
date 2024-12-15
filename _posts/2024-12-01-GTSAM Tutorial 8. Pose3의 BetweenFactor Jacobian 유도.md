@@ -84,11 +84,12 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 
 **Hints**
 
+* $$\mathrm{Log}\left(A\right) = \mathrm{Log}\left(B\right)$$이면 $$A=B$$.
 * 미소 변화량 두개가 곱해지면 해당 term이 무시 가능해진다는 것을 활용하자. 즉, $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_1$$, 
- 혹은 $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_2$$가 함께 곱해져 있는 term은 그 크기가 다른 term보다 월등히 작아지므로 무시 가능하다.
+ 혹은 $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_2$$가 함께 곱해져 있는 term은 그 크기가 다른 term보다 월등히 작아지므로 무시 가능함.
 * $$\mathbf{R}[\boldsymbol{w}]_\times \mathbf{R}^\intercal = [\mathbf{R} \boldsymbol{w}]_\times$$, $$\mathbf{R}^\intercal[\boldsymbol{w}]_\times \mathbf{R} = [\mathbf{R}^\intercal \boldsymbol{w}]_\times$$.
 * $$[\boldsymbol{w}]_\times \boldsymbol{v} = - [\boldsymbol{v}]_\times \boldsymbol{w}$$. 여기서 $$\boldsymbol{v}$$와 $$\boldsymbol{w}$$는 임의의 3차원 vector를 의미함.
-* $$\mathbf{R} \mathbf{R}^\intercal = \mathbf{I}$$. 힌트를 좀 더 주자면, translation 전개 시 $$\mathbf{R}_2^\intercal [\boldsymbol{w}_k]_\times \mathbf{R}_1 = \mathbf{R}_2^\intercal[\boldsymbol{w}_k]_\times \mathbf{R}_2 \mathbf{R}_2^\intercal \mathbf{R}_1 = [\mathbf{R}_2^\intercal \boldsymbol{w}_k]_\times \mathbf{R}_2^\intercal \mathbf{R}_1$$의 꼴로 표현하기 위해 필요함.
+* $$\mathbf{R} \mathbf{R}^\intercal = \mathbf{I}$$. 힌트를 좀 더 주자면, translation 전개 시 $$\mathbf{R}_2^\intercal [\boldsymbol{w}]_\times \mathbf{R}_1 = \mathbf{R}_2^\intercal[\boldsymbol{w}]_\times \mathbf{R}_2 \mathbf{R}_2^\intercal \mathbf{R}_1 = [\mathbf{R}_2^\intercal \boldsymbol{w}]_\times \mathbf{R}_2^\intercal \mathbf{R}_1$$의 꼴로 표현하기 위해 필요함.
 * $$[\boldsymbol{w}_a]_\times = [\boldsymbol{w}_b]_\times + [\boldsymbol{w}_c]_\times$$이면 $$\boldsymbol{w}_a = \boldsymbol{w}_b + \boldsymbol{w}_c$$.
 
 최종적으로 풀면, 수식이 아래와 같이 나와야 한다:
