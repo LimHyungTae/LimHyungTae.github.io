@@ -31,17 +31,17 @@ public:
 };
 ```
 
-여기서 `H` 매트릭스를 살펴 보면 뭔가 의아한 부분이 있지 않은가? 
+여기서 `H` 매트릭스에 왜 rotation matrix $$R$$이 할당되어 있을까? 
 
-## `H`가 뭔가 이상한데요?
+## `H`가 어떻게 구해지는 걸까?
 
 리턴되는 measurement function을 각각 $$f_1=t_x - m_x$$(`q.x() - mx_`에 대응되는 부분), 
 $$f_2=t_y - m_y$$(`q.y() - my_`에 대응되는 부분)라 정의해보자.
-그러면 분명히 유도되는 미분값은 $$\frac{df_1}{dt_{x}}=1, \frac{df_1}{dt_{y}}=0, \frac{df_2}{dt_{x}}=0, \frac{df_2}{t_{y}}=1$$로
-매트릭스의 앞의 $$2\times2$$ 부분이 $$\mathbf{I}_{2\times2}$$가 되어야 할 것 같은데, translation의 Jacobian에 해당하는 부분이 $$\mathbf{R}$$로 되어 있는 것을 볼 수 있다.
+그러면 유도되는 미분값은 $$\frac{df_1}{dt_{x}}=1, \frac{df_1}{dt_{y}}=0, \frac{df_2}{dt_{x}}=0, \frac{df_2}{t_{y}}=1$$로
+매트릭스의 앞의 $$2\times2$$ 부분이 $$\mathbf{I}_{2\times2}$$가 되어야 할 것 같은데, translation의 Jacobian에 해당하는 부분이 $$\mathbf{R}$$로 되어 있는 것을 볼 수 있다(오해를 방지하기 위해 미리 말하자면, 사실 이건 완전히 틀린 접근 방식이다).
 그렇다면 이 `H`는 어떻게 유도되는 것일까?
 
-## 정답: Retract 때문
+## Prerequisite: Retract 엿보기
 
 
 여기서 `H`가 우리가 생각한 것과 다른 형태로 유도되는 것은 바로 우리가 optimize하고자 하는 변수가 Lie Group에 속하는 값이기 때문이다(`H`의 의미는 글의 마지막에 최종적으로 언급하겠다).

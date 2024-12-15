@@ -98,7 +98,7 @@ Point2 Rot2::unrotate(const Point2& p,
 ## Conclusion
 
 결국 GTSAM은 delta 값에 대한 이해를 잘 하고 있느냐가 굉장히 중요하다고 볼 수 있다.
-참고로 여기서는 $$h(\cdot)$$이라고 안 쓰고 $$f(\cdot)$$라고 표현했는데, 여기서 $$f$$는 멋있는 말로 'action'이라고 부르고, 이는 $$N$$ 차원의 point를 $$N \times N$$ transformation matrix로 transform하는 것을 뜻하기에, measurement function $$h(\cdot)$$와 구분지어 쓰려 노력하였다. 
+참고로 여기서는 $$h(\cdot)$$이라고 안 쓰고 $$f(\cdot)$$라고 표현했는데, 여기서 $$f$$는 멋있는 말로 'action'이라고 부르고, 이는 $$N$$ 차원의 point를 $$(N + 1) \times (N + 1)$$ transformation matrix로 transform하는 것을 뜻하기에, measurement function $$h(\cdot)$$와 구분지어 쓰려 노력하였다. 
 
 이제 어느 정도 `H` 값을 구하는 유도 방법에 친숙해졌으니, 첫 글에서 무시하고 지나왔던 `Pose2`와 `Pose3`를 입력으로 하는 `BetweenFactor`의 `H1`와 `H2`를 다음 글부터 유도해 보자.
 
