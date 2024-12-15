@@ -150,7 +150,8 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta} =
 
 따라서 최종적으로, 수식 (5)와 수식 (6)을 같다고 놓고 풀면 우리가 원하는 `H1`과 `H2`를 구할 수 있다. 미소 translation $$\delta \mathbf{t}$$는 아래의 수식을 전개하면 되고: 
 
-$$\mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta \right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right) = \mathbf{R}_1^\intercal \mathbf{R}_2 \delta \mathbf{t} + \mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right)$$
+$$\mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta \left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right)
+$$
 
 미소 rotation $$\delta \theta$$에 대한 표현식은: 
 
@@ -179,7 +180,10 @@ I & 0 \\
 
 ## Conclusion
 
+대망의 Pose2의 BetweenFactor의 `H1`과 `H2`를 구하는 방법에 알아 보았다. 다시금 강조하지만, 단순히 BetweenFactor를 사용하고자 하는 입장에서는 전혀 알 필요가 없는 부분이다. 다만, SLAM의 optimization을 굉장히 low-level로 다뤄야 할 일이 있을 때 이런 과정을 모르면 GTSAM이 어떻게 동작하는지 절대 이해할 수 없기 때문에, 저 `H` matrix를 어떻게 유도하는 지 정리해보았다.
 
+최대한 수학적 엄밀성을 따지기 보다는 이해가 쉽게 풀어 써보았는데, 모쪼록 읽는 분께 도움이 되었으면 한다.
+만약 이해가 잘 안되는 부분이 있다면 앞선 글에서 설명했던 skew-symmetric matrix 부분과 unary factor를 다시 한 번 읽어본 후 정독해보는 것을 추천한다. 
 
 ---
 
