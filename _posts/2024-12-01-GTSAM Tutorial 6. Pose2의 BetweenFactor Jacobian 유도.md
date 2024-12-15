@@ -165,7 +165,7 @@ $$\boldsymbol{\delta}=\left[\begin{array}{l}
 \delta \mathbf{t} \\
 \delta \theta
 \end{array}\right]=-\left[\begin{array}{cc}
-\mathbf{R}_2^\intercal \mathbf{R}_1 & - \hat{\Omega} \mathbf{R}_2^\intercal\left(\mathbf{t}_2-\mathbf{t}_1\right) \\
+\mathbf{R}_2^\intercal \mathbf{R}_1 & \hat{\Omega} \mathbf{R}_2^\intercal\left(\mathbf{t}_2-\mathbf{t}_1\right) \\
 \mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{l}
 \delta \mathbf{t}_1 \\
@@ -176,7 +176,11 @@ $$\boldsymbol{\delta}=\left[\begin{array}{l}
 \end{array}\right]\left[\begin{array}{l}
 \delta \mathbf{t}_2 \\
 \delta \theta_2
-\end{array}\right]$$
+\end{array}\right]\; \; \; \; \text{(7)}$$
+
+---
+
+
 
 ---
 
