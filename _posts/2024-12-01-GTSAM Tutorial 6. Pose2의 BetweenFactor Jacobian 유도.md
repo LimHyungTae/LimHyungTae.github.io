@@ -151,7 +151,7 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta} =
 따라서 최종적으로, 수식 (5)와 수식 (6)을 같다고 놓고 풀면 우리가 원하는 `H1`과 `H2`를 구할 수 있다. 미소 translation $$\delta \mathbf{t}$$는 아래의 수식을 전개하면 되고: 
 
 $$\mathbf{R}_1^\intercal \left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right)
-- \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta \left(\mathbf{t}_2 - \mathbf{t}_1\right) \\
+- \mathbf{R}_1^\intercal \hat{\Omega} \delta \theta_1 \left(\mathbf{t}_2 - \mathbf{t}_1\right) \\
 = \mathbf{R}_1^\intercal \mathbf{R}_2 \delta \mathbf{t} + \mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right)
 $$
 
@@ -204,7 +204,7 @@ Matrix3 Pose2::AdjointMap() const {
 그리고 다시 수식 (7)을 살펴보자. 수식 (7)을 다시 보니, `H1` matrix는 $$h(\boldsymbol{\xi}_2, \boldsymbol{\xi}_1)$$의(i.e., $$\left[\begin{array}{cc}
 \mathbf{R}^{\intercal}_2\mathbf{R}_1 & \mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2) \\
 \mathbf{0} & 1
-\end{array}\right]$$와 대응됨. 이 경우 위의 `t_`가 $$\mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2)$$이 되고, $$(x, y)$$를 $$(y, -x)$$로 두는 것이 $$-\hat{\Omega}$$를 곱해주는 것을 의미함) AdjointMap() 함수라는 것을 알 수 있다.
+\end{array}\right]$$와 대응됨. 이 경우 위의 `t_`가 $$\mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2)$$이 되고, 코드 상에서 $$(x, y)$$를 $$(y, -x)$$로 변경하는 것이 $$-\hat{\Omega}$$를 곱해주는 것을 의미함) AdjointMap() 함수라는 것을 알 수 있다.
 
 그래서 실제로 `gtsam/base/Lie.h` 코드 내에 `between`을 계산하는 코드를 살펴보면(아래에서 `derived()`가 `p1`, `g`가 `p2`로 각각 대응된다고 생각하면 된다), `H1`의 값에 $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2$$의 inverse를 한 후(원래는 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2)$$와 대응되던 transformation matrix가 `inverse()` 함수를 통해 해당 transformation matrix이 $$h(\boldsymbol{\xi}_2, \boldsymbol{\xi}_1)$$와 대응됨), `AdjointMap()` 함수를 통해 `H1`를 손쉽게 구하는 것을 볼 수 있다. 그리고 이는 3D에서도 마찬가지로 적용이 가능하기 때문에, 차원에 관계 없이 `H1` matrix와 `H2` matrix를 손쉽게 구하는 것이 가능해지게 된다: 
 
