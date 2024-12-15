@@ -90,6 +90,13 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 * $$\mathbf{R} \mathbf{R}^\intercal = \mathbf{I}$$. 힌트를 좀 더 주자면, translation 전개 시 $$\mathbf{R}_2^\intercal [\boldsymbol{w}]_\times \mathbf{R}_1 = [\mathbf{R}_2^\intercal \boldsymbol{w}]_\times \mathbf{R}_2^\intercal \mathbf{R}_1$$로 표현하기 위해 필요함.
 * $$[\boldsymbol{w}_a]_\times = [\boldsymbol{w}_b]_\times + [\boldsymbol{w}_c]_\times$$이면 $$\boldsymbol{w}_a = \boldsymbol{w}_b + \boldsymbol{w}_c$$.
 
+최종적으로 풀면, 수식이 아래와 같이 나와야 한다:
+
+$$
+\mathbf{H}_1=-\left[\begin{array}{cc}
+\mathbf{R}_2^T \mathbf{R}_1 & \mathbf{0} \\
+{\left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right)\right]_{\times}}\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{R}_2^\intercal \mathbf{R}_1
+\end{array}\right], \; \; \mathbf{H}_2 = \mathbf{I}_{6 \times 6}$$
 
 ---
 
