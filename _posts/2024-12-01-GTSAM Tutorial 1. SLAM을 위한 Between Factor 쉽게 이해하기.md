@@ -14,7 +14,7 @@ GTSAM을 기반으로 코드를 짜야할 일이 많아졌다. 그래서 GTSAM�
 
 따라서 이 글에서는 [이미 GTSAM에서 제공하는 튜토리얼](https://gtsam.org/tutorials/intro.html)에 대한 이해를 돕기 위한 설명글로 출발해서, GTSAM 내부에서 어떤 일이 일어나고 있는지 분석해볼 것이다. 그러니, 이 글은 SLAM을 처음 접하는 이에게는 적절하지 않을 수도 있다. 오히려 SLAM을 돌려보긴 했으나 내부적으로 어떤 과정이 일어나서 optimization이 되는지 자세히 살펴보고자 하는 이들에게 큰 도움이 되리라 생각된다.
 이 시리즈 글을 읽어보기 전 [Pose2SLAMExample.cpp](https://github.com/devbharat/gtsam/blob/master/examples/Pose2SLAMExample.cpp) 코드를 한번 보면서 읽어보기를 추천한다.
-그리고 SLAM 자체에 대해 잘 모르는 이는 [김기섭 박사가 쓴 SLAM에 대한 intro 글](https://gisbi-kim.github.io/blog/2021/03/04/slambackend-1.html)을 과 Frank Dellaert 교수님의 [2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)을 읽어보는 것을 추천한다.
+그리고 SLAM 자체에 대해 잘 모르는 이는 [김기섭 박사가 쓴 SLAM에 대한 intro 글](https://gisbi-kim.github.io/blog/2021/03/04/slambackend-1.html)을 과 Frank Dellaert 교수님의 [2D Pose SLAM in GTSAM](https://piazza.com/class_profile/get_resource/hbl3nsqea3z6uo/hf5dj0hcfey5fi#page=2.66)을 읽어보는 것을 추천한다. 이 시리즈는 **사용자 입장에서는 전혀 알 필요가 없는 부분들을 설명할 것**이기 때문에, 만약 나는 아묻따 GTSAM으로 pose graph SLAM하는 방법만 궁금한 이는 응창이 형이 쓴 [High-level GTSAM 튜토리얼](https://engcang.github.io/gtsam_tutorial.html)을 읽는 것을 권장한다.
 
 ---
 
