@@ -81,7 +81,7 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 \theta_2 - \theta_1
 \end{array}\right]\; \; \; \; \text{(3)}$$
 
-로 표현할 수 있다. 
+로 표현할 수 있다 ($$\mathbf{R}^{\intercal}_1$$는 2D rotation에서 $$\mathrm{Rot}(-\theta_1)$$로 간소화해서 표현할 수 있고, $$\mathbf{R}^{\intercal}_1\mathbf{R}_2$$를 표현하는 rotation angle이 $$\theta_2 - \theta_1$$이기 때문). 
 
 ### Step 3. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$와 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기 
 
@@ -102,7 +102,24 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 **Step 3-1. $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기**
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 + \boldsymbol{\delta}_2)$$는
-수식 (3)을 통해 업데이트된 값들을 (1)의 값을 대입하기만 하면 된다. 따라서 이를 계산하면 아래와 같다:
+수식 (1)을 통해 업데이트된 값들을 (3)의 값을 대입하기만 하면 된다. 즉, $$\mathbf{t}_1 \leftarrow \mathbf{t}_1 + \mathrm{Rot}(\theta_1) \delta\mathbf{t}_1$$, $$\theta_1 \leftarrow \theta_1 + \delta \theta_1$$, $$\mathbf{t}_2 \leftarrow \mathbf{t}_2 + \mathrm{Rot}(\theta_2) \delta\mathbf{t}_2$$, $$\theta_2 \leftarrow \theta_2 + \delta \theta_2$$를 3에 대입하면 아래와 같이 되고:
+
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
+\left[\begin{array}{c}
+\mathrm{Rot}\left(-\theta_1-\delta \theta_1\right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right) \\
+\theta_2+\delta \theta_2-\theta_1-\delta \theta_1
+\end{array}\right]\; \; \; \; \text{(4)}$$
+
+미소 각도에 대한 rotation는 $$\mathrm{Rot}\left(\delta_\theta\right) \simeq\left[\begin{array}{cc}
+1 & -\delta_\theta \\
+\delta_\theta & 1
+\end{array}\right]=\mathbf{I}_{2 \times 2}+\hat{\Omega} \delta_\theta$$라 표현 할 수 있다는 것을 이미 배웠으므로, 이를 풀어서 쓰면 아래와 같아진다:
+
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
+\left[\begin{array}{c}
+\left(\mathbf{R}_1^\intercal + \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta \right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right) \\
+\theta_2+\delta \theta_2-\theta_1-\delta \theta_1
+\end{array}\right]\; \; \; \; \text{(5)}$$
 
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
