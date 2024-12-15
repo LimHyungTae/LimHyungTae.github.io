@@ -165,7 +165,7 @@ $$\boldsymbol{\delta}=\left[\begin{array}{l}
 \delta \mathbf{t} \\
 \delta \theta
 \end{array}\right]=-\left[\begin{array}{cc}
-\mathbf{R}_2^\intercal \mathbf{R}_1 & \hat{\Omega} \mathbf{R}_2^\intercal\left(\mathbf{t}_2-\mathbf{t}_1\right) \\
+\mathbf{R}_2^\intercal \mathbf{R}_1 & \hat{\Omega} \mathbf{R}_2^\intercal\left(\mathbf{t}_1-\mathbf{t}_2\right) \\
 \mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{l}
 \delta \mathbf{t}_1 \\
@@ -180,7 +180,40 @@ $$\boldsymbol{\delta}=\left[\begin{array}{l}
 
 ---
 
+## Advanced: Adjoint Map and Beauty of Mathematics
 
+사실 위와 같이 `H1`과 `H2`를 구하면 끝나는데, `H1`이 무엇을 의미하는지 살펴보고 이 글을 마치고자 한다. 
+먼저 한 가지 why를 묻지 말고 받아들여야 할 것이 있는데, `Pose2.cpp`나 ``Pose3.cpp`에는 아래와 같이 `AdjointMap`이라는 함수가 구현되어 있다:
+
+```cpp
+// See https://github.com/borglab/gtsam/blob/3af5360ad397422023160604de99d0de447b0a88/gtsam/geometry/Pose2.cpp#L127
+
+// Calculate Adjoint map
+// Ad_pose is 3*3 matrix that when applied to twist xi, returns Ad_pose(xi)
+Matrix3 Pose2::AdjointMap() const {
+  double c = r_.c(), s = r_.s(), x = t_.x(), y = t_.y();
+  Matrix3 rvalue;
+  rvalue <<
+      c,  -s,   y,
+      s,   c,  -x,
+      0.0, 0.0, 1.0;
+  return rvalue;
+}
+```
+
+그리고 다시 수식 (7)을 살펴보자. 수식 (7)을 다시 보니, `H1` matrix는 
+
+```cpp
+// See https://github.com/borglab/gtsam/blob/3af5360ad397422023160604de99d0de447b0a88/gtsam/base/Lie.h#L63C3-L69C4
+
+Class between(const Class& g, ChartJacobian H1,
+    ChartJacobian H2 = {}) const {
+  Class result = derived().inverse() * g;
+  if (H1) *H1 = - result.inverse().AdjointMap();
+  if (H2) *H2 = Eigen::Matrix<double, N, N>::Identity();
+  return result;
+}
+```
 
 ---
 
