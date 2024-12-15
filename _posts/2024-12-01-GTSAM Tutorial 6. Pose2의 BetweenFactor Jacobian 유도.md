@@ -148,6 +148,32 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta} =
 
 ### Step 4. 수식 전개해서 `H1`, `H2`에 대응되는 값 유도
 
+따라서 최종적으로, 수식 (5)와 수식 (6)을 같다고 놓고 풀면 우리가 원하는 `H1`과 `H2`를 구할 수 있다. 미소 translation $$\delta \mathbf{t}$$는 아래의 수식을 전개하면 되고: 
+
+$$\mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta \right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right) = \mathbf{R}_1^\intercal \mathbf{R}_2 \delta \mathbf{t} + \mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right)$$
+
+미소 rotation $$\delta \theta$$에 대한 표현식은: 
+
+$$ \theta_2+\delta \theta_2-\theta_1-\delta \theta_1 = \theta_2-\theta_1+\delta \theta $$
+
+을 풀면 된다. 따라서 이 두 식을 푼 후, 최종적으로 $$\boldsymbol{\delta} = \mathbf{H}_1 \boldsymbol{\delta}_1 + \mathbf{H}_2 \boldsymbol{\delta}_2$$로 두고 수식을 정리하면 아래와 같이 최종적으로 유도할 수 있다:
+
+$$\delta=\left[\begin{array}{l}
+\delta t \\
+\delta \theta
+\end{array}\right]=-\left[\begin{array}{cc}
+R_2^T R_1 & \operatorname{Rot}(-\pi / 2) R_2^T\left(t_1-t_2\right) \\
+0 & 1
+\end{array}\right]\left[\begin{array}{l}
+\delta t_1 \\
+\delta \theta_1
+\end{array}\right]+\left[\begin{array}{cc}
+I & 0 \\
+0 & 1
+\end{array}\right]\left[\begin{array}{l}
+\delta t_2 \\
+\delta \theta_2
+\end{array}\right]$$
 
 ---
 
