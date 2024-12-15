@@ -12,13 +12,13 @@ comments: true
 
 ### Step 1. Update Function 정의
 
-Translation-rotation 순으로 적었던 2D와는 다르게 GTSAM에서 3D pose를 vector화해서 표현할 때는 rotation-translation 순으로 적는 것에 유의하자. 따라서, vector꼴로 표현된 rotation/translation 변화량을 각각 $$\boldsymbol{w} \in \mathbb{R}^3$$, $$\mathbf{v} \in \mathbb{R}^3$$라 하면, $$\boldsymbol{\delta} = [\boldsymbol{w}; \mathbf{v}]^\intercal \in \mathbb{R}^6$$로 표현이 된다. 그리고 2D 상에서 $$\mathrm{Rot}(\delta\theta) \simeq \mathbf{I} + \hat{\Omega} \delta \theta$$라고 표현했던 것이 3차원에서는 $$\mathbf{I} + [\boldsymbol{w}]_\times$$와 대응되기 때문에(이해가 되지 않는다면 Skew Symmetric matrix 관련 글을 다시 읽어보자), 이를 풀어서 쓰면 아래와 같고:
+Translation-rotation 순으로 적었던 2D와는 다르게 GTSAM에서 3D pose를 vector화해서 표현할 때는 rotation-translation 순으로 적는 것에 유의하자. 따라서, vector꼴로 표현된 rotation/translation 변화량을 각각 $$\boldsymbol{w} \in \mathbb{R}^3$$, $$\boldsymbol{v} \in \mathbb{R}^3$$라 하면, $$\boldsymbol{\delta} = [\boldsymbol{w}; \boldsymbol{v}]^\intercal \in \mathbb{R}^6$$로 표현이 된다. 그리고 2D 상에서 $$\mathrm{Rot}(\delta\theta) \simeq \mathbf{I} + \hat{\Omega} \delta \theta$$라고 표현했던 것이 3차원에서는 $$\mathbf{I} + [\boldsymbol{w}]_\times$$와 대응되기 때문에(이해가 되지 않는다면 Skew Symmetric matrix 관련 글을 다시 읽어보자), 이를 풀어서 쓰면 아래와 같고:
 
 $$\left[\begin{array}{cc}
 \mathbf{R} & \mathbf{t} \\
 \mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{cc}
-\mathbf{I} + [\boldsymbol{w}]_\times & {\delta\mathbf{t}} \\
+\mathbf{I} + [\boldsymbol{w}]_\times & \boldsymbol{v} \\
 \mathbf{0} & 1
 \end{array}\right]$$
 
@@ -27,7 +27,7 @@ $$\left[\begin{array}{cc}
 $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =  
 \left[\begin{array}{c}
 \mathrm{Log}\left( \mathbf{R} \left(\mathbf{I} + [\boldsymbol{w}]_\times\right) \right) \\ 
-\mathbf{t} + \mathbf{R} \delta\mathbf{t} 
+\mathbf{t} + \mathbf{R} \boldsymbol{v} 
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(1)}$$
 
 여기서 $$\mathrm{Log}\left( \cdot \right)$$는 우리가 2차원에서 $$\mathrm{Rot}(\theta)$$을 $$\theta$$로 간단히 표현했던 것 처럼, 3차원 rotation matrix을 3차원 rotation vector로 변환해주는 함수라 보면 된다.
@@ -65,74 +65,27 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 \mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) 
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(3)}$$
 
-로 표현할 수 있다. 2D에서 $$\theta_2 - \theta_1$$로 뺄셈으로 손쉽게 표현할 수 있었던 rotation이 차원이 증가함으로써 조금 복잡해졌을 뿐, 원리는 같다.
+로 표현할 수 있다. 2D에서 $$\theta_2 - \theta_1$$로 뺄셈으로 손쉽게 표현할 수 있었던 rotation이 차원이 증가해서 $$\mathrm{Log}\left(\mathbf{R}^{\intercal}_1 \mathbf{R}_2)$$라는 조금 복잡한 형태가 되었을 뿐, rotation의 차이를 표현하고자 하는 기저 원리는 같다.
 
 ### Step 3. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$와 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기 
 
-자, 다시 복습을 해보자:
-
-
----
-
-![](/img/gtsam_solving.png)
-
-(계속 remind되는 스크린샷...하지만 이만큼 잘 설명되어 있는 글이 없다.)
-
----
-
-우리가 이제 해야할 것은? 그림 상에 있는 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$를 전개해서 $$\boldsymbol{\delta}$$를 $$\boldsymbol{\delta}_1$$와 $$\boldsymbol{\delta}_2$$의 선형 조합으로 표현할 수 있는 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 전개해서 구하면 된다.
-
+자, 여기서부터는 스스로 한 번 해보는 것으로 하자!
 
 **Step 3-1. $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기**
 
-$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 + \boldsymbol{\delta}_2)$$는
-수식 (1)을 통해 업데이트된 값들을 (3)의 값을 대입하기만 하면 된다. 즉, $$\mathbf{t}_1 \leftarrow \mathbf{t}_1 + \mathbf{R}_1  \delta\mathbf{t}_1$$, $$\theta_1 \leftarrow \theta_1 + \delta \theta_1$$, $$\mathbf{t}_2 \leftarrow \mathbf{t}_2 + \mathbf{R}_2 \delta\mathbf{t}_2$$, $$\theta_2 \leftarrow \theta_2 + \delta \theta_2$$를 (3)에 대입하면 아래와 같이 되고:
-
-$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
-\left[\begin{array}{c}
-\mathrm{Rot}\left(-\theta_1-\delta \theta_1\right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta \mathbf{t}_1\right) \\
-\theta_2+\delta \theta_2-\theta_1-\delta \theta_1
-\end{array}\right]\; \; \; \; \text{(4)}$$
-
-미소 각도에 대한 rotation는 $$\mathrm{Rot}\left(\delta_\theta\right) \simeq\left[\begin{array}{cc}
-1 & -\delta_\theta \\
-\delta_\theta & 1
-\end{array}\right]=\mathbf{I}_{2 \times 2}+\hat{\Omega} \delta_\theta$$라 표현 할 수 있다는 것을 이미 배웠으므로, 이를 풀어서 쓰면 아래와 같아진다:
-
-$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
-\left[\begin{array}{c}
-\left(\mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta \theta_1 \right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta \mathbf{t}_1\right) \\
-\theta_2+\delta \theta_2-\theta_1-\delta \theta_1
-\end{array}\right]\; \; \; \; \text{(5)}$$
-
-이해를 돕기 위해 부연설명하자면, $$\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta \theta_1 \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta \theta_1$$.
-
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
-
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 또한 수식 (2)에 $$\boldsymbol{\delta}$$에 해당되는 transformation matrix를 곱해준 후:
-
-$$\left[\begin{array}{cc}
-\mathbf{R}^{\intercal}_1\mathbf{R}_2 & \mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) \\
-\mathbf{0} & 1
-\end{array}\right]
-\left[\begin{array}{cc}
-\mathrm{Rot}(\delta \theta) & \delta \mathbf{t} \\
-\mathbf{0} & 1
-\end{array}\right] $$
-
-다시 vector 꼴로 되돌리면 된다:
-
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta} = 
-\left[\begin{array}{c}
-\mathbf{R}_1^\intercal \mathbf{R}_2 \delta \mathbf{t} + \mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right) \\
-\theta_2-\theta_1+\delta \theta
-\end{array}\right].\; \; \; \; \text{(6)}$$
+전개를 하는 것 자체에는 어려움이 없을 것이다.
 
 
 ### Step 4. 수식 전개해서 `H1`, `H2`에 대응되는 값 유도
 
-따라서 최종적으로, 수식 (5)와 수식 (6)을 같다고 놓고 풀면 우리가 원하는 `H1`과 `H2`를 구할 수 있다. 미소 translation $$\delta \mathbf{t}$$는 아래의 수식을 전개하면 되고: 
+이제 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$와 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$의 translation/rotation 요소가 각각 같다고 하고 풀면 된다. 
+
+**Hints**
+
+* 미소 변화량 두개가 곱해지면 해당 term이 무시 가능해진다는 것을 활용하자. 즉, $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_1$$이나 $$\boldsymbol{v}_2$$가 곱해지면 해당 term은 크기가 다른 term보다 월등히 작아지므로 무시 가능하다.
+* 
 
 $$\mathbf{R}_1^\intercal \left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta \mathbf{t}_1\right)
 - \mathbf{R}_1^\intercal \hat{\Omega} \delta \theta_1 \left(\mathbf{t}_2 - \mathbf{t}_1\right) \\
