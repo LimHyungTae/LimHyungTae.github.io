@@ -124,8 +124,16 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 또한 수식 (1)의 $$\boldsymbol{\xi}$$을 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2)$$으로 대체해주면 된다.
-따라서 이는 아래의 수식을 전개하면 된다:
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 또한 수식 (2)에 $$\boldsymbol{\delta}$$에 대당되는 transformation matrix를 곱해준 후, 다시 vector 꼴로 되돌리면 된다:
+
+$$\left[\begin{array}{cc}
+\mathbf{R}^{\intercal}_1\mathbf{R}_2 & \mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) \\
+\mathbf{0} & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+\mathrm{Rot}(\delta \theta) & \delta \mathbf{t} \\
+\mathbf{0} & 1
+\end{array}\right] = $$
 
 ### Step 4. 수식 전개해서 `H1`, `H2`에 대응되는 값 유도
 
