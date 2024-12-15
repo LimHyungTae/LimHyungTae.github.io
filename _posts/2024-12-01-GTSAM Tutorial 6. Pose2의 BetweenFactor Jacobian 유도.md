@@ -155,26 +155,26 @@ $$\mathbf{R}_1^\intercal \left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\ma
 = \mathbf{R}_1^\intercal \mathbf{R}_2 \delta \mathbf{t} + \mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right)
 $$
 
-미소 rotation $$\delta \theta$$에 대한 표현식은: 
+(위에서도 앞선 글에서와 마찬가지로 미소 값들이 두 번 곱해지는 term들은 무시되었다) 미소 rotation $$\delta \theta$$에 대한 표현식은: 
 
 $$ \theta_2+\delta \theta_2-\theta_1-\delta \theta_1 = \theta_2-\theta_1+\delta \theta $$
 
 을 풀면 된다. 따라서 이 두 식을 푼 후, 최종적으로 $$\boldsymbol{\delta} = \mathbf{H}_1 \boldsymbol{\delta}_1 + \mathbf{H}_2 \boldsymbol{\delta}_2$$로 두고 수식을 정리하면 아래와 같이 최종적으로 유도할 수 있다:
 
-$$\delta=\left[\begin{array}{l}
-\delta t \\
+$$\boldsymbol{\delta}=\left[\begin{array}{l}
+\delta \mathbf{t} \\
 \delta \theta
 \end{array}\right]=-\left[\begin{array}{cc}
-R_2^T R_1 & \operatorname{Rot}(-\pi / 2) R_2^T\left(t_1-t_2\right) \\
-0 & 1
+R_2^\intercal R_1 & \operatorname{Rot}(-\pi / 2) R_2^\intercal\left(t_1-t_2\right) \\
+\mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{l}
 \delta t_1 \\
 \delta \theta_1
 \end{array}\right]+\left[\begin{array}{cc}
-I & 0 \\
-0 & 1
+\mathbf{I}_{2 \times 2} & 0 \\
+\mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{l}
-\delta t_2 \\
+\delta \mathbf{t}_2 \\
 \delta \theta_2
 \end{array}\right]$$
 
@@ -185,7 +185,7 @@ I & 0 \\
 대망의 Pose2의 BetweenFactor의 `H1`과 `H2`를 구하는 방법에 알아 보았다. 다시금 강조하지만, 단순히 BetweenFactor를 사용하고자 하는 입장에서는 전혀 알 필요가 없는 부분이다. 다만, SLAM의 optimization을 굉장히 low-level로 다뤄야 할 일이 있을 때 이런 과정을 모르면 GTSAM이 어떻게 동작하는지 절대 이해할 수 없기 때문에, 저 `H` matrix를 어떻게 유도하는 지 정리해보았다.
 
 최대한 수학적 엄밀성을 따지기 보다는 이해가 쉽게 풀어 써보았는데, 모쪼록 읽는 분께 도움이 되었으면 한다.
-만약 이해가 잘 안되는 부분이 있다면 앞선 글에서 설명했던 skew-symmetric matrix 부분과 unary factor를 다시 한 번 읽어본 후 정독해보는 것을 추천한다. 
+만약 이해가 잘 안되는 부분이 있다면 앞선 글에서 설명했던 skew-symmetric matrix 부분과 unary factor를 다시 한 번 차근차근 읽어본 후 재도전(?)하는 것을 추천한다. 
 
 ---
 
