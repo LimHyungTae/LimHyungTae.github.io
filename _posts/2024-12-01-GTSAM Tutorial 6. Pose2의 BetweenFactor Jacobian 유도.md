@@ -102,7 +102,7 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 **Step 3-1. $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기**
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 + \boldsymbol{\delta}_2)$$는
-수식 (1)을 통해 업데이트된 값들을 (3)의 값을 대입하기만 하면 된다. 즉, $$\mathbf{t}_1 \leftarrow \mathbf{t}_1 + \mathrm{Rot}(\theta_1) \delta\mathbf{t}_1$$, $$\theta_1 \leftarrow \theta_1 + \delta \theta_1$$, $$\mathbf{t}_2 \leftarrow \mathbf{t}_2 + \mathrm{Rot}(\theta_2) \delta\mathbf{t}_2$$, $$\theta_2 \leftarrow \theta_2 + \delta \theta_2$$를 3에 대입하면 아래와 같이 되고:
+수식 (1)을 통해 업데이트된 값들을 (3)의 값을 대입하기만 하면 된다. 즉, $$\mathbf{t}_1 \leftarrow \mathbf{t}_1 + \mathrm{Rot}(\theta_1) \delta\mathbf{t}_1$$, $$\theta_1 \leftarrow \theta_1 + \delta \theta_1$$, $$\mathbf{t}_2 \leftarrow \mathbf{t}_2 + \mathrm{Rot}(\theta_2) \delta\mathbf{t}_2$$, $$\theta_2 \leftarrow \theta_2 + \delta \theta_2$$를 (3)에 대입하면 아래와 같이 되고:
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
 \left[\begin{array}{c}
