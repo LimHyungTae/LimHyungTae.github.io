@@ -74,7 +74,7 @@ $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 
 따라서 두 pose의 차이에 대한 함수는 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = 
 \left[\begin{array}{c}
-\mathrm{Rot}(-\theta_1}(\mathbf{t}2 - \mathbf{t}_1) \\
+\mathrm{Rot}(-\theta_1)(\mathbf{t}2 - \mathbf{t}_1) \\
 \theta_2 - \theta_1
 \end{array}\right]\; \; \; \; \text{(3)}$$
 
@@ -82,9 +82,16 @@ $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 
 자, 다시 복습을 해보자:
 
+
+---
+
 ![](/img/gtsam_solving.png)
 
-우리가 이제 해야할 것은? 그림 상에 있는 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 + \boldsymbol{\delta}_2) = h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$를 전개해서 $$\boldsymbol{\delta}$$를 $$\boldsymbol{\delta}_1$$와 $$$$\boldsymbol{\delta}_2$$의 선형 조합으로 표현할 수 있는 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 전개해서 구하면 된다.
+(계속 remind되는 스크린샷...하지만 이만큼 잘 설명되어 있는 글이 없다.)
+
+---
+
+우리가 이제 해야할 것은? 그림 상에 있는 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 + \boldsymbol{\delta}_2) = h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$를 전개해서 $$\boldsymbol{\delta}$$를 $$\boldsymbol{\delta}_1$$와 $$\boldsymbol{\delta}_2$$의 선형 조합으로 표현할 수 있는 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 전개해서 구하면 된다.
 
 **Step 3-1. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
