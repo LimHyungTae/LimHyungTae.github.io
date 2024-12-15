@@ -136,7 +136,7 @@ $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) = \mathbf{t} + R(\theta)\boldsy
 따라서, GTSAM에서 어떤 factor를 새로 정의할 때 필요한 Jacobian matrix `H`는 단순히 $$\left[\begin{array}{ccc}
 \frac{df_1}{dt_x} & \frac{df_1}{dt_y} & \frac{df_1}{d\theta} \\
 \frac{df_2}{dt_x} & \frac{df_2}{dt_y} & \frac{df_2}{d\theta} \\
-\end{array}\right]$$가 아닌, 미소 증분 vector인 $$\boldsymbol{\delta}$$를 위한 행렬임을 주의하자. 그래서 이전 글들을 보면 Jacobian 자체를 가리킬 때는 $$\mathbf{J}$$라고 칭한 반면, 이 $$\boldsymbol{\delta}$$를 위한 jacobian은 `H`라고 칭해 이를 구분하고자 하였다.
+\end{array}\right]$$가 아닌, 미소 증분 vector인 $$\boldsymbol{\delta}$$의 앞에 곱해지는 계수 행렬임을 주의하자. 그래서 이전 글들을 보면 Jacobian 자체를 가리킬 때는 $$\mathbf{J}$$라고 칭한 반면, 이 $$\boldsymbol{\delta}$$를 위한 jacobian은 `H`라고 칭해 이를 구분하고자 하였다.
 
 ---
 
