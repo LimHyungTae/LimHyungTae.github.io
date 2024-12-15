@@ -126,7 +126,7 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 또한 수식 (2)에 $$\boldsymbol{\delta}$$에 대당되는 transformation matrix를 곱해준 후, 다시 vector 꼴로 되돌리면 된다:
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 또한 수식 (2)에 $$\boldsymbol{\delta}$$에 해당되는 transformation matrix를 곱해준 후:
 
 $$\left[\begin{array}{cc}
 \mathbf{R}^{\intercal}_1\mathbf{R}_2 & \mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) \\
@@ -136,6 +136,14 @@ $$\left[\begin{array}{cc}
 \mathrm{Rot}(\delta \theta) & \delta \mathbf{t} \\
 \mathbf{0} & 1
 \end{array}\right] = $$
+
+다시 vector 꼴로 되돌리면 된다:
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta} = 
+\left[\begin{array}{c}
+\mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right)+\mathbf{R}_1^\intercal \mathbf{R}_2 \delta t \\
+\theta_2-\theta_1+\delta \theta
+\end{array}\right]\; \; \; \; \text{(6)}$$
 
 ### Step 4. 수식 전개해서 `H1`, `H2`에 대응되는 값 유도
 
