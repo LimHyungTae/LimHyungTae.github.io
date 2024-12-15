@@ -165,10 +165,10 @@ $$\boldsymbol{\delta}=\left[\begin{array}{l}
 \delta \mathbf{t} \\
 \delta \theta
 \end{array}\right]=-\left[\begin{array}{cc}
-R_2^\intercal R_1 & \operatorname{Rot}(-\pi / 2) R_2^\intercal\left(t_1-t_2\right) \\
+\mathbf{R}_2^\intercal \mathbf{R}_1 & - \hat{\Omega} \mathbf{R}_2^\intercal\left(\mathbf{t}_2-\mathbf{t}_1\right) \\
 \mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{l}
-\delta t_1 \\
+\delta \mathbf{t}_1 \\
 \delta \theta_1
 \end{array}\right]+\left[\begin{array}{cc}
 \mathbf{I}_{2 \times 2} & 0 \\
