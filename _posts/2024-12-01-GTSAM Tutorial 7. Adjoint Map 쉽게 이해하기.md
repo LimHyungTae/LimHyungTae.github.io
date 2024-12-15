@@ -8,7 +8,7 @@ comments: true
 
 ## Adjoint Map의 의미?
 
-그렇다면, 이전 글에서 $$\boldsymbol{\delta}_1$$ 앞에 $$ `AdjointMap()`을 곱해주는 행위가 물리적으로 무슨 의미일까? 
+그렇다면, 이전 글에서 $$\boldsymbol{\delta}_1$$ 앞에 `AdjointMap()`을 곱해주는 행위가 물리적으로 무슨 의미일까? 
 
 결론적으로 말하자면, 이 adjoint matrix는 `p1` 관점 좌표계 상의 오차 $$\boldsymbol{\delta}_1$$를 `p2`의 좌표계로 변환하는 역할을 한다.
 
