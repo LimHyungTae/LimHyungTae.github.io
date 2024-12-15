@@ -32,13 +32,14 @@ Unary factor에서 유도했던 것을 좀 더 일반화하여, 세 단계로 �
 
 ### Step 1. Update Function 정의
 
-2D 상의 Lie Group인 SE(2)에서는 $$\boldsymbol{\delta}$$를 통한 update는 $$\left[\begin{array}{cc}
+2D 상의 Lie Group인 SE(2)와 대응되는 vector $$\boldsymbol{\xi} \in \mathbb{R}^3$$를 $$\boldsymbol{\delta} = [\delta\mathbf{t}; \delta\theta]^\intercal$$를 통해 update하는 식을 먼저 유도해보자.
+$$\left[\begin{array}{cc}
 \mathbf{R} & \mathbf{t} \\
 \mathbf{0}_{1\times2} & 1
 \end{array}\right]\left[\begin{array}{cc}
 \mathrm{Rot}(\delta\theta) & {\delta\mathbf{t}} \\
 \mathbf{0}_{1\times2} & 1
-\end{array}\right]$$를 통해서 다음과 같이 정의된다:
+\end{array}\right]$$를 통해서, translation 부분은 $$\mathbf{t} + \mathrm{Rot}(\theta) \delta\mathbf{t}$$, rotation matrix는 $$\mathbf{R}\mathrm{Rot}(\delta\theta) = \mathrm{Rot}(\theta)\mathrm{Rot}(\delta\theta)$$이므로, rotation matrix는에 대응되는 각도 값은 $$\theta + \delta \theta$$가 된다. 따라서, update function $$\boldsymbol{\xi} \oplus \boldsymbol{\delta}$$는 다음과 같이 정의된다:
 
 $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =  
 \left[\begin{array}{c}
@@ -46,13 +47,13 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 \theta + \delta \theta
 \end{array}\right] \in \mathbb{R}^3 \; \; \; \; \text{(1)}$$
 
-완전 러키비키하게 2D차원에서의 rotation은 단순한 yaw 각의 덧셈으로 SE(2)의 회전을 표현할 수 있기 때문에, 위와 같이 $$(x, y, \theta)$$의 형태로 간략하게 표현할 수 있다 (3차원에서는 어림도 없다!). 앞으로는 편의 상 $$\mathbf{0}_{1\times2}$$를 그냥 $$\mathbf{0}$$라고 적겠다.
+2D차원에서의 rotation은 완전 러키비키하게 단순한 yaw 각의 덧셈으로 SE(2)의 회전을 표현할 수 있기 때문에, (1)과 같이 단순하게 표기할 수 있다 (3차원에서는 어림도 없다!). 앞으로는 편의 상 $$\mathbf{0}_{1\times2}$$는 그냥 $$\mathbf{0}$$라고 적겠다.
 
 ### Step 2. Measurement Function $$h(\cdot)$$ 정의
 
 Lie Group 상에서 두 pose간의 뺄셈과 대응되는 개념은 위의 코드에서 inverse된 `p1`의 transformation matrix와 $$\left(\mathbf{T}^{w}_1\right)^{-1}$$ `p2`의 transformation matrix $$\mathbf{T}^{w}_2$$를 곱하는 것이다. 따라서 아래 수식을 전개하면:
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
+$$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 \left[\begin{array}{cc}
 \mathbf{R}_1 & \mathbf{t}_1 \\
 \mathbf{0} & 1
@@ -72,11 +73,15 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \left(\mathbf{T}^{w}_1\right)^{-1}
 \mathbf{0} & 1
 \end{array}\right] \; \; \; \; \text{(2)}$$
 
-따라서 두 pose의 차이에 대한 함수를 vector화 해서 나타내면 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = 
+따라서 두 pose의 차이에 대한 함수를 vector화 해서 나타내면 
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = 
 \left[\begin{array}{c}
 \mathrm{Rot}(-\theta_1)(\mathbf{t}_2 - \mathbf{t}_1) \\
 \theta_2 - \theta_1
 \end{array}\right]\; \; \; \; \text{(3)}$$
+
+로 표현할 수 있다. 
 
 ### Step 3. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$와 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기 
 
