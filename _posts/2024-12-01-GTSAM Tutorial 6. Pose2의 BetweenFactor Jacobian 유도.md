@@ -121,7 +121,7 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 \theta_2+\delta \theta_2-\theta_1-\delta \theta_1
 \end{array}\right]\; \; \; \; \text{(5)}$$
 
-이해를 돕기 위해 부연설명하자면, $\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \left(\mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta_\theta \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta$$.
+이해를 돕기 위해 부연설명하자면, $$\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \left(\mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta_\theta \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta$$.
 
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
