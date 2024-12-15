@@ -121,7 +121,7 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 \theta_2+\delta \theta_2-\theta_1-\delta \theta_1
 \end{array}\right]\; \; \; \; \text{(5)}$$
 
-이해를 돕기 위해 부연설명하자면, $$\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \left(\mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta_\theta \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta$$.
+이해를 돕기 위해 부연설명하자면, $$\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta_\theta \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta$$.
 
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
@@ -135,15 +135,16 @@ $$\left[\begin{array}{cc}
 \left[\begin{array}{cc}
 \mathrm{Rot}(\delta \theta) & \delta \mathbf{t} \\
 \mathbf{0} & 1
-\end{array}\right] = $$
+\end{array}\right] $$
 
 다시 vector 꼴로 되돌리면 된다:
 
 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta} = 
 \left[\begin{array}{c}
-\mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right)+\mathbf{R}_1^\intercal \mathbf{R}_2 \delta t \\
+\mathbf{R}_1^\intercal \mathbf{R}_2 \delta \mathbf{t} + \mathbf{R}_1^T\left(\mathbf{t}_2-\mathbf{t}_1\right) \\
 \theta_2-\theta_1+\delta \theta
-\end{array}\right]\; \; \; \; \text{(6)}$$
+\end{array}\right].\; \; \; \; \text{(6)}$$
+
 
 ### Step 4. 수식 전개해서 `H1`, `H2`에 대응되는 값 유도
 
