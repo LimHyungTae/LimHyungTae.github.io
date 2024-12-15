@@ -102,11 +102,11 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 **Step 3-1. $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기**
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 + \boldsymbol{\delta}_2)$$는
-수식 (1)을 통해 업데이트된 값들을 (3)의 값을 대입하기만 하면 된다. 즉, $$\mathbf{t}_1 \leftarrow \mathbf{t}_1 + \mathrm{Rot}(\theta_1) \delta\mathbf{t}_1$$, $$\theta_1 \leftarrow \theta_1 + \delta \theta_1$$, $$\mathbf{t}_2 \leftarrow \mathbf{t}_2 + \mathrm{Rot}(\theta_2) \delta\mathbf{t}_2$$, $$\theta_2 \leftarrow \theta_2 + \delta \theta_2$$를 (3)에 대입하면 아래와 같이 되고:
+수식 (1)을 통해 업데이트된 값들을 (3)의 값을 대입하기만 하면 된다. 즉, $$\mathbf{t}_1 \leftarrow \mathbf{t}_1 + \mathbf{R}_1  \delta\mathbf{t}_1$$, $$\theta_1 \leftarrow \theta_1 + \delta \theta_1$$, $$\mathbf{t}_2 \leftarrow \mathbf{t}_2 + \mathbf{R}_2 \delta\mathbf{t}_2$$, $$\theta_2 \leftarrow \theta_2 + \delta \theta_2$$를 (3)에 대입하면 아래와 같이 되고:
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
 \left[\begin{array}{c}
-\mathrm{Rot}\left(-\theta_1-\delta \theta_1\right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right) \\
+\mathrm{Rot}\left(-\theta_1-\delta \theta_1\right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta \mathbf{t}_1\right) \\
 \theta_2+\delta \theta_2-\theta_1-\delta \theta_1
 \end{array}\right]\; \; \; \; \text{(4)}$$
 
@@ -117,11 +117,11 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = 
 \left[\begin{array}{c}
-\left(\mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta \right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta t_1\right) \\
+\left(\mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta \theta_1 \right)\left(\mathbf{t}_2+\mathbf{R}_2 \delta \mathbf{t}_2-\mathbf{t}_1-\mathbf{R}_1 \delta \mathbf{t}_1\right) \\
 \theta_2+\delta \theta_2-\theta_1-\delta \theta_1
 \end{array}\right]\; \; \; \; \text{(5)}$$
 
-이해를 돕기 위해 부연설명하자면, $$\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta_\theta \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta_\theta$$.
+이해를 돕기 위해 부연설명하자면, $$\mathrm{Rot}\left(-\theta_1-\delta \theta_1 \right) = \mathrm{Rot}\left(-\theta_1\right) \mathrm{Rot}\left(-\delta \theta_1 \right) = \mathbf{R}_1^\intercal \left( \mathbf{I}_{2 \times 2} - \hat{\Omega} \delta \theta_1 \right) = \mathbf{R}_1^\intercal - \mathbf{R}_1^\intercal \hat{\Omega} \delta \theta_1$$.
 
 **Step 3-2. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$ 전개하기**
 
