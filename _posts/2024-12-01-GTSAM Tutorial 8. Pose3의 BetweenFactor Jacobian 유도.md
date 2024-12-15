@@ -61,7 +61,7 @@ $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 
 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = 
 \left[\begin{array}{c}
-\mathrm{Log}\left(\mathbf{R}^{\intercal}_1 \mathbf{R}_2) \\
+\mathrm{Log}\left(\mathbf{R}^{\intercal}_1 \mathbf{R}_2) \right) \\
 \mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) 
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(3)}$$
 
