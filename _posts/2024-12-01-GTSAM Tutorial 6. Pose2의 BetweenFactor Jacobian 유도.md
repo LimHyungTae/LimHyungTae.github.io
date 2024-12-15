@@ -183,7 +183,7 @@ $$\boldsymbol{\delta}=\left[\begin{array}{l}
 ## Advanced: Adjoint Map and Beauty of Mathematics
 
 사실 위와 같이 `H1`과 `H2`를 구하면 끝나는데, `H1`이 무엇을 의미하는지 살펴보고 이 글을 마치고자 한다. 
-먼저 왜?를 묻지 말고 받아들여야 할 것이 있는데, `Pose2.cpp`나 `Pose3.cpp`에는 아래와 같이 `AdjointMap`이라는 함수가 구현되어 있다:
+먼저 왜?를 묻지 말고 받아들여야 할 것이 있는데, `Pose2.cpp`나 `Pose3.cpp`에는 아래와 같이 `AdjointMap`이라는 함수가 구현되어 있다 (adjoint map 자체에 대해서는 [다음 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-7.-Adjoint-Map-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 살펴보자):
 
 ```cpp
 // See https://github.com/borglab/gtsam/blob/3af5360ad397422023160604de99d0de447b0a88/gtsam/geometry/Pose2.cpp#L127
@@ -220,7 +220,7 @@ Class between(const Class& g, ChartJacobian H1,
 }
 ```
 
-깔끔하고 아름답다! (adjoint map 자체에 대해서는 [다음 글]()에서 살펴보자)
+깔끔하고 아름답다!
 
 ---
 
