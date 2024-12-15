@@ -202,9 +202,9 @@ Matrix3 Pose2::AdjointMap() const {
 ```
 
 그리고 다시 수식 (7)을 살펴보자. 수식 (7)을 다시 보니, `H1` matrix는 $$h(\boldsymbol{\xi}_2, \boldsymbol{\xi}_1)$$의(i.e., $$\left[\begin{array}{cc}
-\mathbf{R}^{\intercal}_2\mathbf{R}_1 & \mathbf{R}^{\intercal}_1(\mathbf{t}_1 - \mathbf{t}_2) \\
+\mathbf{R}^{\intercal}_2\mathbf{R}_1 & \mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2) \\
 \mathbf{0} & 1
-\end{array}\right]$$와 대응되는) AdjointMap() 함수라는 것을 알 수 있다.
+\end{array}\right]$$와 대응됨. 이 경우 위의 `t_`가 $$\mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2$$이 되고, $$(x, y)$$를 $$(y, -x)$$로 두는 것이 $$-\hat{\Omega}$$를 곱해주는 것을 의미함) AdjointMap() 함수라는 것을 알 수 있다.
 
 그래서 실제로 `gtsam/base/Lie.h` 코드 내에 `between`을 계산하는 코드를 살펴보면, `H1`의 값에 $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2$$의 inverse를 한 후(그러면 해당 transformation matrix가 $$h(\boldsymbol{\xi}_2, \boldsymbol{\xi}_1)$$와 대응됨), `AdjointMap()` 함수를 통해 `H1`를 손쉽게 구하는 것을 볼 수 있다. 그리고 이는 3D에서도 마찬가지로 적용이 가능하기 때문에, 차원에 관계 없이 `H1` matrix와 `H2` matrix를 손쉽게 구하는 것이 가능해지게 된다. 
 
