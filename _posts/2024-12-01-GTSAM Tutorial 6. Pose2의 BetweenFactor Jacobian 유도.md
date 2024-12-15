@@ -42,7 +42,7 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} = \left[\begin{array}{cc}
 0 & 1
 \end{array}\right] = 
 \left[\begin{array}{c}
-\mathbf{t} + \mathrm{Rot}(\theta} \delta\mathbf{t} \\
+\mathbf{t} + \mathrm{Rot}(\theta) \delta\mathbf{t} \\
 \theta + \delta \theta
 \end{array}\right] \in \mathbb{R}^3 \; \; \; \; \text{(1)}$$
 
