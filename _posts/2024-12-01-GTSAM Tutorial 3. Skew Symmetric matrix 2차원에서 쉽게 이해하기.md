@@ -38,7 +38,7 @@ $$\frac{\partial R(\theta)}{\partial \theta}=R(\theta) \hat{\Omega}=\hat{\Omega}
 
 ## Rotation에서 Skew-Symmetric Matrix 활용
 
-즉, Skew-Symmetric Matrix는 rotation matrix의 변화량을 표현해줄 수 있는 중요한 수학적 tool이다. 만약 translation이었다면 우리는 변화량 $$\Delta\mathbf{t}$$가 단순히 덧셈을 통해(i.e., $$\mathbf{t} + \Delta \mathbf{t}$$) 값을 update할 수 있다는 것을 알고 있다. 그런데 회전의 경우에는 $$\mathbf{R}_1\mathbf{R}_2$$와 같이 곱하기로 값을 업데이트 하기 때문에, 원래라면 단순히 덧셈으로 증분을 표현할 수는 없을 것이다. 그렇다면 rotation의 증분은 어떻게 표현할 수 있을까?
+즉, Skew-Symmetric Matrix는 rotation matrix의 변화량을 표현하는 데 있어 매우매우 중요한 수학적 tool이다. 만약 translation이었다면 우리는 변화량 $$\Delta\mathbf{t}$$가 단순히 덧셈을 통해(i.e., $$\mathbf{t} + \Delta \mathbf{t}$$) 값을 update할 수 있다는 것을 알고 있다. 그런데 회전의 경우에는 $$\mathbf{R}_1\mathbf{R}_2$$와 같이 곱하기로 값을 업데이트 하기 때문에, 원래라면 단순히 덧셈으로 증분을 표현할 수는 없을 것이다. 그렇다면 rotation의 증분은 어떻게 표현할 수 있을까?
 
 어떤 미소 각 $$\delta_{\theta}$$에 대해 회전을 하는 rotation matrix는 다음과 같은데:
 
@@ -62,7 +62,7 @@ $$R(\delta_{\theta}) \simeq
 
 $$R(\theta)R(\delta_{\theta}) \simeq R(\theta)(\mathbf{I}_{2 \times 2} + \hat{\Omega}\delta_{\theta}) = R(\theta) + \frac{\partial R(\theta)}{\partial \theta}\delta_{\theta}.\; \; \; \; \text{(9)}$$
 
-아주 놀랍게도, 수식 (9)에서 볼 수 있듯이, 이 $$\hat{\Omega}$$를 활용하게 되면, rotation의 변화량도 **덧셈으로 표현을 하는게 가능해진다.** 즉, 업데이트하고자 하는 각도의 양 $$\delta_{\theta}$$가 충분히 작다면, rotation의 상태 변화를 덧셈을 통해 표현이 가능해진다는 것을 확인할 수 있다. 그리고 이러한 특성은 뒤에 GTSAM에 쓰이는, `H`라 불리는, Jacobian의 수식 유도를 할 때 활발히 사용된다. 
+아주 놀랍게도, 수식 (9)에서 볼 수 있듯이, 이 $$\hat{\Omega}$$를 활용하면, rotation의 변화량도 **덧셈으로 표현을 하는게 가능해진다.** 즉, 업데이트하고자 하는 각도의 양 $$\delta_{\theta}$$가 충분히 작다면, rotation의 상태 변화를 덧셈을 통해 표현이 가능해진다는 것을 확인할 수 있다. 그리고 이러한 특성은 뒤에 GTSAM에 쓰이는, `H`라 불리는, Jacobian의 수식 유도를 할 때 활발히 사용된다. 
 
 
 ## 3차원에서 Skew-Symmetric Matrix 가볍게 접해보기
