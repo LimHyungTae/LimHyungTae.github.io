@@ -204,7 +204,7 @@ Matrix3 Pose2::AdjointMap() const {
 그리고 다시 수식 (7)을 살펴보자. 수식 (7)을 다시 보니, `H1` matrix는 $$h(\boldsymbol{\xi}_2, \boldsymbol{\xi}_1)$$의(i.e., $$\left[\begin{array}{cc}
 \mathbf{R}^{\intercal}_2\mathbf{R}_1 & \mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2) \\
 \mathbf{0} & 1
-\end{array}\right]$$와 대응됨. 이 경우 위의 `t_`가 $$\mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2)$$이 되고, 코드 상에서 $$(x, y)$$를 $$(y, -x)$$로 변경하는 것이 $$-\hat{\Omega}$$를 곱해주는 것을 의미함) AdjointMap() 함수라는 것을 알 수 있다.
+\end{array}\right]$$와 대응됨. 이 경우 위의 코드 snippet 상의 `t_`가 $$\mathbf{R}^{\intercal}_2(\mathbf{t}_1 - \mathbf{t}_2)$$이 되고, 코드 상에서 $$(x, y)$$를 $$(y, -x)$$로 변경하는 것이 $$-\hat{\Omega}$$를 곱해주는 것을 의미함) AdjointMap() 함수라는 것을 알 수 있다.
 
 그래서 실제로 `gtsam/base/Lie.h` 코드 내에 `between`을 계산하는 코드를 살펴보면(아래에서 `derived()`가 `p1`, `g`가 `p2`로 각각 대응된다고 생각하면 된다), `H1`의 값에 $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2$$의 inverse를 한 후(원래는 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2)$$와 대응되던 transformation matrix가 `inverse()` 함수를 통해 해당 transformation matrix이 $$h(\boldsymbol{\xi}_2, \boldsymbol{\xi}_1)$$와 대응됨), `AdjointMap()` 함수를 통해 `H1`를 손쉽게 구하는 것을 볼 수 있다. 그리고 이는 3D에서도 마찬가지로 적용이 가능하기 때문에, 차원에 관계 없이 `H1` matrix와 `H2` matrix를 손쉽게 구하는 것이 가능해지게 된다: 
 
@@ -226,7 +226,7 @@ Class between(const Class& g, ChartJacobian H1,
 
 ## Conclusion
 
-대망의 Pose2의 BetweenFactor의 `H1`과 `H2`를 구하는 방법에 알아 보았다. 다시금 강조하지만, 단순히 BetweenFactor를 사용하고자 하는 입장에서는 전혀 알 필요가 없는 부분이다. 다만, SLAM의 optimization을 굉장히 low-level로 다뤄야 할 일이 있을 때 이런 과정을 모르면 GTSAM이 어떻게 동작하는지 절대 이해할 수 없기 때문에, 저 `H` matrix를 어떻게 유도하는 지 정리해보았다.
+대망의 Pose2의 BetweenFactor의 `H1`과 `H2`를 구하는 방법에 알아 보았다. 다시금 강조하지만, 단순히 BetweenFactor를 사용하고자 하는 입장에서는 전혀 알 필요가 없는 부분이다. 다만, SLAM의 optimization을 굉장히 low-level로 다뤄야 할 일이 있을 때 이런 과정을 모르면 GTSAM이 어떻게 동작하는지 **절대** 이해할 수 없기 때문에, 저 `H` matrix를 어떻게 유도하는 지 정리해보았다.
 
 최대한 수학적 엄밀성을 따지기 보다는 이해가 쉽게 풀어 써보았는데, 모쪼록 읽는 분께 도움이 되었으면 한다.
 만약 이해가 잘 안되는 부분이 있다면 앞선 글에서 설명했던 skew-symmetric matrix 부분과 unary factor를 다시 한 번 차근차근 읽어본 후 재도전(?)하는 것을 추천한다. 
