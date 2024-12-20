@@ -1,8 +1,8 @@
 ---
 layout: post
-title: clang-format과 pre-commit을 통한 코드 유지 보수 쉽게 하기
+title:  clang-format과 pre-commit을 통한 코드 유지 보수 쉽게 하기
 subtitle:
-tags: [Ubuntu, GitHub]
+tags: [Ubuntu, GitHub, Maintenance]
 comments: true
 ---
 
@@ -162,6 +162,129 @@ ChatGPT의 시대가 되었으니, line-by-line이 무슨 역할을 하는지 �
           ]
         exclude: '3rd_party/|include/label_generator/nanoflann\.hpp|include/label_generator/nanoflann_utils\.hpp'
 ```
+
+---
+
+##추가: 내가 사용하는 `.clang-format`
+
+내가 사용하는 clang format을 공유한다:
+
+```angular2html
+---
+Language: Cpp
+BasedOnStyle: Google
+AccessModifierOffset: -1
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: false
+AlignOperands: true
+AlignTrailingComments: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: true
+AlwaysBreakTemplateDeclarations: true
+BinPackArguments: false
+BinPackParameters: false
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializersBeforeComma: false
+CommentPragmas: "^ IWYU pragma:"
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+Cpp11BracedListStyle: true
+DerivePointerAlignment: true
+DisableFormat: false
+ExperimentalAutoDetectBinPacking: false
+ForEachMacros:
+  - foreach
+  - Q_FOREACH
+  - BOOST_FOREACH
+IncludeCategories:
+  # Spacers
+  - Regex: "^<clang-format-priority-15>$"
+    Priority: 15
+  - Regex: "^<clang-format-priority-25>$"
+    Priority: 25
+  - Regex: "^<clang-format-priority-35>$"
+    Priority: 35
+  - Regex: "^<clang-format-priority-45>$"
+    Priority: 45
+  # C system headers
+  - Regex: '^[<"](aio|arpa/inet|assert|complex|cpio|ctype|curses|dirent|dlfcn|errno|fcntl|fenv|float|fmtmsg|fnmatch|ftw|glob|grp|iconv|inttypes|iso646|langinfo|libgen|limits|locale|math|monetary|mqueue|ndbm|netdb|net/if|netinet/in|netinet/tcp|nl_types|poll|pthread|pwd|regex|sched|search|semaphore|setjmp|signal|spawn|stdalign|stdarg|stdatomic|stdbool|stddef|stdint|stdio|stdlib|stdnoreturn|string|strings|stropts|sys/ipc|syslog|sys/mman|sys/msg|sys/resource|sys/select|sys/sem|sys/shm|sys/socket|sys/stat|sys/statvfs|sys/time|sys/times|sys/types|sys/uio|sys/un|sys/utsname|sys/wait|tar|term|termios|tgmath|threads|time|trace|uchar|ulimit|uncntrl|unistd|utime|utmpx|wchar|wctype|wordexp)\.h[">]$'
+    Priority: 10
+  # C++ system headers
+  - Regex: '^[<"](algorithm|any|array|atomic|bitset|cassert|ccomplex|cctype|cerrno|cfenv|cfloat|charconv|chrono|cinttypes|ciso646|climits|clocale|cmath|codecvt|complex|condition_variable|csetjmp|csignal|cstdalign|cstdarg|cstdbool|cstddef|cstdint|cstdio|cstdlib|cstring|ctgmath|ctime|cuchar|cwchar|cwctype|deque|exception|execution|filesystem|forward_list|fstream|functional|future|initializer_list|iomanip|ios|iosfwd|iostream|istream|iterator|limits|list|locale|map|memory|memory_resource|mutex|new|numeric|optional|ostream|queue|random|ratio|regex|scoped_allocator|set|shared_mutex|sstream|stack|stdexcept|streambuf|string|string_view|strstream|system_error|thread|tuple|type_traits|typeindex|typeinfo|unordered_map|unordered_set|utility|valarray|variant|vector)[">]$'
+    Priority: 20
+  # Other library h files (with angles)
+  - Regex: "^<"
+    Priority: 30
+  # Your project's h files (with angles)
+  - Regex: "^<kiss_matcher"
+    Priority: 40
+  # Your project's h files
+  - Regex: '^"kiss_matcher'
+    Priority: 50
+IndentCaseLabels: true
+IndentWidth: 2
+IndentWrappedFunctionNames: false
+KeepEmptyLinesAtTheStartOfBlocks: false
+MacroBlockBegin: ""
+MacroBlockEnd: ""
+ColumnLimit: 100
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: None
+ObjCBlockIndentWidth: 2
+ObjCSpaceAfterProperty: false
+ObjCSpaceBeforeProtocolList: false
+PenaltyBreakBeforeFirstCallParameter: 1
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakString: 1000
+PenaltyExcessCharacter: 1000000
+PenaltyReturnTypeOnItsOwnLine: 200
+PointerAlignment: Left
+ReflowComments: true
+SortIncludes: true
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 2
+SpacesInAngles: false
+SpacesInContainerLiterals: true
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+Standard: Auto
+TabWidth: 4
+UseTab: Never
+```
+
+사용할 때는 `kiss_matcher`라고 되어 있는 부분만 프로젝트에 따라 변경해 주면 된다. 그러면 `"kiss_matcher/BLABLA"`로 되어있는 헤더 선언 파일이 자동적으로 가장 뒤로 가서 배치된다!
+그 이외로 선호도를 탈 거 같은 것은
+
+* `AlignConsecutiveAssignments: true`: `=`을 기준으로 맞춰 줌. VIM 유저로서 block highlight를 많이 쓰기 때문에 =를 기준으로 줄 맞춰주면 편해서 사용함.
+* `AlignConsecutiveDeclarations: false`: 함수 변수들도 한 줄로 맞춰는데, 이걸 `true`로 하면 내 기준 살짝 과하게 정렬하는 것 같아서, false로 사용함
 
 ## 결론 
 
