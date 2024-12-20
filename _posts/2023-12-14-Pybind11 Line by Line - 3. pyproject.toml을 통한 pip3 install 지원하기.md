@@ -6,7 +6,7 @@ tags: [Pybind11, Pybinding, Python, C++]
 comments: true
 ---
 
-(아직 작성 중...)
+(아직 작성 중...아래는 dummy 글입니다 ㅠㅜ 읽지 마세욥)
 
 이제 Pybinding이 잘 된다는 가정 하에, 더 많은 사람들이 손 쉽게 쓸 수 있게 Pypi에 python 코드를 업로드해서 `pip3 install`로 설치하는 방법을 알려주고자 한다.
 참고로 나도 TEASER++의 pip3 install화를 위해 line by line 스터디를 한 것이기 때문에, 실제로 연구자가 자기의 코드를 open할 때 겪는 시행착오들을 공유하고자 한다.

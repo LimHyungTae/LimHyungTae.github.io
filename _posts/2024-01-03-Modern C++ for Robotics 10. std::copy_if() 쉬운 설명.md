@@ -88,7 +88,7 @@ std::copy_if(range.cbegin(), range.cend(), std::back_inserter(indices),
 
 ```
 
-즉, 0번 째부터 N번쨰의 `range`의 요소인 index `i`에 대하여, `i`값이 `axes`에 존재하지 않으면 indices에 요소를 복사한다.
+즉, 0 번째부터 N 번째의 `range`의 요소인 index `i`에 대하여, `i`값이 `axes`에 존재하지 않으면 indices에 요소를 복사한다.
 
 여기서 `cbegin()`과 `cend()`는 const iterator를 리턴하는 함수로, `begin()`과 `end()`와 유사하지만, iterator를 통해 컨테이너의 요소를 수정할 수 없게 한다.
 따라서 요소들이 실수로 변경되는 것을 방지할 수 있다.

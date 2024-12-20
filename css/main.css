@@ -2,7 +2,7 @@
 layout: null
 ---
 
-@import url("pygment_highlights.css");
+@import url("pygment_highlights.css"); 
 
 /* --- General --- */
 
@@ -219,7 +219,7 @@ img {
 .navbar-custom .nav .navlinks-children {
   width: 100%;
   display: none;
-  word-break: break-word;
+  word-break: normal;
 }
 .navbar-custom .nav .navlinks-container .navlinks-children a {
   display: block;
@@ -343,6 +343,14 @@ footer .theme-by {
   font-weight: 300;
   margin-bottom: 10px;
 }
+
+/* To prevent line break */
+.post-preview .post-title, .post-preview .post-subtitle {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 .post-preview .post-meta,
 .post-heading .post-meta {
   color: #808080;
@@ -683,12 +691,18 @@ pre code {
   white-space: pre;
 }
 pre.highlight, .highlight > pre, td.code pre {
-  background-color: #FAFAFA;
+  /* background-color: #FAFAFA;
   background-image: linear-gradient(#F9F9F9 50%, #FDFDFD 50%);
   background-repeat: repeat;
   background-size: 3em 3em;
   background-position: 0px 10px;
-  border-left: 7px solid #444;
+  border-left: 7px solid #444; */
+  
+  background-color: #f6f8fa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: Consolas, "Courier New", monospace;
 }
 
 /* --- Social media sharing section --- */
