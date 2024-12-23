@@ -18,7 +18,9 @@ comments: true
 
 둘의 PR들을 살펴보면 내가 어디를 고쳤는지 대강 알 수 있을 것이다.
 
-### Step 0. `CMakeLists.txt`의 변수들과 친해지기
+## Step 0. Prerequisites
+
+### `CMakeLists.txt`의 변수들과 친해지기
 
 사실 이 repository를 package화하는 과정을 이해하기 전에, C++ 코드를 로컬 컴퓨터에 설치해보는 경험을 해보는 게 중요하다.
 내가 C++ 코드를 package화 하는 공부를 할 때 작성한 [cmake_make_install_study](https://github.com/LimHyungTae/cmake_make_install_study/tree/master/MyProject)의 README.md를 한 번 읽어보는 것을 추천한다.
@@ -45,7 +47,7 @@ PROJECT_BINARY_DIR: /home/shapelim/git/cmake_auto_include_study/build
 * `${CMAKE_CURRENT_SOURCE_DIR}`: 현재 CMakeLists.txt의 위치를 나타냄
 * `${CMAKE_CURRENT_BINARY_DIR}`: 우리가 build하고자 하는 주소. 주로 `mkdir build && cd build && cmake .. && make -j 16` 해서 빌드를 할 때, `build` 디렉토리가 이 변수에 해당함
 
-## Step 1. Dependency
+### Dependency
 
 그리고 기초적으로, 아래의 package들이 필요하다: 
 
@@ -55,7 +57,7 @@ sudo apt-get install gcc g++ build-essential libeigen3-dev cmake python3-pip pyt
 
 
 
-## Step 2. `pyproject.toml` 파일 구성
+## Step 1. `pyproject.toml` 파일 구성
 
 먼저, 앞서 `setup.py`를 쓴 것과는 다르게, `pyproject.toml` 파일을 구성해야 한다. 다른 블로그들([블로그1](https://gbdai.tistory.com/59), [블로그2](https://teddylee777.github.io/python/pypi/))에서는 `setup.py`를 설정해야 한다고 되어 있다.
 하지만 이 [블로그 글](https://miintto.github.io/docs/python-pypi-packages)을 보면 이제는 `pyproject.toml` 파일로 표현하는 것으로 표준화가 되었다고 한다.
