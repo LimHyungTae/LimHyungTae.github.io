@@ -61,6 +61,7 @@ PYBIND11_MODULE(hello, m)
 }
 ```
 Python에서 `"TEST"`라는 이름으로 쓸 class를 `py::class_<test::TEST>`으로 선언하는 것을 볼 수 있고 C++ 상의 `test::Test` 클래스의 함수들도 `.def`를 통해 정의되는 것을 볼 수 있다.
+여기서 중요한 건, 저기 PYBIND11_MODULE() 함수 부분에도 `hello`로, 우리가 지정하고자 하는 package의 이름을 꼭! 써줘야 한다는 것이다. 최근에 이 [PR](https://github.com/MIT-SPARK/ROBIN/pull/3)에서 `robin_py`를 `spark_robin`으로 바꾸는 과정에서 저 pybind cpp 코드의 이름을 바꿔야 한다는 걸 놓쳐서 하루종일 무엇이 문제인지 디버깅했다 ㅠ. 그러니 까먹지 말자! 
 
 그 후, `hello.py`에서 아래와 같이 불러와서 위의 `hello` 모듈을 실행시킨다:
 
