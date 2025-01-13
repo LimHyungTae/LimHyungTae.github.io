@@ -33,7 +33,7 @@ GTSAM에서 `H1`는 해당 객체를 위한 Jacobian(e.g., 위의 예제에서�
 
 현재 위의 `unrotate`에서 일어나는 이 수식을 $$f(\theta, \mathbf{p}) = \mathbf{R}^{\intercal}\mathbf{p}$$라 표현하자. 2D의 경우 rotation에 해당하는 vector는 1차원 값인 $$\theta$$로 표현이 가능하다. 우리는 이전 글에서 했듯이 최종적으로 아래와 같은 관계식을 전개해서 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 구해야 한다:
 
-$$f(\theta + \delta \theta,  \mathbf{p} + \delta \mathbf{p}) = \mathbf{H}_1 \delta \theta + \mathbf{H}_2 \delta \mathbf{p}\;\;\;\;(1)$$
+$$f(\theta + \delta \theta,  \mathbf{p} + \delta \mathbf{p}) = f(\theta,  \mathbf{p}) + \mathbf{H}_1 \delta \theta + \mathbf{H}_2 \delta \mathbf{p}\;\;\;\;(1)$$
 
 그리고 $$f(\theta, \mathbf{p}) = \mathbf{R}^\intercal \mathbf{p}$$이므로, 
 
