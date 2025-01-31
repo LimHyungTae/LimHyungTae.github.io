@@ -60,10 +60,21 @@ pip3 install pre-commit
 pre-commit install
 ```
 
-설치 중 뭔가가 꼬였다고 느껴지면 uninstall을 했다가 재설치를 하면 된다:
+그럼 아마 아래와 같이 git에 hook이 연결되는 것을 볼 수 있다:
+
+```angular2html
+pre-commit installed at .git/hooks/pre-commit
+```
+
+## Error Handling
+
+설치 중 뭔가가 꼬였다고 느껴지면 uninstall을 했다가 재설치를 하면 된다. 제거하는 방법은 아래와 같다:
+
 ```angular2html
 pre-commit uninstall
 ```
+
+---
 
 그 후, 
 

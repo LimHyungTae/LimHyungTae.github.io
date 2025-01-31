@@ -11,7 +11,7 @@ comments: true
 
 ![sor](/img/pcl_sor.PNG)
 
-Statistical Outlier Removal는 outlier를 제거하는 알고리즘입니다. n=1, 2, ..., N 개의 point가 있을 때 n 번째 point를 기준으로 인접한 k개의 point들과 평균과 분산을 구해서 분산이 세팅한 parameter보다 큰 값이면 outlier로 간주하고 제거하는 알고리즘입니다. 이 알고리즘을 통해서는 위 그림같이 부정확하게 측정된 point를 제거할 수 있다는 장점이 있습니다. 3D LiDAR 센서라고 해서 100% 정확하게 거리를 측정하지는 못 합니다. 물체의 겉이 반사가 심하게 코딩되어 있거나(e.g. 뻔뜩뻔뜩한 대리석 바닥) 면이 둥글어서 난반사가 일어나거나 유리로 되어 있는 경우에는 굴절이 일어나면서 측정값이 부정확해질 수 있기 때문입니다. 그럴 떄 Satisticcal Outlier Removal을 사용하면 outlier를 손쉽게 제거할 수 있습니다.    
+Statistical Outlier Removal는 outlier를 제거하는 알고리즘입니다. n=1, 2, ..., N 개의 point가 있을 때 n 번째 point를 기준으로 인접한 k개의 point들과 평균과 분산을 구해서 분산이 세팅한 parameter보다 큰 값이면 outlier로 간주하고 제거하는 알고리즘입니다. 이 알고리즘을 통해서는 위 그림같이 부정확하게 측정된 point를 제거할 수 있다는 장점이 있습니다. 3D LiDAR 센서라고 해서 100% 정확하게 거리를 측정하지는 못 합니다. 물체의 겉이 반사가 심하게 코딩되어 있거나(e.g. 뻔뜩뻔뜩한 대리석 바닥) 면이 둥글어서 난반사가 일어나거나 유리로 되어 있는 경우에는 굴절이 일어나면서 측정값이 부정확해질 수 있기 때문입니다. 그럴 때 Satisticcal Outlier Removal을 사용하면 outlier를 손쉽게 제거할 수 있습니다.    
 
 ---
 
@@ -36,7 +36,7 @@ LiDAR data는 NAVER LABS localization dataset의 Velodyne-16 point cloud를 활�
 
 하지만, 저의 경험으로는 **채널이 많은( > 32) 3D LiDAR로 얻은 pointcloud에서는 SOR을 잘 안 씁니다.** 
 
-왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 떄문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, 
+왜냐하면 인접한 k개의 point를 찾는 것도 연산이 너무 오래 걸리기 때문입니다. 그리고 3D Pointcloud는 필연적으로 메모리를 효율적으로 사용하기 위해 [voxelization](https://limhyungtae.github.io/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/)을 사용하는데, 
 
 voxelization은 Leaf 내부의 여러 point의 평균을 내기 때문에, 이 과정에서도 side effect로 outlier의 영향을 줄일 수 있습니다. 
 

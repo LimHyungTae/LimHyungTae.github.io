@@ -59,7 +59,7 @@ sensor_msgs::PointCloud2 laser2cloudmsg(sensor_msgs::LaserScan laser)
     }
 ```
 
-따라서 편의상 저는 `sensor_msgs::LaserScan` → `sensor_msgs::PointCloud2` → `pcl::PointCloud`로 변환해서 사용합니다. LaserScan 같은 경우는 3D LiDAR 보다 데이터 양이 훨씬 적기 떄문에 (약 1000개의 range data가 들어옵니다) `sensor_msgs::PointCloud2`를 거쳐서 변환해도 속도 이슈가 크게 발생하지 않습니다.
+따라서 편의상 저는 `sensor_msgs::LaserScan` → `sensor_msgs::PointCloud2` → `pcl::PointCloud`로 변환해서 사용합니다. LaserScan 같은 경우는 3D LiDAR 보다 데이터 양이 훨씬 적기 때문에 (약 1000개의 range data가 들어옵니다) `sensor_msgs::PointCloud2`를 거쳐서 변환해도 속도 이슈가 크게 발생하지 않습니다.
 
 ---
 

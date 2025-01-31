@@ -105,7 +105,7 @@ constexpr InputIt find_if(InputIt first, InputIt last, UnaryPred p)
 ## 로보틱스에서 활용 사례
 
 사실 이 세 함수는 아주 직관적이어서 무궁무진하게 활용이 가능하다.
-아래 코드는 ETH ASL에서 공개한 이동 가능 영역을 visualization을 많이 할 떄 쓰이는 grid_map library인데, 그 내부에서도 이 조건 검색문들을 적극적으로 활용하는 것을 볼 수 있다
+아래 코드는 ETH ASL에서 공개한 이동 가능 영역을 visualization을 많이 할 때 쓰이는 grid_map library인데, 그 내부에서도 이 조건 검색문들을 적극적으로 활용하는 것을 볼 수 있다
 
 [사례 1](https://github.com/ethz-asl/grid_map/blob/43cb510d099daff8236a6bad8df4e7971f2df2bd/grid_map_core/src/GridMap.cpp#L77). `GridMap` 클래스인 `other`을 입력으로 받아 현재 `GridMap`과 동일한 `layers_`를 전부 가지고 있는지 확인하는 함수 
 
