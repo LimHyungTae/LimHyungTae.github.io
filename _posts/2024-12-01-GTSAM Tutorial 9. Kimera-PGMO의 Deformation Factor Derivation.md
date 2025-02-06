@@ -107,12 +107,11 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_
 
 위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하기 위래 (1)을 활용해서 전개하면 아래와 같이 되고:
 
-$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \left(\mathbf{I} - \left[\boldsymbol{w}\right]_\times\right)$$
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \left(\mathbf{I} - \left[\boldsymbol{w}\right]_\times\right)\mathbf{R}_1^\intercal(\mathbf{t}_2 \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
 
-$$\mathbf{R}_1^\intercal(\mathbf{t}_2$$
- 
-$$\mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
+a) $$\left[\boldsymbol{w}\right]_\times$$ term과 $$\boldsymbol{v}$$이 서로 곱해지는 term은 무시, b) $$[\boldsymbol{w}]_\times \boldsymbol{v} = - [\boldsymbol{v}]_\times \boldsymbol{w}$$의 성질을 이용해서 전개하면 (3)은 최종적으로 아래와 같이 되고:
 
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \; \; \; \; \text{(4)}$$
 
 $$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right) \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right]$$
 
