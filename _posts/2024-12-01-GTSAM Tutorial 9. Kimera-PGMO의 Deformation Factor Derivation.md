@@ -107,9 +107,9 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_
 
 위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하기 위래 (1)을 활용해서 전개하면 아래와 같이 되고:
 
-$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = $$
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \left(\mathbf{I} - \left[\boldsymbol{w}\right]_\times\right) \right)$$
 
-$$\left(\mathbf{I} - \left[\boldsymbol{w}\right]_\times\right) \right)\mathbf{R}_1^\intercal(\mathbf{t}_2$$
+$$\mathbf{R}_1^\intercal(\mathbf{t}_2$$
  
 $$\mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
 
