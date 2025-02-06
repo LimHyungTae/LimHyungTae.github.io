@@ -116,7 +116,7 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 
 따라서 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같이 정의된다(다시금 강조하지만 GTSAM에서의 Pose3는 (rotation vector, translation vector)의 순으로 state가 구성되어 있다): 
 
-$$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right) \;\;\; -\mathbf{I}_{3 \times 3} \right] \in \mathbb{R}^{3 \times 6}, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right] \in \mathbb{R}^{3 \times 6}  \; \; \; \; \text{(6)}$$
+$$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_2 - \mathbf{t}_1\right) \;\;\; -\mathbf{I}_{3 \times 3} \right] \in \mathbb{R}^{3 \times 6}, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_1^\intercal \mathbf{R}_2 \right] \in \mathbb{R}^{3 \times 6}  \; \; \; \; \text{(6)}$$
 
 ---
 
