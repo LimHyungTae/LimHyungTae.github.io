@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GTSAM Tutorial 10. numericalDerivative를 통한 Factor Debugging
-subtitle: Understanding DeformationEdgeFactor
+subtitle: Understanding numericalDerivative
 tags: [Jacobian, GTSAM]
 comments: true
 ---
