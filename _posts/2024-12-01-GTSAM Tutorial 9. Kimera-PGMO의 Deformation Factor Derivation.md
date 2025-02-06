@@ -1,7 +1,7 @@
 ---
 layout: post
-title: GTSAM Tutorial 8. Pose3의 BetweenFactor Jacobian 유도
-subtitle: Understanding H matrices of Pose3 as an exercise
+title: GTSAM Tutorial 9. Kimera-PGMO의 Deformation Factor Derivation.md
+subtitle: Understanding DeformationEdgeFactor
 tags: [Jacobian, GTSAM]
 comments: true
 ---
@@ -81,7 +81,7 @@ class DeformationEdgeFactor
 ### Step 1. Update Function 정의
 
 앞서 [Pose3 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-8.-Pose3%EC%9D%98-BetweenFactor-Jacobian-%EC%9C%A0%EB%8F%84/)에서 살펴보았듯이(잘 이해가 안되면 6번째 글부터 차근차근 다시 읽어보자), 3차원 상에서의 Pose를 vector form인 $$\boldsymbol{\xi} \in \mathbb{R}^6$$으로 표현하면,
-$$\boldsymbol{\xi} \oplus \boldsymbol{\delta}$$는 다음과 같이 정의된다:
+update function $$\boldsymbol{\xi} \oplus \boldsymbol{\delta}$$는 다음과 같이 정의된다:
 
 $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =  
 \left[\begin{array}{c}
@@ -90,6 +90,21 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(1)}$$
 
 ### Step 2. Measurement Function $$h(\cdot)$$ 정의
+
+그런데 deformation factor에서는 재밌는 technique이 사용되었다(~~나만 재밌을지도~~).
+먼저 원래의 measurement function을 살펴보자. 원래 error term은 아래와 같이 정의되어서: 
+
+$$||\mathbf{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1||^2$$
+
+measurement function은 아래와 같이 정의된다:
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_2) \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
+
+위의 measurement function을 
+
+---
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
 
 위의 factor에서 update는 아래 부분에 대응된다:
 
@@ -108,7 +123,10 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 
 즉, 이를 수식으로 표현하면  
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1\) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
+
+즉, 코드 상의 `t2_1`이 $$\(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1\)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
+의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 position을 다시 world frame 관점으로 transformation을 했을 때의 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이를 error term으로 정의하였다. 
 
 
 ---
