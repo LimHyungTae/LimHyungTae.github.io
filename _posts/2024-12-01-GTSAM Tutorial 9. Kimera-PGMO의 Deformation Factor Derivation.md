@@ -97,34 +97,34 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 그런데 deformation factor에서는 재밌는 technique이 사용되었다(~~나만 재밌을지도~~).
 먼저 원래의 measurement function을 살펴보자. 원래 error term은 아래와 같이 정의되어서: 
 
-$$||\boldsymbol{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1)||^2$$
+$$\boldsymbol{e} = ||\boldsymbol{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1)||^2  \; \; \; \; \text{(2)}$$
 
 measurement function은 아래와 같이 정의된다:
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_2) \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_2) \in \mathbb{R}^3  \; \; \; \; \text{(3)}$$
 
 ### Step 3 & 4. 전개 및 유도
 
 위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하기 위래 (1)을 활용해서 전개하면 아래와 같이 되고:
 
-$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \left(\mathbf{I} - \left[\boldsymbol{w}\right]_\times\right)\mathbf{R}_1^\intercal(\mathbf{t}_2 + \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \left(\mathbf{I} - \left[\boldsymbol{w}\right]_\times\right)\mathbf{R}_1^\intercal(\mathbf{t}_2 + \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(4)}$$
 
-a) $$\left[\boldsymbol{w}_1\right]_\times$$ term과 $$\boldsymbol{v}$$이 서로 곱해지는 term은 다른 term에 비해 크기가 월등히 작아지므로 무시, b) $$[\boldsymbol{w}]_\times \boldsymbol{v} = - [\boldsymbol{v}]_\times \boldsymbol{w}$$의 성질을 이용해서 전개하면 (3)은 최종적으로 아래와 같이 되고:
+a) $$\left[\boldsymbol{w}_1\right]_\times$$ term과 $$\boldsymbol{v}$$이 서로 곱해지는 term은 다른 term에 비해 크기가 월등히 작아지므로 무시, b) $$[\boldsymbol{w}]_\times \boldsymbol{v} = - [\boldsymbol{v}]_\times \boldsymbol{w}$$의 성질을 이용해서 전개하면 (4)은 최종적으로 아래와 같이 전개된다:
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}_1\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \\
-= \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(4)}$$
+= \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(5)}$$
 
 따라서 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같이 정의된다(다시금 강조하지만 GTSAM에서의 Pose3는 (rotation vector, translation vector)의 순으로 state가 구성되어 있다): 
 
-$$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right) \;\;\; -\mathbf{I}_{3 \times 3} \right] \in \mathbb{R}^3, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right] \in \mathbb{R}^3$$
+$$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right) \;\;\; -\mathbf{I}_{3 \times 3} \right] \in \mathbb{R}^3, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right] \in \mathbb{R}^3  \; \; \; \; \text{(6)}$$
 
 ---
 
 ## Proposed Using Rotation Invariance
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\boldsymbol{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(3)}$$
+### Step 2. Error term 정의
 
-위의 factor에서 update는 아래 부분에 대응된다:
+그러나, 위의 코드를 다시 살펴보자. 위의 factor에서 아래와 같이 error를 계산한다:
 
 ```cpp
     gtsam::Matrix H_R1, H_t1, H_t2;
@@ -139,14 +139,22 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\boldsymbol{z} + \mat
     return t2_1 - t2_2;
 ```
 
-즉, 이를 수식으로 표현하면  
+즉, 이를 수식으로 표현하면 error term이 아래와 같이 표현된다:
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(4)}$$
+$$\boldsymbol{e} = || (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 ||^2  \; \; \; \; \text{(7)}$$
 
 즉, 코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 position을 다시 world frame 관점으로 transformation을 했을 때의 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이를 error term으로 정의하였다. 
 
 즉, 코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 위치를 다시 world frame 관점으로 transformation을 했을 때 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이이다. 
+
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(4)}$$
+
+
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\boldsymbol{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(6)}$$
+
 
 
 ---
