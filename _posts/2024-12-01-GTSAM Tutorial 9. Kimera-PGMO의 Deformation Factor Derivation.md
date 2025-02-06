@@ -128,6 +128,8 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{
 즉, 코드 상의 `t2_1`이 $$\(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1\)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 position을 다시 world frame 관점으로 transformation을 했을 때의 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이를 error term으로 정의하였다. 
 
+즉, 코드 상의 `t2_1`이 $$\(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1\)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 위치를 다시 world frame 관점으로 transformation을 했을 때 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이이다. 
+
 
 ---
 
