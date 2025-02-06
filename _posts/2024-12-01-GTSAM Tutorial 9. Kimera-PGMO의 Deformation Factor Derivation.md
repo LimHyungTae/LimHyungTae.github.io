@@ -97,7 +97,7 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 그런데 deformation factor에서는 재밌는 technique이 사용되었다(~~나만 재밌을지도~~).
 먼저 원래의 measurement function을 살펴보자. 원래 error term은 아래와 같이 정의되어서: 
 
-$$||\mathbf{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1)||^2$$
+$$||\boldsymbol{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1)||^2$$
 
 measurement function은 아래와 같이 정의된다:
 
@@ -107,7 +107,7 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_
 
 위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하기 위래 (1)을 활용해서 전개하면 아래와 같이 되고:
 
-$$$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ = \left(\mathbf{I} - [\boldsymbol{w}]_\times\right) \right)\mathbf{R}_1^\intercal(\mathbf{t}_2 + \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
+$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ = \left(\mathbf{I} - [\boldsymbol{w}]_\times\right) \right)\mathbf{R}_1^\intercal(\mathbf{t}_2 + \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
 
 
 $$
