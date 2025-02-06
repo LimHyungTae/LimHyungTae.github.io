@@ -112,15 +112,15 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 
 $$
 \mathbf{H}_1=-\left[\begin{array}{cc}
-\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{0} \\
 {\left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right)\right]_{\times}}\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{R}_2^\intercal \mathbf{R}_1
-\end{array}\right], \; \; \mathbf{H}_2 = \mathbf{I}_{6 \times 6}$$
+\end{array}\right], 
+\; \; \mathbf{H}_2 = \left[\begin{array}{cc} \mathbf{O}_{3 \times 3} &  \mathbf{R}_2^\intercal \mathbf{R}_1 \end{array}\right]$$
 
 ---
 
 ## Proposed Using Rotation Invariance
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(3)}$$
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\boldsymbol{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(3)}$$
 
 위의 factor에서 update는 아래 부분에 대응된다:
 
