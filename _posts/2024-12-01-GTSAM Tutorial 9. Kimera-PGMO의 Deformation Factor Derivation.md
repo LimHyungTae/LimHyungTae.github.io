@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GTSAM Tutorial 9. Kimera-PGMO의 Deformation Factor Derivation.md
+title: GTSAM Tutorial 9. Kimera-PGMO의 Deformation Factor Derivation
 subtitle: Understanding DeformationEdgeFactor
 tags: [Jacobian, GTSAM]
 comments: true
