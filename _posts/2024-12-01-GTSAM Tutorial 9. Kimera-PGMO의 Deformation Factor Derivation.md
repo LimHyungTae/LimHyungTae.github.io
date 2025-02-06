@@ -156,12 +156,15 @@ $$\boldsymbol{e} = || (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 ||^
 
 $$\mathbf{R}_1(\mathbf{I} + \left[\boldsymbol{w}_1\right]_\times)\boldsymbol{z} + \mathbf{t}_1 + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{t}_2 - \mathbf{R}_2\boldsymbol{v}_2 \\
 = \mathbf{R}_1 \boldsymbol{z} + \mathbf{R}_1 \left[\boldsymbol{w}_1\right]_\times \boldsymbol{z} + \mathbf{t}_1 + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{t}_2 - \mathbf{R}_2\boldsymbol{v}_2 \\
-= (\mathbf{R}_1 \boldsymbol{z}  + \mathbf{t}_1 - \mathbf{t}_2) + \mathbf{R}_1 \left[\boldsymbol{w}_1\right]_\times\mathbf{R}_1^\intercal \mathbf{R}_1 \boldsymbol{z} + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{R}_2\boldsymbol{v}_2 \\
+= (\mathbf{R}_1 \boldsymbol{z} + \mathbf{t}_1 - \mathbf{t}_2) + \mathbf{R}_1 \left[\boldsymbol{w}_1\right]_\times\mathbf{R}_1^\intercal \mathbf{R}_1 \boldsymbol{z} + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{R}_2\boldsymbol{v}_2 \\
+= (\mathbf{R}_1 \boldsymbol{z} + \mathbf{t}_1 - \mathbf{t}_2) - \left[ \mathbf{R}_1 \boldsymbol{z}\right]_\times \mathbf{R}_1 \boldsymbol{w}_1 + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{R}_2\boldsymbol{v}_2 \; \; \; \; \text{(8)}
 $$
 
+따라서 (8)에 따라 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같이 정의된다: 
 
-$$\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}_1\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \\
-= h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(8)}$$
+$$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right) \;\;\; -\mathbf{I}_{3 \times 3} \right] \in \mathbb{R}^{3 \times 6}, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right] \in \mathbb{R}^{3 \times 6}  \; \; \; \; \text{(9)}$$
+
+
 
 ## 결론
  
