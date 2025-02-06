@@ -161,11 +161,18 @@ $$\mathbf{R}_1(\mathbf{I} + \left[\boldsymbol{w}_1\right]_\times)\boldsymbol{z} 
 
 따라서 (8)에 따라 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같이 정의된다: 
 
-$$\mathbf{H}_1 = \left[ - \left[ \mathbf{R}_1 \boldsymbol{z}\right]_\times \mathbf{R}_1 \;\;\; \mathbf{R}_1 \right] \in \mathbb{R}^{3 \times 6}, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2 \right] \in \mathbb{R}^{3 \times 6}  \; \; \; \; \text{(9)}$$
+$$\mathbf{H}_1 = \left[ - \left[ \mathbf{R}_1 \boldsymbol{z}\right]_\times \mathbf{R}_1 \;\;\; \mathbf{R}_1 \right] \in \mathbb{R}^{3 \times 6}, \; \; \; \mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\; -\mathbf{R}_2 \right] \in \mathbb{R}^{3 \times 6}  \; \; \; \; \text{(9)}$$
 
-## 결론
- 
-위와 같이 rotation invariance를 사용하면, 같은 optimization을 함에도 연산량을 효과적으로 줄일 수 있다.
+
+
+## 디스커션 & 결론
+
+최종적으로 (6)과 (9)를 살펴보면, 우리가 풀고자 하는 문제는 동일하지만, 최종적으로 계산되는 Jacobian이 달라지는 것을 볼 수 있다.
+위의 행위의 장점은 (6)에서는 matrix multiplication을 $$\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right)$$, $$\mathbf{R}_2^\intercal \mathbf{R}_1$$ (+ $$\mathbf{R}_2^\intercal$$ 계산해두기)를 두 번 수행하는 반면, (9)에서는 $$- \left[ \mathbf{R}_1 \boldsymbol{z}\right]_\times \mathbf{R}_1 \;\;\; \mathbf{R}_1 \right]$$ 한 번만 수행하면 되는 장점이 있다.
+'고작 그게...전부?'라고 생각할 수 있지만, 우리의 SLAM 문제에서 위의 factor가 1,000개, 10,000개가 된다고 가정해보자. 그러면 optimization의 매 iteration 마다 matrix multiplication을 1,000번, 10,000번을 덜해도 된다는 뜻이다. 
+즉, 동일한 optimization을 수행하는데 iteration 횟수 * factor의 갯수만큼 연산을 아낄 수 있다.
+
+이처럼 본 글에서는 rotation invariance를 사용하면 같은 optimization을 함에도 연산량을 효과적으로 줄일 수 있다는 것을 확인하였다.
 
 
 ---
