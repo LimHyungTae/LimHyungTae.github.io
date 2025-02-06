@@ -6,10 +6,15 @@ tags: [Jacobian, GTSAM]
 comments: true
 ---
 
-## How to Debug Your Factor?
+## Introduction 
 
-SLAM, 특히나 이런 optimization 관련 연구에서 가장 힘든 점이 무엇인지 아는가? **내 factor가 지금 틀렸는지 아닌지 알 턱이 없다는 것이다**.
-하지만 GTSAM에서는 이를 위해서 `numericalDerivative`라는 기능이 존재한다.
+SLAM, 특히나 이런 optimization 관련 연구에서 가장 힘든 점이 무엇인지 아는가? **지금 내 graph에서 어디가 틀렸는지 알 턱이 없다는 것**이다.
+하지만 그 중에서도 factor 자체의 Jacobian을 잘 못 둬서 optimization이 안되는 경우가 왕왕 존재한다.
+오늘은 내 factor가 제대로 동작하는지 확인하는 방법에 대해 알아보자.
+
+## How to Debug Your Factor Smartly?
+
+GTSAM에서는 이를 위해 `numericalDerivative`라는 기능이 존재한다(필자도 이런 게 있는 줄 최근에 알았다. 'Ceres Solver는 nemerical하게 알아서 Jacobian을 구해주는반면 GTSAM은 손수 계산해 줘야한다구욨!'이라고 외치고 다닌 멍청한 과거의 나...다시금 반성한다...).
 
 아래는 내가 작성한 code snippet이다:
 
@@ -79,6 +84,8 @@ int main() {
 만약에 둘이 비교했을 때 같으면 `gtsam::assert_equal`이 1을 출력하고, 만약 값이 다르다면, 아마 아래와 같이 예상 값과 실제 값, 그리고 차이를 보여준 후 0을 출력하고 마칠 것이다:
 
 ![img](/img/0206_evaluateError.png)
+
+즉, 위의 예제 그림을 통해 minus 부호를 빠뜨린 실수를 발견할 수 있었다. 이처럼, 이 `numericalDerivative`를 쓰면 내가 계산한 Jacobian이 정확한 값인지 쉽게 확인할 수 있다! (GTSAM 짱짱!)
 
 ---
 
