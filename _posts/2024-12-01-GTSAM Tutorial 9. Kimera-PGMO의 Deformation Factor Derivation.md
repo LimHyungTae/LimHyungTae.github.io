@@ -114,7 +114,9 @@ $$
 \mathbf{H}_1=-\left[\begin{array}{cc}
 {\left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right)\right]_{\times}}\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{R}_2^\intercal \mathbf{R}_1
 \end{array}\right], 
-\; \; \mathbf{H}_2 = \left[\begin{array}{cc} \mathbf{O}_{3 \times 3} &  \mathbf{R}_2^\intercal \mathbf{R}_1 \end{array}\right]$$
+\; \; 
+
+$$\mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right]$$
 
 ---
 
