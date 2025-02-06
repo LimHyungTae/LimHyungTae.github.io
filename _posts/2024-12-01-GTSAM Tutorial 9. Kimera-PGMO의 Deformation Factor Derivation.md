@@ -103,7 +103,12 @@ measurement function은 아래와 같이 정의된다:
 
 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_2) \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
 
-위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하면 아래와 같다:
+### Step 3 & 4. 전개 및 유도
+
+위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하기 위래 (1)을 활용해서 전개하면 아래와 같이 되고:
+
+$$$$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ = \left(\mathbf{I} - [\boldsymbol{w}]_\times\right) \right)\mathbf{R}_1^\intercal(\mathbf{t}_2 + \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
+
 
 $$
 \mathbf{H}_1=-\left[\begin{array}{cc}
