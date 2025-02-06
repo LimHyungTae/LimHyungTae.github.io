@@ -151,15 +151,16 @@ $$\boldsymbol{e} = || (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 ||^
 
 ### Step 3 & 4. 전개 및 유도
 
-그럼 이 짓을 왜 하는 걸까? 마지막 부분에 답이 있으니, 궁금증을 뒤로 하고 우선 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 구해보자. \$$boldsymbol{e}$$의 절댓값 안에 있는 식에 $$\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1$$와 $$\boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2$$를 넣고 전개해보자.
+그럼 이 짓을 왜 하는 걸까? 마지막 부분에 답이 있으니, 궁금증을 뒤로 하고 우선 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 구해보자. $$boldsymbol{e}$$의 절댓값 안에 있는 식에 $$\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1$$와 $$\boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2$$를 넣고 전개해보자.
 그럼 아래와 같은 수식이 된다:
 
-$$\mathbf{R}_1(\mathbf{I} - \left[\boldsymbol{w}\right]_\times)\boldsymbol{z} + \mathbf{t}_1 + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{t}_2 - \mathbf{R}_2\boldsymbol{v}_2 \\
-= 
+$$\mathbf{R}_1(\mathbf{I} + \left[\boldsymbol{w}_1\right]_\times)\boldsymbol{z} + \mathbf{t}_1 + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{t}_2 - \mathbf{R}_2\boldsymbol{v}_2 \\
+= \mathbf{R}_1 \boldsymbol{z} + \mathbf{R}_1 \left[\boldsymbol{w}_1\right]_\times \boldsymbol{z} + \mathbf{t}_1 + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{t}_2 - \mathbf{R}_2\boldsymbol{v}_2 \\
+= (\mathbf{R}_1 \boldsymbol{z}  + \mathbf{t}_1 - \mathbf{t}_2) + \mathbf{R}_1 \left[\boldsymbol{w}_1\right]_\times\mathbf{R}_1^\intercal \mathbf{R}_1 \boldsymbol{z} + \mathbf{R}_1\boldsymbol{v}_1 - \mathbf{R}_2\boldsymbol{v}_2 \\
 $$
 
-$$
-\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}_1\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \\
+
+$$\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}_1\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \\
 = h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(8)}$$
 
 ## 결론
