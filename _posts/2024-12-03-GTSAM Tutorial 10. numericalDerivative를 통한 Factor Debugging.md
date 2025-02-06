@@ -9,8 +9,8 @@ comments: true
 ## Introduction 
 
 SLAM, 특히나 이런 optimization 관련 연구에서 가장 힘든 점이 무엇인지 아는가? **지금 내 graph에서 어디가 틀렸는지 알 턱이 없다는 것**이다.
-하지만 그 중에서도 factor 자체의 Jacobian을 잘 못 둬서 optimization이 안되는 경우가 왕왕 존재한다.
-오늘은 내 factor가 제대로 동작하는지 확인하는 방법에 대해 알아보자.
+특히, factor 자체의 Jacobian을 잘 못 계산해줘서 optimization이 안되는 경우가 왕왕 생기기도 한다.
+오늘은 내 factor가 제대로 동작하는지 디버깅하는 방법에 대해 알아보자.
 
 ## How to Debug Your Factor Smartly?
 
@@ -79,9 +79,17 @@ int main() {
 ```
 
 위와 같이 작성한 `evaluateFactor`라는 함수를 사용해서 현재 내가 짠 factor의 Jacobian이 수치적으로 맞는지 분석해주는 함수이다.
-위의 `gtsam::numericalDerivative21`와 `gtsam::numericalDerivative22`에서 수치적으로 계산한 Jacobian인 `H1_expected`,  `H2_expected`와 우리가 손으로 한땀한땀 작성한 `H1_actual`과 ``H2_actual`이 동일한지 확인해볼 수 있다.
+위의 `gtsam::numericalDerivative21`와 `gtsam::numericalDerivative22`에서 수치적으로 계산한 Jacobian인 `H1_expected`,  `H2_expected`와 우리가 손으로 한땀한땀 작성한 `H1_actual`과 `H2_actual`이 동일한지 확인해볼 수 있다.
 
-만약에 둘이 비교했을 때 같으면 `gtsam::assert_equal`이 1을 출력하고, 만약 값이 다르다면, 아마 아래와 같이 예상 값과 실제 값, 그리고 차이를 보여준 후 0을 출력하고 마칠 것이다:
+만약에 둘이 비교했을 때 같으면 `gtsam::assert_equal`이 1을 출력하고, 만약 값이 다르다면, 아마 아래와 같이 
+
+* `not equal:`
+* 예상 값과 실제 값
+* 그리고 차이를 보여준 후 
+* 0
+
+을 출력하고 마칠 것이다 (노란색은 내가 임의로 추가해준 것이니, 무시하자):
+ 
 
 ![img](/img/0206_evaluateError.png)
 
