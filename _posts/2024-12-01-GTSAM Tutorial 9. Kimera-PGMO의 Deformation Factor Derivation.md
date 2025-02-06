@@ -110,11 +110,7 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ = \left(\mathbf{I} - [\boldsymbol{w}]_\times\right) \right)\mathbf{R}_1^\intercal(\mathbf{t}_2 + \mathbf{R}_2\boldsymbol{v}_2 - \mathbf{t}_1 - \mathbf{R}_1\boldsymbol{v}_1)  \; \; \; \; \text{(3)}$$
 
 
-$$
-\mathbf{H}_1=-\left[\begin{array}{cc}
-{\left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right)\right]_{\times}}\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{R}_2^\intercal \mathbf{R}_1
-\end{array}\right], 
-\; \; 
+$$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right) \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right]$$
 
 $$\mathbf{H}_2 = \left[\mathbf{O}_{3 \times 3} \;\;\;  \mathbf{R}_2^\intercal \mathbf{R}_1 \right]$$
 
