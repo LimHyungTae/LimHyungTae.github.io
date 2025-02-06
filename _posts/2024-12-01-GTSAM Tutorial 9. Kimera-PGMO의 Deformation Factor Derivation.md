@@ -89,22 +89,33 @@ $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 \mathbf{t} + \mathbf{R} \boldsymbol{v} 
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(1)}$$
 
+---
+
+## 원래대로라면...
 ### Step 2. Measurement Function $$h(\cdot)$$ 정의
 
 그런데 deformation factor에서는 재밌는 technique이 사용되었다(~~나만 재밌을지도~~).
 먼저 원래의 measurement function을 살펴보자. 원래 error term은 아래와 같이 정의되어서: 
 
-$$||\mathbf{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1||^2$$
+$$||\mathbf{z} - \mathbf{R}_1^{\intercal}(\mathbf{t}_2 - \mathbf{t}_1)||^2$$
 
 measurement function은 아래와 같이 정의된다:
 
 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_2) \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
 
-위의 measurement function을 
+위의 measurement function에 대한 $$\mathbf{H}_1$$와 $$\mathbf{H}_2$$를 구하면 아래와 같다:
+
+$$
+\mathbf{H}_1=-\left[\begin{array}{cc}
+\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{0} \\
+{\left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\right)\right]_{\times}}\mathbf{R}_2^\intercal \mathbf{R}_1 & \mathbf{R}_2^\intercal \mathbf{R}_1
+\end{array}\right], \; \; \mathbf{H}_2 = \mathbf{I}_{6 \times 6}$$
 
 ---
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
+## Proposed Using Rotation Invariance
+
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(3)}$$
 
 위의 factor에서 update는 아래 부분에 대응된다:
 
@@ -123,12 +134,12 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{
 
 즉, 이를 수식으로 표현하면  
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(2)}$$
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(4)}$$
 
-즉, 코드 상의 `t2_1`이 $$\(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1\)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
+즉, 코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 position을 다시 world frame 관점으로 transformation을 했을 때의 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이를 error term으로 정의하였다. 
 
-즉, 코드 상의 `t2_1`이 $$\(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1\)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 위치를 다시 world frame 관점으로 transformation을 했을 때 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이이다. 
+즉, 코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 위치를 다시 world frame 관점으로 transformation을 했을 때 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이이다. 
 
 
 ---
