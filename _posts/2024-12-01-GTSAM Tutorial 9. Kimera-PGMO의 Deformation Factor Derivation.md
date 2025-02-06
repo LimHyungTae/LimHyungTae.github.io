@@ -112,7 +112,7 @@ $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \
 a) $$\left[\boldsymbol{w}_1\right]_\times$$ term과 $$\boldsymbol{v}$$이 서로 곱해지는 term은 다른 term에 비해 크기가 월등히 작아지므로 무시, b) $$[\boldsymbol{w}]_\times \boldsymbol{v} = - [\boldsymbol{v}]_\times \boldsymbol{w}$$의 성질을 이용해서 전개하면 (4)은 최종적으로 아래와 같이 전개된다:
 
 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2) = \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}_1\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \\
-= \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(5)}$$
+= h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2)  + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(5)}$$
 
 따라서 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$는 아래와 같이 정의된다(다시금 강조하지만 GTSAM에서의 Pose3는 (rotation vector, translation vector)의 순으로 state가 구성되어 있다): 
 
@@ -143,18 +143,19 @@ $$\mathbf{H}_1 = \left[\mathbf{R}_2^\intercal \left(\mathbf{t}_1 - \mathbf{t}_2\
 
 $$\boldsymbol{e} = || (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 ||^2  \; \; \; \; \text{(7)}$$
 
-즉, 코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
+코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 
 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 position을 다시 world frame 관점으로 transformation을 했을 때의 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이를 error term으로 정의하였다. 
 
-즉, 코드 상의 `t2_1`이 $$(\mathbf{R}_1\mathbf{z} + \mathbf{t}_1)$$이고, `t2_2`가 $$\mathbf{t}_2$$가 된다. 의미를 설명하자면 `p1`의 좌표축 관점에서 본 `p2`의 위치를 다시 world frame 관점으로 transformation을 했을 때 warped point `t2_1`와 `p2`의 translation 값인 `t2_2`와의 차이이다. 
+그런데 의아한 점이 있다. 우리가 예상한 error term은 (2)인데, 왜 (7)과 같이 계산할 수 있는 걸까? 여기서 주로 활용되는 technique이 'rotation invariance'이다. 비유를 통해 설명하자면, 이 rotation invariance란 막대기의 두 끝점 사이의 길이 차가 error 값이라고 하면, 이 막대기를 어느 방향으로 회전시켜도 두 끝점 사이의 길이 차는 동일한 현상을 뜻한다.
+이를 기반으로 (2)에 rotation matrix $$\mathbf{R}_1$$을 곱하면 (7)이 되는 것을 볼 수 있다.
 
+### Step 3 & 4. 전개 및 유도
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\mathbf{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(4)}$$
+그럼 이 짓을 왜 하는 걸까? 마지막 부분에 답이 있으니, 궁금증을 뒤로 하고 우선 $$\mathbf{H}_1$$과 $$\mathbf{H}_2$$를 구해보자. \boldsymbol{e}의 절댓값 안에 있는 식에 $$\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1$$와 $$\boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2$$를 넣고 전개해보자.
+그럼 아래와 같은 수식이 된다:
 
-
-
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = (\mathbf{R}_1\boldsymbol{z} + \mathbf{t}_1) - \mathbf{t}_2 \in \mathbb{R}^3  \; \; \; \; \text{(6)}$$
-
+$$\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 - \left[\boldsymbol{w}_1\right]_\times \mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1)  \\
+= h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) + \mathbf{R}_1^\intercal \mathbf{R}_2 \boldsymbol{v}_2 - \boldsymbol{v}_1 + \left[\mathbf{R}_1^\intercal(\mathbf{t}_2 - \mathbf{t}_1) \right]_\times \boldsymbol{w}_1 \; \; \; \; \text{(5)}$$
 
 
 ---
