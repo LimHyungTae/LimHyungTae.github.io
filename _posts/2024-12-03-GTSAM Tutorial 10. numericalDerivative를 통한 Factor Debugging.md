@@ -88,12 +88,12 @@ int main() {
 * 그리고 차이를 보여준 후 
 * 0
 
-을 출력하고 마칠 것이다 (값 자체는 다른 factor를 구현할 때 촬영한 screenshot이고 노란색은 내가 임의로 추가해준 것이니, 값 자체들이 뭔지는 무시해도 된다):
+을 출력하고 마칠 것이다 (값 자체는 다른 factor를 구현할 때 촬영한 screenshot이고 노란색은 내가 임의로 추가해준 것이니, 값 자체들이 무슨 의미인지는 볼 필요 없다.):
  
 
 ![img](/img/0206_evaluateError.png)
 
-즉, 위의 예제 그림을 통해 현재 내가 (1, 0) 부분에 minus 부호를 빠뜨린 실수를 발견할 수 있었다. 이처럼, 이 `numericalDerivative`를 쓰면 내가 계산한 Jacobian이 정확한 값인지 쉽게 확인할 수 있다! (GTSAM 짱짱!)
+즉, 위의 예제 그림을 통해 현재 내가 actual Jacobian의 matrix의 (1, 0) 좌표 부분 해당하는 값에 minus 부호를 빠뜨린 실수를 발견할 수 있었다. 이처럼, 이 `numericalDerivative`를 쓰면 내가 계산한 Jacobian이 정확한 값인지 쉽게 확인할 수 있다! (GTSAM 짱짱!)
 
 ---
 
