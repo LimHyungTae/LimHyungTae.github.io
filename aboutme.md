@@ -94,8 +94,11 @@ My research interest includes, but not confined to:
 
 I won the grand prize at Taeul Singing Competition, which is the largest singing competition of Chungcheong four years in a row!
 
+![taewool](/img/taewool.png)
+
 --- 
 
 ## Contact
 
 shapelim `at` mit `dot` edu
+
