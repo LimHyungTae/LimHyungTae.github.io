@@ -121,6 +121,26 @@ require'lspconfig'.clangd.setup{
 
 위의 라인은 `compile_commands`를 해당 주소에 배치해둬도 동작하지 않았다.
 
+---
+
+### Setting Latex LSP?
+
+추가로 Latex도 support하게끔 LunarVim을 셋업하고 싶었다. 먼저 `digestif`를 설치하기 위한 패키지를 아래와 같이 설치하고:
+
+```cpp
+sudo apt install liblua5.3-dev lua5.3 luarocks
+```
+
+LunarVim 상에서 아래와 같이 설치해보았다:
+
+```angular2html
+MasonInstall digestif
+MasonInstall textlsp
+MasonInstall ltex-ls
+```
+
+
+
 ## 결론
 
 귀찮기는 하지만, 각 package 별 `compile_commands.json` 파일을 `package.xml`(ROS의 경우)가 있는 위치에 두고 `lvim .`을 실행하니 네비게이션 기능도 잘 동작했다.
