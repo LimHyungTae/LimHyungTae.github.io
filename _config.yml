@@ -1,7 +1,7 @@
 # --- General options --- #
 
 # Name of website
-title: Hyungtae Lim
+title: "Hyungtae Lim | Robotics & AI Research"
 
 # Short description of your site
 description: Toward Pervasive Robotics
@@ -18,7 +18,7 @@ baseurl: ""
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "hyungtae-lim"
+  Hyungtae Lim: "hyungtae-lim"
   Publications: "publications"
   Post Lists: "lectures"
   #Resources:
