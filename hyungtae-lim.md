@@ -26,7 +26,7 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 [![Research Statement2](https://img.shields.io/badge/Research%20Statement2-forestgreen?style=flat-square&logo=arXiv&logoColor=white&link=https://arxiv.org/abs/2405.11176)](https://arxiv.org/abs/2405.11176)
 
 <details>
-  <summary>**Detailed Bio (click)**</summary>
+  <summary><strong>Detailed Bio (click)</strong></summary>
   Hyungtae Lim is a postdoctoral researcher in the SPARK Lab at the Massachusetts Institute of Technology (MIT) since April 2024.
   Previously, he worked as a postdoctoral researcher in the Urban Robotics Laboratory at the Korea Advanced Institute of Science and Technology (KAIST), a visiting student in StachnissLab at the University of Bonn, and a research intern at Naver Labs.
 
@@ -37,14 +37,14 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 ## News
 
-<div class="container">
+<div class="container style="max-width: 700px;">
   <div class="list-group">
     {% assign latest_news = site.data.news | slice: 0, 3 %}
     {% assign older_news = site.data.news | slice: 3, site.data.news.size %}
     
     <!-- 최신 3개 뉴스 표시 -->
     {% for news in latest_news %}
-    <div class="list-group-item">
+    <div class="list-group-item small">
       <strong>{{ news.date }}</strong> {{ news.content }}
     </div>
     {% endfor %}
@@ -52,7 +52,7 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
     <!-- 나머지 뉴스 (초기에 숨김) -->
     <div id="older-news" style="display: none;">
       {% for news in older_news %}
-      <div class="list-group-item">
+      <div class="list-group-item small">
         <strong>{{ news.date }}</strong> {{ news.content }}
       </div>
       {% endfor %}
