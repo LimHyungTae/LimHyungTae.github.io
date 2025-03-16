@@ -26,7 +26,7 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 [![Research Statement2](https://img.shields.io/badge/Research%20Statement2-forestgreen?style=flat-square&logo=arXiv&logoColor=white&link=https://arxiv.org/abs/2405.11176)](https://arxiv.org/abs/2405.11176)
 
 <details>
-  <summary>Detailed Bio</summary>
+  <summary>**Detailed Bio (click)**</summary>
   Hyungtae Lim is a postdoctoral researcher in the SPARK Lab at the Massachusetts Institute of Technology (MIT) since April 2024.
   Previously, he worked as a postdoctoral researcher in the Urban Robotics Laboratory at the Korea Advanced Institute of Science and Technology (KAIST), a visiting student in StachnissLab at the University of Bonn, and a research intern at Naver Labs.
 
