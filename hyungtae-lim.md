@@ -37,7 +37,7 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 ## News
 
-<div class="container" style="max-width: 800px;">
+<div class="container" style="max-width: 750px;">
   <div class="list-group">
     {% assign latest_news = site.data.news | slice: 0, 5 %}
     {% assign older_news = site.data.news | slice: 5, site.data.news.size %}
