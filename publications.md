@@ -9,18 +9,25 @@ Please refer to my [Google scholar](https://scholar.google.com/citations?user=S1
 ## Publications
 
 <div class="container mt-4">
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <div class="row">
     {% for pub in site.data.publications %}
-    <div class="col">
-      <div class="card h-100 shadow-sm">
-        <img src="{{ pub.image }}" class="card-img-top img-fluid" alt="{{ pub.title }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ pub.title }}</h5>
-          <p class="card-text"><strong>{{ pub.authors }}</strong></p>
-          <p class="card-text"><em>{{ pub.venue }}</em></p>
-          <div class="d-flex flex-wrap">
+    <div class="col-12 mb-4">
+      <div class="d-flex align-items-start">
+        {% if pub.image %}
+        <div class="me-3" style="flex: 0 0 180px;">
+          <img src="{{ pub.image }}" class="img-fluid rounded shadow-sm" alt="{{ pub.title }}" style="width: 180px;">
+        </div>
+        {% endif %}
+        <div>
+          <h5 class="mb-1">{{ pub.title }}</h5>
+          <p class="mb-1"><strong>{{ pub.authors }}</strong></p>
+          <p class="mb-1"><em>{{ pub.venue }}</em></p>
+          <div>
             {% if pub.paper_link %}
-            <a href="{{ pub.paper_link }}" class="btn btn-outline-primary btn-sm me-2">📄 Paper</a>
+            <a href="{{ pub.paper_link }}" class="btn btn-outline-primary btn-sm me-2">📄 PDF</a>
+            {% endif %}
+            {% if pub.poster_link %}
+            <a href="{{ pub.poster_link }}" class="btn btn-outline-secondary btn-sm me-2">📜 Poster</a>
             {% endif %}
             <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-{{ pub.id }}" aria-expanded="false">
               📑 BibTeX
