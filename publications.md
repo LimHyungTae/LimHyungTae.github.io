@@ -28,7 +28,7 @@ Please refer to my [Google scholar](https://scholar.google.com/citations?user=S1
         <!-- LEFT: image container with fixed width -->
         <div style="flex: 0 0 180px;">
           <img
-            src="path/to/image.jpg"
+            src="/img/publications/BUFFERX.jpg"
             class="img-fluid rounded shadow-sm"
             alt="Sample Title"
             style="width: 180px;"
