@@ -35,6 +35,52 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 ---
 
+## News
+
+<div class="container">
+  <div class="list-group">
+    {% assign latest_news = site.data.news | slice: 0, 3 %}
+    {% assign older_news = site.data.news | slice: 3, site.data.news.size %}
+    
+    <!-- 최신 3개 뉴스 표시 -->
+    {% for news in latest_news %}
+    <div class="list-group-item">
+      <strong>{{ news.date }}</strong> {{ news.content }}
+    </div>
+    {% endfor %}
+
+    <!-- 나머지 뉴스 (초기에 숨김) -->
+    <div id="older-news" style="display: none;">
+      {% for news in older_news %}
+      <div class="list-group-item">
+        <strong>{{ news.date }}</strong> {{ news.content }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- 더보기 버튼 -->
+  {% if older_news.size > 0 %}
+  <button id="toggle-news" class="btn btn-outline-primary mt-3">Show More ▽</button>
+  {% endif %}
+</div>
+
+<!-- JavaScript로 토글 기능 추가 -->
+<script>
+  document.getElementById("toggle-news").addEventListener("click", function() {
+    var olderNews = document.getElementById("older-news");
+    if (olderNews.style.display === "none") {
+      olderNews.style.display = "block";
+      this.textContent = "Show Less △";
+    } else {
+      olderNews.style.display = "none";
+      this.textContent = "Show More ▽";
+    }
+  });
+</script>
+
+---
+
 ## Highlights
 
 * Postdoc associate at [SPARK Lab, MIT](https://mit.edu/sparklab/people.html) (advisor: [Prof. Luca Carlone](https://lucacarlone.mit.edu/))
