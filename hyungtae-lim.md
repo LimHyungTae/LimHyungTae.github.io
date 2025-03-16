@@ -39,8 +39,8 @@ I'm a robotics researcher and an enthusiast of open source as well. So I enjoy o
 
 <div class="container" style="max-width: 700px;">
   <div class="list-group">
-    {% assign latest_news = site.data.news | slice: 0, 3 %}
-    {% assign older_news = site.data.news | slice: 3, site.data.news.size %}
+    {% assign latest_news = site.data.news | slice: 0, 5 %}
+    {% assign older_news = site.data.news | slice: 5, site.data.news.size %}
     
     <!-- 최신 3개 뉴스 표시 -->
     {% for news in latest_news %}
