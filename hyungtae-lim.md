@@ -138,9 +138,22 @@ My research interest includes, but not confined to:
 
 ## Fun Facts
 
-I won the grand prize at Taeul Singing Competition, which is the largest singing competition of Chungcheong four years in a row!
+I was a guitar player in Sixline (in Korean, 여섯줄), and I won the grand prize at Taeul Singing Competition, which is the largest singing competition of Chungcheong four years in a row  with a song that I wrote and composed, haha
 
 ![taewool](/img/taewool.png)
+
+* Taeul Singing competition
+    * [2016 1st grand prize](https://www.youtube.com/watch?v=NGRMvkonu3w)
+    * [2017 2nd grand prize](https://www.youtube.com/watch?v=F4uAwn1snMA)
+    * [2018 3rd grand prize](https://www.youtube.com/watch?v=0d_mgwwnOKQ)
+    * [2019 4th grand prize](https://www.youtube.com/watch?v=sKI1e_a3qOA)
+
+* Others
+    * [Six-Line Theme Song, composed by Jangwoon Lee, Peppertones](https://www.youtube.com/watch?v=fOyz4sSRNco)
+    * [Ed Sheeran - Thinking out loud](https://www.youtube.com/watch?v=N-Vl9MGWzHA)
+    * [박효신 - 이상하다](https://www.youtube.com/watch?v=rPkvrrMpLpQ)
+    * [Rolling in the deep \& 걱정 말아요 그대](https://www.youtube.com/watch?v=b8WCWQsQPB8)
+
 
 --- 
 
