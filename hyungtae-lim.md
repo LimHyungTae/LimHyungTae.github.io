@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About Me
+title: Hyungtae Lim
 ---
 
 <p class="about-text">
@@ -152,7 +152,7 @@ I was a guitar player in Sixline (in Korean, 여섯줄), and I won the grand pri
     * [Six-Line Theme Song, composed by Jangwoon Lee, Peppertones](https://www.youtube.com/watch?v=fOyz4sSRNco)
     * [Ed Sheeran - Thinking out loud](https://www.youtube.com/watch?v=N-Vl9MGWzHA)
     * [박효신 - 이상하다](https://www.youtube.com/watch?v=rPkvrrMpLpQ)
-    * [Rolling in the deep \& 걱정 말아요 그대](https://www.youtube.com/watch?v=b8WCWQsQPB8)
+    * [Rolling in the deep & 걱정 말아요 그대](https://www.youtube.com/watch?v=b8WCWQsQPB8)
 
 
 --- 
