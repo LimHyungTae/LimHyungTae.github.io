@@ -24,7 +24,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ptr_cloud(new pcl::PointCloud<pcl::PointXYZ>
 ![pcl_img](/img/pcl_point_cloud_h.png)
 
 
-저또한 솔직히 말씀드리면 석사 시절에는 라이브러리를 사용하는데 큰 뜻을 사용하느라 **Ptr**이 지니는 의미에 대해 깊게 생각해보지 않았었습니다.
+저또한 솔직히 말씀드리면 석사 시절에는 라이브러리를 사용하는데 급급하느라, **Ptr**이 지니는 의미에 대해 깊게 생각해보지 않았었습니다.
 
 하지만, 이 Ptr은 PCL에서의 사용법이 문제 아니라, modern C++에서 도입한 스마트 포인터(smart pointer)라는 핵심적인 개념이기에, 설명드리려 합니다.
 
