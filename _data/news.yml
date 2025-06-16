@@ -1,5 +1,11 @@
 - date: "May 25"
-  content: "📝 Participated in KETI-SNU-Oxford-Sogana-MIT harmonic space workshop 
+  content: "📝🏆 <a href='https://arxiv.org/abs/2505.08230'>SKiD-SLAM</a> is chosen as a spotlight talk in the <a href='https://norlab-ulaval.github.io/icra_workshop_field_robotics/'>Field Robotics Workshop</a> in ICRA 2025"
+
+- date: "May 25"
+  content: "🏆 Selected as an <a href='https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/icra-ceb-awards'>Outstanding Reviewer in ICRA 2025</a> among around 7,400 candidates"
+
+- date: "May 25"
+  content: "📝 Participated in KETI-SNU-Oxford-Sogana-MIT harmonic space workshop"
 
 - date: "May 25"
   content: "🛫 Attended ICRA 2025 in Atlanta, making two presentations"
@@ -8,22 +14,22 @@
   content: "🤝 Served on the Program Committee for <a href='https://sites.google.com/view/rsspioneers2025'>RSS 2025 Pioneer Workshop</a>"
 
 - date: "Feb. 25"
-  content: "📝🦾 <a href='https://github.com/url-kaist/MambaGlue'>MambaGlue</a> accepted to ICRA 2025"
+  content: "📝🦾 <a href='https://github.com/url-kaist/MambaGlue'>MambaGlue</a> is accepted to ICRA 2025"
 
 - date: "Feb. 25"
-  content: "📝🦾 <a href='https://github.com/MIT-SPARK/KISS-Matcher'>KISS-Matcher</a> accepted to ICRA 2025"
+  content: "📝🦾 <a href='https://github.com/MIT-SPARK/KISS-Matcher'>KISS-Matcher</a> is accepted to ICRA 2025"
 
 - date: "Dec. 24"
   content: "✍️  Started serving as an Associate Editor for RA-L"
 
 - date: "Nov. 24"
-  content: "📝🦾 <a href='https://github.com/cocel-postech/genz-icp'>GenZ-ICP</a> accepted to RA-L"
+  content: "📝🦾 <a href='https://github.com/cocel-postech/genz-icp'>GenZ-ICP</a> is accepted to RA-L"
 
 - date: "Nov. 24"
   content: "🎤 Gave a seminar on point cloud registration to the <a href='https://acl.mit.edu/'>ACL</a>"
 
 - date: "Sep. 24"
-  content: "📝🦾 <a href='https://ieeexplore.ieee.org/abstract/document/10669187'>DynaVINS++</a> accepted to RA-L"
+  content: "📝🦾 <a href='https://ieeexplore.ieee.org/abstract/document/10669187'>DynaVINS++</a> is accepted to RA-L"
 
 - date: "Sep. 24"
   content: "🚀 Selected for the South Korea Postdoctoral Overseas Research Fellowship Program"
@@ -32,10 +38,10 @@
   content: "🚀 Launched an international research project at MIT, funded by the NRF, South Korea"
 
 - date: "Jul. 24"
-  content: "📝🦾 <a href='https://arxiv.org/abs/2406.19634'>CLOi-Mapper</a> accepted to RA-L"
+  content: "📝🦾 <a href='https://arxiv.org/abs/2406.19634'>CLOi-Mapper</a> is accepted to RA-L"
 
 - date: "Jul. 24"
-  content: "📝🦾 <a href='https://github.com/MIT-SPARK/KISS-Matcher'>HeLiMOS</a> accepted to IROS 2024"
+  content: "📝🦾 <a href='https://github.com/MIT-SPARK/KISS-Matcher'>HeLiMOS</a> is accepted to IROS 2024"
 
 - date: "Jul. 24"
   content: "🎤 Gave a SLAM seminar to researchers at the <a href='https://www.hugelab.org/'>HuGe Lab</a>"
@@ -53,4 +59,4 @@
   content: "🎉 Started a postdoc at <a href='https://mit.edu/sparklab/'>MIT SPARK Lab</a>"
 
 - date: "Feb. 24"
-  content: "📝📷 <a href='https://arxiv.org/abs/2404.10633'>Contextrast</a> accepted to CVPR 2024"
+  content: "📝📷 <a href='https://arxiv.org/abs/2404.10633'>Contextrast</a> is accepted to CVPR 2024"
