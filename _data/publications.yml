@@ -1,21 +1,15 @@
-
-- id: bufferx_2025
-  title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
-  authors: "Minkyun Seo*, Hyungtae Lim*, Kanghee Lee, Luca Carlone, and Jaesik Park"
-  venue: "2503.07940 (arXiv), 2025"
+- title: "BUFFER-X: Zero-shot Object-level Registration via Foundation Models"
+  authors: "Minkyun Seo* et al."
+  venue: "ICCV 2025 (Oral)"
   image: "/img/publications/BUFFERX.jpg"
-  paper_link: "https://arxiv.org/abs/2503.07940"
+  paper_link: "https://arxiv.org/pdf/2406.xxxxx.pdf"
+  arxiv_link: "https://arxiv.org/abs/2406.xxxxx"
+  poster_link: "/assets/posters/bufferx_poster.pdf"
+  project_page: "https://github.com/LimHyungTae/BUFFER-X"
 
-# - id: bufferx_2025
-#   title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
-#   authors: "Minkyun Seo*, Hyungtae Lim*, Kanghee Lee, Luca Carlone, and Jaesik Park"
-#   venue: "2503.07940 (arXiv), 2025"
-#   image: "/img/publications/BUFFERX.jpg"
-#   paper_link: "https://arxiv.org/abs/2503.07940"
-
-# - id: bufferx_2025
-#   title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
-#   authors: "Minkyun Seo*, Hyungtae Lim*, Kanghee Lee, Luca Carlone, and Jaesik Park"
-#   venue: "2503.07940 (arXiv), 2025"
-#   image: "/img/publications/BUFFERX.jpg"
-#   paper_link: "https://arxiv.org/abs/2503.07940"
+- title: "VGGT-SLAM: A Visual Geometric Graph Transformer for Multi-View SLAM"
+  authors: "Dominic Maggio et al"
+  venue: "RA-L / ICRA 2024"
+  image: "/img/publications/BUFFERX.jpg"
+  paper_link: "https://arxiv.org/pdf/2312.xxxxx.pdf"
+  arxiv_link: "https://arxiv.org/abs/2312.xxxxx"
