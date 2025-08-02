@@ -10,31 +10,27 @@ Please refer to my [Google scholar](https://scholar.google.com/citations?user=S1
 
 (under construction...)
 
-<div class="container mt-4">
-  <div class="row">
-    {% for pub in site.data.publications %}
-    <div class="col-12 mb-4">
-      <div class="d-flex align-items-start gap-3">
-        {% if pub.image %}
-        <div style="flex: 0 0 180px;">
-          <img src="{{ pub.image }}" class="img-fluid rounded shadow-sm" alt="{{ pub.title }}" style="width: 180px;">
-        </div>
-        {% endif %}
-        <div class="flex-grow-1">
-          <h5 class="mb-1"><strong>{{ pub.title }}</strong></h5>
-          <p class="mb-1"><strong>{{ pub.authors }}</strong></p>
-          <p class="mb-1"><em>{{ pub.venue }}</em></p>
-          <div>
-            {% if pub.paper_link %}
-            <a href="{{ pub.paper_link }}" class="btn btn-outline-primary btn-sm me-2">📄 PDF</a>
-            {% endif %}
-            {% if pub.poster_link %}
-            <a href="{{ pub.poster_link }}" class="btn btn-outline-secondary btn-sm me-2">📜 Poster</a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
+
+{% assign pubs = site.data.publications | reverse %}
+<ul style="list-style-type: none; padding-left: 0;">
+  {% for pub in pubs %}
+  <li style="margin-bottom: 2em; display: flex; align-items: flex-start;">
+    {% if pub.image %}
+    <div style="margin-right: 1em;">
+      <img src="{{ pub.image }}" alt="thumbnail" style="width: 150px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
     </div>
-    {% endfor %}
-  </div>
-</div>
+    {% endif %}
+    <div>
+      <p style="margin-bottom: 0.3em;"><strong>{{ pub.title }}</strong></p>
+      <p style="margin-bottom: 0.3em;"><em>{{ pub.authors }}</em></p>
+      <p style="margin-bottom: 0.5em;">({{ pub.venue }})</p>
+      <p style="margin: 0;">
+        {% if pub.paper_link %}<a href="{{ pub.paper_link }}">[PDF]</a>{% endif %}
+        {% if pub.arxiv_link %}<a href="{{ pub.arxiv_link }}">[arXiv]</a>{% endif %}
+        {% if pub.poster_link %}<a href="{{ pub.poster_link }}">[Poster]</a>{% endif %}
+        {% if pub.project_page %}<a href="{{ pub.project_page }}">[Project Page]</a>{% endif %}
+      </p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
