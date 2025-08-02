@@ -21,9 +21,9 @@ Please refer to my [Google scholar](https://scholar.google.com/citations?user=S1
     </div>
     {% endif %}
     <div>
-      <p style="margin-bottom: 0.3em;"><strong>{{ pub.title }}</strong></p>
-      <p style="margin-bottom: 0.3em;"><em>{{ pub.authors }}</em></p>
-      <p style="margin-bottom: 0.5em;">({{ pub.venue }})</p>
+      <p style="margin-bottom: 0.0em;"><strong>{{ pub.title }}</strong></p>
+      <p style="margin-bottom: 0.0em;"><em>{{ pub.authors }}</em></p>
+      <p style="margin-bottom: 0.0em;">({{ pub.venue }})</p>
       <p style="margin: 0;">
         {% if pub.paper_link %}<a href="{{ pub.paper_link }}">[PDF]</a>{% endif %}
         {% if pub.arxiv_link %}<a href="{{ pub.arxiv_link }}">[arXiv]</a>{% endif %}
