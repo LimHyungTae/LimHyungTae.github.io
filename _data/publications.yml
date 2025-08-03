@@ -9,7 +9,7 @@
 - title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
   authors: "Minkyun Seo* et al."
   venue: "ICCV 2025 (Highlight)"
-  image: "_data/thumbnail/BUFFER-X.gif"
+  image: "/_data/thumbnail/BUFFER-X.gif"
   paper_link: "https://arxiv.org/pdf/2406.xxxxx.pdf"
   arxiv_link: "https://arxiv.org/abs/2503.07940"
   poster_link: "/assets/posters/bufferx_poster.pdf"
