@@ -21,6 +21,7 @@ conferences:
   ur: "Proc. Int. Conf. Ubiquit. Robot. (UR)"
   iccas: "Proc. Int. Conf. Control, Automat. Syst. (ICCAS)"
   bmvc: "Proc. British Machine Vis. Conf. (BMVC)"
+  arxiv: "arXiv preprint"
 
 # Special venue modifiers
 modifiers:
