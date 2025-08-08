@@ -1,17 +1,143 @@
 
-- title: "VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
-  authors: "Dominic Maggio et al."
-  venue: "Under review"
-  image: "/img/publications/BUFFERX.jpg"
-  paper_link: "https://arxiv.org/pdf/2312.xxxxx.pdf"
-  arxiv_link: "https://arxiv.org/abs/2312.xxxxx"
+# Publication database with automated news generation capability
+# Each publication can auto-generate news entries based on status changes
 
-- title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
-  authors: "Minkyun Seo* et al."
-  venue: "ICCV 2025 (Highlight)"
-  image: "/_data/thumbnail/BUFFER-X.gif"
-  paper_link: "https://arxiv.org/pdf/2406.xxxxx.pdf"
-  arxiv_link: "https://arxiv.org/abs/2503.07940"
-  poster_link: "/assets/posters/bufferx_poster.pdf"
-  project_page: "https://github.com/MIT-SPARK/BUFFER-X"
+# 2025 Publications
+- id: "multi_mapcher_2025"
+  title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
+  authors: "Hyungtae Lim*, Daebeom Kim*, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Trans. Intell. Veh. (T-IV)"
+  status: "under_review"
+  year: 2025
+  type: "journal"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  generate_news: true
+  news_template: "📝🚀 {title} submitted to {venue}"
+
+- id: "obstacle_aware_quadruped_2025"
+  title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
+  authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Trans. Robot. (T-RO)"
+  status: "under_review"
+  year: 2025
+  type: "journal"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  generate_news: true
+  news_template: "📝🤖 {title} submitted to {venue}"
+
+- id: "mambaglue_2025"
+  title: "MambaGlue: Fast and Robust Local Feature Matching With Mamba"
+  authors: "Kihwan Ryoo, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Int. Conf. Robot. Automat. (ICRA)"
+  status: "accepted"
+  year: 2025
+  type: "conference"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  github: "https://github.com/url-kaist/MambaGlue"
+  generate_news: true
+  news_date: "Feb. 25"
+  news_template: "📝🦾 <a href='{github}'>MambaGlue</a> is accepted to ICRA 2025"
+
+- id: "kiss_matcher_2025"
+  title: "KISS-Matcher: Fast and Robust Point Cloud Registration Revisited"
+  authors: "Hyungtae Lim, Daebeom Kim, Gunhee Shin, Jingnan Shi, Ignacio Vizzo, Hyun Myung, Jaesik Park, and Luca Carlone"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Int. Conf. Robot. Automat. (ICRA)"
+  status: "accepted"
+  year: 2025
+  type: "conference"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  github: "https://github.com/MIT-SPARK/KISS-Matcher"
+  generate_news: true
+  news_date: "Feb. 25"
+  news_template: "📝🦾 <a href='{github}'>KISS-Matcher</a> is accepted to ICRA 2025"
+
+- id: "buffer_x_2025"
+  title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
+  authors: "Minkyun Seo*, Hyungtae Lim*, and collaborators"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Int. Conf. Comput. Vis. (ICCV)"
+  status: "accepted_highlight"
+  year: 2025
+  type: "conference"
+  image: "/img/publications/BUFFER-X.gif"
+  arxiv: "https://arxiv.org/abs/2503.07940"
+  github: "https://github.com/MIT-SPARK/BUFFER-X"
+  generate_news: true
+  news_date: "July 25"
+  news_template: "📝🏆 <a href='{arxiv}'>BUFFER-X</a> has been accepted in ICCV 2025 & selected as highlight!"
+
+# 2024 Publications
+- id: "genz_icp_2024"
+  title: "GenZ-ICP: Generalizable and Degeneracy-Robust LiDAR Odometry Using an Adaptive Weighting"
+  authors: "Daehan Lee, Hyungtae Lim, and Soohee Han"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Robot. Automat. Lett. (RA-L)"
+  status: "published"
+  year: 2024
+  type: "journal"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  github: "https://github.com/cocel-postech/genz-icp"
+  generate_news: true
+  news_date: "Nov. 24"
+  news_template: "📝🦾 <a href='{github}'>GenZ-ICP</a> is accepted to RA-L"
+
+- id: "dynavins_plus_2024"
+  title: "DynaVINS++: Robust Visual-Inertial State Estimator in Dynamic Environments by Adaptive Truncated Least Squares and Stable State Recovery"
+  authors: "Seungwon Song, Hyungtae Lim, Alex Junho Lee, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Robot. Automat. Lett. (RA-L)"
+  status: "published"
+  year: 2024
+  type: "journal"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  ieee_link: "https://ieeexplore.ieee.org/abstract/document/10669187"
+  generate_news: true
+  news_date: "Sep. 24"
+  news_template: "📝🦾 <a href='{ieee_link}'>DynaVINS++</a> is accepted to RA-L"
+
+- id: "cloi_mapper_2024"
+  title: "CLOi-Mapper: Consistent, Lightweight, Robust, and Incremental Mapper With Embedded Systems for Commercial Robot Services"
+  authors: "DongKi Noh, Hyungtae Lim, Gyuho Eoh, Duckyu Choi, Jeong-Sik Choi, Hyunjun Lim, Seung-Min Baek, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE Robot. Automat. Lett. (RA-L)"
+  status: "published"
+  year: 2024
+  type: "journal"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  arxiv: "https://arxiv.org/abs/2406.19634"
+  generate_news: true
+  news_date: "Jul. 24"
+  news_template: "📝🦾 <a href='{arxiv}'>CLOi-Mapper</a> is accepted to RA-L"
+
+- id: "helimos_2024"
+  title: "HeLiMOS: A Dataset for Moving Object Segmentation in 3D Point Clouds From Heterogeneous LiDAR Sensors"
+  authors: "Hyungtae Lim*, Seoyeon Jang*, Benedikt Mersch, Jens Behley, Hyun Myung, and Cyrill Stachniss"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE/RSJ Int. Conf. Intell. Robot. Syst. (IROS)"
+  status: "published"
+  year: 2024
+  type: "conference"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  github: "https://github.com/MIT-SPARK/KISS-Matcher"  # placeholder
+  generate_news: true
+  news_date: "Jul. 24"
+  news_template: "📝🦾 <a href='{github}'>HeLiMOS</a> is accepted to IROS 2024"
+
+- id: "contextrast_2024"
+  title: "Contextrast: Contextual Contrastive Learning for Semantic Segmentation"
+  authors: "Changki Sung, Wanhee Kim, Jungho An, Wooju Lee, Hyungtae Lim†, and Hyun Myung†"
+  my_name: "Hyungtae Lim"
+  venue: "IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)"
+  status: "published"
+  year: 2024
+  type: "conference"
+  image: "/img/publications/BUFFER-X.gif"  # placeholder
+  arxiv: "https://arxiv.org/abs/2404.10633"
+  generate_news: true
+  news_date: "Feb. 24"
+  news_template: "📝📷 <a href='{arxiv}'>Contextrast</a> is accepted to CVPR 2024"
 

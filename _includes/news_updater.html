@@ -1,0 +1,38 @@
+<!-- Automatic news updater for publications -->
+{% assign manual_news = site.data.news %}
+{% assign auto_news = '' | split: ',' %}
+
+<!-- Generate news from publications -->
+{% for pub in site.data.publications %}
+  {% if pub.generate_news and pub.news_date and pub.news_template %}
+    <!-- Check if news already exists -->
+    {% assign exists = false %}
+    {% for news in manual_news %}
+      {% if news.pub_id == pub.id %}
+        {% assign exists = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    <!-- Generate new news entry if it doesn't exist -->
+    {% unless exists %}
+      {% assign news_content = pub.news_template %}
+      {% assign news_content = news_content | replace: '{title}', pub.title %}
+      {% assign news_content = news_content | replace: '{venue}', pub.venue %}
+      {% assign news_content = news_content | replace: '{arxiv}', pub.arxiv %}
+      {% assign news_content = news_content | replace: '{github}', pub.github %}
+      {% assign news_content = news_content | replace: '{paper_link}', pub.paper_link %}
+      {% assign news_content = news_content | replace: '{ieee_link}', pub.ieee_link %}
+      {% assign news_content = news_content | replace: '{project_page}', pub.project_page %}
+      
+      {% assign new_entry = '{"date": "' | append: pub.news_date | append: '", "content": "' | append: news_content | append: '", "pub_id": "' | append: pub.id | append: '", "auto_generated": true}' %}
+      {% assign auto_news = auto_news | push: new_entry %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+<!-- Combine manual and auto-generated news -->
+{% assign all_news = manual_news | concat: auto_news %}
+
+<!-- Make combined news available globally -->
+{% assign site.data.all_news = all_news %}

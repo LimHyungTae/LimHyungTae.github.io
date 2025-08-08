@@ -114,37 +114,62 @@ Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1
 
 <div class="publications-container">
 
-<div class="year-header">2025</div>
+<!-- Generated from _data/publications.yml -->
+{% assign publications_by_year = site.data.publications | group_by: 'year' | sort: 'name' | reverse %}
 
+{% for year_group in publications_by_year %}
+<div class="year-header">{{ year_group.name }}</div>
+
+{% assign year_publications = year_group.items | sort: 'news_date' | reverse %}
+{% for pub in year_publications %}
 <div class="publication-item">
     <div class="publication-image">
-        <img src="/img/publications/BUFFER-X.gif" alt="BUFFER-X">
+        {% if pub.image %}
+            <img src="{{ pub.image }}" alt="{{ pub.title }}">
+        {% else %}
+            <img src="/img/publications/BUFFER-X.gif" alt="{{ pub.title }}">
+        {% endif %}
     </div>
     <div class="publication-details">
-        <div class="publication-title">BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes</div>
-        <div class="publication-authors">Minkyun Seo*, <span class="my-name">Hyungtae Lim</span>, and collaborators</div>
-        <div class="publication-venue"><span class="highlight">ICCV 2025 (Highlight)</span></div>
+        <div class="publication-title">{{ pub.title }}</div>
+        <div class="publication-authors">
+            {% assign authors = pub.authors | replace: pub.my_name, '<span class="my-name">' | append: pub.my_name | append: '</span>' %}
+            {{ authors }}
+        </div>
+        <div class="publication-venue">
+            {% if pub.status == 'accepted_highlight' %}
+                <span class="highlight">{{ pub.venue }} (Highlight)</span>
+            {% elsif pub.status == 'accepted' %}
+                {{ pub.venue }}
+            {% elsif pub.status == 'under_review' %}
+                <em>{{ pub.venue }} (Under review)</em>
+            {% else %}
+                {{ pub.venue }}
+            {% endif %}
+        </div>
         <div class="publication-links">
-            <a href="https://arxiv.org/abs/2503.07940">[Paper]</a>
-            <a href="https://github.com/MIT-SPARK/BUFFER-X">[Code]</a>
-            <a href="/assets/posters/bufferx_poster.pdf">[Poster]</a>
+            {% if pub.arxiv %}
+                <a href="{{ pub.arxiv }}">[arXiv]</a>
+            {% endif %}
+            {% if pub.paper_link %}
+                <a href="{{ pub.paper_link }}">[Paper]</a>
+            {% endif %}
+            {% if pub.github %}
+                <a href="{{ pub.github }}">[Code]</a>
+            {% endif %}
+            {% if pub.project_page %}
+                <a href="{{ pub.project_page }}">[Project]</a>
+            {% endif %}
+            {% if pub.poster_link %}
+                <a href="{{ pub.poster_link }}">[Poster]</a>
+            {% endif %}
+            {% if pub.ieee_link %}
+                <a href="{{ pub.ieee_link }}">[IEEE]</a>
+            {% endif %}
         </div>
     </div>
 </div>
-
-<div class="publication-item">
-    <div class="publication-image">
-        <img src="/img/publications/BUFFERX.jpg" alt="VGGT-SLAM">
-    </div>
-    <div class="publication-details">
-        <div class="publication-title">VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold</div>
-        <div class="publication-authors">Dominic Maggio et al.</div>
-        <div class="publication-venue">Under review</div>
-        <div class="publication-links">
-            <a href="https://arxiv.org/pdf/2312.xxxxx.pdf">[Paper]</a>
-            <a href="https://arxiv.org/abs/2312.xxxxx">[arXiv]</a>
-        </div>
-    </div>
-</div>
+{% endfor %}
+{% endfor %}
 
 </div>
