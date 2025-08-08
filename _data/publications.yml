@@ -25,7 +25,7 @@
       year={2025}
     }
   generate_news: false
-  news_date: "Aug. 25"
+  news_date: "Aug. 25, 2025"
   # news_template: "📝🏆 <a href='{arxiv}'>VGGT-SLAM</a> has been accepted in NeurIPS!"
 
 
@@ -51,7 +51,7 @@
       year={2025}
     }
   generate_news: true
-  news_date: "July 25"
+  news_date: "July 25, 2025"
   news_template: "📝🏆 <a href='{arxiv}'>BUFFER-X</a> has been accepted in ICCV 2025 & selected as highlight!"
 
 - id: "mambaglue_2025"
@@ -67,7 +67,7 @@
   arxiv: "https://arxiv.org/abs/2503.07940"
   github: "https://github.com/url-kaist/MambaGlue"
   generate_news: true
-  news_date: "Feb. 25"
+  news_date: "Feb. 25, 2025"
   news_template: "📝🦾 <a href='{github}'>MambaGlue</a> is accepted to ICRA 2025"
 
 - id: "kiss_matcher_2025"
@@ -83,7 +83,7 @@
   arxiv: "https://arxiv.org/abs/2409.15615"
   github: "https://github.com/MIT-SPARK/KISS-Matcher"
   generate_news: true
-  news_date: "Feb. 25"
+  news_date: "Feb. 25, 2025"
   news_template: "📝🦾 <a href='{github}'>KISS-Matcher</a> is accepted to ICRA 2025"
 
 # - id: "multi_mapcher_2025"

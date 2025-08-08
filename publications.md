@@ -20,18 +20,24 @@ title: Publications
 }
 
 .publication-image {
-    flex: 0 0 200px;
+    flex: 0 0 240px;
     margin-right: 30px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .publication-image img {
-    width: 200px;
-    height: 120px;
-    object-fit: cover;
-    object-position: center;
+    max-width: 240px;
+    max-height: 180px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+    padding: 10px;
 }
 
 .publication-details {
@@ -146,10 +152,10 @@ title: Publications
     }
     
     .publication-image img {
-        width: 300px;
-        height: 180px;
-        object-fit: cover;
-        object-position: center;
+        max-width: 350px;
+        max-height: 220px;
+        width: auto;
+        height: auto;
     }
     
     .publication-links {
@@ -160,8 +166,8 @@ title: Publications
 
 @media (max-width: 480px) {
     .publication-image img {
-        width: 280px;
-        height: 168px;
+        max-width: 300px;
+        max-height: 200px;
     }
 }
 
@@ -193,7 +199,7 @@ Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1
 {% for year_group in publications_by_year %}
 <div class="year-header">{{ year_group.name }}</div>
 
-{% assign year_publications = year_group.items | sort: 'sort_date' | reverse %}
+{% assign year_publications = year_group.items %}
 {% for pub in year_publications %}
 <div class="publication-item">
     <div class="publication-image">
