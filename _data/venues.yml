@@ -1,0 +1,30 @@
+# Conference and Journal venue definitions
+# This allows for consistent naming and easier maintenance
+
+journals:
+  ral: "IEEE Robot. Automat. Lett. (RA-L)"
+  tro: "IEEE Trans. Robot. (T-RO)"
+  tiv: "IEEE Trans. Intell. Veh. (T-IV)"
+  ijrr: "Int. J. Robot. Res. (IJRR)"
+  ijcas: "Int. J. Control, Automat. Syst. (IJCAS)"
+  ieee_access: "IEEE Access"
+  jisr: "J. Intell. Serv. Robot."
+
+conferences:
+  icra: "IEEE Int. Conf. Robot. Automat. (ICRA)"
+  iros: "IEEE/RSJ Int. Conf. Intell. Robot. Syst. (IROS)"
+  rss: "Robotics: Science and Systems (RSS)"
+  iccv: "IEEE Int. Conf. Comput. Vis. (ICCV)"
+  cvpr: "IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)"
+  aaai: "Annual AAAI Conf. Artif. Intell. (AAAI)"
+  rita: "Proc. Int. Conf. Robot Intell. Tech. Applications (RiTA)"
+  ur: "Proc. Int. Conf. Ubiquit. Robot. (UR)"
+  iccas: "Proc. Int. Conf. Control, Automat. Syst. (ICCAS)"
+  bmvc: "Proc. British Machine Vis. Conf. (BMVC)"
+
+# Special venue modifiers
+modifiers:
+  with_icra: " with ICRA"
+  with_iros: " with IROS"
+  highlight: " (Highlight)"
+  under_review: " (Under review)"

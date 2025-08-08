@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Selected Publications
+title: Publications
 ---
 
 <style>
@@ -195,14 +195,26 @@ Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1
             {{ authors }}
         </div>
         <div class="publication-venue">
+            {% assign venue_name = pub.venue %}
+            {% if pub.venue_key %}
+                {% if pub.venue_type == 'journal' %}
+                    {% assign venue_name = site.data.venues.journals[pub.venue_key] %}
+                {% elsif pub.venue_type == 'conference' %}
+                    {% assign venue_name = site.data.venues.conferences[pub.venue_key] %}
+                {% endif %}
+                {% if pub.venue_modifier %}
+                    {% assign venue_name = venue_name | append: site.data.venues.modifiers[pub.venue_modifier] %}
+                {% endif %}
+            {% endif %}
+            
             {% if pub.status == 'accepted_highlight' %}
-                <span class="highlight">{{ pub.venue }} (Highlight)</span>
+                <span class="highlight">{{ venue_name }} (Highlight)</span>
             {% elsif pub.status == 'accepted' %}
-                {{ pub.venue }}
+                {{ venue_name }}
             {% elsif pub.status == 'under_review' %}
-                <em>{{ pub.venue }} (Under review)</em>
+                <em>{{ venue_name }} (Under review)</em>
             {% else %}
-                {{ pub.venue }}
+                {{ venue_name }}
             {% endif %}
         </div>
         <div class="publication-links">
