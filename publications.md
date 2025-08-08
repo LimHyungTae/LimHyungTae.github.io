@@ -26,10 +26,10 @@ title: Publications
 }
 
 .publication-image img {
-    max-width: 100%;
-    max-height: 150px;
-    width: auto;
-    height: auto;
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -142,11 +142,26 @@ title: Publications
         flex: none;
         margin-right: 0;
         margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .publication-image img {
+        width: 300px;
+        height: 180px;
+        object-fit: cover;
+        object-position: center;
     }
     
     .publication-links {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .publication-image img {
+        width: 280px;
+        height: 168px;
     }
 }
 
@@ -178,7 +193,7 @@ Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1
 {% for year_group in publications_by_year %}
 <div class="year-header">{{ year_group.name }}</div>
 
-{% assign year_publications = year_group.items | sort: 'news_date' | reverse %}
+{% assign year_publications = year_group.items | sort: 'sort_date' | reverse %}
 {% for pub in year_publications %}
 <div class="publication-item">
     <div class="publication-image">
