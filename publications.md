@@ -69,17 +69,55 @@ title: Publications
 
 .publication-links {
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.publication-links a {
-    color: #3498db;
+.publication-links .link-button {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    color: #495057;
     text-decoration: none;
-    margin-right: 15px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
-.publication-links a:hover {
-    color: #2980b9;
-    text-decoration: underline;
+.publication-links .link-button:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #212529;
+    text-decoration: none;
+}
+
+.publication-links .link-button.primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.publication-links .link-button.primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+}
+
+.publication-links .github-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.publication-links .github-stars .star-icon {
+    width: 12px;
+    height: 12px;
+    fill: #ffc107;
 }
 
 .year-header {
@@ -87,7 +125,7 @@ title: Publications
     font-weight: bold;
     margin: 40px 0 20px 0;
     padding-bottom: 10px;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #6c757d;
     color: #2c3e50;
 }
 
@@ -105,6 +143,26 @@ title: Publications
         margin-right: 0;
         margin-bottom: 15px;
     }
+    
+    .publication-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.bibtex-container {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.bibtex-container pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 </style>
 
@@ -149,27 +207,99 @@ Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1
         </div>
         <div class="publication-links">
             {% if pub.arxiv %}
-                <a href="{{ pub.arxiv }}">[arXiv]</a>
+                <a href="{{ pub.arxiv }}" class="link-button primary">Paper</a>
+            {% elsif pub.paper_link %}
+                <a href="{{ pub.paper_link }}" class="link-button primary">Paper</a>
+            {% elsif pub.ieee_link %}
+                <a href="{{ pub.ieee_link }}" class="link-button primary">Paper</a>
             {% endif %}
-            {% if pub.paper_link %}
-                <a href="{{ pub.paper_link }}">[Paper]</a>
-            {% endif %}
+            
             {% if pub.github %}
-                <a href="{{ pub.github }}">[Code]</a>
+                <a href="{{ pub.github }}" class="link-button">
+                    Code
+                    <span class="github-stars" data-repo="{{ pub.github | replace: 'https://github.com/', '' }}">
+                        <svg class="star-icon" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span class="star-count">-</span>
+                    </span>
+                </a>
             {% endif %}
+            
             {% if pub.project_page %}
-                <a href="{{ pub.project_page }}">[Project]</a>
+                <a href="{{ pub.project_page }}" class="link-button">Project Page</a>
             {% endif %}
+            
             {% if pub.poster_link %}
-                <a href="{{ pub.poster_link }}">[Poster]</a>
+                <a href="{{ pub.poster_link }}" class="link-button">Poster</a>
             {% endif %}
-            {% if pub.ieee_link %}
-                <a href="{{ pub.ieee_link }}">[IEEE]</a>
+            
+            {% if pub.video_link %}
+                <a href="{{ pub.video_link }}" class="link-button">Video</a>
+            {% endif %}
+            
+            {% if pub.slides_link %}
+                <a href="{{ pub.slides_link }}" class="link-button">Slides</a>
+            {% endif %}
+            
+            {% if pub.bibtex %}
+                <a href="#" class="link-button" onclick="toggleBibtex('{{ pub.id }}')">BibTeX</a>
             {% endif %}
         </div>
+        
+        {% if pub.bibtex %}
+        <div id="bibtex-{{ pub.id }}" class="bibtex-container" style="display: none;">
+            <pre><code>{{ pub.bibtex }}</code></pre>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
 {% endfor %}
 
 </div>
+
+<script>
+// Toggle BibTeX display
+function toggleBibtex(pubId) {
+    const bibtexDiv = document.getElementById('bibtex-' + pubId);
+    if (bibtexDiv.style.display === 'none') {
+        bibtexDiv.style.display = 'block';
+    } else {
+        bibtexDiv.style.display = 'none';
+    }
+}
+
+// Fetch GitHub stars
+async function fetchGitHubStars(repo) {
+    try {
+        const response = await fetch(`https://api.github.com/repos/${repo}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.stargazers_count;
+        }
+    } catch (error) {
+        console.log('Error fetching GitHub stars:', error);
+    }
+    return null;
+}
+
+// Update GitHub stars for all repositories
+document.addEventListener('DOMContentLoaded', function() {
+    const starElements = document.querySelectorAll('.github-stars');
+    
+    starElements.forEach(async function(element) {
+        const repo = element.dataset.repo;
+        if (repo) {
+            const stars = await fetchGitHubStars(repo);
+            const starCountElement = element.querySelector('.star-count');
+            if (stars !== null && starCountElement) {
+                starCountElement.textContent = stars.toLocaleString();
+                element.style.opacity = '1';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+    });
+});
+</script>
