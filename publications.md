@@ -95,14 +95,14 @@ title: Selected Publications
 }
 
 .publication-links .link-button.primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #1B2C8F;
+    border-color: #1B2C8F;
     color: white;
 }
 
 .publication-links .link-button.primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #142373;
+    border-color: #142373;
     color: white;
 }
 
@@ -191,7 +191,7 @@ Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1
     <div class="publication-details">
         <div class="publication-title">{{ pub.title }}</div>
         <div class="publication-authors">
-            {% assign authors = pub.authors | replace: pub.my_name, '<span class="my-name">' | append: pub.my_name | append: '</span>' %}
+            {% assign authors = pub.authors | replace: pub.my_name, '<span class="my-name">Hyungtae Lim</span>' %}
             {{ authors }}
         </div>
         <div class="publication-venue">
