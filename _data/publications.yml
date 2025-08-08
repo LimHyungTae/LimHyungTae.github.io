@@ -122,10 +122,11 @@
   status: "published"
   year: 2024
   type: "journal"
+  image: "/img/publications/similar_but_different.png"
+  arxiv: https://arxiv.org/abs/2312.16839
   volume: "22"
   pages: "347-359"
   date: "Feb. 1, 2024"
-  image: "/img/publications/BUFFER-X.gif"
 
 - id: "genz_icp_2024"
   title: "GenZ-ICP: Generalizable and Degeneracy-Robust LiDAR Odometry Using an Adaptive Weighting"
@@ -141,6 +142,8 @@
   pages: "152-159"
   date: "Nov. 14, 2024"
   image: "/img/publications/BUFFER-X.gif"
+  arxiv: https://arxiv.org/abs/2411.06766
+  video_link: https://www.youtube.com/watch?v=CU6aAiTIO6Y
   github: "https://github.com/cocel-postech/genz-icp"
   generate_news: true
   news_date: "Nov. 24"
@@ -160,6 +163,7 @@
   pages: "9127-9134"
   date: "Sep. 6, 2024"
   image: "/img/publications/BUFFER-X.gif"
+  arxiv: "https://arxiv.org/abs/2410.15373"
   ieee_link: "https://ieeexplore.ieee.org/abstract/document/10669187"
   generate_news: true
   news_date: "Sep. 24"
@@ -178,7 +182,7 @@
   number: "9"
   pages: "7541-7548"
   date: "Jul. 15, 2024"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/cloi_mapper.png"
   arxiv: "https://arxiv.org/abs/2406.19634"
   generate_news: true
   news_date: "Jul. 24"
@@ -196,6 +200,7 @@
   location: "Abu Dhabi, UAE"
   date: "Oct. 14-18, 2024"
   image: "/img/publications/BUFFER-X.gif"
+  arxiv: "https://arxiv.org/abs/2408.06328"
   generate_news: true
   news_date: "Jul. 24"
   news_template: "📝🦾 HeLiMOS is accepted to IROS 2024"
@@ -230,7 +235,9 @@
   location: "Vancouver, Canada"
   date: "Feb. 20-27, 2024"
   pages: "2946-2955"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/oadg_introduction.gif"
+  arxiv: "https://arxiv.org/abs/2312.12133"
+  github: "https://github.com/WoojuLee24/OA-DG"
 
 # 2023 Publications
 - id: "quatro_plus_2023"
@@ -246,7 +253,8 @@
   number: "5"
   pages: "685-715"
   date: "Nov. 2, 2023"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/quatro-plusplus_title_video.gif"
+  arxiv: https://arxiv.org/abs/2311.00928
 
 - id: "lc2_2023"
   title: "(LC)²: LiDAR-Camera Loop Constraints For Cross-Modal Place Recognition"
