@@ -199,7 +199,7 @@
   type: "conference"
   location: "Abu Dhabi, UAE"
   date: "Oct. 14-18, 2024"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/helimos.gif"
   arxiv: "https://arxiv.org/abs/2408.06328"
   generate_news: true
   news_date: "Jul. 24"
