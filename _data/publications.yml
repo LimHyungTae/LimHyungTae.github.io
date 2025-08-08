@@ -4,7 +4,7 @@
 
 # 2025 Publications
 - id: "vggtslam_2025"
-  title: "vGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
+  title: "VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
   authors: "Dominic Maggio*, Hyungtae Lim*, and Luca Carlone"
   my_name: "Hyungtae Lim"
   venue_key: "arxiv"
@@ -12,7 +12,7 @@
   status: "accepted"
   year: 2025
   type: "conference"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/vggt_slam_demo.gif"
   arxiv: "https://arxiv.org/abs/2505.12549"
   github: "https://github.com/MIT-SPARK/VGGT-SLAM"
   # project_page: "https://mit-spark.github.io/BUFFER-X/"
@@ -63,7 +63,7 @@
   status: "accepted"
   year: 2025
   type: "conference"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/MambaGlue.png"
   arxiv: "https://arxiv.org/abs/2503.07940"
   github: "https://github.com/url-kaist/MambaGlue"
   generate_news: true
