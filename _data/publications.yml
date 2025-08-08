@@ -3,30 +3,6 @@
 # Each publication can auto-generate news entries based on status changes
 
 # 2025 Publications
-- id: "multi_mapcher_2025"
-  title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
-  authors: "Hyungtae Lim*, Daebeom Kim*, and Hyun Myung"
-  my_name: "Hyungtae Lim"
-  venue: "IEEE Trans. Intell. Veh. (T-IV)"
-  status: "under_review"
-  year: 2025
-  type: "journal"
-  image: "/img/publications/BUFFER-X.gif"  # placeholder
-  generate_news: true
-  news_template: "📝🚀 {title} submitted to {venue}"
-
-- id: "obstacle_aware_quadruped_2025"
-  title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
-  authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
-  my_name: "Hyungtae Lim"
-  venue: "IEEE Trans. Robot. (T-RO)"
-  status: "under_review"
-  year: 2025
-  type: "journal"
-  image: "/img/publications/BUFFER-X.gif"  # placeholder
-  generate_news: true
-  news_template: "📝🤖 {title} submitted to {venue}"
-
 - id: "mambaglue_2025"
   title: "MambaGlue: Fast and Robust Local Feature Matching With Mamba"
   authors: "Kihwan Ryoo, Hyungtae Lim, and Hyun Myung"
