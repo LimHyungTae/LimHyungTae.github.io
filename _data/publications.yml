@@ -3,6 +3,37 @@
 # Uses venue_key from _data/venues.yml for consistent naming
 
 # 2025 Publications
+- id: "multi_mapcher_2025"
+  title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
+  authors: "Hyungtae Lim, Daebeom Kim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "tiv"
+  venue_type: "journal"
+  status: "accepted"
+  year: 2025
+  type: "journal"
+  github: "https://github.com/url-kaist/multi-mapcher"
+  image: "/img/publications/multi_mapcher.png"
+  arxiv: "https://arxiv.org/abs/2409.15615"
+  generate_news: true
+  news_date: "Dec. 10, 2025"
+  news_template: "📝🦾 <a href='{github}'>Multi-Mapcher</a> is accepted to T-IV"
+
+- id: "obstacle_aware_quadruped_2025"
+  title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
+  authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "tro"
+  venue_type: "journal"
+  status: "accepted"
+  year: 2025
+  type: "journal"
+  image: "/img/publications/quad_locomotion.png"
+  arxiv: "https://arxiv.org/pdf/2409.19709"
+  generate_news: true
+  news_date: "Dec. 1, 2025"
+  news_template: "📝🦾 My first T-RO paper has been accepted"
+
 - id: "vggtslam_2025"
   title: "VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
   authors: "Dominic Maggio*, Hyungtae Lim*, and Luca Carlone"
@@ -28,6 +59,20 @@
   news_date: "Aug. 25, 2025"
   # news_template: "📝🏆 <a href='{arxiv}'>VGGT-SLAM</a> has been accepted in NeurIPS!"
 
+- id: "lvi_q_2025"
+  title: "LVI-Q: Robust LiDAR-Visual-Inertial-Kinematic Odometry for Quadruped Robots Using Tightly-Coupled and Efficient Alternating Optimization"
+  authors: "Kevin Christiansen Marsim, Minho Oh, Byeongho Yu, Seungjae Lee, I Made Aswin Nahrendra, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "ral"
+  venue_type: "journal"
+  status: "accepted"
+  year: 2025
+  type: "journal"
+  arxiv: "https://arxiv.org/abs/2505.12549"
+  image: "/img/publications/LVI-Q.png"
+  generate_news: true
+  news_date: "Aug. 24, 2025"
+  news_template: "📝🦾 LVI-Q is accepted to RA-L"
 
 - id: "buffer_x_2025"
   title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
@@ -86,51 +131,6 @@
   news_date: "Feb. 25, 2025"
   news_template: "📝🦾 <a href='{github}'>KISS-Matcher</a> is accepted to ICRA 2025"
 
-- id: "multi_mapcher_2025"
-  title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
-  authors: "Hyungtae Lim, Daebeom Kim, and Hyun Myung"
-  my_name: "Hyungtae Lim"
-  venue_key: "tiv"
-  venue_type: "journal"
-  status: "accepted"
-  year: 2025
-  type: "journal"
-  github: "https://github.com/url-kaist/multi-mapcher"
-  image: "/img/publications/multi_mapcher.png"
-  arxiv: "https://arxiv.org/abs/2409.15615"
-  generate_news: true
-  news_date: "Dec. 10, 2025"
-  news_template: "📝🦾 <a href='{github}'>Multi-Mapcher</a> is accepted to T-IV"
-
-- id: "lvi_q_2025"
-  title: "LVI-Q: Robust LiDAR-Visual-Inertial-Kinematic Odometry for Quadruped Robots Using Tightly-Coupled and Efficient Alternating Optimization"
-  authors: "Kevin Christiansen Marsim, Minho Oh, Byeongho Yu, Seungjae Lee, I Made Aswin Nahrendra, Hyungtae Lim, and Hyun Myung"
-  my_name: "Hyungtae Lim"
-  venue_key: "ral"
-  venue_type: "journal"
-  status: "accepted"
-  year: 2025
-  type: "journal"
-  image: "/img/publications/LVI-Q.png"
-  generate_news: true
-  news_date: "Aug. 24, 2025"
-  news_template: "📝🦾 LVI-Q is accepted to RA-L"
-
-
-- id: "obstacle_aware_quadruped_2025"
-  title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
-  authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
-  my_name: "Hyungtae Lim"
-  venue_key: "tro"
-  venue_type: "journal"
-  status: "accepted"
-  year: 2025
-  type: "journal"
-  image: "/img/publications/quad_locomotion.png"
-  arxiv: "https://arxiv.org/pdf/2409.19709"
-  generate_news: true
-  news_date: "Dec. 1, 2025"
-  news_template: "📝🦾 My first T-RO paper has been accepted"
 
 # 2024 Publications
 - id: "similar_survey_2024"
