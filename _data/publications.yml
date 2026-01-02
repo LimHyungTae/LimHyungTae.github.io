@@ -46,8 +46,6 @@
   image: "/img/publications/vggt_slam_demo.gif"
   arxiv: "https://arxiv.org/abs/2505.12549"
   github: "https://github.com/MIT-SPARK/VGGT-SLAM"
-  # project_page: "https://mit-spark.github.io/BUFFER-X/"
-  # video_link: "https://www.youtube.com/watch?v=example"
   bibtex: |
     @article{maggio2025vggt,
       title={VGGT-SLAM: Dense RGB SLAM Optimized on the SL (4) Manifold},
@@ -55,9 +53,9 @@
       journal={arXiv preprint arXiv:2505.12549},
       year={2025}
     }
-  generate_news: false
+  generate_news: true
   news_date: "Aug. 25, 2025"
-  # news_template: "📝🏆 <a href='{arxiv}'>VGGT-SLAM</a> has been accepted in NeurIPS!"
+  news_template: "📝🏆 <a href='{arxiv}'>VGGT-SLAM</a> has been accepted in NeurIPS!"
 
 - id: "lvi_q_2025"
   title: "LVI-Q: Robust LiDAR-Visual-Inertial-Kinematic Odometry for Quadruped Robots Using Tightly-Coupled and Efficient Alternating Optimization"
@@ -161,7 +159,7 @@
   number: "1"
   pages: "152-159"
   date: "Nov. 14, 2024"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/GenZ-ICP.gif"
   arxiv: https://arxiv.org/abs/2411.06766
   video_link: https://www.youtube.com/watch?v=CU6aAiTIO6Y
   github: "https://github.com/cocel-postech/genz-icp"
