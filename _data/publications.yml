@@ -7,7 +7,7 @@
   title: "VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
   authors: "Dominic Maggio*, Hyungtae Lim*, and Luca Carlone"
   my_name: "Hyungtae Lim"
-  venue_key: "arxiv"
+  venue_key: "neurips"
   venue_type: "conference"
   status: "accepted"
   year: 2025
@@ -79,25 +79,27 @@
   status: "accepted"
   year: 2025
   type: "conference"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/kiss_matcher.png"
   arxiv: "https://arxiv.org/abs/2409.15615"
   github: "https://github.com/MIT-SPARK/KISS-Matcher"
   generate_news: true
   news_date: "Feb. 25, 2025"
   news_template: "📝🦾 <a href='{github}'>KISS-Matcher</a> is accepted to ICRA 2025"
 
-# - id: "multi_mapcher_2025"
-#   title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
-#   authors: "Hyungtae Lim*, Daebeom Kim*, and Hyun Myung"
-#   my_name: "Hyungtae Lim"
-#   venue_key: "tiv"
-#   venue_type: "journal"
-#   status: "under_review"
-#   year: 2025
-#   type: "journal"
-#   image: "/img/publications/BUFFER-X.gif"
-#   generate_news: true
-#   news_template: "📝🚀 {title} submitted to {venue}"
+- id: "multi_mapcher_2025"
+  title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
+  authors: "Hyungtae Lim, Daebeom Kim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "tiv"
+  venue_type: "journal"
+  status: "accepted"
+  year: 2025
+  type: "journal"
+  github: "https://github.com/url-kaist/multi-mapcher"
+  image: "/img/publications/BUFFER-X.gif"
+  generate_news: true
+  news_date: "Dec. 10, 2025"
+  news_template: "📝🦾 <a href='{github}'>Multi-Mapcher</a> is accepted to T-IV"
 
 # - id: "obstacle_aware_quadruped_2025"
 #   title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
