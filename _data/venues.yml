@@ -11,6 +11,7 @@ journals:
   jisr: "J. Intell. Serv. Robot."
 
 conferences:
+  neurips: "Conf. Neural Information Processing System (NeurIPS)"
   icra: "IEEE Int. Conf. Robot. Automat. (ICRA)"
   iros: "IEEE/RSJ Int. Conf. Intell. Robot. Syst. (IROS)"
   rss: "Robotics: Science and Systems (RSS)"
