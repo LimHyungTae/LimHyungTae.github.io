@@ -305,7 +305,7 @@
   location: "Xian, China"
   date: "Dec. 6-8, 2023"
   award: "Best Paper Award"
-  # image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
   arxiv: "https://arxiv.org/abs/2408.05453"
 
 - id: "line_slam_robustness_2023"
@@ -321,7 +321,7 @@
   date: "Oct. 1-5, 2023"
   pages: "3483-3490"
   arxiv: "https://ieeexplore.ieee.org/document/10342497"
-  # image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "erasor2_2023"
   title: "ERASOR2: Instance-Aware Robust 3D Mapping of the Static World in Dynamic Scenes"
@@ -334,7 +334,7 @@
   type: "conference"
   location: "Daegu, South Korea"
   date: "Jul. 15-19, 2023"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "adalio_2023"
   title: "AdaLIO: Robust Adaptive LiDAR-Inertial Odometry in Degenerate Indoor Environments"
@@ -348,7 +348,7 @@
   location: "Hawaii, U.S."
   date: "Jun. 25-28, 2023"
   pages: "48-53"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "orora_2023"
   title: "ORORA: Outlier-Robust Radar Odometry"
@@ -362,7 +362,7 @@
   location: "London, UK"
   date: "May 29-Jun. 2, 2023"
   pages: "2046-2053"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 # 2022 Publications
 - id: "dynavins_2022"
@@ -378,7 +378,7 @@
   number: "4"
   pages: "11523-11530"
   date: "Oct. 31, 2022"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "travel_2022"
   title: "TRAVEL: Traversable Ground and Above-Ground Object Segmentation Using Graph Representation of 3D LiDAR Scans"
@@ -394,7 +394,7 @@
   pages: "7255-7262"
   date: "Jun. 13, 2022"
   award: "Won 2022 IEEE RA-L Best Paper Award"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "g2p_slam_2022"
   title: "G2P-SLAM: Generalized RGB-D SLAM Framework for Mobile Robots in Low-Dynamic Environments"
@@ -408,7 +408,7 @@
   volume: "10"
   pages: "21370-21383"
   date: "Feb. 11, 2022"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "patchwork_plus_2022"
   title: "Patchwork++: Fast and Robust Ground Segmentation Solving Partial Under-Segmentation Using 3D point cloud"
@@ -422,7 +422,7 @@
   location: "Kyoto, Japan"
   date: "Oct. 22-27, 2022"
   pages: "13276-13283"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "single_correspondence_2022"
   title: "A Single Correspondence Is Enough: Robust Global Registration to Avoid Degeneracy in Urban Environments"
@@ -436,7 +436,7 @@
   location: "Philadelphia, USA"
   date: "May 23-27, 2022"
   pages: "8010-8017"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 # 2021 Publications
 - id: "deep_learning_airspeed_2021"
@@ -452,7 +452,7 @@
   number: "1"
   pages: "17-24"
   date: "Oct. 1, 2021"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "patchwork_2021"
   title: "Patchwork: Concentric Zone-Based Region-Wise Ground Segmentation With Ground Likelihood Estimation Using a 3D LiDAR Sensor"
@@ -468,7 +468,7 @@
   number: "4"
   pages: "6458-6465"
   date: "Jun. 28, 2021"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "hale_uav_2021"
   title: "State Estimation of HALE UAV With Deep Learning-Aided Virtual AOA/SSA Sensor for Analytical Redundancy"
@@ -483,7 +483,7 @@
   number: "3"
   pages: "5276-5283"
   date: "Apr. 19, 2021"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
 
 - id: "erasor_2021"
   title: "ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building"
@@ -499,4 +499,5 @@
   number: "2"
   pages: "2272-2279"
   date: "Feb. 23, 2021"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/TBU.png"
+  arxiv: "https://arxiv.org/abs/2103.04316"
