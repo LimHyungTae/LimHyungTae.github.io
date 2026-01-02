@@ -96,23 +96,41 @@
   year: 2025
   type: "journal"
   github: "https://github.com/url-kaist/multi-mapcher"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/multi_mapcher.png"
+  arxiv: "https://arxiv.org/abs/2409.15615"
   generate_news: true
   news_date: "Dec. 10, 2025"
   news_template: "📝🦾 <a href='{github}'>Multi-Mapcher</a> is accepted to T-IV"
 
-# - id: "obstacle_aware_quadruped_2025"
-#   title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
-#   authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
-#   my_name: "Hyungtae Lim"
-#   venue_key: "tro"
-#   venue_type: "journal"
-#   status: "under_review"
-#   year: 2025
-#   type: "journal"
-#   image: "/img/publications/BUFFER-X.gif"
-#   generate_news: true
-#   news_template: "📝🤖 {title} submitted to {venue}"
+- id: "lvi_q_2025"
+  title: "LVI-Q: Robust LiDAR-Visual-Inertial-Kinematic Odometry for Quadruped Robots Using Tightly-Coupled and Efficient Alternating Optimization"
+  authors: "Kevin Christiansen Marsim, Minho Oh, Byeongho Yu, Seungjae Lee, I Made Aswin Nahrendra, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "ral"
+  venue_type: "journal"
+  status: "accepted"
+  year: 2025
+  type: "journal"
+  image: "/img/publications/BUFFER-X.gif"
+  generate_news: true
+  news_date: "Aug. 24, 2025"
+  news_template: "📝🦾 LVI-Q is accepted to RA-L"
+
+
+- id: "obstacle_aware_quadruped_2025"
+  title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
+  authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "tro"
+  venue_type: "journal"
+  status: "accepted"
+  year: 2025
+  type: "journal"
+  image: "/img/publications/quad_locomotion.png"
+  arxiv: "https://arxiv.org/pdf/2409.19709"
+  generate_news: true
+  news_date: "Dec. 1, 2025"
+  news_template: "📝🦾 My first T-RO paper has been accepted"
 
 # 2024 Publications
 - id: "similar_survey_2024"
