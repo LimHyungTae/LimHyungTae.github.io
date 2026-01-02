@@ -28,7 +28,7 @@
   status: "accepted"
   year: 2025
   type: "journal"
-  image: "/img/publications/quad_locomotion.png"
+  image: "/img/publications/quad_locomotion2.png"
   arxiv: "https://arxiv.org/pdf/2409.19709"
   generate_news: true
   news_date: "Dec. 1, 2025"
@@ -93,7 +93,7 @@
   year: 2025
   type: "conference"
   image: "/img/publications/MambaGlue.png"
-  arxiv: "https://arxiv.org/abs/2503.07940"
+  arxiv: "https://arxiv.org/abs/2502.00462"
   github: "https://github.com/url-kaist/MambaGlue"
   generate_news: true
   news_date: "Feb. 25, 2025"
@@ -166,7 +166,7 @@
   number: "10"
   pages: "9127-9134"
   date: "Sep. 6, 2024"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/dynavins.png"
   arxiv: "https://arxiv.org/abs/2410.15373"
   ieee_link: "https://ieeexplore.ieee.org/abstract/document/10669187"
   generate_news: true
@@ -275,7 +275,7 @@
   date: "Apr. 20, 2023"
   arxiv: "https://arxiv.org/abs/2304.08660"
   github: "https://github.com/alexjunholee/LC2_crossmatching"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/LC2.png"
 
 - id: "xmas_2023"
   title: "X-MAS: Extremely Large-Scale Multi-Modal Sensor Dataset for Outdoor Surveillance in Real Environments"
@@ -305,7 +305,8 @@
   location: "Xian, China"
   date: "Dec. 6-8, 2023"
   award: "Best Paper Award"
-  image: "/img/publications/BUFFER-X.gif"
+  # image: "/img/publications/BUFFER-X.gif"
+  arxiv: "https://arxiv.org/abs/2408.05453"
 
 - id: "line_slam_robustness_2023"
   title: "Enhancing Robustness of Line Tracking Through Semi-Dense Epipolar Search in Line-based SLAM"
@@ -319,7 +320,8 @@
   location: "Detroit, U.S."
   date: "Oct. 1-5, 2023"
   pages: "3483-3490"
-  image: "/img/publications/BUFFER-X.gif"
+  arxiv: "https://ieeexplore.ieee.org/document/10342497"
+  # image: "/img/publications/BUFFER-X.gif"
 
 - id: "erasor2_2023"
   title: "ERASOR2: Instance-Aware Robust 3D Mapping of the Static World in Dynamic Scenes"
