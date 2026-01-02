@@ -235,7 +235,7 @@
   location: "Seattle, U.S."
   date: "Jun. 17-21, 2024"
   pages: "3732-3742"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/contextrast.png"
   arxiv: "https://arxiv.org/abs/2404.10633"
   generate_news: true
   news_date: "Feb. 24"
