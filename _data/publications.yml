@@ -287,6 +287,8 @@
   number: "6"
   pages: "3589-3596"
   date: "Apr. 20, 2023"
+  arxiv: "https://arxiv.org/abs/2304.08660"
+  github: "https://github.com/alexjunholee/LC2_crossmatching"
   image: "/img/publications/BUFFER-X.gif"
 
 - id: "xmas_2023"
@@ -302,7 +304,8 @@
   number: "2"
   pages: "1093-1100"
   date: "Jan. 12, 2023"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/xmas.png"
+  arxiv: "https://arxiv.org/abs/2212.14574"
 
 - id: "toss_2023"
   title: "TOSS: Real-time Tracking and Moving Object Segmentation for Static Scene Mapping"
