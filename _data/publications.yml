@@ -46,13 +46,6 @@
   image: "/img/publications/vggt_slam_demo.gif"
   arxiv: "https://arxiv.org/abs/2505.12549"
   github: "https://github.com/MIT-SPARK/VGGT-SLAM"
-  bibtex: |
-    @article{maggio2025vggt,
-      title={VGGT-SLAM: Dense RGB SLAM Optimized on the SL (4) Manifold},
-      author={Maggio, Dominic and Lim, Hyungtae and Carlone, Luca},
-      journal={arXiv preprint arXiv:2505.12549},
-      year={2025}
-    }
   generate_news: true
   news_date: "Aug. 25, 2025"
   news_template: "📝🏆 <a href='{arxiv}'>VGGT-SLAM</a> has been accepted in NeurIPS!"
@@ -86,13 +79,6 @@
   github: "https://github.com/MIT-SPARK/BUFFER-X"
   # project_page: "https://mit-spark.github.io/BUFFER-X/"
   video_link: "https://www.youtube.com/watch?v=vGlQuBhjrPI"
-  bibtex: |
-    @inproceedings{seo2025buffer,
-      title={BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes},
-      author={Seo, Minkyun and Lim, Hyungtae and others},
-      booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-      year={2025}
-    }
   generate_news: true
   news_date: "July 25, 2025"
   news_template: "📝🏆 <a href='{arxiv}'>BUFFER-X</a> has been accepted in ICCV 2025 & selected as highlight!"
