@@ -111,7 +111,7 @@
   status: "accepted"
   year: 2025
   type: "journal"
-  image: "/img/publications/BUFFER-X.gif"
+  image: "/img/publications/LVI-Q.png"
   generate_news: true
   news_date: "Aug. 24, 2025"
   news_template: "📝🦾 LVI-Q is accepted to RA-L"
