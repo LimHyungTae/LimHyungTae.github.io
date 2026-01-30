@@ -58,13 +58,13 @@ I am passionate about open-source research and actively contribute to the roboti
 
 ---
 
-## Research Interests
+<!-- ## Research Interests -->
 
-My research aims to enable terrestrial robots—including wheeled mobile robots, autonomous vehicles, and quadruped robots—to operate reliably in complex, real-world environments. I focus on three interconnected areas: (1) **robust egocentric perception**, developing algorithms for ground segmentation and traversability estimation that work across diverse platforms and sensor configurations; (2) **outlier-robust SLAM**, designing localization and mapping systems that handle spurious correspondences, sensor noise, and dynamic objects; and (3) **lifelong map management**, building techniques for static map construction and multi-session SLAM that allow robots to maintain and update their spatial understanding over extended operations.
+<!-- My research aims to enable terrestrial robots—including wheeled mobile robots, autonomous vehicles, and quadruped robots—to operate reliably in complex, real-world environments. I focus on three interconnected areas: (1) **robust egocentric perception**, developing algorithms for ground segmentation and traversability estimation that work across diverse platforms and sensor configurations; (2) **outlier-robust SLAM**, designing localization and mapping systems that handle spurious correspondences, sensor noise, and dynamic objects; and (3) **lifelong map management**, building techniques for static map construction and multi-session SLAM that allow robots to maintain and update their spatial understanding over extended operations. -->
 
-I am particularly interested in algorithms that generalize well beyond their training conditions and that can be easily reproduced and deployed by other researchers and practitioners.
+<!-- I am particularly interested in algorithms that generalize well beyond their training conditions and that can be easily reproduced and deployed by other researchers and practitioners. -->
 
----
+<!-- --- -->
 
 ## Selected Honors
 
