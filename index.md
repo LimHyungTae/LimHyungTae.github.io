@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Hyungtae Lim
-use-site-title: true
 ---
 
 I am a Postdoctoral Associate in the [Laboratory for Information and Decision Systems](https://lids.mit.edu/) (LIDS) at [MIT](https://mit.edu/), where I work with [Luca Carlone](https://lucacarlone.mit.edu/) in the [SPARK Lab](http://web.mit.edu/sparklab/). My research focuses on developing robust algorithms for robot perception, state estimation, and lifelong mapping that enable long-term autonomy in real-world environments.

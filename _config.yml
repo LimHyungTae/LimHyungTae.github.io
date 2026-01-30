@@ -18,7 +18,7 @@ baseurl: ""
 
 # List of links in the navigation bar
 navbar-links:
-  About: ""
+  Hyungtae Lim: ""
   Publications: "publications"
   Post Lists: "posts"
   #Resources:
