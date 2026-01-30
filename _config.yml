@@ -18,9 +18,9 @@ baseurl: ""
 
 # List of links in the navigation bar
 navbar-links:
-  Hyungtae Lim: "hyungtae-lim"
+  About: ""
   Publications: "publications"
-  Post Lists: "lectures"
+  Post Lists: "posts"
   #Resources:
     #- Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     #- Learn markdown: "http://www.markdowntutorial.com/"
