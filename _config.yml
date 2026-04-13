@@ -19,6 +19,7 @@ baseurl: ""
 # List of links in the navigation bar
 navbar-links:
   Publications: "publications"
+  SLAM: "slam"
   Post Lists: "posts"
   #Resources:
     #- Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
