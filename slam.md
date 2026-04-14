@@ -72,14 +72,14 @@ permalink: /slam/
 }
 
 .btn-video {
-    background-color: #ff0000;
+    background-color: #1B2C8F;
     color: white !important;
-    border: 1px solid #ff0000;
+    border: 1px solid #1B2C8F;
 }
 
 .btn-video:hover {
-    background-color: #cc0000;
-    border-color: #cc0000;
+    background-color: #142373;
+    border-color: #142373;
     text-decoration: none !important;
     color: white !important;
 }
