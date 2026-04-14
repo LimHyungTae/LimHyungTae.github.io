@@ -148,7 +148,7 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
     <span class="lecture-title"><span class="lecture-num">1-1.</span> SLAM이란 무엇인가?</span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
+      <a href="https://www.dropbox.com/scl/fi/7owksuii3djeqacchlc15/Lec01_SLAM_for_everyone.pdf?rlkey=wg5a9c9ocr8j4w0vfs1q1i9op&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
@@ -161,7 +161,7 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
     <span class="lecture-title"><span class="lecture-num">2-1.</span> Robot Navigation의 분류와 용어 정리</span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
+      <a href="https://www.dropbox.com/scl/fi/9zju3acvd22oy8cab3jpt/Lec02_SLAM_for_everyone.pdf?rlkey=4mf4wngii91b5bxo9ngio29tg&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
