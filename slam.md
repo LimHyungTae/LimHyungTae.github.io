@@ -168,7 +168,7 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 3: State, Measurement, and Estimation</h3>
+<h3>Lecture 3: State, Measurement, and Estimation (TBU)</h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">3-1.</span> State, measurement, estimation의 개념</span>
@@ -181,7 +181,7 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</h3>
+<h3>Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP) (TBU)</h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">4-1.</span> MLE와 MAP의 개념과 SLAM에서의 역할</span>
@@ -194,7 +194,7 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 5: Kalman Filter</h3>
+<h3>Lecture 5: Kalman Filter (TBU)</h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">5-1.</span> Kalman filter의 원리와 SLAM 적용</span>
@@ -207,7 +207,7 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>To be updated</h3>
+<h3>To be updated...</h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">6-1.</span> To be updated</span>
