@@ -480,11 +480,12 @@
   status: "published"
   year: 2021
   type: "journal"
+  arvix: "https://arxiv.org/abs/2108.05560"
+  github: "https://github.com/LimHyungTae/patchwork"
   volume: "6"
   number: "4"
   pages: "6458-6465"
   date: "Jun. 28, 2021"
-  arvix: "https://arxiv.org/abs/2108.05560"
   image: "/img/publications/patchwork.gif"
 
 - id: "hale_uav_2021"
@@ -520,3 +521,4 @@
   date: "Feb. 23, 2021"
   image: "/img/publications/erasor.gif"
   arxiv: "https://arxiv.org/abs/2103.04316"
+  video_link: "https://www.youtube.com/watch?v=Nx27ZO8afm0"
