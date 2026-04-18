@@ -20,7 +20,7 @@
   news_template: "📝🦾 <a href='{github}'>Multi-Mapcher</a> is accepted to T-IV"
 
 - id: "obstacle_aware_quadruped_2025"
-  title: "Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
+  title: "DreamWaQ++: Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
   authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
   my_name: "Hyungtae Lim"
   venue_key: "tro"
@@ -33,6 +33,7 @@
   generate_news: true
   news_date: "Dec. 1, 2025"
   news_template: "📝🦾 My first T-RO paper has been accepted"
+  video_link: "https://www.youtube.com/watch?v=Img5a_yKjMs"
 
 - id: "vggtslam_2025"
   title: "VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
@@ -59,11 +60,12 @@
   status: "accepted"
   year: 2025
   type: "journal"
-  arxiv: "https://arxiv.org/abs/2505.12549"
+  arxiv: "https://arxiv.org/abs/2510.15220"
   image: "/img/publications/LVI-Q.png"
   generate_news: true
   news_date: "Aug. 24, 2025"
   news_template: "📝🦾 LVI-Q is accepted to RA-L"
+  video_link: https://www.youtube.com/watch?v=VfhK_iR3RP0
 
 - id: "buffer_x_2025"
   title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
@@ -353,7 +355,7 @@
   location: "Hawaii, U.S."
   date: "Jun. 25-28, 2023"
   pages: "48-53"
-  image: "/img/publications/TBU.png"
+  image: "/img/publications/adalio.png"
 
 - id: "orora_2023"
   title: "ORORA: Outlier-Robust Radar Odometry"
@@ -370,6 +372,7 @@
   date: "May 29-Jun. 2, 2023"
   pages: "2046-2053"
   image: "/img/publications/orora_title_video.gif"
+  video_link: https://www.youtube.com/watch?v=7ZMPtornIHA
 
 # 2022 Publications
 - id: "dynavins_2022"
@@ -388,6 +391,7 @@
   pages: "11523-11530"
   date: "Oct. 31, 2022"
   image: "/img/publications/dynavins.gif"
+  video_link: https://www.youtube.com/watch?v=UZ47TWUxvaw
 
 - id: "travel_2022"
   title: "TRAVEL: Traversable Ground and Above-Ground Object Segmentation Using Graph Representation of 3D LiDAR Scans"
@@ -406,6 +410,7 @@
   date: "Jun. 13, 2022"
   award: "Won 2022 IEEE RA-L Best Paper Award"
   image: "/img/publications/travel.gif"
+  video_link: https://www.youtube.com/watch?v=B3CWXAsPwzU
 
 - id: "g2p_slam_2022"
   title: "G2P-SLAM: Generalized RGB-D SLAM Framework for Mobile Robots in Low-Dynamic Environments"
@@ -437,6 +442,7 @@
   date: "Oct. 22-27, 2022"
   pages: "13276-13283"
   image: "/img/publications/patchwork_pp.gif"
+  video_link: https://www.youtube.com/watch?v=fogCM159GRk
 
 - id: "single_correspondence_2022"
   title: "A Single Correspondence Is Enough: Robust Global Registration to Avoid Degeneracy in Urban Environments"
@@ -448,10 +454,12 @@
   year: 2022
   type: "conference"
   github: "https://github.com/url-kaist/Quatro"
+  arxiv: "https://arxiv.org/abs/2203.06612"
   location: "Philadelphia, USA"
   date: "May 23-27, 2022"
   pages: "8010-8017"
   image: "/img/publications/quatro.png"
+  video_link: https://www.youtube.com/watch?v=TZJjQ1AWPZA
 
 # 2021 Publications
 - id: "deep_learning_airspeed_2021"
@@ -480,13 +488,14 @@
   status: "published"
   year: 2021
   type: "journal"
-  arvix: "https://arxiv.org/abs/2108.05560"
+  arxiv: "https://arxiv.org/abs/2108.05560"
   github: "https://github.com/LimHyungTae/patchwork"
   volume: "6"
   number: "4"
   pages: "6458-6465"
   date: "Jun. 28, 2021"
   image: "/img/publications/patchwork.gif"
+  video_link: https://www.youtube.com/watch?v=rclqeDi4gow
 
 - id: "hale_uav_2021"
   title: "State Estimation of HALE UAV With Deep Learning-Aided Virtual AOA/SSA Sensor for Analytical Redundancy"

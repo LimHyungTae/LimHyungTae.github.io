@@ -333,10 +333,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const starCountElement = element.querySelector('.star-count');
             if (stars !== null && starCountElement) {
                 starCountElement.textContent = stars.toLocaleString();
-                element.style.opacity = '1';
-            } else {
-                element.style.display = 'none';
             }
+            element.style.opacity = '1';
         }
     });
 });
