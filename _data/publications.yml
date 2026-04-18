@@ -2,6 +2,18 @@
 # Each publication can auto-generate news entries based on status changes
 # Uses venue_key from _data/venues.yml for consistent naming
 
+# 2026 Publications
+# - id: "hydra_plus_2026"
+#   title: "Hydra++: Real-Time Hierarchical 3D Scene Graph Construction With Object-Level Shape Estimation"
+#   authors: "Hyungtae Lim, Nathan Hughes, Xihang Yu, Ruihan Xu, Yun Chang, Jingnan Shi, Rajat Talak, and Luca Carlone"
+#   my_name: "Hyungtae Lim"
+#   venue_key: "iros"
+#   venue_type: "conference"
+#   status: "under_review"
+#   year: 2026
+#   type: "conference"
+#   image: "/img/publications/TBU.png"
+
 # 2025 Publications
 - id: "multi_mapcher_2025"
   title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
@@ -84,6 +96,20 @@
   generate_news: true
   news_date: "July 25, 2025"
   news_template: "📝🏆 <a href='{arxiv}'>BUFFER-X</a> has been accepted in ICCV 2025 & selected as highlight!"
+
+- id: "sawa_ml_2025"
+  title: "SaWa-ML: Structure-Aware Pose Correction and Weight Adaptation-Based Robust Multi-Robot Localization"
+  authors: "Junho Choi, Kihwan Ryoo, Jeewon Kim, Taeyun Kim, Eungchang Lee, Myeongwoo Jeong, Kevin Christiansen Marsim, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2025
+  type: "conference"
+  pages: "9170-9177"
+  arxiv: "https://arxiv.org/abs/2507.13702"
+  video_link: "https://youtu.be/Uf5fwmYcuq4"
+  image: "/img/publications/TBU.png"
 
 - id: "mambaglue_2025"
   title: "MambaGlue: Fast and Robust Local Feature Matching With Mamba"
@@ -309,7 +335,7 @@
   location: "Xian, China"
   date: "Dec. 6-8, 2023"
   award: "Best Paper Award"
-  image: "/img/publications/TBU.png"
+  image: "/img/publications/toss_compressed.mp4"
   arxiv: "https://arxiv.org/abs/2408.05453"
 
 - id: "line_slam_robustness_2023"
@@ -325,7 +351,7 @@
   date: "Oct. 1-5, 2023"
   pages: "3483-3490"
   arxiv: "https://ieeexplore.ieee.org/document/10342497"
-  image: "/img/publications/TBU.png"
+  image: "/img/publications/enhancing_line.jpeg"
 
 - id: "erasor2_2023"
   title: "ERASOR2: Instance-Aware Robust 3D Mapping of the Static World in Dynamic Scenes"
@@ -341,6 +367,7 @@
   location: "Daegu, South Korea"
   date: "Jul. 15-19, 2023"
   image: "/img/publications/erasor2.mp4"
+  video_link: "https://www.youtube.com/watch?v=MIVdlZTnSPI"
 
 - id: "adalio_2023"
   title: "AdaLIO: Robust Adaptive LiDAR-Inertial Odometry in Degenerate Indoor Environments"
@@ -426,6 +453,7 @@
   date: "Feb. 11, 2022"
   arxiv: "https://ieeexplore.ieee.org/document/9712275"
   image: "/img/publications/G2P-SLAM.png"
+  video_link: "https://www.youtube.com/watch?v=Zl0cwt8BT1Y"
 
 - id: "patchwork_plus_2022"
   title: "Patchwork++: Fast and Robust Ground Segmentation Solving Partial Under-Segmentation Using 3D point cloud"
@@ -443,6 +471,37 @@
   pages: "13276-13283"
   image: "/img/publications/patchwork_pp.gif"
   video_link: https://www.youtube.com/watch?v=fogCM159GRk
+
+- id: "ecdt_2022"
+  title: "eCDT: Event Clustering for Simultaneous Feature Detection and Tracking"
+  authors: "Sumin Hu, Yeeun Kim, Hyungtae Lim, Alex Junho Lee, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2022
+  type: "conference"
+  location: "Kyoto, Japan"
+  date: "Oct. 22-27, 2022"
+  pages: "3808-3815"
+  arxiv: "https://arxiv.org/abs/2207.09108"
+  video_link: "https://www.youtube.com/watch?v=eS-3PP-8sek"
+  image: "/img/publications/TBU.png"
+
+- id: "pago_loam_2022"
+  title: "PaGO-LOAM: Robust Ground-Optimized LiDAR Odometry"
+  authors: "Dong-Uk Seo, Hyungtae Lim, Seungjae Lee, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "ur"
+  venue_type: "conference"
+  status: "published"
+  year: 2022
+  type: "conference"
+  location: "Jeju, Republic of Korea"
+  date: "Jul. 4-6, 2022"
+  pages: "1-7"
+  arxiv: "https://arxiv.org/abs/2206.00266"
+  image: "/img/publications/TBU.png"
 
 - id: "single_correspondence_2022"
   title: "A Single Correspondence Is Enough: Robust Global Registration to Avoid Degeneracy in Urban Environments"
@@ -531,3 +590,79 @@
   image: "/img/publications/erasor.gif"
   arxiv: "https://arxiv.org/abs/2103.04316"
   video_link: "https://www.youtube.com/watch?v=Nx27ZO8afm0"
+
+- id: "tilting_multirotor_2021"
+  title: "Low-level Pose Control of Tilting Multirotor for Wall Perching Tasks Using Reinforcement Learning"
+  authors: "Hyungyu Lee, Myeongwoo Jeong, Chanyoung Kim, Hyungtae Lim, Changgue Park, Sungwon Hwang, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2021
+  type: "conference"
+  location: "Prague, Czech Republic (Virtual)"
+  date: "Sep. 27-Oct. 1, 2021"
+  pages: "9669-9676"
+  arxiv: "https://arxiv.org/abs/2108.05457"
+  image: "/img/publications/TBU.png"
+
+- id: "real_2021"
+  title: "REAL: Rapid Exploration With Active Loop-Closing Toward Large-Scale 3D Mapping Using UAVs"
+  authors: "Eungchang Mason Lee, Junho Choi, Hyungtae Lim, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2021
+  type: "conference"
+  location: "Prague, Czech Republic (Virtual)"
+  date: "Sep. 27-Oct. 1, 2021"
+  pages: "4194-4198"
+  arxiv: "https://arxiv.org/abs/2108.02590"
+  video_link: "https://www.youtube.com/watch?v=Ux6ir2_ayoY"
+  image: "/img/publications/TBU.png"
+
+# 2020 Publications
+- id: "msdpn_2020"
+  title: "MSDPN: Monocular Depth Prediction With Partial Laser Observation Using Multi-stage Neural Networks"
+  authors: "Hyungtae Lim, Hyeonjae Gil, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2020
+  type: "conference"
+  location: "Las Vegas, USA (Virtual)"
+  date: "Oct. 24-Dec. 24, 2020"
+  pages: "10750-10757"
+  arxiv: "https://arxiv.org/abs/2008.01405"
+  image: "/img/publications/TBU.png"
+
+# 2019 Publications
+- id: "ronet_2019"
+  title: "RONet: Real-Time Range-Only Indoor Localization via Stacked Bidirectional LSTM with Residual Attention"
+  authors: "Hyungtae Lim, Changgue Park, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2019
+  type: "conference"
+  location: "Macau, China"
+  date: "Nov. 4-8, 2019"
+  pages: "3241-3247"
+  image: "/img/publications/TBU.png"
+
+# 2018 Publications
+- id: "rnn_range_localization_2018"
+  title: "Recurrent Neural Networks for Range-Based Indoor Robot Localization"
+  authors: "Hyungtae Lim, Jungmo Koo, Jieum Hyun, and Hyun Myung"
+  my_name: "Hyungtae Lim"
+  venue_key: "iros"
+  venue_type: "conference"
+  status: "published"
+  year: 2018
+  type: "conference"
+  location: "Madrid, Spain"
+  date: "Oct. 1-5, 2018"
+  image: "/img/publications/TBU.png"
