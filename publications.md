@@ -28,7 +28,8 @@ title: Publications
     justify-content: center;
 }
 
-.publication-image img {
+.publication-image img,
+.publication-image video {
     width: 100%;
     max-width: 240px;
     max-height: 180px;
@@ -147,7 +148,8 @@ title: Publications
         text-align: center;
     }
     
-    .publication-image img {
+    .publication-image img,
+    .publication-image video {
         width: 100%;
         max-width: 350px;
         max-height: 220px;
@@ -161,7 +163,8 @@ title: Publications
 }
 
 @media (max-width: 480px) {
-    .publication-image img {
+    .publication-image img,
+    .publication-image video {
         width: 100%;
         max-width: 300px;
         max-height: 200px;
@@ -202,10 +205,13 @@ I rarely update this page. Please refer to my [Google Scholar](https://scholar.g
 {% for pub in year_publications %}
 <div class="publication-item">
     <div class="publication-image">
-        {% if pub.image %}
-            <img src="{{ pub.image }}" alt="{{ pub.title }}">
+        {% assign media_src = pub.image | default: "/img/publications/BUFFER-X.gif" %}
+        {% if media_src contains ".mp4" or media_src contains ".webm" %}
+            <video autoplay loop muted playsinline preload="metadata">
+                <source src="{{ media_src }}" type="video/{% if media_src contains '.webm' %}webm{% else %}mp4{% endif %}">
+            </video>
         {% else %}
-            <img src="/img/publications/BUFFER-X.gif" alt="{{ pub.title }}">
+            <img src="{{ media_src }}" alt="{{ pub.title }}" loading="lazy">
         {% endif %}
     </div>
     <div class="publication-details">
