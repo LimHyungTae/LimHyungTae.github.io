@@ -422,7 +422,7 @@
   location: "Kyoto, Japan"
   date: "Oct. 22-27, 2022"
   pages: "13276-13283"
-  image: "/img/publications/patchwork_pp.png"
+  image: "/img/publications/patchwork_pp.gif"
 
 - id: "single_correspondence_2022"
   title: "A Single Correspondence Is Enough: Robust Global Registration to Avoid Degeneracy in Urban Environments"
