@@ -29,15 +29,11 @@ title: Publications
 }
 
 .publication-image img {
+    width: 100%;
     max-width: 240px;
     max-height: 180px;
-    width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    background-color: #f8f9fa;
-    padding: 10px;
 }
 
 .publication-details {
@@ -152,9 +148,9 @@ title: Publications
     }
     
     .publication-image img {
+        width: 100%;
         max-width: 350px;
         max-height: 220px;
-        width: auto;
         height: auto;
     }
     
@@ -166,6 +162,7 @@ title: Publications
 
 @media (max-width: 480px) {
     .publication-image img {
+        width: 100%;
         max-width: 300px;
         max-height: 200px;
     }
