@@ -419,6 +419,8 @@
   status: "published"
   year: 2022
   type: "conference"
+  github: "https://github.com/url-kaist/patchwork-plusplus"
+  arxiv: "https://arxiv.org/abs/2207.11919"
   location: "Kyoto, Japan"
   date: "Oct. 22-27, 2022"
   pages: "13276-13283"
@@ -433,6 +435,7 @@
   status: "published"
   year: 2022
   type: "conference"
+  github: "https://github.com/url-kaist/Quatro"
   location: "Philadelphia, USA"
   date: "May 23-27, 2022"
   pages: "8010-8017"
@@ -452,6 +455,7 @@
   number: "1"
   pages: "17-24"
   date: "Oct. 1, 2021"
+  arxiv: "https://ieeexplore.ieee.org/document/9556573" # No arXiv
   image: "/img/publications/deep_learning_airspeed.png"
 
 - id: "patchwork_2021"
@@ -468,6 +472,7 @@
   number: "4"
   pages: "6458-6465"
   date: "Jun. 28, 2021"
+  arvix: "https://arxiv.org/abs/2108.05560"
   image: "/img/publications/patchwork.gif"
 
 - id: "hale_uav_2021"
@@ -483,6 +488,7 @@
   number: "3"
   pages: "5276-5283"
   date: "Apr. 19, 2021"
+  arxiv: "https://ieeexplore.ieee.org/document/9408352" # No arXiv
   image: "/img/publications/hale_uav.png"
 
 - id: "erasor_2021"
@@ -495,6 +501,7 @@
   status: "published"
   year: 2021
   type: "journal"
+  github: "https://github.com/LimHyungTae/ERASOR"
   volume: "6"
   number: "2"
   pages: "2272-2279"
