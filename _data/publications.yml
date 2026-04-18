@@ -652,17 +652,3 @@
   date: "Nov. 4-8, 2019"
   pages: "3241-3247"
   image: "/img/publications/TBU.png"
-
-# 2018 Publications
-- id: "rnn_range_localization_2018"
-  title: "Recurrent Neural Networks for Range-Based Indoor Robot Localization"
-  authors: "Hyungtae Lim, Jungmo Koo, Jieum Hyun, and Hyun Myung"
-  my_name: "Hyungtae Lim"
-  venue_key: "iros"
-  venue_type: "conference"
-  status: "published"
-  year: 2018
-  type: "conference"
-  location: "Madrid, Spain"
-  date: "Oct. 1-5, 2018"
-  image: "/img/publications/TBU.png"
