@@ -292,6 +292,7 @@
   date: "Jan. 12, 2023"
   image: "/img/publications/xmas.png"
   arxiv: "https://arxiv.org/abs/2212.14574"
+  github: "https://github.com/lge-robot-navi/X-MAS-Extremely-Large-Scale-Multi-Modal-Sensor-Dataset-for-Outdoor-Surveillance-in-Real-Environments"
 
 - id: "toss_2023"
   title: "TOSS: Real-time Tracking and Moving Object Segmentation for Static Scene Mapping"
