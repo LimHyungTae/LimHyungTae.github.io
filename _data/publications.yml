@@ -332,6 +332,8 @@
   status: "published"
   year: 2023
   type: "conference"
+  github: "https://github.com/url-kaist/ERASOR2"
+  arxiv: "https://www.ipb.uni-bonn.de/wp-content/papercite-data/pdf/lim2023rss.pdf"
   location: "Daegu, South Korea"
   date: "Jul. 15-19, 2023"
   image: "/img/publications/erasor2.mp4"
@@ -343,6 +345,7 @@
   venue_key: "ur"
   venue_type: "conference"
   status: "published"
+  arxiv: "https://arxiv.org/abs/2304.12577"
   year: 2023
   type: "conference"
   location: "Hawaii, U.S."
@@ -359,6 +362,8 @@
   status: "published"
   year: 2023
   type: "conference"
+  github: "https://github.com/url-kaist/outlier-robust-radar-odometry"
+  arxiv: "https://arxiv.org/abs/2303.01876"
   location: "London, UK"
   date: "May 29-Jun. 2, 2023"
   pages: "2046-2053"
@@ -374,6 +379,8 @@
   status: "published"
   year: 2022
   type: "journal"
+  github: "https://github.com/url-kaist/dynaVINS"
+  arxiv: "https://arxiv.org/abs/2208.11500"
   volume: "7"
   number: "4"
   pages: "11523-11530"
@@ -389,6 +396,8 @@
   status: "published"
   year: 2022
   type: "journal"
+  github: "https://github.com/url-kaist/TRAVEL"
+  arxiv: "https://arxiv.org/abs/2206.03190"
   volume: "7"
   number: "3"
   pages: "7255-7262"
@@ -408,6 +417,7 @@
   volume: "10"
   pages: "21370-21383"
   date: "Feb. 11, 2022"
+  arxiv: "https://ieeexplore.ieee.org/document/9712275"
   image: "/img/publications/G2P-SLAM.png"
 
 - id: "patchwork_plus_2022"
