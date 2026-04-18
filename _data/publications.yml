@@ -362,7 +362,7 @@
   location: "London, UK"
   date: "May 29-Jun. 2, 2023"
   pages: "2046-2053"
-  image: "/img/publications/TBU.png"
+  image: "/img/publications/orora_title_video.gif"
 
 # 2022 Publications
 - id: "dynavins_2022"
@@ -378,7 +378,7 @@
   number: "4"
   pages: "11523-11530"
   date: "Oct. 31, 2022"
-  image: "/img/publications/TBU.png"
+  image: "/img/publications/dynavins.gif"
 
 - id: "travel_2022"
   title: "TRAVEL: Traversable Ground and Above-Ground Object Segmentation Using Graph Representation of 3D LiDAR Scans"
@@ -394,7 +394,7 @@
   pages: "7255-7262"
   date: "Jun. 13, 2022"
   award: "Won 2022 IEEE RA-L Best Paper Award"
-  image: "/img/publications/TBU.png"
+  image: "/img/publications/travel.gif"
 
 - id: "g2p_slam_2022"
   title: "G2P-SLAM: Generalized RGB-D SLAM Framework for Mobile Robots in Low-Dynamic Environments"
