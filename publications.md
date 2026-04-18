@@ -191,8 +191,6 @@ I rarely update this page. Please refer to my [Google Scholar](https://scholar.g
 
 ## Selected Publications
 
-(On updating figures and meta information...)
-
 <div class="publications-container">
 
 <!-- Generated from _data/publications.yml -->
