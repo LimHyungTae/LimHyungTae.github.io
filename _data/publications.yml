@@ -502,7 +502,7 @@
   date: "Jul. 4-6, 2022"
   pages: "1-7"
   arxiv: "https://arxiv.org/abs/2206.00266"
-  image: "/img/publications/PaGO-LOAM.png"
+  image: "/img/publications/PaGO-LOAM.jpeg"
 
 - id: "single_correspondence_2022"
   title: "A Single Correspondence Is Enough: Robust Global Registration to Avoid Degeneracy in Urban Environments"
