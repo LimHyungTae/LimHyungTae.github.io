@@ -233,6 +233,8 @@ I rarely update this page. Please refer to my [Google Scholar](https://scholar.g
             
             {% if pub.status == 'accepted_highlight' %}
                 <span class="highlight">{{ venue_name }} (Highlight)</span>
+            {% elsif pub.status == 'best_paper_award' %}
+                <span class="highlight">{{ venue_name }} (Best Paper Award)</span>
             {% elsif pub.status == 'accepted' %}
                 {{ venue_name }}
             {% elsif pub.status == 'under_review' %}
