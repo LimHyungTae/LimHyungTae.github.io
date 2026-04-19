@@ -638,7 +638,7 @@
   date: "Oct. 24-Dec. 24, 2020"
   pages: "10750-10757"
   arxiv: "https://arxiv.org/abs/2008.01405"
-  image: "/img/publications/MSPDN.png"
+  image: "/img/publications/MSDPN.png"
 
 # 2019 Publications
 - id: "ronet_2019"
