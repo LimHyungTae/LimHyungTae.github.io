@@ -13,6 +13,18 @@
 #   year: 2026
 #   type: "conference"
 #   image: "/img/publications/TBU.png"
+- id: "buffer_x_2026"
+  title: "Towards Zero-Shot Point Cloud Registration Across Diverse Scales, Scenes, and Sensor Setups"
+  authors: "Hyungtae Lim*, Minkyun Seo*, Luca Carlone, and Jaesik Park"
+  my_name: "Hyungtae Lim"
+  venue_key: "arxiv"
+  year: 2026
+  type: "journal"
+  image: "/img/publications/BUFFER-X-TPAMI.png"
+  arxiv: "https://arxiv.org/abs/2601.02759"
+  github: "https://github.com/MIT-SPARK/BUFFER-X"
+  # project_page: "https://mit-spark.github.io/BUFFER-X/"
+
 - id: "obstacle_aware_quadruped_2026"
   title: "DreamWaQ++: Obstacle-Aware Quadrupedal Locomotion With Resilient Multi-Modal Reinforcement Learning"
   authors: "I Nahrendra, Byeongho Yu, Minho Oh, Dongkyu Lee, Seunghyun Lee, Hyeonwoo Lee, Hyungtae Lim, and Hyun Myung"
@@ -81,7 +93,7 @@
 
 - id: "buffer_x_2025"
   title: "BUFFER-X: Towards Zero-Shot Point Cloud Registration in Diverse Scenes"
-  authors: "Minkyun Seo*, Hyungtae Lim*, and collaborators"
+  authors: "Minkyun Seo*, Hyungtae Lim*, Kanghee Lee, Luca Carlone, and Jaesik Park"
   my_name: "Hyungtae Lim"
   venue_key: "iccv"
   venue_type: "conference"
