@@ -120,6 +120,46 @@ permalink: /slam/
     font-weight: 500;
 }
 
+/* --- Language toggle --- */
+.lang-toggle {
+    display: inline-flex;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.lang-toggle button {
+    padding: 6px 14px;
+    background: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    transition: all 0.15s ease;
+}
+
+.lang-toggle button + button {
+    border-left: 1px solid #dee2e6;
+}
+
+.lang-toggle button:hover {
+    background: #e9ecef;
+}
+
+.lang-toggle button.active {
+    background: #1B2C8F;
+    color: #fff;
+}
+
+/* Show only the active language.
+   Each translatable element is written twice — once with .lang-ko, once with .lang-en —
+   sitting next to each other in the markup. CSS hides whichever isn't currently selected.
+   To add new content: paste both language variants side-by-side; no JS edits needed. */
+body[data-lang="ko"] .lang-en { display: none !important; }
+body[data-lang="en"] .lang-ko { display: none !important; }
+
 @media (max-width: 576px) {
     .lecture-list li {
         flex-direction: column;
@@ -131,21 +171,32 @@ permalink: /slam/
 }
 </style>
 
+<div class="lang-toggle" role="group" aria-label="Language toggle">
+  <button type="button" data-lang="ko" class="active">한국어</button>
+  <button type="button" data-lang="en">English</button>
+</div>
+
 <div class="slam-intro">
-SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한 강의 시리즈입니다.
+<span class="lang-ko">SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한 강의 시리즈입니다.
 수학적 기초부터 실제 시스템 구현까지, SLAM의 전반적인 내용을 다룹니다.
-강의 자료는 순차적으로 업데이트될 예정입니다.
+강의 자료는 순차적으로 업데이트될 예정입니다.</span>
+<span class="lang-en">A lecture series for those who are new to SLAM (Simultaneous Localization and Mapping).
+From the mathematical foundations to real-world system implementations, we cover SLAM end-to-end.
+Materials will be updated sequentially.</span>
 </div>
 
 ---
 
-### Schedule
+### <span class="lang-ko">강의 일정</span><span class="lang-en">Schedule</span>
 
 <div class="slam-section">
-<h3>Lecture 1: Introduction</h3>
+<h3><span class="lang-ko">Lecture 1: Introduction</span><span class="lang-en">Lecture 1: Introduction</span></h3>
 <ul class="lecture-list">
   <li>
-    <span class="lecture-title"><span class="lecture-num">1-1.</span> SLAM이란 무엇인가?</span>
+    <span class="lecture-title"><span class="lecture-num">1-1.</span>
+      <span class="lang-ko">SLAM이란 무엇인가?</span>
+      <span class="lang-en">What is SLAM?</span>
+    </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/7owksuii3djeqacchlc15/Lec01_SLAM_for_everyone.pdf?rlkey=wg5a9c9ocr8j4w0vfs1q1i9op&dl=0" class="btn-slide">Slide</a>
@@ -155,10 +206,13 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 2: Categories & Terminology of Robot Navigation</h3>
+<h3><span class="lang-ko">Lecture 2: Categories &amp; Terminology of Robot Navigation</span><span class="lang-en">Lecture 2: Categories &amp; Terminology of Robot Navigation</span></h3>
 <ul class="lecture-list">
   <li>
-    <span class="lecture-title"><span class="lecture-num">2-1.</span> Robot Navigation의 분류와 용어 정리</span>
+    <span class="lecture-title"><span class="lecture-num">2-1.</span>
+      <span class="lang-ko">Robot Navigation의 분류와 용어 정리</span>
+      <span class="lang-en">Categories and terminology of robot navigation</span>
+    </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/9zju3acvd22oy8cab3jpt/Lec02_SLAM_for_everyone.pdf?rlkey=4mf4wngii91b5bxo9ngio29tg&dl=0" class="btn-slide">Slide</a>
@@ -168,10 +222,13 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 3: State, Measurement, and Estimation (TBU)</h3>
+<h3><span class="lang-ko">Lecture 3: State, Measurement, and Estimation (TBU)</span><span class="lang-en">Lecture 3: State, Measurement, and Estimation (TBU)</span></h3>
 <ul class="lecture-list">
   <li>
-    <span class="lecture-title"><span class="lecture-num">3-1.</span> State, measurement, estimation의 개념</span>
+    <span class="lecture-title"><span class="lecture-num">3-1.</span>
+      <span class="lang-ko">State, measurement, estimation의 개념</span>
+      <span class="lang-en">Concepts of state, measurement, and estimation</span>
+    </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
@@ -181,10 +238,13 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP) (TBU)</h3>
+<h3><span class="lang-ko">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP) (TBU)</span><span class="lang-en">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP) (TBU)</span></h3>
 <ul class="lecture-list">
   <li>
-    <span class="lecture-title"><span class="lecture-num">4-1.</span> MLE와 MAP의 개념과 SLAM에서의 역할</span>
+    <span class="lecture-title"><span class="lecture-num">4-1.</span>
+      <span class="lang-ko">MLE와 MAP의 개념과 SLAM에서의 역할</span>
+      <span class="lang-en">Concepts of MLE and MAP, and their role in SLAM</span>
+    </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
@@ -194,10 +254,13 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>Lecture 5: Kalman Filter (TBU)</h3>
+<h3><span class="lang-ko">Lecture 5: Kalman Filter (TBU)</span><span class="lang-en">Lecture 5: Kalman Filter (TBU)</span></h3>
 <ul class="lecture-list">
   <li>
-    <span class="lecture-title"><span class="lecture-num">5-1.</span> Kalman filter의 원리와 SLAM 적용</span>
+    <span class="lecture-title"><span class="lecture-num">5-1.</span>
+      <span class="lang-ko">Kalman filter의 원리와 SLAM 적용</span>
+      <span class="lang-en">Principles of the Kalman filter and its application to SLAM</span>
+    </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
@@ -207,10 +270,13 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>To be updated...</h3>
+<h3><span class="lang-ko">To be updated...</span><span class="lang-en">To be updated...</span></h3>
 <ul class="lecture-list">
   <li>
-    <span class="lecture-title"><span class="lecture-num">6-1.</span> To be updated</span>
+    <span class="lecture-title"><span class="lecture-num">6-1.</span>
+      <span class="lang-ko">To be updated</span>
+      <span class="lang-en">To be updated</span>
+    </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
@@ -220,5 +286,47 @@ SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한
 </div>
 
 <div class="slam-section">
-<h3>More lectures coming soon...</h3>
+<h3><span class="lang-ko">강의는 계속 추가될 예정입니다...</span><span class="lang-en">More lectures coming soon...</span></h3>
 </div>
+
+<script>
+(function () {
+    var STORAGE_KEY = 'slam-lang';
+    var supported = ['ko', 'en'];
+    var initial = localStorage.getItem(STORAGE_KEY);
+    if (supported.indexOf(initial) === -1) initial = 'ko';
+
+    // Header title / subtitle come from the Jekyll layout, not this page's markup,
+    // so we swap them in JS. To localize more header strings later, add keys here.
+    var titleMap    = { ko: '모두를 위한 SLAM', en: 'SLAM for Everyone' };
+    var subtitleMap = { ko: 'SLAM for Everyone', en: '' };
+
+    var headingH1       = document.querySelector('.page-heading h1, .post-heading h1, .intro-header h1');
+    var headingSubtitle = document.querySelector('.page-subheading, .post-subheading');
+    var headingHr       = headingSubtitle ? headingSubtitle.previousElementSibling : null;
+    if (headingHr && headingHr.tagName !== 'HR') headingHr = null;
+
+    var buttons = document.querySelectorAll('.lang-toggle button[data-lang]');
+
+    function setActive(lang) {
+        document.body.setAttribute('data-lang', lang);
+        localStorage.setItem(STORAGE_KEY, lang);
+        buttons.forEach(function (btn) {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        if (headingH1) headingH1.textContent = titleMap[lang];
+        if (headingSubtitle) {
+            var sub = subtitleMap[lang];
+            headingSubtitle.textContent = sub;
+            headingSubtitle.style.display = sub ? '' : 'none';
+            if (headingHr) headingHr.style.display = sub ? '' : 'none';
+        }
+    }
+    setActive(initial);
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            setActive(btn.dataset.lang);
+        });
+    });
+})();
+</script>
