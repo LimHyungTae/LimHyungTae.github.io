@@ -210,28 +210,76 @@ Materials will be updated sequentially.</span>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">2-1.</span>
-      <span class="lang-ko">Robot Navigation의 분류와 용어 정리</span>
-      <span class="lang-en">Categories and terminology of robot navigation</span>
+      <span class="lang-ko">Robot navigation 구성 요소</span>
+      <span class="lang-en">Components of robot navigation</span>
     </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/9zju3acvd22oy8cab3jpt/Lec02_SLAM_for_everyone.pdf?rlkey=4mf4wngii91b5bxo9ngio29tg&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">2-2.</span>
+      <span class="lang-ko">Perception vs. Cognition</span>
+      <span class="lang-en">Perception vs. cognition</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">2-3.</span>
+      <span class="lang-ko">Localization, Mapping, SLAM 용어</span>
+      <span class="lang-en">Terminology: localization, mapping, SLAM</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">2-4.</span>
+      <span class="lang-ko">결론: SLAM ⊂ Robot navigation</span>
+      <span class="lang-en">Conclusion: SLAM ⊂ robot navigation</span>
+    </span>
+  </li>
 </ul>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 3: State, Measurement, and Estimation (TBU)</span><span class="lang-en">Lecture 3: State, Measurement, and Estimation (TBU)</span></h3>
+<h3><span class="lang-ko">Lecture 3: State, Measurement, and Estimation</span><span class="lang-en">Lecture 3: State, Measurement, and Estimation</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">3-1.</span>
-      <span class="lang-ko">State, measurement, estimation의 개념</span>
-      <span class="lang-en">Concepts of state, measurement, and estimation</span>
+      <span class="lang-ko">Introduction: 키 재기 예시로 시작</span>
+      <span class="lang-en">Introduction: starting with a height measurement example</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
+      <a href="https://youtu.be/JIUWrz2161A" class="btn-video">Video</a>
+      <a href="https://www.dropbox.com/scl/fi/dnyorx6ky888so4u5ezhj/Lec03_SLAM_for_everyone.pdf?rlkey=fpnkrld2q5ta3a54s23h2k3i4&dl=0" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">3-2.</span>
+      <span class="lang-ko">State와 measurement 정의</span>
+      <span class="lang-en">Definition of state and measurement</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">3-3.</span>
+      <span class="lang-ko">Calculation vs. Estimation</span>
+      <span class="lang-en">Calculation vs. estimation</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">3-4.</span>
+      <span class="lang-ko">Example A – MLE: 평균 기반 키 추정</span>
+      <span class="lang-en">Example A – MLE: height estimation via average</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">3-5.</span>
+      <span class="lang-ko">Example B – MAP: 사전 지식 활용 키 추정</span>
+      <span class="lang-en">Example B – MAP: height estimation using prior</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">3-6.</span>
+      <span class="lang-ko">결론: Estimation = Weighted Average + Uncertainty</span>
+      <span class="lang-en">Conclusion: estimation = weighted average + uncertainty</span>
     </span>
   </li>
 </ul>
