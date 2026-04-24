@@ -286,16 +286,46 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP) (TBU)</span><span class="lang-en">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP) (TBU)</span></h3>
+<h3><span class="lang-ko">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</span><span class="lang-en">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">4-1.</span>
-      <span class="lang-ko">MLE와 MAP의 개념과 SLAM에서의 역할</span>
-      <span class="lang-en">Concepts of MLE and MAP, and their role in SLAM</span>
+      <span class="lang-ko">Introduction: MLE와 MAP 개요</span>
+      <span class="lang-en">Introduction: overview of MLE and MAP</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
+      <a href="https://youtu.be/y2PqPEPTK1A?si=pOsJ2XuOFQ1d3qgg" class="btn-video">Video</a>
+      <a href="https://www.dropbox.com/scl/fi/hgns1a3qoua3swb8mbfao/Lec04_SLAM_for_everyone.pdf?rlkey=tfqh2mkw9f48nmlgm7r5sxzse&dl=0" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">4-2.</span>
+      <span class="lang-ko">Probability vs. Likelihood</span>
+      <span class="lang-en">Probability vs. likelihood</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">4-3.</span>
+      <span class="lang-ko">확률 모델과 MLE: Gaussian noise → least squares</span>
+      <span class="lang-en">Probabilistic model and MLE: Gaussian noise → least squares</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">4-4.</span>
+      <span class="lang-ko">Maximum a Posteriori (MAP): prior 활용</span>
+      <span class="lang-en">Maximum a posteriori (MAP): incorporating prior</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">4-5.</span>
+      <span class="lang-ko">Weighted Least Squares와 Graph SLAM 연결</span>
+      <span class="lang-en">Weighted least squares and connection to Graph SLAM</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">4-6.</span>
+      <span class="lang-ko">결론: State estimation = weighted averages</span>
+      <span class="lang-en">Conclusion: state estimation is a game of weighted averages</span>
     </span>
   </li>
 </ul>
