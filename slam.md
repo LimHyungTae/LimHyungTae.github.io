@@ -352,14 +352,14 @@ Materials will be updated sequentially.</span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">5-3.</span>
-      <span class="lang-ko">Kalman Filter for Multivariable Systems: 행렬 형태 확장</span>
+      <span class="lang-ko">Kalman Filter for Multivariable Systems: 행렬 형태로의 확장</span>
       <span class="lang-en">Kalman filter for multivariable systems: matrix form</span>
     </span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">5-4.</span>
-      <span class="lang-ko">결론: KF update = MAP, marginalization은 비가역적</span>
-      <span class="lang-en">Conclusion: KF update = MAP, marginalization is irreversible</span>
+      <span class="lang-ko">결론: KF update = MAP</span>
+      <span class="lang-en">Conclusion: KF update = MAP</span>
     </span>
   </li>
   <li>
@@ -389,7 +389,7 @@ Materials will be updated sequentially.</span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">6-2.</span>
-      <span class="lang-ko">Graph SLAM: Factor Graph 기반 정식화</span>
+      <span class="lang-ko">Graph SLAM: Factor Graph 수식 꼴</span>
       <span class="lang-en">Graph SLAM: factor graph-based formulation</span>
     </span>
   </li>
@@ -401,7 +401,7 @@ Materials will be updated sequentially.</span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">6-4.</span>
-      <span class="lang-ko">직관적 이해: mass-spring 비유</span>
+      <span class="lang-ko">Mass-spring 비유를 통한 직관적 이해 </span>
       <span class="lang-en">Intuitive understanding: mass-spring analogy</span>
     </span>
   </li>
