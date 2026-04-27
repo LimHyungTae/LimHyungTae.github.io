@@ -332,32 +332,89 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 5: Kalman Filter (TBU)</span><span class="lang-en">Lecture 5: Kalman Filter (TBU)</span></h3>
+<h3><span class="lang-ko">Lecture 5: Filtering vs Smoothing (1) – Kalman Filter from a MAP Perspective</span><span class="lang-en">Lecture 5: Filtering vs Smoothing (1) – Kalman Filter from a MAP Perspective</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">5-1.</span>
-      <span class="lang-ko">Kalman filter의 원리와 SLAM 적용</span>
-      <span class="lang-en">Principles of the Kalman filter and its application to SLAM</span>
+      <span class="lang-ko">Filtering vs. Smoothing: sequential vs. batch 비교</span>
+      <span class="lang-en">Filtering vs. smoothing: sequential vs. batch</span>
     </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
+      <a href="https://www.dropbox.com/scl/fi/u1cmdp19t39dyotrscpfk/Lec05_SLAM_for_everyone.pdf?rlkey=01fwyofj7xs7q75wd7rjrdnr0&dl=0" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">5-2.</span>
+      <span class="lang-ko">Kalman Filter in 1D: prediction &amp; update step</span>
+      <span class="lang-en">Kalman filter in 1D: prediction &amp; update steps</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">5-3.</span>
+      <span class="lang-ko">Kalman Filter for Multivariable Systems: 행렬 형태 확장</span>
+      <span class="lang-en">Kalman filter for multivariable systems: matrix form</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">5-4.</span>
+      <span class="lang-ko">결론: KF update = MAP, marginalization은 비가역적</span>
+      <span class="lang-en">Conclusion: KF update = MAP, marginalization is irreversible</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">Supp.</span>
+      <span class="lang-ko">수학 보충 자료</span>
+      <span class="lang-en">Math supplementary</span>
+    </span>
+    <span class="lecture-links">
+      <a href="https://www.dropbox.com/scl/fi/5lw9dlpxgfoas6d3pf3qg/Lec05_math_supplementary.pdf?rlkey=qsb2gwijankhhwp108k3l5usk&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">To be updated...</span><span class="lang-en">To be updated...</span></h3>
+<h3><span class="lang-ko">Lecture 6: Filtering vs Smoothing (2) – Graph Optimization from a MAP Perspective</span><span class="lang-en">Lecture 6: Filtering vs Smoothing (2) – Graph Optimization from a MAP Perspective</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">6-1.</span>
-      <span class="lang-ko">To be updated</span>
-      <span class="lang-en">To be updated</span>
+      <span class="lang-ko">Filtering vs. Smoothing 비교 복습</span>
+      <span class="lang-en">Filtering vs. smoothing: recap</span>
     </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="https://limhyungtae.github.io/" class="btn-slide">Slide</a>
+      <a href="https://www.dropbox.com/scl/fi/dkoydewchta3brymtqkg5/Lec06_SLAM_for_everyone.pdf?rlkey=wac8b6dvfvh207gxegryb0ysr&dl=0" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">6-2.</span>
+      <span class="lang-ko">Graph SLAM: Factor Graph 기반 정식화</span>
+      <span class="lang-en">Graph SLAM: factor graph-based formulation</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">6-3.</span>
+      <span class="lang-ko">Graph-Based SLAM Framework: Front-end &amp; Back-end</span>
+      <span class="lang-en">Graph-based SLAM framework: front-end &amp; back-end</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">6-4.</span>
+      <span class="lang-ko">직관적 이해: mass-spring 비유</span>
+      <span class="lang-en">Intuitive understanding: mass-spring analogy</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">6-5.</span>
+      <span class="lang-ko">Example: 2D LiDAR Graph SLAM + Landmarks</span>
+      <span class="lang-en">Example: 2D LiDAR Graph SLAM with landmarks</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">6-6.</span>
+      <span class="lang-ko">결론: Filtering vs. Smoothing, 어느 쪽이 나은가?</span>
+      <span class="lang-en">Conclusion: filtering vs. smoothing — which is better?</span>
     </span>
   </li>
 </ul>
