@@ -190,7 +190,7 @@ Materials will be updated sequentially.</span>
 ### <span class="lang-ko">강의 일정</span><span class="lang-en">Schedule</span>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 1: Introduction</span><span class="lang-en">Lecture 1: Introduction</span></h3>
+<h3><span class="lang-ko">Lecture 01: Introduction</span><span class="lang-en">Lecture 01: Introduction</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">1-1.</span>
@@ -198,7 +198,7 @@ Materials will be updated sequentially.</span>
       <span class="lang-en">What is SLAM?</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="https://youtu.be/gQtpTGrgtqE" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/7owksuii3djeqacchlc15/Lec01_SLAM_for_everyone.pdf?rlkey=wg5a9c9ocr8j4w0vfs1q1i9op&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -206,7 +206,7 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 2: Categories &amp; Terminology of Robot Navigation</span><span class="lang-en">Lecture 2: Categories &amp; Terminology of Robot Navigation</span></h3>
+<h3><span class="lang-ko">Lecture 02: Categories &amp; Terminology of Robot Navigation</span><span class="lang-en">Lecture 02: Categories &amp; Terminology of Robot Navigation</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">2-1.</span>
@@ -214,7 +214,7 @@ Materials will be updated sequentially.</span>
       <span class="lang-en">Components of robot navigation</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="https://youtu.be/DpKo0N-UjXs" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/9zju3acvd22oy8cab3jpt/Lec02_SLAM_for_everyone.pdf?rlkey=4mf4wngii91b5bxo9ngio29tg&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -240,7 +240,7 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 3: State, Measurement, and Estimation</span><span class="lang-en">Lecture 3: State, Measurement, and Estimation</span></h3>
+<h3><span class="lang-ko">Lecture 03: State, Measurement, and Estimation</span><span class="lang-en">Lecture 03: State, Measurement, and Estimation</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">3-1.</span>
@@ -286,7 +286,7 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</span><span class="lang-en">Lecture 4: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</span></h3>
+<h3><span class="lang-ko">Lecture 04: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</span><span class="lang-en">Lecture 04: Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP)</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">4-1.</span>
@@ -332,7 +332,7 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 5: Filtering vs Smoothing (1) – Kalman Filter from a MAP Perspective</span><span class="lang-en">Lecture 5: Filtering vs Smoothing (1) – Kalman Filter from a MAP Perspective</span></h3>
+<h3><span class="lang-ko">Lecture 05: Filtering vs Smoothing (1) – Kalman Filter from a MAP Perspective</span><span class="lang-en">Lecture 05: Filtering vs Smoothing (1) – Kalman Filter from a MAP Perspective</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">5-1.</span>
@@ -340,7 +340,7 @@ Materials will be updated sequentially.</span>
       <span class="lang-en">Filtering vs. smoothing: sequential vs. batch</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="https://youtu.be/LDeWEYFJacw" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/u1cmdp19t39dyotrscpfk/Lec05_SLAM_for_everyone.pdf?rlkey=01fwyofj7xs7q75wd7rjrdnr0&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -375,7 +375,7 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
-<h3><span class="lang-ko">Lecture 6: Filtering vs Smoothing (2) – Graph Optimization from a MAP Perspective</span><span class="lang-en">Lecture 6: Filtering vs Smoothing (2) – Graph Optimization from a MAP Perspective</span></h3>
+<h3><span class="lang-ko">Lecture 06: Filtering vs Smoothing (2) – Graph Optimization from a MAP Perspective</span><span class="lang-en">Lecture 06: Filtering vs Smoothing (2) – Graph Optimization from a MAP Perspective</span></h3>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">6-1.</span>
