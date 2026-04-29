@@ -383,7 +383,7 @@ Materials will be updated sequentially.</span>
       <span class="lang-en">Filtering vs. smoothing: recap</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="https://youtu.be/_fSSED4vtdI" class="btn-video">Video</a>
       <a href="https://www.dropbox.com/scl/fi/dkoydewchta3brymtqkg5/Lec06_SLAM_for_everyone.pdf?rlkey=wac8b6dvfvh207gxegryb0ysr&dl=0" class="btn-slide">Slide</a>
     </span>
   </li>
