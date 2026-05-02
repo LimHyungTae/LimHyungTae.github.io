@@ -425,7 +425,7 @@ Materials will be updated sequentially.</span>
 <ul class="lecture-list">
   <li>
     <span class="lecture-title"><span class="lecture-num">7-1.</span>
-      <span class="lang-ko">What We've Learned: SLAM = MAP 문제 복습</span>
+      <span class="lang-ko">What We've Learned: 결국 SLAM = MAP이다!</span>
       <span class="lang-en">What we've learned: SLAM as a MAP problem</span>
     </span>
     <span class="lecture-links">
@@ -481,7 +481,7 @@ Materials will be updated sequentially.</span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">8-2.</span>
-      <span class="lang-ko">Tip 1: Transform 방향 명시 (T_cam_lidar 규칙)</span>
+      <span class="lang-ko">Tip 1: Transform 방향 명시할 것 (T_cam_lidar 규칙)</span>
       <span class="lang-en">Tip 1: make transform direction explicit (T_cam_lidar convention)</span>
     </span>
   </li>
@@ -499,7 +499,7 @@ Materials will be updated sequentially.</span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">8-5.</span>
-      <span class="lang-ko">결론: 암묵적 관행 지양</span>
+      <span class="lang-ko">결론: 주석에 의도를 explicit하게 표현해두자</span>
       <span class="lang-en">Conclusion: never rely on implicit conventions</span>
     </span>
   </li>
