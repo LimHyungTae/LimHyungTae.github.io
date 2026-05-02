@@ -199,7 +199,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/gQtpTGrgtqE" class="btn-video">Video</a>
-      <a href="https://www.dropbox.com/scl/fi/7owksuii3djeqacchlc15/Lec01_SLAM_for_everyone.pdf?rlkey=wg5a9c9ocr8j4w0vfs1q1i9op&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec01_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
@@ -215,7 +215,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/DpKo0N-UjXs" class="btn-video">Video</a>
-      <a href="https://www.dropbox.com/scl/fi/9zju3acvd22oy8cab3jpt/Lec02_SLAM_for_everyone.pdf?rlkey=4mf4wngii91b5bxo9ngio29tg&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec02_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -249,7 +249,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/JIUWrz2161A" class="btn-video">Video</a>
-      <a href="https://www.dropbox.com/scl/fi/dnyorx6ky888so4u5ezhj/Lec03_SLAM_for_everyone.pdf?rlkey=fpnkrld2q5ta3a54s23h2k3i4&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec03_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -295,7 +295,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/y2PqPEPTK1A?si=pOsJ2XuOFQ1d3qgg" class="btn-video">Video</a>
-      <a href="https://www.dropbox.com/scl/fi/hgns1a3qoua3swb8mbfao/Lec04_SLAM_for_everyone.pdf?rlkey=tfqh2mkw9f48nmlgm7r5sxzse&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec04_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -341,7 +341,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/LDeWEYFJacw" class="btn-video">Video</a>
-      <a href="https://www.dropbox.com/scl/fi/u1cmdp19t39dyotrscpfk/Lec05_SLAM_for_everyone.pdf?rlkey=01fwyofj7xs7q75wd7rjrdnr0&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec05_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -368,7 +368,7 @@ Materials will be updated sequentially.</span>
       <span class="lang-en">Math supplementary</span>
     </span>
     <span class="lecture-links">
-      <a href="https://www.dropbox.com/scl/fi/5lw9dlpxgfoas6d3pf3qg/Lec05_math_supplementary.pdf?rlkey=qsb2gwijankhhwp108k3l5usk&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec05_math_supplementary.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
@@ -384,7 +384,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/_fSSED4vtdI" class="btn-video">Video</a>
-      <a href="https://www.dropbox.com/scl/fi/dkoydewchta3brymtqkg5/Lec06_SLAM_for_everyone.pdf?rlkey=wac8b6dvfvh207gxegryb0ysr&dl=0" class="btn-slide">Slide</a>
+      <a href="/_slam_slides/Lec06_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -415,6 +415,92 @@ Materials will be updated sequentially.</span>
     <span class="lecture-title"><span class="lecture-num">6-6.</span>
       <span class="lang-ko">결론: Filtering vs. Smoothing, 어느 쪽이 나은가?</span>
       <span class="lang-en">Conclusion: filtering vs. smoothing — which is better?</span>
+    </span>
+  </li>
+</ul>
+</div>
+
+<div class="slam-section">
+<h3><span class="lang-ko">Lecture 07: Rotation, and Transformation Matrix</span><span class="lang-en">Lecture 07: Rotation, and Transformation Matrix</span></h3>
+<ul class="lecture-list">
+  <li>
+    <span class="lecture-title"><span class="lecture-num">7-1.</span>
+      <span class="lang-ko">What We've Learned: SLAM = MAP 문제 복습</span>
+      <span class="lang-en">What we've learned: SLAM as a MAP problem</span>
+    </span>
+    <span class="lecture-links">
+      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="/_slam_slides/Lec07_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">7-2.</span>
+      <span class="lang-ko">Remaining Topics: Pose 표현·최적화·Data association</span>
+      <span class="lang-en">Remaining topics: pose representation, optimization, data association</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">7-3.</span>
+      <span class="lang-ko">1D vs. 2D/3D: Translation &amp; Rotation의 결합</span>
+      <span class="lang-en">1D vs. 2D/3D: coupling of translation and rotation</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">7-4.</span>
+      <span class="lang-ko">Rotation Representation: Euler, Angle-Axis, Quaternion, SO(n)</span>
+      <span class="lang-en">Rotation representation: Euler, angle-axis, quaternion, SO(n)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">7-5.</span>
+      <span class="lang-ko">Transformation Matrices: SE(2) &amp; SE(3)</span>
+      <span class="lang-en">Transformation matrices: SE(2) &amp; SE(3)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">7-6.</span>
+      <span class="lang-ko">결론: Rotation + Translation = SE(n)</span>
+      <span class="lang-en">Conclusion: rotation + translation = SE(n)</span>
+    </span>
+  </li>
+</ul>
+</div>
+
+<div class="slam-section">
+<h3><span class="lang-ko">Lecture 08: Three Practical Tips for Transformations in Code</span><span class="lang-en">Lecture 08: Three Practical Tips for Transformations in Code</span></h3>
+<ul class="lecture-list">
+  <li>
+    <span class="lecture-title"><span class="lecture-num">8-1.</span>
+      <span class="lang-ko">SE(3) 복습</span>
+      <span class="lang-en">Recap: SE(3)</span>
+    </span>
+    <span class="lecture-links">
+      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="/_slam_slides/Lec08_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">8-2.</span>
+      <span class="lang-ko">Tip 1: Transform 방향 명시 (T_cam_lidar 규칙)</span>
+      <span class="lang-en">Tip 1: make transform direction explicit (T_cam_lidar convention)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">8-3.</span>
+      <span class="lang-ko">Tip 2: Quaternion 계수 순서 확인 (WXYZ vs. XYZW)</span>
+      <span class="lang-en">Tip 2: verify quaternion coefficient order (WXYZ vs. XYZW)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">8-4.</span>
+      <span class="lang-ko">Tip 3: 좌표계 명시적 문서화 (LIO-SAM vs. FAST-LIO 예시)</span>
+      <span class="lang-en">Tip 3: document all pose frames explicitly (LIO-SAM vs. FAST-LIO)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">8-5.</span>
+      <span class="lang-ko">결론: 암묵적 관행 지양</span>
+      <span class="lang-en">Conclusion: never rely on implicit conventions</span>
     </span>
   </li>
 </ul>
