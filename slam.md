@@ -199,7 +199,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/gQtpTGrgtqE" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec01_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec01_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
@@ -215,7 +215,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/DpKo0N-UjXs" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec02_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec02_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -249,7 +249,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/JIUWrz2161A" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec03_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec03_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -295,7 +295,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/y2PqPEPTK1A?si=pOsJ2XuOFQ1d3qgg" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec04_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec04_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -341,7 +341,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/LDeWEYFJacw" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec05_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec05_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -368,7 +368,7 @@ Materials will be updated sequentially.</span>
       <span class="lang-en">Math supplementary</span>
     </span>
     <span class="lecture-links">
-      <a href="/_slam_slides/Lec05_math_supplementary.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec05_math_supplementary.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
 </ul>
@@ -384,7 +384,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/_fSSED4vtdI" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec06_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec06_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -430,7 +430,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec07_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec07_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
@@ -476,7 +476,7 @@ Materials will be updated sequentially.</span>
     </span>
     <span class="lecture-links">
       <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
-      <a href="/_slam_slides/Lec08_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+      <a href="/slam_slides/Lec08_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
   <li>
