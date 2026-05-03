@@ -507,6 +507,52 @@ Materials will be updated sequentially.</span>
 </div>
 
 <div class="slam-section">
+<h3><span class="lang-ko">Lecture 09: Lie Group and Lie Algebra</span><span class="lang-en">Lecture 09: Lie Group and Lie Algebra</span></h3>
+<ul class="lecture-list">
+  <li>
+    <span class="lecture-title"><span class="lecture-num">9-1.</span>
+      <span class="lang-ko">Learning Objectives: SO(3) 위에서의 update 문제</span>
+      <span class="lang-en">Learning objectives: the update problem on SO(3)</span>
+    </span>
+    <span class="lecture-links">
+      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <a href="/slam_slides/Lec09_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">9-2.</span>
+      <span class="lang-ko">Intuition: Lie Algebra = SO(3)의 접평면 공간</span>
+      <span class="lang-en">Intuition: Lie algebra as the tangent space of SO(3)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">9-3.</span>
+      <span class="lang-ko">Lie Algebra for SO(3): skew-symmetric matrix와 exp map</span>
+      <span class="lang-en">Lie algebra for SO(3): skew-symmetric matrix and exponential map</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">9-4.</span>
+      <span class="lang-ko">Lie Algebra for SE(3): twist와 SE(3) exp map</span>
+      <span class="lang-en">Lie algebra for SE(3): twist and exponential map on SE(3)</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">9-5.</span>
+      <span class="lang-ko">Examples/Applications: SLAM 최적화에서의 활용</span>
+      <span class="lang-en">Examples/applications: use in SLAM optimization</span>
+    </span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">9-6.</span>
+      <span class="lang-ko">결론: Lie Algebra로 곡면 위 최적화 가능</span>
+      <span class="lang-en">Conclusion: Lie algebra enables optimization on curved spaces</span>
+    </span>
+  </li>
+</ul>
+</div>
+
+<div class="slam-section">
 <h3><span class="lang-ko">강의는 계속 추가될 예정입니다...</span><span class="lang-en">More lectures coming soon...</span></h3>
 </div>
 
