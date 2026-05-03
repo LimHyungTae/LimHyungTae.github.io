@@ -1,5 +1,127 @@
-<ol>
+<style>
+.post-search {
+    margin-bottom: 8px;
+}
+.post-search-input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.post-search-input:focus {
+    outline: none;
+    border-color: #008AFF;
+    box-shadow: 0 0 0 2px rgba(0, 138, 255, 0.15);
+}
+.post-search-meta {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 16px;
+}
+.post-list mark {
+    background-color: #fff3a0;
+    color: inherit;
+    padding: 0 1px;
+    border-radius: 2px;
+}
+.post-list-empty {
+    color: #999;
+    font-style: italic;
+    padding: 12px 0;
+}
+</style>
+
+<div class="post-search">
+    <input type="search" class="post-search-input" id="post-search" placeholder="제목으로 검색 / Search by title..." aria-label="Search posts by title" autocomplete="off">
+</div>
+<div class="post-search-meta" id="post-search-meta"></div>
+
+<ol class="post-list" id="post-list">
     {% for post in site.posts %}
     <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>
+
+<div class="post-list-empty" id="post-list-empty" style="display:none;">검색 결과가 없습니다 / No posts found.</div>
+
+<script>
+(function () {
+    var input = document.getElementById('post-search');
+    var meta = document.getElementById('post-search-meta');
+    var emptyEl = document.getElementById('post-list-empty');
+    var items = Array.prototype.slice.call(document.querySelectorAll('#post-list > li'));
+    var total = items.length;
+
+    var entries = items.map(function (li) {
+        var a = li.querySelector('a');
+        return { li: li, a: a, originalHtml: a.innerHTML, title: a.textContent };
+    });
+
+    function escapeHtml(s) {
+        return s.replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+
+    function highlight(title, query) {
+        if (!query) return escapeHtml(title);
+        var lower = title.toLowerCase();
+        var qLower = query.toLowerCase();
+        var qLen = query.length;
+        var result = '';
+        var cursor = 0;
+        var idx;
+        while ((idx = lower.indexOf(qLower, cursor)) !== -1) {
+            result += escapeHtml(title.substring(cursor, idx));
+            result += '<mark>' + escapeHtml(title.substring(idx, idx + qLen)) + '</mark>';
+            cursor = idx + qLen;
+        }
+        result += escapeHtml(title.substring(cursor));
+        return result;
+    }
+
+    function applyFilter(rawQuery) {
+        var query = (rawQuery || '').trim();
+        var qLower = query.toLowerCase();
+        var visible = 0;
+        entries.forEach(function (e) {
+            var match = !qLower || e.title.toLowerCase().indexOf(qLower) !== -1;
+            e.li.style.display = match ? '' : 'none';
+            if (match) {
+                visible++;
+                e.a.innerHTML = query ? highlight(e.title, query) : e.originalHtml;
+            }
+        });
+        meta.textContent = query
+            ? total + '개 중 ' + visible + '개 / ' + visible + ' of ' + total + ' posts'
+            : total + '개 포스트 / ' + total + ' posts';
+        emptyEl.style.display = visible === 0 ? '' : 'none';
+    }
+
+    function updateUrl(query) {
+        if (!('URL' in window) || !history.replaceState) return;
+        try {
+            var url = new URL(window.location.href);
+            if (query) url.searchParams.set('q', query);
+            else url.searchParams.delete('q');
+            history.replaceState(null, '', url.toString());
+        } catch (e) { /* ignore */ }
+    }
+
+    var initial = '';
+    if ('URLSearchParams' in window) {
+        initial = new URLSearchParams(window.location.search).get('q') || '';
+    }
+    if (initial) input.value = initial;
+    applyFilter(initial);
+
+    input.addEventListener('input', function () {
+        var q = input.value;
+        applyFilter(q);
+        updateUrl(q.trim());
+    });
+})();
+</script>
