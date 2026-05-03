@@ -172,8 +172,8 @@ body[data-lang="en"] .lang-ko { display: none !important; }
 </style>
 
 <div class="lang-toggle" role="group" aria-label="Language toggle">
-  <button type="button" data-lang="ko" class="active">한국어</button>
-  <button type="button" data-lang="en">English</button>
+  <button type="button" data-lang="ko">Korean (한국어)</button>
+  <button type="button" data-lang="en" class="active">English</button>
 </div>
 
 <div class="slam-intro">
@@ -569,7 +569,7 @@ The materials will be updated sequentially. </span>
     var STORAGE_KEY = 'slam-lang';
     var supported = ['ko', 'en'];
     var initial = localStorage.getItem(STORAGE_KEY);
-    if (supported.indexOf(initial) === -1) initial = 'ko';
+    if (supported.indexOf(initial) === -1) initial = 'en';
 
     // Header title / subtitle come from the Jekyll layout, not this page's markup,
     // so we swap them in JS. To localize more header strings later, add keys here.
