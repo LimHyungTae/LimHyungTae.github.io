@@ -159,6 +159,7 @@ permalink: /slam/
    To add new content: paste both language variants side-by-side; no JS edits needed. */
 body[data-lang="ko"] .lang-en { display: none !important; }
 body[data-lang="en"] .lang-ko { display: none !important; }
+body[data-lang="en"] .btn-video { display: none !important; }
 
 @media (max-width: 576px) {
     .lecture-list li {
