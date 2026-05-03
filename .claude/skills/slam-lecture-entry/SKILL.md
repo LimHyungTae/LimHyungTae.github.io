@@ -15,8 +15,8 @@ The **sub-items come from the top-bar section markers** of the lecture deck — 
 ## Inputs
 
 - Lecture number `N`
-- Public Dropbox share link for the slide PDF (format: `https://www.dropbox.com/scl/fi/<id>/LecNN_SLAM_for_everyone.pdf?rlkey=<key>&dl=0`). Ask for it if not provided — never guess.
-- The PDF itself. Canonical local path:
+- The compressed slide PDF inside the repo at `slam_slides/LecNN_SLAM_for_everyone.pdf`. The canonical slide href is the local path `/slam_slides/LecNN_SLAM_for_everyone.pdf` (Dropbox links are no longer used). If the PDF is not yet compressed/placed, use the `slam-add-lecture` skill instead — it bundles the gs compression step with this entry edit.
+- The source PDF for reading top-bar markers. Canonical Dropbox path:
   ```
   /Users/fudxo/Library/CloudStorage/Dropbox/!lectures/모두를 위한 SLAM/slides/LecNN_SLAM_for_everyone.pdf
   ```
@@ -49,7 +49,7 @@ The **sub-items come from the top-bar section markers** of the lecture deck — 
        </span>
        <span class="lecture-links">
          <a href="<video_url_or_placeholder>" class="btn-video">Video</a>
-         <a href="<dropbox_slide_url>" class="btn-slide">Slide</a>
+         <a href="/slam_slides/LecNN_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
        </span>
      </li>
      <li>
