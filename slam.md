@@ -173,8 +173,8 @@ body[data-lang="en"] .btn-video { display: none !important; }
 </style>
 
 <div class="lang-toggle" role="group" aria-label="Language toggle">
-  <button type="button" data-lang="ko">Korean (한국어)</button>
   <button type="button" data-lang="en" class="active">English</button>
+  <button type="button" data-lang="ko">Korean (한국어)</button>
 </div>
 
 <div class="slam-intro">
