@@ -680,26 +680,36 @@ table tr td :last-child {
 
 /* --- Code blocks --- */
 
+/* Inline <code> (outside <pre>): a quiet gray pill, GitHub-style.
+   Overrides Bootstrap 3's default pink-on-pink which clashed with the
+   GA4-era palette. */
+code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  background-color: rgba(175, 184, 193, 0.25);
+  color: inherit;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+  border-radius: 6px;
+}
+
+/* Block code container — matches GitHub gist visual treatment. */
 pre {
-  font-size: 16px;
-  line-height: 1.5em;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 85%;
+  line-height: 1.45;
 }
 pre code {
   white-space: pre;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
 }
 pre.highlight, .highlight > pre, td.code pre {
-  /* background-color: #FAFAFA;
-  background-image: linear-gradient(#F9F9F9 50%, #FDFDFD 50%);
-  background-repeat: repeat;
-  background-size: 3em 3em;
-  background-position: 0px 10px;
-  border-left: 7px solid #444; */
-  
   background-color: #f6f8fa;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  font-family: Consolas, "Courier New", monospace;
+  border: 1px solid #d0d7de;
+  padding: 16px;
+  border-radius: 6px;
 }
 
 /* --- Social media sharing section --- */
