@@ -177,12 +177,20 @@ body[data-lang="en"] .lang-ko { display: none !important; }
 </div>
 
 <div class="slam-intro">
-<span class="lang-ko">SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한 강의 시리즈입니다.
-수학적 기초부터 실제 시스템 구현까지, SLAM의 전반적인 내용을 다룹니다.
-강의 자료는 순차적으로 업데이트될 예정입니다.</span>
-<span class="lang-en">A lecture series for those who are new to SLAM (Simultaneous Localization and Mapping).
-From the mathematical foundations to real-world system implementations, we cover SLAM end-to-end.
-Materials will be updated sequentially.</span>
+<span class="lang-ko"> SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한 강의 시리즈입니다.
+제가 처음 SLAM을 공부할 때, 개념을 직관적으로 설명해주는 자료를 찾기 어려워 꽤 오랜 시간 헤맸던 기억이 있습니다.
+그때 “이걸 누군가 쉽게 풀어서 설명해줬다면 얼마나 좋았을까”라는 생각이 들었고,
+그 경험을 바탕으로 이 강의를 만들게 되었습니다.
+학부 3-4학년 수준에서도 이해할 수 있도록 직관과 유추를 중심으로,
+SLAM의 핵심 아이디어부터 전체 구조까지 차근차근 설명합니다.
+강의 자료는 순차적으로 업데이트될 예정입니다. </span>
+<span class="lang-en"> This lecture series is designed for those who are new to SLAM (Simultaneous Localization and Mapping).
+When I first started learning SLAM, I struggled to find materials that explained the concepts in an intuitive way,
+and I often felt lost trying to connect the math with the bigger picture.
+I remember wishing there were a resource that could guide me more clearly, and this series grew out of that experience.
+With that in mind, these lectures aim to explain SLAM in a simple and intuitive way,
+covering the key ideas and the overall pipeline step by step.
+The materials will be updated sequentially. </span>
 </div>
 
 ---
