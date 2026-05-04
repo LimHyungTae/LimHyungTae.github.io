@@ -19,11 +19,11 @@ I am passionate about open-source research and contribute to the community throu
 
 <br>
 
-**Short version (~80 words).**
+**Short version Bio.**
 
 Hyungtae Lim is a Postdoctoral Associate at MIT's SPARK Lab, working with Prof. Luca Carlone. He received his Ph.D. in Electrical Engineering from KAIST in 2023, advised by Prof. Hyun Myung. His research focuses on robust perception, state estimation, and lifelong mapping for mobile robots and autonomous vehicles. He is a recipient of the RSS Pioneers 2024 award and the 2022 IEEE RA-L Best Paper Award, an Associate Editor for IEEE RA-L, and the author of widely used open-source libraries such as [Patchwork++](https://github.com/url-kaist/patchwork-plusplus) and [KISS-Matcher](https://github.com/mit-spark/kiss-matcher).
 
-**Long version (~200 words).**
+**Long version Bio.**
 
 Hyungtae Lim is a Postdoctoral Associate in the Laboratory for Information and Decision Systems (LIDS) and the SPARK Lab at the Massachusetts Institute of Technology, working with Prof. Luca Carlone. Before joining MIT in 2024, he was a postdoctoral fellow at the Urban Robotics Lab at the Korea Advanced Institute of Science and Technology (KAIST), where he also obtained his Ph.D. in Electrical Engineering in 2023, advised by Prof. Hyun Myung. During his doctoral studies, he was a visiting scholar at StachnissLab at the University of Bonn, working with Prof. Cyrill Stachniss, and a research intern at NAVER LABS. His research interests include robust perception, state estimation, and lifelong mapping for mobile robots and autonomous vehicles, with an emphasis on algorithms that generalize beyond their training conditions and that the broader community can readily reproduce. He is a recipient of the RSS Pioneers 2024 award, the 2022 IEEE RA-L Best Paper Award, and the IEEE ICRA 2025 Outstanding Reviewer Award (5 selected among 7,641 reviewers), and currently serves as an Associate Editor for IEEE Robotics and Automation Letters. His team won first place at the HILTI SLAM Challenge at IEEE ICRA 2023 and 2024.
 
