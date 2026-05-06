@@ -562,6 +562,41 @@ The materials will be updated sequentially. </span>
 </div>
 
 <div class="slam-section">
+<h3><span class="lang-ko">Lecture 10: Non-linearity and Non-linear Least Squares</span><span class="lang-en">Lecture 10: Non-linearity and Non-linear Least Squares</span></h3>
+<ul class="lecture-list">
+  <li>
+    <span class="lecture-title">
+      <span class="lang-ko">강의 자료 준비 중</span>
+      <span class="lang-en">Coming soon</span>
+    </span>
+    <span class="tba-badge">TBU</span>
+  </li>
+</ul>
+</div>
+
+<div class="slam-section">
+<h3><span class="lang-ko">Lecture 11: Sensor Front-end</span><span class="lang-en">Lecture 11: Sensor Front-end</span></h3>
+<ul class="lecture-list">
+  <li>
+    <span class="lecture-title">
+      <span class="lang-ko">강의 자료 준비 중</span>
+      <span class="lang-en">Coming soon</span>
+    </span>
+    <span class="tba-badge">TBU</span>
+  </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">Supp.</span>
+      <span class="lang-ko">Matrix decomposition 보충 자료</span>
+      <span class="lang-en">Matrix decomposition supplementary</span>
+    </span>
+    <span class="lecture-links">
+      <a href="/slam_slides/Lec11_math_supplementary.pdf" class="btn-slide">Slide</a>
+    </span>
+  </li>
+</ul>
+</div>
+
+<div class="slam-section">
 <h3><span class="lang-ko">강의는 계속 추가될 예정입니다...</span><span class="lang-en">More lectures coming soon...</span></h3>
 </div>
 
