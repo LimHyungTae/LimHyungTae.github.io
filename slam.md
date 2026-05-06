@@ -594,8 +594,8 @@ The materials will be updated sequentially. </span>
   </li>
   <li>
     <span class="lecture-title"><span class="lecture-num">Supp.</span>
-      <span class="lang-ko">Matrix decomposition (Dense/sparse QR, Cholesky decomposition 등)</span>
-      <span class="lang-en">Matrix decomposition (Dense/sparse QR, Cholesky decomposition, etc.)</span>
+      <span class="lang-ko">Matrix decomposition (Dense/sparse QR, Cholesky, multifrontal Cholesky 등)</span>
+      <span class="lang-en">Matrix decomposition (Dense/sparse QR, Cholesky, multifrontal Cholesky, etc.)</span>
     </span>
     <span class="lecture-links">
       <a href="/slam_slides/Lec10_math_supplementary.pdf" class="btn-slide">Slide</a>
