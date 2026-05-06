@@ -86,12 +86,20 @@ permalink: /slam/
 
 /* Placeholder pill for lectures whose video isn't recorded yet.
    Kept on .btn-video so the language toggle (which hides .btn-video in English mode)
-   continues to work without further wiring. */
+   continues to work without further wiring. The size/padding rules in
+   .lecture-links a above don't apply to <span>, so re-declare them here. */
 .btn-video.tbu,
 .btn-video.tbu:hover {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    border-radius: 4px;
     background-color: #f0f0f0;
     color: #999 !important;
-    border-color: #e0e0e0;
+    border: 1px solid #e0e0e0;
     cursor: default;
     pointer-events: none;
     text-decoration: none !important;
