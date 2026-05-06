@@ -84,6 +84,19 @@ permalink: /slam/
     color: white !important;
 }
 
+/* Placeholder pill for lectures whose video isn't recorded yet.
+   Kept on .btn-video so the language toggle (which hides .btn-video in English mode)
+   continues to work without further wiring. */
+.btn-video.tbu,
+.btn-video.tbu:hover {
+    background-color: #f0f0f0;
+    color: #999 !important;
+    border-color: #e0e0e0;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none !important;
+}
+
 .btn-slide {
     background-color: #f8f9fa;
     color: #495057 !important;
@@ -438,7 +451,7 @@ The materials will be updated sequentially. </span>
       <span class="lang-en">What we've learned: SLAM as a MAP problem</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <span class="btn-video tbu" aria-label="Video coming soon">Video (TBU)</span>
       <a href="/slam_slides/Lec07_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -484,7 +497,7 @@ The materials will be updated sequentially. </span>
       <span class="lang-en">Recap: SE(3)</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <span class="btn-video tbu" aria-label="Video coming soon">Video (TBU)</span>
       <a href="/slam_slides/Lec08_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -524,7 +537,7 @@ The materials will be updated sequentially. </span>
       <span class="lang-en">Learning objectives: the update problem on SO(3)</span>
     </span>
     <span class="lecture-links">
-      <a href="https://limhyungtae.github.io/" class="btn-video">Video</a>
+      <span class="btn-video tbu" aria-label="Video coming soon">Video (TBU)</span>
       <a href="/slam_slides/Lec09_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -571,6 +584,15 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="tba-badge">TBU</span>
   </li>
+  <li>
+    <span class="lecture-title"><span class="lecture-num">Supp.</span>
+      <span class="lang-ko">Matrix decomposition 보충 자료</span>
+      <span class="lang-en">Matrix decomposition supplementary</span>
+    </span>
+    <span class="lecture-links">
+      <a href="/slam_slides/Lec10_math_supplementary.pdf" class="btn-slide">Slide</a>
+    </span>
+  </li>
 </ul>
 </div>
 
@@ -583,15 +605,6 @@ The materials will be updated sequentially. </span>
       <span class="lang-en">Coming soon</span>
     </span>
     <span class="tba-badge">TBU</span>
-  </li>
-  <li>
-    <span class="lecture-title"><span class="lecture-num">Supp.</span>
-      <span class="lang-ko">Matrix decomposition 보충 자료</span>
-      <span class="lang-en">Matrix decomposition supplementary</span>
-    </span>
-    <span class="lecture-links">
-      <a href="/slam_slides/Lec11_math_supplementary.pdf" class="btn-slide">Slide</a>
-    </span>
   </li>
 </ul>
 </div>
