@@ -45,7 +45,7 @@ $$
 
 ---
 
-## 2D Pose의 경우: 비교적 직관적이지만 한 가지 함정
+## 2D Pose (x, y, yaw)의 경우
 
 2D pose $$\mathbf{x}_a = (x_a, y_a, \theta_a)$$, $$\mathbf{x}_b = (x_b, y_b, \theta_b)$$에 대해, 추정한 상대 변환 $$\tilde{\mathbf{T}}_{ab}$$는 다음과 같다.
 
@@ -105,14 +105,36 @@ T angle_error = NormalizeAngle(theta_estimated - theta_measured);
 
 ---
 
-## 3D Pose의 경우: 갑자기 어려워지는 이유
+## 3D Pose (3D translation + 3D rotation)의 경우
 
-이제 3D로 가보자. Pose가 $$\mathbf{x} = (\mathbf{p}, \mathbf{q})$$이고, $$\mathbf{p} \in \mathbb{R}^3$$, $$\mathbf{q}$$는 unit quaternion이다. 추정 상대 변환은:
+이제 3D로 가보자. Pose가 $$\mathbf{x} = (\mathbf{p}, \mathbf{q})$$이고, $$\mathbf{p} \in \mathbb{R}^3$$, $$\mathbf{q}$$는 unit quaternion이다.
+
+본격적으로 수식을 풀어내기 전에, 앞으로 자주 등장할 *표기법*을 한 번 정리하고 가자. 이후 글의 모든 수식은 이 약속을 따른다.
+
+* **Subscript $$_a$$, $$_b$$ — 어느 frame/pose의 양인지 가리키는 index.**  
+  예: $$\mathbf{p}_a, \mathbf{q}_a$$는 "pose A의 position과 orientation". $$\mathbf{p}_b, \mathbf{q}_b$$는 마찬가지로 pose B의 것.
+* **Subscript $$_{ab}$$ — "A에서 B로의 *상대* 변환".**  
+  예: $$\mathbf{p}_{ab}$$는 *A frame 좌표계에서 표현된 B의 위치 벡터*, $$\mathbf{q}_{ab}$$는 *A에서 B로 가는 회전*.
+* **Tilde $$\tilde{\cdot}$$ — 현재 추정 pose로부터 *계산한 (estimated)* 값.**  
+  예: $$\tilde{\mathbf{q}}_{ab}$$는 "현재 추정값 $$\mathbf{q}_a, \mathbf{q}_b$$로부터 *계산한* 상대 회전".
+* **Hat $$\hat{\cdot}$$ — sensor가 *측정한 (measured)* 값.**  
+  예: $$\hat{\mathbf{q}}_{ab}$$는 "A frame에서 B의 상대 회전을 *sensor가 측정해준* 값". 이 글에서 ~~hat~~을 단 변수는 모두 measurement이다.
+* **Conjugate $$\mathbf{q}^{*}$$ — quaternion의 conjugate.**  
+  Quaternion $$\mathbf{q} = (\mathbf{v}, w)$$ (vector part $$\mathbf{v} \in \mathbb{R}^3$$, scalar part $$w \in \mathbb{R}$$)에 대해 $$\mathbf{q}^{*} = (-\mathbf{v}, w)$$. *Unit quaternion에서는 conjugate가 곧 inverse*이다 — 즉 $$\mathbf{q}^{*} \otimes \mathbf{q} = (\mathbf{0}, 1)$$이 identity quaternion이 되며, *반대 방향의 회전*을 의미한다.
+* **Quaternion product $$\otimes$$ — 두 quaternion의 곱.**  
+  단순한 element-wise 곱이 아니라 *회전의 합성 (composition)* 에 대응한다. 즉 $$\mathbf{q}_a \otimes \mathbf{q}_b$$를 회전 행렬로 옮기면 $$\mathbf{R}(\mathbf{q}_a) \mathbf{R}(\mathbf{q}_b)$$가 된다.
+
+> 요약: *"hat($$\hat{\cdot}$$)은 measurement, tilde($$\tilde{\cdot}$$)는 estimate, $$_{ab}$$는 A→B의 상대"*. 그리고 $$\otimes$$는 quaternion 곱, $$^{*}$$는 conjugate(=inverse). 이 약속을 머릿속에 넣어두면 이 시리즈의 모든 수식을 같은 안경으로 읽을 수 있다.
+
+이제 추정 상대 변환을 적어보면:
 
 $$
 \tilde{\mathbf{p}}_{ab} = \mathbf{R}(\mathbf{q}_a)^T (\mathbf{p}_b - \mathbf{p}_a), \quad
 \tilde{\mathbf{q}}_{ab} = \mathbf{q}_a^{*} \otimes \mathbf{q}_b
 $$
+
+* $$\tilde{\mathbf{p}}_{ab}$$: world에서의 변위 $$(\mathbf{p}_b - \mathbf{p}_a)$$를 A frame으로 회전. $$\mathbf{R}(\mathbf{q}_a)^T$$가 *world → A frame* 회전.
+* $$\tilde{\mathbf{q}}_{ab}$$: $$\mathbf{q}_a^{*}$$가 *world → A frame* 회전이고, 거기에 $$\mathbf{q}_b$$ (*world → B frame*)을 곱하면 *A → B*의 상대 회전이 나온다.
 
 위치 부분 $$\tilde{\mathbf{p}}_{ab}$$는 2D 때와 동일하게 *그냥 빼기* 로 residual을 만들 수 있다.
 
