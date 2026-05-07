@@ -6,6 +6,10 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
+<div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">
+🚀 <strong>Interactive Demo (26.May.07)</strong> — 본 포스트의 PCL 코드들을 브라우저에서 바로 실행해볼 수 있는 <a href="https://limhyungtae.github.io/pcl_tutorial/#/" target="_blank">interactive demo 사이트</a>를 추가했습니다.
+</div>
+
 # 형변환을 해야 하는 이유
 
 ROS를 처음 입문을 하면 형 변환을 하는 게 낯설어서 굉장히 힘듭니다. 그런데 이 형 변환을 왜 해야할까요? 정답은 ROS에서 master를 통해 통신할 때 주고 받는 `sensor_msgs::PointCloud2` 메세지를 사용하는데 그 data를 후처리할 때는 PCL의 pointcloud를 사용해야 하기 때문입니다. 비유를 하자면 `sensor_msgs::PointCloud2`는 택배를 보내기 위해 상자에 data를 담아서 포장해둔 상태이고 `pcl::PointCloud`는 그 상자를 뜯어서 포장지를 뜯은 data라고 이해하면 될 것 같습니다. 

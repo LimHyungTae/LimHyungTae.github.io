@@ -6,6 +6,10 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
+<div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">
+🚀 <strong>Interactive Demo (26.May.07)</strong> — 본 포스트의 PCL 코드들을 브라우저에서 바로 실행해볼 수 있는 <a href="https://limhyungtae.github.io/pcl_tutorial/#/" target="_blank">interactive demo 사이트</a>를 추가했습니다.
+</div>
+
 # Point Cloud Library를 사용해야 하는 이유 
 
 Point Cloud Library(사이트는 [여기](https://pointclouds.org/)) LiDAR나 RGB-D 카메라를 통해 취득한 pointcloud를 후처리하는데 사용되는 알고리즘을 구현해둔 라이브러리입니다. 특히, SLAM등이나 navigation을 할 때 써야하는 filter 알고리즘, voxelization, registration (i.e. ICP나 NDT 등) 등이 이미 구현되어 있어서 pointcloud를 후처리하거나 SLAM 알고리즘을 개발할 때 편리합니다. 특히, 연구레벨에서도 PCL 자체가 깔끔한 상속으로 구성되어 있어서 자기만의 수정된 알고리즘을 구현할 때에도 PCL의 부분부분을 상속받아서 쉽게 수정하여 사용가능한 것으로 알고 있습니다.

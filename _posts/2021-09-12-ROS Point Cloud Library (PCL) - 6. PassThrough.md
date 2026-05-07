@@ -6,6 +6,10 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
 ---
 
+<div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">
+🚀 <strong>Interactive Demo (26.May.07)</strong> — 본 포스트의 PCL 코드들을 브라우저에서 바로 실행해볼 수 있는 <a href="https://limhyungtae.github.io/pcl_tutorial/#/" target="_blank">interactive demo 사이트</a>를 추가했습니다.
+</div>
+
 # PassThrough의 활용 예시
 
 PassThrough 함수는 말 그래도 range 기반으로 filtering을 해주는 함수입니다. PassThrough는 주로 pointcloud를 받은 후 의도치 않게 측정이 되는 부분들을 제거하기 위해 사용됩니다 (i.e. 로봇에 부착했는데 센서의 측정 영역에 로봇의 몸체 부분이 있어서 불필요한 point가 찍힌다던가 등등). 사용 순서는 아래와 같습니다.
