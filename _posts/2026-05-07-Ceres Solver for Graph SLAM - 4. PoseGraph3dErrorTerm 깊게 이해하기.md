@@ -8,7 +8,7 @@ comments: true
 
 ## Introduction
 
-[3편](https://limhyungtae.github.io/2025-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)에서는 `pose_graph_3d.cc`의 `main()` 흐름과, 두 파일이 *수학 정의*와 *Ceres engineering*으로 역할이 나뉜다는 점을 살펴봤다. 이번 편에서는 그 중 *수학 정의*를 담당하는 `pose_graph_3d_error_term.h`만 한 파일을 깊게 뜯어본다.
+[3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)에서는 `pose_graph_3d.cc`의 `main()` 흐름과, 두 파일이 *수학 정의*와 *Ceres engineering*으로 역할이 나뉜다는 점을 살펴봤다. 이번 편에서는 그 중 *수학 정의*를 담당하는 `pose_graph_3d_error_term.h`만 한 파일을 깊게 뜯어본다.
 
 이 파일이 하는 일은 단 하나이다. *"두 pose A, B와 그 사이의 measurement가 주어졌을 때, 6차원 residual을 어떻게 계산하는지"* 를 정의하는 것. 그런데 그 6차원이 정확히 무엇으로 채워지고, 왜 quaternion에서 vector part에 2를 곱하며, 왜 information matrix를 LLT로 쪼개는지 — 이 모든 게 사실 깊게 들여다볼 만한 주제이다. 한 마디로 이번 글은 "60줄짜리 functor 하나에 박힌 SLAM optimization의 수학"을 푸는 글이다.
 
@@ -359,7 +359,7 @@ AutoDiff가 만능은 아니다. 다음과 같은 경우에는 AutoDiff 대신 a
 
 ChatGPT에 먹혀버린 시대일수록 *우리가 정확히 무엇을 optimize하고 있는지*를 손으로 따라가보는 게 중요하지 않나 싶다. Pose graph optimization의 `cost = 0.5 ||residual||^2` 안에 들어있는 60줄짜리 functor가, 사실은 SE(3) manifold의 multiplicative error와 Mahalanobis weighting을 다 구현한 코드라는 것 — 이것이 이 글에서 전달하고 싶었던 핵심이다.
 
-다음 [5편](https://limhyungtae.github.io/2025-05-07-Ceres-Solver-for-Graph-SLAM-5.-BuildOptimizationProblem%EA%B3%BC-Manifold-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서는 `pose_graph_3d.cc`의 `BuildOptimizationProblem()`을 분석한다. 이 functor가 `AddResidualBlock`으로 어떻게 등록되는지, quaternion의 manifold 처리는 어떻게 이뤄지는지, gauge freedom은 어떻게 fix되는지 — Ceres API를 활용하는 *engineering* 레이어를 다룰 예정이다.
+다음 [5편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-5.-BuildOptimizationProblem%EA%B3%BC-Manifold-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서는 `pose_graph_3d.cc`의 `BuildOptimizationProblem()`을 분석한다. 이 functor가 `AddResidualBlock`으로 어떻게 등록되는지, quaternion의 manifold 처리는 어떻게 이뤄지는지, gauge freedom은 어떻게 fix되는지 — Ceres API를 활용하는 *engineering* 레이어를 다룰 예정이다.
 
 ---
 
