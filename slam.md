@@ -118,6 +118,48 @@ permalink: /slam/
     color: #212529 !important;
 }
 
+.btn-viewer {
+    background-color: #fff;
+    color: #1B2C8F !important;
+    border: 1px solid #1B2C8F;
+}
+
+.btn-viewer:hover {
+    background-color: #1B2C8F;
+    border-color: #1B2C8F;
+    text-decoration: none !important;
+    color: #fff !important;
+}
+
+/* Top-of-page banner that links into the SPA viewer.
+   Sits between the language toggle and the intro text. */
+.viewer-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    margin: 0 0 24px;
+    background: #f4f7fb;
+    border: 1px solid #dde6f1;
+    border-left: 3px solid #1B2C8F;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: #2c3e50;
+    text-decoration: none !important;
+    transition: background .15s, border-color .15s;
+}
+
+.viewer-banner:hover {
+    background: #e9eff8;
+    border-color: #1B2C8F;
+    color: #1B2C8F;
+    text-decoration: none !important;
+}
+
+.viewer-banner .icon { font-size: 18px; flex-shrink: 0; }
+.viewer-banner .arrow { margin-left: auto; opacity: 0.6; }
+.viewer-banner:hover .arrow { opacity: 1; }
+
 .btn-code {
     background-color: #f8f9fa;
     color: #495057 !important;
@@ -198,6 +240,18 @@ body[data-lang="en"] .btn-video { display: none !important; }
   <button type="button" data-lang="ko">Korean (한국어)</button>
 </div>
 
+<a class="viewer-banner" href="/slam/viewer/">
+  <span class="icon">📚</span>
+  <span>
+    <strong><span class="lang-ko">통합 뷰어로 보기</span><span class="lang-en">Open in unified viewer</span></strong>
+    <span style="opacity:0.7;">
+      <span class="lang-ko"> — 사이드바로 강의 간 빠르게 이동하며 슬라이드 PDF를 바로 읽을 수 있어요</span>
+      <span class="lang-en"> — browse all lecture slides with sidebar navigation in one place</span>
+    </span>
+  </span>
+  <span class="arrow">→</span>
+</a>
+
 <div class="slam-intro">
 <span class="lang-ko"> SLAM(Simultaneous Localization and Mapping)을 처음 접하는 분들을 위한 강의 시리즈입니다.
 제가 처음 SLAM을 공부할 때, 개념을 직관적으로 설명해주는 자료를 찾기 어려워 꽤 오랜 시간 헤맸던 기억이 있습니다.
@@ -229,6 +283,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/gQtpTGrgtqE" class="btn-video">Video</a>
+      <a href="/slam/viewer/#lec01" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec01_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -245,6 +300,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/DpKo0N-UjXs" class="btn-video">Video</a>
+      <a href="/slam/viewer/#lec02" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec02_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -279,6 +335,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/JIUWrz2161A" class="btn-video">Video</a>
+      <a href="/slam/viewer/#lec03" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec03_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -325,6 +382,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/y2PqPEPTK1A?si=pOsJ2XuOFQ1d3qgg" class="btn-video">Video</a>
+      <a href="/slam/viewer/#lec04" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec04_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -371,6 +429,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/LDeWEYFJacw" class="btn-video">Video</a>
+      <a href="/slam/viewer/#lec05" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec05_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -398,6 +457,7 @@ The materials will be updated sequentially. </span>
       <span class="lang-en">Math supplementary</span>
     </span>
     <span class="lecture-links">
+      <a href="/slam/viewer/#lec05-supp" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec05_math_supplementary.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -414,6 +474,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <a href="https://youtu.be/_fSSED4vtdI" class="btn-video">Video</a>
+      <a href="/slam/viewer/#lec06" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec06_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -460,6 +521,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <span class="btn-video tbu" aria-label="Video coming soon">Video (TBU)</span>
+      <a href="/slam/viewer/#lec07" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec07_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -506,6 +568,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <span class="btn-video tbu" aria-label="Video coming soon">Video (TBU)</span>
+      <a href="/slam/viewer/#lec08" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec08_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -546,6 +609,7 @@ The materials will be updated sequentially. </span>
     </span>
     <span class="lecture-links">
       <span class="btn-video tbu" aria-label="Video coming soon">Video (TBU)</span>
+      <a href="/slam/viewer/#lec09" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec09_SLAM_for_everyone.pdf" class="btn-slide">Slide</a>
     </span>
   </li>
@@ -598,6 +662,7 @@ The materials will be updated sequentially. </span>
       <span class="lang-en">Matrix decomposition (Dense/sparse QR, Cholesky, multifrontal Cholesky, etc.)</span>
     </span>
     <span class="lecture-links">
+      <a href="/slam/viewer/#lec10-supp" class="btn-viewer">Viewer</a>
       <a href="/slam_slides/Lec10_math_supplementary.pdf" class="btn-slide">Slide</a>
     </span>
   </li>

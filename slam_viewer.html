@@ -1,0 +1,744 @@
+---
+layout: base
+title: SLAM Lecture Viewer
+permalink: /slam/viewer/
+---
+
+<style>
+/* Full-bleed two-pane layout that fills the viewport below the navbar.
+   80px is a conservative estimate of the Beautiful Jekyll navbar height —
+   slightly off doesn't break anything since the inner panes scroll. */
+.slam-viewer-root {
+    --sidebar-w: 280px;
+    --accent: #D9531E;
+    --bg: #f2f4f7;
+    display: flex;
+    height: calc(100vh - 80px);
+    background: var(--bg);
+    border-top: 1px solid #dde1e7;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* hide the page footer on the viewer route — it would otherwise sit just
+   below the 100vh layout and force a tiny scroll on every load */
+body.slam-viewer-page footer { display: none; }
+
+/* ── Sidebar ── */
+.slam-viewer-sidebar {
+    width: var(--sidebar-w);
+    background: #1F4E79;
+    color: #fff;
+    overflow-y: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.slam-viewer-sidebar a { color: inherit; }
+
+.sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.sidebar-header h2 {
+    font-size: 14px;
+    margin: 0 0 6px;
+    font-weight: 700;
+    color: #fff;
+}
+.sidebar-header .back-link {
+    display: inline-block;
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 2px;
+    text-decoration: none;
+}
+.sidebar-header .back-link:hover { opacity: 1; text-decoration: none; color: #fff; }
+
+.sidebar-lang-toggle {
+    display: inline-flex;
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 11px;
+}
+.sidebar-lang-toggle button {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.65);
+    padding: 3px 9px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
+.sidebar-lang-toggle button + button { border-left: 1px solid rgba(255,255,255,0.15); }
+.sidebar-lang-toggle button.active { background: rgba(255,255,255,0.18); color: #fff; }
+.sidebar-lang-toggle button:hover { color: #fff; }
+
+.sidebar-section { padding: 8px 0 4px; }
+.sidebar-section-label {
+    padding: 6px 16px 4px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.45;
+    font-weight: 600;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    font-size: 12.5px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    opacity: 0.82;
+    transition: background .12s, opacity .12s, border-color .12s;
+    user-select: none;
+    line-height: 1.35;
+}
+.sidebar-item:hover { background: rgba(255,255,255,0.09); opacity: 1; }
+.sidebar-item.active {
+    background: rgba(255,255,255,0.13);
+    opacity: 1;
+    border-left-color: var(--accent);
+}
+.sidebar-item .icon { font-size: 0.95em; opacity: 0.7; flex-shrink: 0; }
+.sidebar-item.is-supp { padding-left: 32px; opacity: 0.65; font-size: 12px; }
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 10px 16px;
+    font-size: 10.5px;
+    opacity: 0.4;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    line-height: 1.5;
+}
+
+/* ── Main viewer ── */
+.slam-viewer-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.slam-viewer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    background: #fff;
+    border-bottom: 1px solid #dde1e7;
+    font-size: 13px;
+    color: #555;
+    flex-wrap: wrap;
+}
+.slam-viewer-toolbar strong { color: #222; font-size: 13.5px; font-weight: 600; }
+.slam-viewer-toolbar .pages-count { opacity: 0.6; }
+.slam-viewer-toolbar .spacer { flex: 1; }
+
+.slam-viewer-toolbar button,
+.slam-viewer-toolbar a.toolbar-btn {
+    font: inherit;
+    font-size: 13px;
+    padding: 4px 10px;
+    border: 1px solid #cfd5dc;
+    background: #fff;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: background .12s, border-color .12s;
+}
+.slam-viewer-toolbar button:hover,
+.slam-viewer-toolbar a.toolbar-btn:hover {
+    background: #f4f6f9;
+    border-color: var(--accent);
+    color: #333;
+    text-decoration: none;
+}
+.slam-viewer-toolbar button.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.zoom-group {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #cfd5dc;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+}
+.zoom-group button {
+    border: none;
+    border-radius: 0;
+    padding: 4px 10px;
+}
+.zoom-group .zoom-label {
+    min-width: 3.4em;
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 4px;
+    line-height: 1.4;
+}
+.zoom-group .zoom-label:hover { color: var(--accent); }
+
+.slam-viewer-pages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 12px 32px;
+    background: #e8eaee;
+    scroll-behavior: smooth;
+}
+
+.slam-viewer-pages-inner {
+    --zoom: 1;
+    max-width: calc(960px * var(--zoom));
+    margin: 0 auto;
+}
+.slam-viewer-pages-inner.two-up {
+    max-width: calc(1700px * var(--zoom));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.page-wrap {
+    position: relative;
+    margin-bottom: 8px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.13);
+    overflow: hidden;
+}
+.slam-viewer-pages-inner.two-up .page-wrap { margin-bottom: 0; }
+
+.page-wrap canvas {
+    width: 100%;
+    display: block;
+    background: #fff;
+}
+
+.page-num {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 11px;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.slam-viewer-status {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #8a9ab0;
+    gap: 12px;
+    font-size: 14px;
+    text-align: center;
+    padding: 24px;
+}
+.slam-viewer-status .big { font-size: 2.5rem; }
+.slam-viewer-status .progress-bar {
+    width: 220px;
+    height: 3px;
+    background: #dde1e7;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.slam-viewer-status .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0;
+    transition: width .15s;
+}
+
+/* Each translatable element is written twice — once with .lang-ko, once with .lang-en —
+   matching the slam.md pattern so the language toggle works without per-element JS. */
+body[data-lang="ko"] .lang-en { display: none !important; }
+body[data-lang="en"] .lang-ko { display: none !important; }
+
+@media (max-width: 768px) {
+    .slam-viewer-root {
+        flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 80px);
+    }
+    .slam-viewer-sidebar {
+        width: 100%;
+        max-height: 38vh;
+    }
+    .slam-viewer-main { min-height: 70vh; }
+    .slam-viewer-pages-inner.two-up {
+        grid-template-columns: 1fr;
+        max-width: calc(960px * var(--zoom));
+    }
+}
+</style>
+
+<div class="slam-viewer-root" id="slam-viewer-root">
+  <nav class="slam-viewer-sidebar" aria-label="Lecture list">
+    <div class="sidebar-header">
+      <h2>
+        <span class="lang-ko">모두를 위한 SLAM</span>
+        <span class="lang-en">SLAM for Everyone</span>
+      </h2>
+      <a class="back-link" href="/slam/">
+        <span class="lang-ko">← 강의 목록으로</span>
+        <span class="lang-en">← Back to lecture list</span>
+      </a>
+      <div class="sidebar-lang-toggle" role="group" aria-label="Language toggle">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ko">한국어</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Lectures</div>
+
+      <div class="sidebar-item" data-id="lec01" data-pdf="/slam_slides/Lec01_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 01 · SLAM이란 무엇인가?" data-title-en="Lec 01 · What is SLAM?">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 01 · Introduction</span><span class="lang-en">Lec 01 · Introduction</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec02" data-pdf="/slam_slides/Lec02_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 02 · Robot Navigation 분류와 용어"
+           data-title-en="Lec 02 · Categories &amp; Terminology of Robot Navigation">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 02 · Categories &amp; Terminology</span><span class="lang-en">Lec 02 · Categories &amp; Terminology</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec03" data-pdf="/slam_slides/Lec03_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 03 · State, Measurement, Estimation"
+           data-title-en="Lec 03 · State, Measurement, and Estimation">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 03 · State, Measurement, Estimation</span><span class="lang-en">Lec 03 · State, Measurement, Estimation</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec04" data-pdf="/slam_slides/Lec04_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 04 · MLE / MAP" data-title-en="Lec 04 · MLE / MAP">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 04 · MLE / MAP</span><span class="lang-en">Lec 04 · MLE / MAP</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec05" data-pdf="/slam_slides/Lec05_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 05 · Filtering vs. Smoothing (1) — Kalman Filter"
+           data-title-en="Lec 05 · Filtering vs. Smoothing (1) — Kalman Filter">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 05 · Kalman Filter from MAP</span><span class="lang-en">Lec 05 · Kalman Filter from MAP</span></span>
+      </div>
+
+      <div class="sidebar-item is-supp" data-id="lec05-supp" data-pdf="/slam_slides/Lec05_math_supplementary.pdf"
+           data-title-ko="Lec 05 보충 · 수학 보충 자료" data-title-en="Lec 05 Supp · Math supplementary">
+        <span class="icon">📐</span>
+        <span><span class="lang-ko">└ 보충: 수학 보충 자료</span><span class="lang-en">└ Supp: Math supplementary</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec06" data-pdf="/slam_slides/Lec06_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 06 · Filtering vs. Smoothing (2) — Graph Optimization"
+           data-title-en="Lec 06 · Filtering vs. Smoothing (2) — Graph Optimization">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 06 · Graph Optimization from MAP</span><span class="lang-en">Lec 06 · Graph Optimization from MAP</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec07" data-pdf="/slam_slides/Lec07_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 07 · Rotation, and Transformation Matrix"
+           data-title-en="Lec 07 · Rotation, and Transformation Matrix">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 07 · Rotation &amp; Transformation</span><span class="lang-en">Lec 07 · Rotation &amp; Transformation</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec08" data-pdf="/slam_slides/Lec08_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 08 · Three Practical Tips for Transformations in Code"
+           data-title-en="Lec 08 · Three Practical Tips for Transformations in Code">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 08 · Practical Tips for Transformations</span><span class="lang-en">Lec 08 · Practical Tips for Transformations</span></span>
+      </div>
+
+      <div class="sidebar-item" data-id="lec09" data-pdf="/slam_slides/Lec09_SLAM_for_everyone.pdf"
+           data-title-ko="Lec 09 · Lie Group and Lie Algebra"
+           data-title-en="Lec 09 · Lie Group and Lie Algebra">
+        <span class="icon">📊</span>
+        <span><span class="lang-ko">Lec 09 · Lie Group &amp; Lie Algebra</span><span class="lang-en">Lec 09 · Lie Group &amp; Lie Algebra</span></span>
+      </div>
+
+      <div class="sidebar-item is-supp" data-id="lec10-supp" data-pdf="/slam_slides/Lec10_math_supplementary.pdf"
+           data-title-ko="Lec 10 보충 · Matrix Decomposition"
+           data-title-en="Lec 10 Supp · Matrix Decomposition">
+        <span class="icon">📐</span>
+        <span><span class="lang-ko">Lec 10 보충 · Matrix Decomposition</span><span class="lang-en">Lec 10 Supp · Matrix Decomposition</span></span>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="lang-ko">Hyungtae Lim · MIT SPARK Lab</span>
+      <span class="lang-en">Hyungtae Lim · MIT SPARK Lab</span>
+    </div>
+  </nav>
+
+  <main class="slam-viewer-main">
+    <div class="slam-viewer-toolbar" id="slam-viewer-toolbar" style="display:none">
+      <strong id="slam-viewer-title"></strong>
+      <span class="pages-count" id="slam-viewer-pages-count"></span>
+      <span class="spacer"></span>
+      <div class="zoom-group">
+        <button type="button" id="zoom-out" title="Zoom out">−</button>
+        <span class="zoom-label" id="zoom-label" title="Reset to 100%">100%</span>
+        <button type="button" id="zoom-in" title="Zoom in">+</button>
+      </div>
+      <button type="button" id="toggle-twoup" title="Toggle two-up view">
+        <span class="lang-ko">2쪽 보기</span><span class="lang-en">2-up</span>
+      </button>
+      <a class="toolbar-btn" id="open-new" target="_blank" rel="noopener">
+        <span class="lang-ko">새 탭에서 열기 ↗</span><span class="lang-en">Open ↗</span>
+      </a>
+    </div>
+
+    <div class="slam-viewer-pages" id="slam-viewer-pages">
+      <div class="slam-viewer-status" id="slam-viewer-status">
+        <span class="big">📚</span>
+        <span>
+          <span class="lang-ko">왼쪽에서 강의를 선택하세요</span>
+          <span class="lang-en">Select a lecture from the left sidebar</span>
+        </span>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+    // language toggle — same storage key as the main /slam/ page so the
+    // user's preference carries across navigation
+    var STORAGE_KEY = 'slam-lang';
+    var supported   = ['ko', 'en'];
+    var initial     = localStorage.getItem(STORAGE_KEY);
+    if (supported.indexOf(initial) === -1) initial = 'en';
+
+    var langButtons = document.querySelectorAll('.sidebar-lang-toggle button[data-lang]');
+
+    function setLang(lang) {
+        document.body.setAttribute('data-lang', lang);
+        localStorage.setItem(STORAGE_KEY, lang);
+        langButtons.forEach(function (btn) {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        // Refresh title because it pulls from data-title-{lang}
+        if (currentItem) updateTitle(currentItem);
+    }
+
+    var currentItem = null;
+    function updateTitle(item) {
+        var lang  = document.body.getAttribute('data-lang') || 'en';
+        var title = item.getAttribute('data-title-' + lang) || item.textContent.trim();
+        var titleEl = document.getElementById('slam-viewer-title');
+        if (titleEl) titleEl.textContent = title;
+    }
+
+    // mark body so footer-hiding CSS applies only on this route
+    document.body.classList.add('slam-viewer-page');
+    setLang(initial);
+
+    langButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () { setLang(btn.dataset.lang); });
+    });
+})();
+</script>
+
+<script>
+(function () {
+    // ── PDF.js SPA viewer ──
+    // Modeled after gisbi-kim's robot-intelligence-lectures viewer:
+    // sidebar selects a PDF, main pane lazy-renders pages via IntersectionObserver,
+    // toolbar handles zoom and two-up. State is synced to URL hash for deep linking.
+    var PDFJS_VERSION = '4.4.168';
+    var PDFJS_CDN     = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + PDFJS_VERSION;
+    var pdfjsPromise  = null;
+
+    function loadPdfJs() {
+        if (!pdfjsPromise) {
+            pdfjsPromise = import(PDFJS_CDN + '/pdf.min.mjs').then(function (lib) {
+                lib.GlobalWorkerOptions.workerSrc = PDFJS_CDN + '/pdf.worker.min.mjs';
+                return lib;
+            });
+        }
+        return pdfjsPromise;
+    }
+
+    var ZOOM_STEPS = [0.5, 0.67, 0.75, 0.85, 1, 1.15, 1.25, 1.5, 1.75, 2];
+    var zoom = 1;
+
+    var pagesEl       = document.getElementById('slam-viewer-pages');
+    var statusEl      = document.getElementById('slam-viewer-status');
+    var toolbarEl     = document.getElementById('slam-viewer-toolbar');
+    var titleEl       = document.getElementById('slam-viewer-title');
+    var pagesCountEl  = document.getElementById('slam-viewer-pages-count');
+    var zoomInBtn     = document.getElementById('zoom-in');
+    var zoomOutBtn    = document.getElementById('zoom-out');
+    var zoomLabel     = document.getElementById('zoom-label');
+    var twoUpBtn      = document.getElementById('toggle-twoup');
+    var openNewBtn    = document.getElementById('open-new');
+
+    var inner = null;       // the .slam-viewer-pages-inner div with the page wraps
+    var current = null;     // { pdf, slots, n, item }
+    var io = null;
+    // renderGen invalidates in-flight renders when state changes (load swap,
+    // zoom step, two-up toggle). Each renderSlot captures the current value
+    // and bails on every async boundary if it has changed.
+    var renderGen = 0;
+
+    function setStatus(html, isProgress) {
+        if (toolbarEl) toolbarEl.style.display = 'none';
+        pagesEl.innerHTML = '';
+        var div = document.createElement('div');
+        div.className = 'slam-viewer-status';
+        div.innerHTML = html;
+        pagesEl.appendChild(div);
+        statusEl = div;
+        return div;
+    }
+
+    function clearViewer() {
+        renderGen++;
+        if (io) { io.disconnect(); io = null; }
+        current = null;
+        pagesEl.innerHTML = '';
+        inner = null;
+    }
+
+    function loadPDF(item) {
+        var url   = item.getAttribute('data-pdf');
+        var lang  = document.body.getAttribute('data-lang') || 'en';
+        var title = item.getAttribute('data-title-' + lang) || '';
+
+        clearViewer();
+        renderGen++;
+        var myGen = renderGen;
+
+        setStatus(
+            '<span class="big">⏳</span>' +
+            '<span><span class="lang-ko">로딩 중…</span><span class="lang-en">Loading…</span></span>' +
+            '<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>',
+            true
+        );
+
+        // Update toolbar Open-in-new-tab href + reset two-up state
+        openNewBtn.setAttribute('href', url);
+        if (inner) inner.classList.remove('two-up');
+        twoUpBtn.classList.remove('active');
+        twoUpBtn.querySelector('.lang-ko').textContent = '2쪽 보기';
+        twoUpBtn.querySelector('.lang-en').textContent = '2-up';
+
+        loadPdfJs().then(function (pdfjs) {
+            return pdfjs.getDocument(url).promise;
+        }).then(function (pdf) {
+            if (myGen !== renderGen) return;
+            return Promise.all([
+                pdf,
+                Promise.all(Array.from({ length: pdf.numPages }, function (_, i) {
+                    return pdf.getPage(i + 1);
+                }))
+            ]);
+        }).then(function (pair) {
+            if (!pair || myGen !== renderGen) return;
+            var pdf = pair[0], pageObjs = pair[1];
+
+            titleEl.textContent = title;
+            pagesCountEl.textContent = pdf.numPages + ' pages';
+            toolbarEl.style.display = 'flex';
+
+            pagesEl.innerHTML = '';
+            inner = document.createElement('div');
+            inner.className = 'slam-viewer-pages-inner';
+            inner.style.setProperty('--zoom', zoom);
+            pagesEl.appendChild(inner);
+
+            var slots = pageObjs.map(function (page, idx) {
+                var vp0  = page.getViewport({ scale: 1 });
+                var wrap = document.createElement('div');
+                wrap.className = 'page-wrap';
+                wrap.style.aspectRatio = vp0.width + ' / ' + vp0.height;
+                wrap.dataset.idx = String(idx);
+
+                var num = document.createElement('div');
+                num.className = 'page-num';
+                num.textContent = (idx + 1) + ' / ' + pdf.numPages;
+                wrap.appendChild(num);
+
+                inner.appendChild(wrap);
+                return { page: page, wrap: wrap, vp0: vp0, rendered: false };
+            });
+
+            current = { pdf: pdf, slots: slots, n: pdf.numPages, item: item };
+            pagesEl.scrollTop = 0;
+            setupLazyRender();
+        }).catch(function (err) {
+            if (myGen !== renderGen) return;
+            setStatus(
+                '<span class="big">⚠️</span><span>' +
+                '<span class="lang-ko">오류: </span>' +
+                '<span class="lang-en">Error: </span>' +
+                String(err && err.message || err) + '</span>'
+            );
+        });
+    }
+
+    function setupLazyRender() {
+        if (!current) return;
+        if (io) io.disconnect();
+        io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var slot = current && current.slots[Number(entry.target.dataset.idx)];
+                if (slot) renderSlot(slot);
+            });
+        }, { root: pagesEl, rootMargin: '600px 0px' });
+        current.slots.forEach(function (slot) { io.observe(slot.wrap); });
+    }
+
+    function renderSlot(slot) {
+        if (slot.rendered) return;
+        slot.rendered = true;
+        var myGen = renderGen;
+
+        var cssW = slot.wrap.getBoundingClientRect().width;
+        if (!cssW) { slot.rendered = false; return; }
+
+        var DPR   = Math.min(window.devicePixelRatio || 1, 2);
+        var scale = (cssW * DPR) / slot.vp0.width;
+        var vp    = slot.page.getViewport({ scale: scale });
+
+        var oldCanvas = slot.wrap.querySelector('canvas');
+        if (oldCanvas) oldCanvas.remove();
+
+        var canvas = document.createElement('canvas');
+        canvas.width  = vp.width;
+        canvas.height = vp.height;
+        slot.wrap.insertBefore(canvas, slot.wrap.firstChild);
+
+        slot.page.render({
+            canvasContext: canvas.getContext('2d'),
+            viewport: vp
+        }).promise.then(null, function () {
+            if (myGen === renderGen) slot.rendered = false;
+        });
+    }
+
+    function getTopVisibleIdx() {
+        if (!current) return 0;
+        var top = pagesEl.getBoundingClientRect().top;
+        for (var i = 0; i < current.slots.length; i++) {
+            var r = current.slots[i].wrap.getBoundingClientRect();
+            if (r.bottom > top + 40) return i;
+        }
+        return 0;
+    }
+
+    function rebuildSlots() {
+        if (!current) return;
+        var topIdx = getTopVisibleIdx();
+        renderGen++;
+        current.slots.forEach(function (slot) {
+            slot.rendered = false;
+            var c = slot.wrap.querySelector('canvas');
+            if (c) c.remove();
+        });
+        // wait one frame so layout (grid columns, --zoom) settles before
+        // renderSlot measures wrap widths
+        requestAnimationFrame(function () {
+            setupLazyRender();
+            if (current && current.slots[topIdx]) {
+                current.slots[topIdx].wrap.scrollIntoView({ block: 'start' });
+            }
+        });
+    }
+
+    function setTwoUp(enabled) {
+        if (!inner) return;
+        inner.classList.toggle('two-up', enabled);
+        twoUpBtn.classList.toggle('active', enabled);
+        twoUpBtn.querySelector('.lang-ko').textContent = enabled ? '1쪽 보기' : '2쪽 보기';
+        twoUpBtn.querySelector('.lang-en').textContent = enabled ? '1-up'    : '2-up';
+        rebuildSlots();
+    }
+
+    function setZoom(z) {
+        zoom = Math.max(ZOOM_STEPS[0], Math.min(ZOOM_STEPS[ZOOM_STEPS.length - 1], z));
+        if (inner) inner.style.setProperty('--zoom', zoom);
+        zoomLabel.textContent = Math.round(zoom * 100) + '%';
+        rebuildSlots();
+    }
+
+    function nudgeZoom(dir) {
+        var i = ZOOM_STEPS.findIndex(function (z) { return z >= zoom - 1e-3; });
+        if (i < 0) i = ZOOM_STEPS.length - 1;
+        if (dir > 0 && ZOOM_STEPS[i] <= zoom + 1e-3) i++;
+        if (dir < 0) i--;
+        i = Math.max(0, Math.min(ZOOM_STEPS.length - 1, i));
+        setZoom(ZOOM_STEPS[i]);
+    }
+
+    twoUpBtn.addEventListener('click', function () {
+        if (!inner) return;
+        setTwoUp(!inner.classList.contains('two-up'));
+    });
+    zoomInBtn.addEventListener('click',  function () { nudgeZoom(+1); });
+    zoomOutBtn.addEventListener('click', function () { nudgeZoom(-1); });
+    zoomLabel.addEventListener('click',  function () { setZoom(1); });
+
+    // ── Sidebar item activation + hash-based deep linking ──
+    var items = document.querySelectorAll('.sidebar-item[data-pdf]');
+
+    function activate(item, opts) {
+        opts = opts || {};
+        items.forEach(function (el) { el.classList.remove('active'); });
+        item.classList.add('active');
+        if (!opts.skipHash) {
+            var id = item.getAttribute('data-id');
+            if (id && location.hash !== '#' + id) {
+                history.replaceState(null, '', location.pathname + '#' + id);
+            }
+        }
+        loadPDF(item);
+    }
+
+    items.forEach(function (item) {
+        item.addEventListener('click', function () { activate(item); });
+    });
+
+    // Pick initial lecture from URL hash (e.g. /slam/viewer/#lec05),
+    // falling back to the first item when no/unknown hash is present.
+    function pickInitial() {
+        var id = (location.hash || '').replace(/^#/, '');
+        var match = id ? document.querySelector('.sidebar-item[data-id="' + id + '"]') : null;
+        return match || items[0];
+    }
+
+    var startItem = pickInitial();
+    if (startItem) activate(startItem, { skipHash: !!location.hash });
+
+    window.addEventListener('hashchange', function () {
+        var id = (location.hash || '').replace(/^#/, '');
+        var match = id ? document.querySelector('.sidebar-item[data-id="' + id + '"]') : null;
+        if (match && !match.classList.contains('active')) activate(match, { skipHash: true });
+    });
+})();
+</script>
