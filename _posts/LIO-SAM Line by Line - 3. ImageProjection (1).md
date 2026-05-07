@@ -4,7 +4,10 @@ title: LeGO-LOAM Line by Line - 1. Introduction
 subtitle: Preview and Preliminaries
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
-
+description: LIO-SAM imageProjection 모듈의 cloudHandler, cachePointCloud, deskewInfo 콜백을 line-by-line으로 따라가며 IMU와 odometry 큐가 어떻게 동기화되는지 분석한다.
+permalink: /2022/04/07/lio-sam-line-by-line-03a-image-projection/
+redirect_from:
+  - '/2022-04-07-LIO-SAM Line by Line - 3. ImageProjection (1)/'
 ---
 
 # LIO-SAM

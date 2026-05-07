@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 6. std::move() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::move()
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::move가 객체를 실제로 옮기지 않고 rvalue 참조로 변환해 자원을 이동시키는 원리를 이사 비유로 풀고, Faster-LIO와 ROS2 publish 활용 사례를 살펴본다.
+permalink: /2024/01/01/modern-cpp-robotics-06-std-move/
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 6. std::move() 쉬운 설명/'
 ---
 
 ## std::move

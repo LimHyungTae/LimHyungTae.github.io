@@ -4,6 +4,11 @@ title: KITTI-360 dataset 구성 분석
 subtitle:
 tags: [Dataset]
 comments: true
+description: KITTI-360 데이터셋의 폴더 구조와 submap 형태로 제공되는 semantic label을 파싱하는 방법, scan별 point-wise semantic label을 nearest neighbor로 할당하는 절차를 정리한다.
+image: /img/semantic_kitti.png
+permalink: /2024/11/03/kitti-360-dataset-structure-analysis/
+redirect_from:
+  - '/2024-11-03-KITTI-360 dataset 구성 분석/'
 ---
 
 ## Introduction
@@ -112,7 +117,7 @@ comments: true
 즉, N개의 point cloud가 주어지면, N개의 대응되는 label 파일을 제공하는 게 아니라, 데이터셋을 제작할 때 쓴 submap의 label을 그냥 제공하는 것을 볼 수 있었다.
 아래는 `0000000002_0000000292.ply` 파일을 visualization한 예시이다:
 
-![](/img/semantic_kitti.png)
+![KITTI-360 submap visualization](/img/semantic_kitti.png)
 
 (Colormap의 정보는 [여기 helper folder 내](https://github.com/LimHyungTae/kitti360Scripts/blob/009642efe806253cd870357e4baf87feb7a07dab/kitti360scripts/helpers/labels.py#L69)를 보면 확인할 수 있다)
 ### How To Parse

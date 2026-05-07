@@ -4,7 +4,11 @@ title: GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기
 subtitle: How does GTSAM work? 
 tags: [Jacobian, GTSAM, Optimization]
 comments: true
-
+description: GTSAM의 BetweenFactor가 factor graph 위에서 두 pose 사이의 상대 변환을 어떻게 표현하고, evaluateError에서 Local/Between 함수가 어떻게 동작해 pose graph optimization으로 이어지는지 단계별로 풀어본다.
+image: /img/gtsam_solving.png
+permalink: /2024/12/01/gtsam-tutorial-01-between-factor/
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기/'
 ---
 
 ## Introduction 

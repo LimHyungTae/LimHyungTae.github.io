@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 12. std::remove_if() 쉬운 설명
 subtitle: Easy Explanation & Examples of Conditional Algorithms
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::remove_if와 erase의 짝으로 컨테이너에서 조건에 맞는 요소를 효율적으로 제거하는 erase-remove idiom과 Open3D plane detection 활용 사례를 정리한다.
+permalink: /2024/01/03/modern-cpp-robotics-12-std-remove-if/
+redirect_from:
+  - '/2024-01-03-Modern C++ for Robotics 12. std::remove_if() 쉬운 설명/'
 ---
 
 

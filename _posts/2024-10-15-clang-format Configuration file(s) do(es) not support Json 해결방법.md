@@ -4,6 +4,10 @@ title: clang-format Configuration file(s) do(es) not support Json 해결방법
 subtitle:
 tags: [Ubuntu, GitHub, Maintenance]
 comments: true
+description: clang-format에서 발생하는 "Configuration file(s) do(es) not support Json" 에러를 .clang-format에 Json language 블록을 추가하고 pre-commit check-yaml에서 제외하는 방식으로 해결하는 방법을 정리한다.
+permalink: /2024/10/15/clang-format-json-not-supported-fix/
+redirect_from:
+  - '/2024-10-15-clang-format Configuration file(s) do(es) not support Json 해결방법/'
 ---
 
 ## 문제점

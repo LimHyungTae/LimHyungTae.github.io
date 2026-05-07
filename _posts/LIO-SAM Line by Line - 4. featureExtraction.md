@@ -4,7 +4,10 @@ title: LeGO-LOAM Line by Line - 1. Introduction
 subtitle: Preview and Preliminaries
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
-
+description: LIO-SAM featureExtraction 단계의 publishFeatureCloud 함수와 deskew된 corner, surface feature 추출 과정을 LeGO-LOAM과 비교하며 line-by-line으로 살펴본다.
+permalink: /2022/04/07/lio-sam-line-by-line-04-feature-extraction/
+redirect_from:
+  - '/2022-04-07-LIO-SAM Line by Line - 4. featureExtraction/'
 ---
 
 # LIO-SAM

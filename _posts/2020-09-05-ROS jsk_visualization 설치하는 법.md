@@ -4,7 +4,11 @@ title: ROS jsk_visualization 설치하는 법
 subtitle: ROS Rviz Visualization 플러그인 설치
 tags: [RViz, ROS, jsk, jsk_visaulization]
 comments: true
-
+description: ROS melodic에서 jsk_visualization을 clone부터 rosdep 의존성 설치, OpenCV API 변경에 따른 video_capture_display 컴파일 에러 수정까지 한 번에 해결한다.
+image: /img/jsk_viz.png
+permalink: /2020/09/05/ros-jsk-visualization-installation/
+redirect_from:
+  - '/2020-09-05-ROS jsk_visualization 설치하는 법/'
 ---
 ## Introduction
 

@@ -4,6 +4,11 @@ title: LunarVim LSP를 위한 compile_commands.json 파일 설정 방법
 subtitle: How to install LunarVim
 tags: [Ubuntu, vim]
 comments: true
+description: LunarVim에서 clangd LSP의 정의로 이동 기능을 쓰기 위해 catkin build의 CMAKE_EXPORT_COMPILE_COMMANDS로 compile_commands.json을 만들고 각 ROS 패키지에 배치하는 방법을 정리한다.
+image: /img/lspinfo.png
+permalink: /2024/08/14/lunarvim-lsp-compile-commands-json-setup/
+redirect_from:
+  - '/2024-08-14-LunarVim LSP를 위한 compile_commands.json 파일 설정 방법/'
 ---
 
 ## Introduction

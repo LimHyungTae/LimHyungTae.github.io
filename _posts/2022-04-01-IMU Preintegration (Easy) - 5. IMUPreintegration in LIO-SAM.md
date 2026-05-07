@@ -4,6 +4,11 @@ title: IMU Preintegration (Easy) - 5. IMUPreintegration in LIO-SAM
 subtitle: Line-by-line explanations of IMU Preintegration in LIO-SAM
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
+description: LIO-SAM의 imuPreintegration.cpp를 생성자, imuHandler, odometryHandler 콜백 단위로 line-by-line 분석하고 GTSAM PreintegratedImuMeasurements와 ISAM2 optimization 흐름을 정리한다.
+image: /img/preintegration/IMU_equation_for_lio_sam.png
+permalink: /2022/04/01/imu-preintegration-05-lio-sam/
+redirect_from:
+  - '/2022-04-01-IMU Preintegration (Easy) - 5. IMUPreintegration in LIO-SAM/'
 
 ---
 
@@ -104,7 +109,7 @@ void imuHandler(const sensor_msgs::Imu::ConstPtr& imu_raw)
 
 여기서 과정 2에서 왜 리턴하고 끝을 내는지에 대해서는 다시 생각해보면, **아직 bias term들이 optimization을 통해 추정되지 않았기 때문**이다. 다시 수식으로 돌아가서 살펴보자면, 처음 해당 코드가 실행됐을 때는 아래의 빨간 박스에 해당하는 값들이 update가 안 되어 있는 상태이다:
 
-![](/img/preintegration/IMU_equation_for_lio_sam.png)
+![LIO-SAM에서 갱신되지 않은 bias term](/img/preintegration/IMU_equation_for_lio_sam.png)
 
 
  따라서 biases가 부정확한 상황에서 `integrateMeasurement()` 함수를 통해 position을 prediction하게 되면 그 결과가 매우 부정확하다. 그렇기에 `odometryHandler` 콜백에서 처음 optimization을 하기 전까지 IMU data를 저장만할 뿐 prediction은 하지 않는다 (참고로 `if (doneFirstOpt == false)`를 주석처리하면 pose가 발산하여 우주로 날아가는 것을 확인할 수 있다).
@@ -134,7 +139,7 @@ ii) 그 후, factor graph optimization을 위한 initialization을 시행하기 
 
 다시 이 부분은 크게 두 가지로 나뉘는데, 첫 번째로는 오래된 IMU data가 들어온 시간이 `currentCorrectionTime` 보다 작은 (즉, 현재 pose 보다 이전에 들어온 data라는 것을 의미) data들을 queue에서 아래와 같이 제거한다.
 
-![](/img/preintegration/imu_queue.png)
+![IMU 큐에서 오래된 데이터 제거](/img/preintegration/imu_queue.png)
 
 (preintegration은 $$i$$ 번째 keyframe과 $$j$$ 번째 keyframe **사이**의 measurments를 하나의 factor로 만든다는 것을 다시 한 번 기억하자!!! 그러니 그 이전의 값들은 preintegrated measurements를 만드는데 필요 없다.)
 
@@ -170,7 +175,7 @@ void ManifoldPreintegration::resetIntegration() {
 
 위에서 `deltaTij_`는 i와 j 간의 시간차,`deltaXij_`는 우리가 최종적으로 계산해야하는 preintegrated measurements를 뜻한다, i.e. 아래의 초록색 박스들의 값. 
 
-![](/img/preintegration/preinteg_set_bias.png)
+![preintegrated measurements 초기화 대상](/img/preintegration/preinteg_set_bias.png)
 
 NavState는 [여기](https://gtsam.org/doxygen/a04144.html)를 보면 Rot3, Point3, Velocity3의 멤버 변수를 지니는 것을 확인할 수 있다. `deltaXij_` 변수 아래의 5개 term은 bias를 optimization할 때 쓰는 Jacobian을 계산하기 위한 term이다. 요약하자면, 이를 통해 $$i$$와 $$j$$ 사이의 시간 차, preintegrated measurements, Jacobian terms들 모두 초기화된다는 것을 확인할 수 있다. 
 

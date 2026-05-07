@@ -4,6 +4,10 @@ title: GTSAM GncOptimizer 사용법 쉬운 설명
 subtitle:
 tags: [GTSAM, C++]
 comments: true
+description: GTSAM의 GncOptimizer를 활용해 graduated non-convexity 기반 robust optimization을 수행하는 방법과 setInlierCostThresholdsAtProbability로 inlier/outlier threshold를 설정하는 핵심 사용법을 정리한다.
+permalink: /2024/11/06/gtsam-gnc-optimizer-usage/
+redirect_from:
+  - '/2024-11-06-GTSAM GncOptimizer 사용법 쉬운 설명/'
 ---
 
 ## Introduction

@@ -4,6 +4,11 @@ title: ROS Point Cloud Library (PCL) - 0. Tutorial 및 기본 사용법
 subtitle: 기본 사용법 및 operation들 정리
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
+description: PCL의 PointCloud 타입 선언, point 추가, begin/end/at/clear 같은 기본 operation, 그리고 += 로 두 pointcloud를 합치는 방법까지 입문자용 사용법을 정리한다.
+image: /img/pcl_contents.JPG
+permalink: /2021/09/09/pcl-tutorial-00-basic-usage/
+redirect_from:
+  - '/2021-09-09-ROS Point Cloud Library (PCL) - 0. Tutorial 및 기본 사용법/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

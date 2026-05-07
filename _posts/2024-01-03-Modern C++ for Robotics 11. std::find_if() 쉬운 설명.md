@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 11. std::find_if() 쉬운 설명
 subtitle: Easy Explanation & Examples of Conditional Algorithms
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::find_if와 std::find의 차이, lambda 캡쳐 목록(capture clause) 활용법을 struct 검색 예제와 ETH ASL의 GNSS pose estimator 코드로 정리한다.
+permalink: /2024/01/03/modern-cpp-robotics-11-std-find-if/
+redirect_from:
+  - '/2024-01-03-Modern C++ for Robotics 11. std::find_if() 쉬운 설명/'
 ---
 
 

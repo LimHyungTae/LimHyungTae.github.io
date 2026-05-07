@@ -4,6 +4,11 @@ title: 대학원생을 위한 latexdiff와 latexpand를 활용한 논문 검토
 subtitle: 교수님께 사랑받는 대학원생이 되자 (2/2)
 tags: [latex, latexdiff, latexpand]
 comments: true
+description: latexpand로 여러 tex 파일을 하나로 합친 뒤 latexdiff로 수정 부분을 자동 highlight해, 공동 저자와 논문 버전 비교를 손쉽게 하는 방법을 정리한다.
+image: /img/latexdiff_before_command.png
+permalink: /2022/10/19/latexdiff-latexpand-paper-review/
+redirect_from:
+  - '/2022-10-19-대학원생을 위한 latexdiff와 latexpand를 활용한 논문 검토/'
 ---
 
 # Latexdiff과 latexpand를 활용한 효과적인 논문 검토

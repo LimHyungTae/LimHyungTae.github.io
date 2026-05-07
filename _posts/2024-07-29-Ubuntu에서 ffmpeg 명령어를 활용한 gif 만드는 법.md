@@ -4,6 +4,11 @@ title: Ubuntu에서 ffmpeg 명령어를 활용한 gif 만드는 법
 subtitle: How to transform mp4 to gif
 tags: [Ubuntu, ffmpeg, gif, mp4]
 comments: true
+description: Ubuntu에서 ffmpeg로 mp4를 gif로 변환하는 방법과 bicubic, sinc, lanczos, spline 보간 옵션을 용량과 화질 관점에서 비교해 가장 효율적인 옵션을 정리한다.
+image: /img/output-long-sinc.gif
+permalink: /2024/07/29/ubuntu-ffmpeg-mp4-to-gif/
+redirect_from:
+  - '/2024-07-29-Ubuntu에서 ffmpeg 명령어를 활용한 gif 만드는 법/'
 ---
 
 이번 글에서는 `ffmpeg`를 통해 **효과적으로** gif를 만드는 방법에 대해 알아보자.
@@ -68,12 +73,12 @@ ffmpeg -i input.mp4 -vf "fps=10,scale=1000:-1:flags=lanczos" output-long.gif
 
 ### **sinc**로 생성한 gif 
 
-![](/img/output-long-sinc.gif)
+![sinc 보간 gif 결과](/img/output-long-sinc.gif)
 
 (확대해서 보면 origin 근처에 회색과 빨간색의 noise가 좀 더 생성되는 것을 볼 수 있음)
 ### **lanczos**로 생성한 gif 
 
-![](/img/output-long-lanczos.gif)
+![lanczos 보간 gif 결과](/img/output-long-lanczos.gif)
 
 ## Conclusion
 

@@ -4,6 +4,11 @@ title: GTSAM Tutorial 4. Unary Factor를 통한 Lie Group 클래스의 Jacobian 
 subtitle: Understanding H matrices in GTSAM
 tags: [Jacobian, GTSAM]
 comments: true
+description: GTSAM의 UnaryFactor 예제에서 왜 H 행렬이 단순 partial derivative가 아닌 rotation matrix가 되는지, retract와 미소 vector 표현을 활용해 Lie Group 위의 H Jacobian을 유도하는 방법을 정리한다.
+image: /img/gtsam_solving.png
+permalink: /2024/12/01/gtsam-tutorial-04-unary-factor-jacobian/
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 4. Unary Factor를 통한 Lie Group 클래스의 Jacobian 유도하기/'
 ---
 
 ## Unary Factor를 통한 GTSAM 내 Lie Group 클래스의 Jacobian 유도하기
@@ -70,7 +75,7 @@ $$h(\boldsymbol{\xi} \oplus \boldsymbol{\delta}) \simeq h(\boldsymbol{\xi}) + \m
 
 ---
 
-![](/img/gtsam_solving.png)
+![GTSAM optimization 수식 정리](/img/gtsam_solving.png)
 
 ---
 

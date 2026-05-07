@@ -4,7 +4,11 @@ title: Generalized Iterative Closest Point Line by Line - 1. Introduction
 subtitle: G-ICP 내부 설명 
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
-
+description: PCL의 Generalized ICP를 line-by-line으로 분석하는 시리즈를 시작한다. G-ICP의 동작 흐름과 SE(3) 기반 cost 정의로 확장한 Semantic ICP 논문의 동기를 함께 소개한다.
+image: /img/gicp_SE3.png
+permalink: /2021/09/05/gicp-line-by-line-01-introduction/
+redirect_from:
+  - '/2021-09-05-Generalized Iterative Closest Point Line by Line - 1. Introduction/'
 ---
 
 # Generalized Iterative Closest Point (G-ICP)

@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 5. std::insert() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::insert() 
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::insert로 vector, set, map에 요소를 삽입하고 여러 컨테이너를 합치는 방법, std::make_move_iterator를 활용한 효율적인 이동 삽입을 KISS-ICP 예제와 함께 정리한다.
+permalink: /2024/01/01/modern-cpp-robotics-05-std-insert/
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 5. std::insert() 쉬운 설명/'
 ---
 
 ## std::insert

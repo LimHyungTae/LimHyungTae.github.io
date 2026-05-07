@@ -4,6 +4,10 @@ title: GTSAM Tutorial 8. Pose3의 BetweenFactor Jacobian 유도
 subtitle: Understanding H matrices of Pose3 as an exercise
 tags: [Jacobian, GTSAM]
 comments: true
+description: Pose3의 BetweenFactor에서 H1, H2를 직접 유도해 보도록 update function과 measurement function을 정의하고, skew-symmetric matrix identity 등 전개에 필요한 핵심 hint와 최종 결과까지 정리한다.
+permalink: /2024/12/01/gtsam-tutorial-08-pose3-between-factor-jacobian/
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 8. Pose3의 BetweenFactor Jacobian 유도/'
 ---
 
 ## Pose3의 Jacobian 구하기

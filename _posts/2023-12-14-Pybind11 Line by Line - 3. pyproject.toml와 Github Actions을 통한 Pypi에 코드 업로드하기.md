@@ -4,6 +4,11 @@ title: Pybind11 Line by Line - 3. pyproject.toml와 Github Actions을 통한 Pyp
 subtitle: Understanding How pip3 works
 tags: [Pybind11, Pybinding, Python, C++]
 comments: true
+description: C++ 코드를 pybind11로 묶어 PyPI에 배포하는 전 과정을 Patchwork++와 ROBIN 사례로 정리한다. pyproject.toml과 scikit-build-core, CMakeLists.txt, Github Actions, PYPI_API_TOKEN 설정까지 다룬다.
+image: /img/publishing_key.png
+permalink: /2023/12/14/pybind11-line-by-line-03-pyproject-pypi-upload/
+redirect_from:
+  - '/2023-12-14-Pybind11 Line by Line - 3. pyproject.toml와 Github Actions을 통한 Pypi에 코드 업로드하기/'
 ---
 
 이제 Pybinding이 잘 된다는 가정 하에, 어떻게 하면 우리의 연구 코드를 `pip3 install`로 설치하게 할 수 있을까?
@@ -454,7 +459,7 @@ password = pypi-${FOLLOWING PASSWORD}
 
 그 후, pypi.org  첫 페이지 좌측 하단의 `Publishing`을 눌러서 우리가 pypi로 Actions을 통해 wheel 파일들을 업로드할 것임을 미리 고지(?)해줘야 한다.
 
-![](/img/publishing_key.png)
+![PyPI Publishing 설정 화면](/img/publishing_key.png)
 
 자세한 사항은 [여기 블로그](https://velog.io/@bailando/github-actions-%EC%9C%BC%EB%A1%9C-pypi-%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%98%EA%B8%B0)를 참고하면 된다(이 부분은 그리 어렵지 않음). 
 

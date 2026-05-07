@@ -4,6 +4,10 @@ title: Ceres Solver for Graph SLAM - 2. Pose Error를 정의하는 법
 subtitle: From 2D pose to 3D quaternion, SLAM-friendly residual의 첫걸음
 tags: [SLAM, Optimization, Ceres Solver, Pose Graph, SE(2), SE(3)]
 comments: true
+description: SLAM의 pose error가 무엇이고, 2D SE(2)에서 3D SE(3) quaternion으로 갈 때 왜 갑자기 어려워지는지 정리한다. Multiplicative quaternion error와 manifold가 등장하는 이유를 차근차근 짚는다.
+permalink: /2026/05/07/ceres-graph-slam-02-pose-error/
+redirect_from:
+  - '/2026-05-07-Ceres Solver for Graph SLAM - 2. Pose Error를 정의하는 법/'
 ---
 
 ## Introduction

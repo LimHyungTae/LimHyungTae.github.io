@@ -4,6 +4,11 @@ title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (2) Ptr
 subtitle: PCL에서 Ptr을 활용해보기
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
+description: PCL의 PointCloud::Ptr을 직접 다루며 Ptr=Ptr, *Ptr=*Ptr, *Ptr=Cloud, Cloud=*Ptr이 각각 메모리 상에서 어떤 의미를 가지는지 line-by-line 예제로 익힌다.
+image: /img/pcl_ptr_viz.png
+permalink: /2021/09/10/pcl-tutorial-01-ptr-in-pcl/
+redirect_from:
+  - '/2021-09-10-ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (2) Ptr in PCL/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

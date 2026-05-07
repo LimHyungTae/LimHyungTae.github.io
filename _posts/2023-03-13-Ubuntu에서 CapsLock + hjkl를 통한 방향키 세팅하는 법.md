@@ -4,6 +4,11 @@ title: Ubuntu에서 CapsLock + hjkl를 통한 방향키 세팅하는 법
 subtitle: Clion + Vim (IdeaVim) 세팅 (2)
 tags: [Clion, Pycharm, IntelliJ, Vim]
 comments: true
+description: Ubuntu에서 xmodmap으로 CapsLock + hjkl 조합을 방향키로 매핑해, Vim insert 모드와 일반 환경 모두에서 손을 떼지 않고 커서를 이동하는 세팅을 정리한다.
+image: /img/keymapping.png
+permalink: /2023/03/13/ubuntu-capslock-hjkl-arrow-keys/
+redirect_from:
+  - '/2023-03-13-Ubuntu에서 CapsLock + hjkl를 통한 방향키 세팅하는 법/'
 ---
 
 ## CapsLock + hjkl를 통한 방향키 세팅

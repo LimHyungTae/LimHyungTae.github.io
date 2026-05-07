@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 7. std::transform() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::transform()
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::transform으로 컨테이너 요소에 함수를 매핑하는 기본 사용법과 dst 크기 주의사항, KISS-ICP의 pose transformation 적용 사례를 한 줄 코드로 정리한다.
+permalink: /2024/01/01/modern-cpp-robotics-07-std-transform/
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 7. std::transform() 쉬운 설명/'
 ---
 
 ## std::transform

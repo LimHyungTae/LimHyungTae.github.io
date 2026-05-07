@@ -4,6 +4,10 @@ title: 대학원생을 위한 latex, Texstudio, Inkscape 세팅
 subtitle: 교수님께 사랑받는 대학원생이 되자 (1/2)
 tags: [latex, latexdiff, latexpand]
 comments: true
+description: 대학원생이 논문 작성 워크플로를 한 OS로 통합할 수 있도록 Ubuntu에 TexStudio와 Inkscape를 설치하고, Overleaf 대신 로컬 컴파일과 Inkscape pdf_tex 임베딩으로 작업하는 노하우를 정리한다.
+permalink: /2022/10/19/grad-student-latex-texstudio-inkscape-setup/
+redirect_from:
+  - '/2022-10-19-대학원생을 위한 latex, Texstudio, Inkscape 세팅/'
 ---
 
 # Introduction

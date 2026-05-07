@@ -4,6 +4,11 @@ title: Pybind11 Line by Line - 1. Open Source Codes Analyses
 subtitle: CMakeLists.txt setting for Pybind11
 tags: [Pybind11, Pybinding, Python, C++]
 comments: true
+description: cmake_example, KISS-ICP, TEASER++ 오픈소스의 pybinding 코드를 비교하며 PYBIND11_MODULE 선언, pybind11_add_module, def와 def_readwrite, Eigen/STL 헤더 사용법을 line-by-line으로 분석한다.
+image: /img/pybinding_cmake_example_results.png
+permalink: /2023/12/14/pybind11-line-by-line-01-open-source-analysis/
+redirect_from:
+  - '/2023-12-14-Pybind11 Line by Line - 1. Open Source Codes Analyses/'
 ---
 
 ## Motivation
@@ -32,11 +37,11 @@ pip3 install ./cmake_example
 
 아래와 같이 빌드가 된다
 
-![](/img/pybinding_cmake_example_results.png)
+![cmake_example 빌드 결과](/img/pybinding_cmake_example_results.png)
 
 그리고 아무 터미널창을 다시 열어서 python을 실행시키고 아래와 같이 치면:
 
-![](/img/pybinding_results.png)
+![pybind11 import 실행 결과](/img/pybinding_results.png)
 
 위와 같이 `cmake_exmaple`이라는 패키지가 wheel 파일로 변환되어 잘 설치되었음을 확인할 수 있다.
 아래는 이러한 pybinding이 어떻게 가능하게 된 것인지 코드레벨로 분석해본다.

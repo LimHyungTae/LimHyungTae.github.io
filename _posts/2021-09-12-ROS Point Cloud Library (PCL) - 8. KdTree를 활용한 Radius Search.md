@@ -4,7 +4,11 @@ title: ROS Point Cloud Library (PCL) - 8. KdTree를 활용한 Radius Search
 subtitle: KdTree FLANN 기반 Radius Search
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
-
+description: PCL KdTreeFLANN의 radiusSearch로 query point 주변의 pointcloud를 추출하는 방법과, setInputCloud의 트리 구축 비용 대비 search 속도 트레이드오프를 정리한다.
+image: /img/3dtree.png
+permalink: /2021/09/12/pcl-tutorial-08-kdtree-radius-search/
+redirect_from:
+  - '/2021-09-12-ROS Point Cloud Library (PCL) - 8. KdTree를 활용한 Radius Search/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

@@ -4,6 +4,10 @@ title: ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg
 subtitle: ROS와 PCL 간의 형 변환
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
+description: pcl::fromROSMsg와 pcl::toROSMsg로 sensor_msgs::PointCloud2와 pcl::PointCloud를 변환하고, 2D LaserScan은 laser_geometry로 PointCloud2를 거쳐 처리하는 방법을 정리한다.
+permalink: /2021/09/10/pcl-tutorial-02-toros-fromros-msg/
+redirect_from:
+  - '/2021-09-10-ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

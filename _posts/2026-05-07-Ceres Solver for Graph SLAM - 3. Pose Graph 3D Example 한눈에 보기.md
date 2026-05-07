@@ -4,6 +4,10 @@ title: Ceres Solver for Graph SLAM - 3. Pose Graph 3D Example 한눈에 보기
 subtitle: How does pose_graph_3d.cc work?
 tags: [SLAM, Optimization, Ceres Solver, Pose Graph, C++]
 comments: true
+description: Ceres 공식 pose_graph_3d example의 두 파일이 어떻게 맞물려 돌아가는지 overview로 정리한다. main()의 다섯 단계 흐름과 residual 수학(.h) vs Ceres engineering(.cc)의 역할 분담을 짚는다.
+permalink: /2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/
+redirect_from:
+  - '/2026-05-07-Ceres Solver for Graph SLAM - 3. Pose Graph 3D Example 한눈에 보기/'
 ---
 
 ## Introduction

@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 8. std::accumulate() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::accumulate()
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::accumulate로 합, 평균, 최댓값, struct의 비교까지 한 줄로 처리하는 방법과 std::all_of 대비 효율성 차이를 maplab, Open3D 코드 예시로 살펴본다.
+permalink: /2024/01/01/modern-cpp-robotics-08-std-accumulate/
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 8. std::accumulate() 쉬운 설명/'
 ---
 
 ## std::accumulate

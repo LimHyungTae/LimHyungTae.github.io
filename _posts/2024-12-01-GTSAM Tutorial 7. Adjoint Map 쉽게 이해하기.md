@@ -4,6 +4,10 @@ title: GTSAM Tutorial 7. Adjoint Map 쉽게 이해하기
 subtitle: Understanding the Concepts of Adjoint Map
 tags: [Jacobian, GTSAM]
 comments: true
+description: BetweenFactor의 H1에 등장하는 AdjointMap이 p1 좌표계의 미소 pose 변화량을 p2 좌표계로 옮겨주는 역할을 한다는 점을, 기차와 새 비유를 곁들여 직관적으로 풀어 설명한다.
+permalink: /2024/12/01/gtsam-tutorial-07-adjoint-map/
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 7. Adjoint Map 쉽게 이해하기/'
 ---
 
 ## Adjoint Map의 의미?

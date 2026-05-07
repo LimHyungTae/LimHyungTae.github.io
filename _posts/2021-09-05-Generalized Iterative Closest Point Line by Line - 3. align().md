@@ -4,7 +4,10 @@ title: Generalized Iterative Closest Point Line by Line - 3. align()
 subtitle: G-ICP 내부 설명 
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
-
+description: PCL G-ICP의 align() 함수 내부 동작을 line-by-line으로 살펴본다. computeTransformation, BFGS 기반 estimateRigidTransformation, Mahalanobis cost와 gradient까지 핵심 코드를 정리한다.
+permalink: /2021/09/05/gicp-line-by-line-03-align/
+redirect_from:
+  - '/2021-09-05-Generalized Iterative Closest Point Line by Line - 3. align()/'
 ---
 
 # Generalized Iterative Closest Point (G-ICP)

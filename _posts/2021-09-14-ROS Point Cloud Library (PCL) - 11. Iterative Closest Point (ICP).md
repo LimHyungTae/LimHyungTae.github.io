@@ -4,7 +4,11 @@ title: ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)
 subtitle: Hello ICP
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
-
+description: PCL ICP로 source-target pointcloud를 정합하는 절차와 setMaxCorrespondenceDistance/Epsilon/MaximumIterations 같은 핵심 파라미터, hasConverged와 getFitnessScore의 함정을 정리한다.
+image: /img/icp_result.png
+permalink: /2021/09/14/pcl-tutorial-11-icp/
+redirect_from:
+  - '/2021-09-14-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

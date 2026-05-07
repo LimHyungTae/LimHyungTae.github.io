@@ -4,6 +4,11 @@ title: GTSAM Tutorial 6. Pose2의 BetweenFactor Jacobian 유도
 subtitle: Understanding H matrices in GTSAM
 tags: [Jacobian, GTSAM]
 comments: true
+description: Pose2의 BetweenFactor에서 H1, H2를 update function 정의, measurement function 전개, 양변 비교 네 단계를 거쳐 직접 유도하고, 그 결과가 AdjointMap과 어떻게 연결되는지까지 정리한다.
+image: /img/gtsam_solving.png
+permalink: /2024/12/01/gtsam-tutorial-06-pose2-between-factor-jacobian/
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 6. Pose2의 BetweenFactor Jacobian 유도/'
 ---
 
 ## Pose2의 Jacobian 구하기
@@ -90,7 +95,7 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 
 ---
 
-![](/img/gtsam_solving.png)
+![GTSAM optimization 수식 정리](/img/gtsam_solving.png)
 
 (계속 remind되는 스크린샷...하지만 이만큼 잘 설명되어 있는 글이 없다.)
 

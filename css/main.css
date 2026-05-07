@@ -975,3 +975,53 @@ pre.highlight, .highlight > pre, td.code pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
+/* ============================================================
+   Mobile responsiveness for post content
+   These rules layer on top of Beautiful Jekyll defaults so that
+   long tables, math equations, code blocks, and oversized images
+   never break the layout on phones.
+   ============================================================ */
+
+article table,
+.post table,
+.page-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+.MathJax_Display,
+mjx-container[display="true"],
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+article img,
+.post img,
+.page-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+article pre,
+.post pre,
+.page-content pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media only screen and (max-width: 480px) {
+    article,
+    .post-content {
+        font-size: 15px;
+    }
+    h1, .post-heading h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.2rem; }
+    .container { padding-left: 12px; padding-right: 12px; }
+}

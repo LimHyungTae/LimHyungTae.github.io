@@ -4,6 +4,10 @@ title: Python Ray를 딥러닝 병렬 처리
 subtitle: How to use Ray for deep learning parallel processing
 tags: [Python, Ray, 딥러닝]
 comments: true
+description: Python Ray로 PyTorch GPU 작업을 병렬화할 때 num_gpus 옵션 설정과 pickle 직렬화 오버헤드가 발생하는 원인 및 주의점을 코드 예시와 함께 정리한다.
+permalink: /2025/02/20/python-ray-deep-learning-parallel/
+redirect_from:
+  - '/2025-02-20-Python Ray를 딥러닝 병렬 처리/'
 ---
 
 How to give them CUDA

@@ -4,6 +4,11 @@ title: Eigen과 GTSAM을 활용한 Rtation의 XYZ ZYX Convention 분석
 subtitle: XYZ? ZYX?
 tags: [Eigen, OpenCV, GTSAM, Rotation]
 comments: true
+description: Eigen의 eulerAngles, OpenCV Rodrigues, GTSAM Rot3로 같은 rotation matrix에서 roll-pitch-yaw를 추출해 XYZ/ZYX 컨벤션 차이와 수치 안정성을 비교 분석한다.
+image: /img/rotation_eigen_xyz.png
+permalink: /2024/11/22/rotation-xyz-zyx-convention-analysis/
+redirect_from:
+  - '/2024-11-22-Eigen과 GTSAM을 활용한 Rtation의 XYZ ZYX Convention 분석/'
 ---
 
 ## Introduction: XYZ? ZYX?

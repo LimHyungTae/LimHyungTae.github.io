@@ -4,6 +4,10 @@ title: SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (2)
 subtitle: 2. Quaternion이나 Eular angles을 변수화할 때 순서를 명시하자
 tags: [SLAM, Robotics, ROS]
 comments: true
+description: Eigen은 WXYZ, ROS tf는 XYZW 등 라이브러리마다 quaternion 순서가 달라 디버깅 지옥에 빠지는 문제를 짚고, 주석으로 순서를 명시하는 코딩 습관을 FAST-LIO 예시로 정리한다.
+permalink: /2022/09/04/slam-robotics-coding-tips-02/
+redirect_from:
+  - '/2022-09-04-SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (2)/'
 ---
 
 (Cont'd)

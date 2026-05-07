@@ -4,6 +4,10 @@ title: Hydra 코드 이해를 위한 Singleton 구조 이해하기
 subtitle:
 tags: [Ubuntu, GitHub]
 comments: true
+description: MIT-SPARK Hydra 코드에서 GlobalInfo::instance()와 PipelineQueues가 member 변수 없이 동작하는 이유를 Singleton 패턴과 static unique_ptr 관점으로 풀어본다.
+permalink: /2024/10/16/hydra-singleton-pattern-understanding/
+redirect_from:
+  - '/2024-10-16-Hydra 코드 이해를 위한 Singleton 구조 이해하기/'
 ---
 
 ## Introduction

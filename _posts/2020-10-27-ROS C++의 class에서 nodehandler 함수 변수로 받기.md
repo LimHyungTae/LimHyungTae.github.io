@@ -4,7 +4,10 @@ title: ROS C++의 class에서 nodehandler 함수 변수로 받기
 subtitle: 포인터를 통한 nodehandler 공유
 tags: [ROS, C++, Class]
 comments: true
-
+description: ROS C++ 클래스에서 ros::NodeHandle을 여러 모듈이 공유해야 할 때, 생성자에 NodeHandle 포인터를 넘기고 멤버 참조로 받는 패턴을 코드 예시와 함께 정리한다.
+permalink: /2020/10/27/ros-cpp-class-nodehandle-pointer/
+redirect_from:
+  - '/2020-10-27-ROS C++의 class에서 nodehandler 함수 변수로 받기/'
 ---
 
 ROS 개발을 하다보면 하나의 ros::NodeHandle을 여러 군데에서 공유하고 싶을 때가 있다.

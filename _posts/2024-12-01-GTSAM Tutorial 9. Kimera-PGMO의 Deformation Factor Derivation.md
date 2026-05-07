@@ -4,6 +4,10 @@ title: GTSAM Tutorial 9. Kimera-PGMO의 Deformation Factor Derivation
 subtitle: Understanding DeformationEdgeFactor
 tags: [Jacobian, GTSAM]
 comments: true
+description: Kimera-PGMO의 DeformationEdgeFactor가 rotation invariance를 활용해 기존 error term 대비 Jacobian 계산량을 어떻게 줄이는지, H1과 H2의 두 가지 유도 방식을 비교해 정리한다.
+permalink: /2024/12/01/gtsam-tutorial-09-kimera-pgmo-deformation-factor/
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 9. Kimera-PGMO의 Deformation Factor Derivation/'
 ---
 
 ## Kimera-PGMO의 Deformation Factor Jacobian 이해하기

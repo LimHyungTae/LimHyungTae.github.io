@@ -4,13 +4,18 @@ title: LeGO-LOAM Line by Line - 3. FeatureAssociation (2)
 subtitle: Corner and Planar Feature Extraction
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
+description: LeGO-LOAM extractFeatures 함수에서 channel을 6분할하고 curvature 정렬로 corner/planar feature를 뽑는 과정을 line-by-line으로 분석한다. cloudLabel 의미와 checkSystemInitialization 동작도 함께 정리한다.
+image: /img/lego_loam_fa2.png
+permalink: /2022/03/27/lego-loam-line-by-line-03b-feature-extraction/
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM Line by Line - 3. FeatureAssociation (2)/'
 ---
 
 # FeatureAssociation in LeGO-LOAM (2) Edge and Planar Feature Extraction
 
 (Cont'd)
 
-![](/img/lego_loam_fa2.png)
+![feature extraction 단계 도식](/img/lego_loam_fa2.png)
 
 Feature를 뽑을 준비가 끝나면 `extractFeatures()` 함수를 통해 feature를 추출한다. 그런데, relative pose를 추정하기 위해서는 연속적인 두 프레임의 feature가 필요하기 때문에, i.e. features on t-1 & features on t, initialization이 필요하다. 따라서 t=1인 경우에는 위와 같이 `checkSystemInitialization()` 함수까지만 진행이 되고 return 을 통해 종료된다.
 
@@ -135,7 +140,7 @@ void extractFeatures()
 
 a) 가장 먼저, 각 channal 별로 start point (`sp`)와 end point (`ep`)를 아래와 같이 6분할한다. 코드를 자세히 보기 전에는 단순히 이미지 plane을 6개의 subregion으로 쪼개서 feature를 고루 뽑는 줄 알았는데, 그게 아니라 아래와 같이 valid points 중 앞에서 5번째와 뒤에서 6번째 사이를 6분할한다 (기억이 안나면 [여기](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)의 (b) 참조).
 
-![](/img/lego_loam_sp_ep.png)
+![channel 6분할 sp/ep 도식](/img/lego_loam_sp_ep.png)
 (그림은 간소하게 그렸으나, y 방향으로 주로 1,000 이상의 pixel이 있음을 양지 부탁드립니다...)
 
 b) 그 후 해당 subregion을 sorting을 한다. 그래서 `sp`쪽에서는 curvature가 작은 값이 위치하게 되고, `ep` 쪽에는 반대로 curvature가 크게 위치하게 된다.
@@ -220,7 +225,7 @@ void checkSystemInitialization(){
 
 즉, t=1일 때는 다음과 같이 Kd Tree만 세팅한 후 `systemInitedLM`를 true로 세팅하여 종료한다. 여기서 t=1일 때 `laserCloudCornerLast`와 `laserCloudSurfLast`는 크기가 0인 point cloud이다 (swap을 하지만 사실상 별로 의미 없는 swap임).
 
-![](/img/lego_loam_initialization_v2.png) 
+![system initialization 흐름](/img/lego_loam_initialization_v2.png) 
  
  
 이렇게 feature setting이 완료되면, 마지막으로 relative pose를 추정한다.

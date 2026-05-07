@@ -4,6 +4,10 @@ title: C++ zero padding하는 법
 subtitle: Use boost format
 tags: [C++]
 comments: true
+description: C++ boost/format으로 파일명에 zero padding을 적용해 시퀀스 정렬 문제를 해결하는 방법과, 이미 만들어진 pcd 파일들을 6자리 이름으로 일괄 변환하는 bash 스크립트를 정리한다.
+permalink: /2021/05/08/cpp-zero-padding-boost-format/
+redirect_from:
+  - '/2021-05-08-C++ zero padding하는 법/'
 ---
 
 # C++ Zero padding하는 법

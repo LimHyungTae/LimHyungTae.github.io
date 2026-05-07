@@ -4,6 +4,11 @@ title: SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (1)
 subtitle: 1. Transformation matrix의 기준이 어디인지 "잘" 명시하자.
 tags: [SLAM, Robotics, ROS]
 comments: true
+description: SLAM 및 robotics 코드에서 transformation matrix의 기준 좌표계를 명확히 표기하는 방법을 ERASOR와 KITTI 예제를 통해 설명하고, 변수 네이밍 컨벤션을 제안한다.
+image: /img/wft_p_minute.jpeg
+permalink: /2022/09/04/slam-robotics-coding-tips-01/
+redirect_from:
+  - '/2022-09-04-SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (1)/'
 ---
 
 # 서론

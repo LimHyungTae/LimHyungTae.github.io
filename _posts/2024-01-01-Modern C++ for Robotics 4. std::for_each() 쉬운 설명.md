@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 4. std::for_each() 쉬운 설명
 subtitle: Easy Explanation & Examples of std::for_each()
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::for_each에 std::execution::par_unseq를 결합해 TBB 기반 병렬 처리를 손쉽게 적용하는 방법과 Faster-LIO 활용 사례, 메모리 충돌 주의사항을 정리한다.
+permalink: /2024/01/01/modern-cpp-robotics-04-std-for-each/
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 4. std::for_each() 쉬운 설명/'
 ---
 
 ## 흔히 아는 C++에서의 for문 

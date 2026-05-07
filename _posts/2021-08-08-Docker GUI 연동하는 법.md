@@ -4,6 +4,10 @@ title: Docker GUI 연동하는 법
 subtitle: xhost +
 tags: [docker]
 comments: true
+description: 도커 컨테이너 안의 demo.py 같은 GUI 프로그램을 호스트 디스플레이로 띄우기 위해 OpenGL 베이스 이미지, xhost +, mesa-utils, glxgears 검증까지의 절차를 정리한다.
+permalink: /2021/08/08/docker-gui-display-setup/
+redirect_from:
+  - '/2021-08-08-Docker GUI 연동하는 법/'
 ---
 
 # Docker에서 gui 연동하게 하는 법

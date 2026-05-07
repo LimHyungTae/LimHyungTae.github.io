@@ -4,6 +4,10 @@ title: Terminator 단축키 변경하는 법
 subtitle: Terminator 단축키 변경하는 법
 tags: [Terminator]
 comments: true
+description: Terminator의 Preferences 메뉴에서 분할 창 이동, 페이지 스크롤, 탭 전환 단축키를 Vim 및 IntelliJ와 일관되게 재설정하는 방법을 정리한다.
+permalink: /2023/03/14/terminator-shortcut-customization/
+redirect_from:
+  - '/2023-03-14-Terminator 단축키 변경하는 법/'
 ---
 
 최근 키보드 세팅을 효율적으로 하는데에 빠져서, Vim, Clion, Terminator의 단축키들을 좀 더 일관성 있게 두게끔 해보았다. Terminator 상의 shortcut을 만들기 위해 bindkey나 이것저것들을 시도해보았는데, 아주 쉽게 Terminator로 띄운 terminal 창 마우스 오른쪽 클릭 → `Preferences` → `Keybindings`에 보면 아주 쉽게 고칠 수 있는 것을 확인했다.

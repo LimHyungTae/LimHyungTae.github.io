@@ -4,6 +4,11 @@ title: ROS catkin build Release 세팅
 subtitle: ROS catkin build Release
 tags: [ROS, catkin, catkin-tools]
 comments: true
+description: ROS 패키지가 debug 모드로 빌드되어 속도가 떨어질 때, catkin build에 --save-config와 -DCMAKE_BUILD_TYPE=Release를 한 번 지정해 항상 Release로 컴파일되도록 설정하는 방법을 정리한다.
+image: /img/catkinbuild_release.png
+permalink: /2020/11/16/ros-catkin-build-release-setup/
+redirect_from:
+  - '/2020-11-16-ROS catkin build Release 세팅/'
 ---
 
 # Release로 설정해야 하는 이유

@@ -4,6 +4,10 @@ title: MinkowskiEngine (Easy) - How to Use
 subtitle: Easy Explanation & Examples of MinkowskiEngine
 tags: [Pytorch, Python, MinkowskiEngine]
 comments: true
+description: MinkowskiEngine을 최신 PyTorch/CUDA로 Docker 빌드하고, SparseTensor의 coordinates·features 구조와 in-place 연산 시 coordinate_manager·coordinate_map_key가 왜 필요한지 예제로 정리한다.
+permalink: /2024/05/13/minkowski-engine-easy-usage/
+redirect_from:
+  - '/2024-05-13-MinkowskiEngine (Easy) - How to Use/'
 ---
 
 ## MinkowskiEngine 설치

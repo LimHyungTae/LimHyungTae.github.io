@@ -4,6 +4,10 @@ title: Ceres Solver for Graph SLAM - 5. BuildOptimizationProblem과 Manifold 깊
 subtitle: How Ceres glues your residual into a real optimizer
 tags: [SLAM, Optimization, Ceres Solver, Pose Graph, Manifold, Quaternion]
 comments: true
+description: Ceres pose_graph_3d.cc의 BuildOptimizationProblem을 분석한다. AddResidualBlock, EigenQuaternionManifold, SetParameterBlockConstant로 quaternion 자유도와 gauge freedom을 어떻게 처리하는지 다룬다.
+permalink: /2026/05/07/ceres-graph-slam-05-optimization-problem-manifold/
+redirect_from:
+  - '/2026-05-07-Ceres Solver for Graph SLAM - 5. BuildOptimizationProblem과 Manifold 깊게 이해하기/'
 ---
 
 ## Introduction

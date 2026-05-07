@@ -4,7 +4,10 @@ title: NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 3. D435i USB SCP overflow 
 subtitle: NVIDIA AGX Xavier with Interl Realsense D435i
 tags: [NVIDIA, Jetson, AGX, Xavier, ROS, D435i]
 comments: true
-
+description: D435i를 1280x720 30fps로 돌릴 때 발생하는 "USB SCP overflow" 에러가 USB3 bandwidth 한계 때문임을 짚고, RGB 해상도를 640x480으로 낮춰 해결하는 방법을 공유한다.
+permalink: /2020/07/28/nvidia-xavier-d435i-setup-03-usb-overflow-fix/
+redirect_from:
+  - '/2020-07-28-NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 3. D435i USB SCP overflow ERROR 해결/'
 ---
 
 USB SCP 에러가 뜨는 원인은 [여기](https://community.intel.com/t5/Items-with-no-label/D435-Windows-10-USB-SCP-overflow-depends-on-resolution-no/td-p/572017) 참조

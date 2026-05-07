@@ -4,6 +4,11 @@ title: IMU Preintegration (Easy) - 1. Introduction
 subtitle: Easy explanations of "On-Manifold Preintegration for Real-Time Visual-Inertial Odometry"
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
+description: VIO와 LIO에서 수백 Hz IMU 데이터를 factor graph SLAM에 효율적으로 통합하기 위한 IMU preintegration의 필요성과 핵심 아이디어를 입문자 관점에서 정리합니다.
+image: /img/preintegration/imu_characteristics_cut2.png
+permalink: /2022/04/01/imu-preintegration-01-introduction/
+redirect_from:
+  - '/2022-04-01-IMU Preintegration (Easy) - 1. Introduction/'
 
 ---
 
@@ -18,7 +23,7 @@ IMU sensor는 주로 Hz가 높은데 (e.g. LIO-SAM 저자가 사용하는 고오
 
 
 예로 들어 아래와 같이 25분 정도의 ROS bag 파일을 취득한 상황이 있다고 가정해봅시다. 그러면 IMU sensor (`/gx5/imu/data`)의 Hz가 높다보니, 25분 동안 약 491,848 개의 데이터가 취득되는 것을 확인할 수 있습니다. 
-![](/img/preintegration/imu_characteristics_cut2.png)
+![ROS bag IMU 데이터 통계](/img/preintegration/imu_characteristics_cut2.png)
 
 이러한 상황에서 각 IMU의 time step에 대한 pose를 묘사하기 위해서는 3D translation를 위한 파라미터 3개와 3D rotation을 위한 파라미터 3개로 총 6개가 필요하게 한데, 그러면 총 491,848 × 6 = 2,951,088 여개의 parameter가 필요한 상황이 닥칩니다. 심지어 3D LiDAR sensor (`/os_cloud_node/points`)로 추정한 estimated relative pose 또한 factor graph로 추가해주어야 하기 때문에, 총 파라미터는 저 수보다 더 많아지게 됩니다. 요약하자면, LiDAR나 camera의 매 keyframe의 pose 사이사이에 수백 개의 IMU factor가 생성되게 되고, 이는 CPU 연산량이나 RAM을 어어어어어어어어어ㅓ어ㅓㅓ엄청 잡아먹기 때문에 factor graph기반 SLAM의 실시간성을 위협하게 됩니다 (keyframe에 대한 정의는 [다음 글에](https://limhyungtae.github.io/2022-04-01-IMU-Preintegration-(Easy)-2.-Preliminaries-(1)-Keyframe/)).
 
@@ -26,7 +31,7 @@ IMU sensor는 주로 Hz가 높은데 (e.g. LIO-SAM 저자가 사용하는 고오
 
 따라서, 이러한 문제를 해결하기 위해 IMU preintegration이 도입되었습니다. 한 마디로 preintegration을 요약하자면, IMU data로 기인하는 모든 수백 여개의 measurments를 factor로 직접적으로 넣는 것이 아니라, factor graph에 measurement를 추가하기 이전에 (pre-) 수백여개의 IMU data를 단 하나의 factor로 취합(integration)하는 방법이라고 말씀드릴 수 있습니다.
 
-![](/img/preintegration/overview.png)
+![IMU preintegration 개요](/img/preintegration/overview.png)
 
 
 ## 본 Series의 목표

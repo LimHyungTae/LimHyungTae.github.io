@@ -4,6 +4,11 @@ title: CloudCompare로 visualization 예쁘게 하기
 subtitle: How to visualize beautiful point cloud figure
 tags: [CloudCompare]
 comments: true
+description: CloudCompare의 EDL 셰이더와 z 좌표 Scalar Field export를 활용해 point cloud 시각화를 깔끔하게 다듬는 단계별 팁을 정리한다.
+image: /img/cloud_compare_highlighted.png
+permalink: /2025/02/18/cloudcompare-pretty-visualization/
+redirect_from:
+  - '/2025-02-18-CloudCompare로 visualization 예쁘게 하기/'
 ---
 
 ## TL;DR 

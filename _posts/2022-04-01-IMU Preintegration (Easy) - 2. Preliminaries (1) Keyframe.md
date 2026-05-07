@@ -4,6 +4,11 @@ title: IMU Preintegration (Easy) - 2. Preliminaries (1) Keyframe
 subtitle: Definition of Keyframe
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
+description: Keyframe이 무엇이고 왜 필요한지, LIO-SAM과 VINS-Mono의 keyframe 선정 코드를 통해 거리/시간 기반 선택 기준을 비교하며 preintegration의 사전 지식을 정리한다.
+image: /img/preintegration/keyframe.png
+permalink: /2022/04/01/imu-preintegration-02a-preliminaries-keyframe/
+redirect_from:
+  - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (1) Keyframe/'
 
 ---
 
@@ -170,7 +175,7 @@ else
 결과적으로 keyframe은 아래의 그림과 같이 sensor로 매번 취득되는 frame 중에서 어느 정도의 간격을 두고 선별된다. [원 논문](https://rpg.ifi.uzh.ch/docs/TRO16_forster.pdf)에서는 인접한 두 keyframe을 $$i$$와 $$j$$로 표기하고 있다. 따라서 preintegration의 문제 정의는 "두 keyframe 사이의 수십~수백여개의 IMU data (그림 상의 x 표시)를 어떻게 하나의 factor (그림 상의 파란 ■)로 표현할 수 있는가"로 정리할 수 있다.
 
 
-![](/img/preintegration/keyframe.png)
+![두 keyframe 사이 IMU factor 표현](/img/preintegration/keyframe.png)
 
 
 

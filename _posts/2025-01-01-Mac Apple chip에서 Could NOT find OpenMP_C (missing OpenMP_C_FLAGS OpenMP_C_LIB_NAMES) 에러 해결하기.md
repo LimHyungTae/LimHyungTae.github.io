@@ -4,6 +4,10 @@ title: Mac Apple chip에서 Could NOT find OpenMP_C (missing OpenMP_C_FLAGS Open
 subtitle: Run Algorithms on Mac
 tags: [MacOS, C++]
 comments: true
+description: Apple Silicon Mac에서 cmake가 OpenMP_C를 찾지 못하는 에러를 brew로 LLVM을 설치하고 CC, CXX 환경변수를 LLVM clang으로 지정해 해결하는 방법을 정리한다.
+permalink: /2025/01/01/mac-apple-silicon-openmp-c-not-found-fix/
+redirect_from:
+  - '/2025-01-01-Mac Apple chip에서 Could NOT find OpenMP_C (missing OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 에러 해결하기/'
 ---
 
 ## 문제

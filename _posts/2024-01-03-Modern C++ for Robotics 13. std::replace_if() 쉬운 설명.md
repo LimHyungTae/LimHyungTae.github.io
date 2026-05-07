@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 13. std::replace_if() 쉬운 설명
 subtitle: Easy Explanation & Examples of Conditional Algorithms
 tags: [C++, Eigen, Robotics]
 comments: true
+description: std::replace_if로 컨테이너 크기를 유지하며 유효하지 않은 값을 더미 데이터로 교체하는 방법을 LiDAR laser scan 처리와 std::bind 마이그레이션 예시로 정리한다.
+permalink: /2024/01/03/modern-cpp-robotics-13-std-replace-if/
+redirect_from:
+  - '/2024-01-03-Modern C++ for Robotics 13. std::replace_if() 쉬운 설명/'
 ---
 
 

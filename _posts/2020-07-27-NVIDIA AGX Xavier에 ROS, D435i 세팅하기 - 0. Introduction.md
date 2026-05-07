@@ -4,7 +4,10 @@ title: NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 0. Introduction
 subtitle: NVIDIA AGX Xavier with Interl Realsense D435i
 tags: [NVIDIA, Jetson, AGX, Xavier, ROS, D435i]
 comments: true
-
+description: ARM 기반 NVIDIA AGX Xavier에 Intel Realsense D435i를 연결하여 RGB-D 데이터를 받기 위한 Jetpack 설치, 커널 재빌드, realsense2_camera 세팅 과정을 한자리에 정리한 시리즈의 서론.
+permalink: /2020/07/27/nvidia-xavier-d435i-setup-00-introduction/
+redirect_from:
+  - '/2020-07-27-NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 0. Introduction/'
 ---
 
 # Introduction

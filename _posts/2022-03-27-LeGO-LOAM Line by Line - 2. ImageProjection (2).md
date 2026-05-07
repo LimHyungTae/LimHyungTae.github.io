@@ -4,13 +4,18 @@ title: LeGO-LOAM Line by Line - 2. ImageProjection (2)
 subtitle: Cloud Segmentation using Clustering
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
+description: LeGO-LOAM imageProjection.cpp의 cloudSegmentation과 BFS 기반 labelComponents 클러스터링을 line-by-line으로 분석한다. sub-cluster 제거 기준과 segMsg 세팅 방식을 정리한다.
+image: /img/lego_loam_ip_contd.png
+permalink: /2022/03/27/lego-loam-line-by-line-02b-cloud-segmentation/
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM Line by Line - 2. ImageProjection (2)/'
 ---
 
 # ImageProjection in LeGO-LOAM (2) Cloud Segmentation using Clustering
 
 (Cont'd)
 
-![](/img/lego_loam_ip_contd.png)
+![ImageProjection 단계 도식](/img/lego_loam_ip_contd.png)
 
 
 ### 5. cloudSegmentation()
@@ -104,7 +109,7 @@ for (size_t i = 0; i < N_SCAN; ++i)
 
 Segmentation의 핵심은 이 `labelComponents(i, j)` 함수이다. 이 함수를 통해서 `labelMat.at<int>(i,j)`이 0으로 할당되어 있는 pixels들을 Breadth-First Search (BFS) 기반으로 clustering을 하는데, 이 방법은 아래 IROS 2016 논문의 object clustering method를 활용했다. 
 
-![](/img/lego_loam_segmentation.png)
+![BFS 기반 cloud segmentation](/img/lego_loam_segmentation.png)
 
 전체 코드는 아래와 같은데, 코드를 읽기 전 각 변수를 먼저 살펴본다.
 

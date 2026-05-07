@@ -4,6 +4,10 @@ title: ROS tf_echo 활용한 extrinsic 구하기
 subtitle: ROS tf_echo 활용한 extrinsic 구하기
 tags: [ROS, C++, RViz, tf]
 comments: true
+description: ROS의 rosrun tf tf_echo 명령으로 두 frame 사이의 transformation을 출력해, base_link 기준 LiDAR 위치나 LiDAR-IMU extrinsic을 구하는 방법을 예제로 정리한다.
+permalink: /2024/07/24/ros-tf-echo-extrinsics/
+redirect_from:
+  - '/2024-07-24-ROS tf_echo 활용한 extrinsics 구하기/'
 ---
 
 이번 글에서는 ROS tf_echo를 활용하여 extrinsic을 구하는 방법에 대해 알아보겠다. 각 센서 frame의 TF가 존재한다면, 이를 활용하여 두 frame 사이의 extrinsic을 구할 수 있다.

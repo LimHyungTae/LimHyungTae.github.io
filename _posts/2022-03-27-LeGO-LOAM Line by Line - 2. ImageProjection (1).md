@@ -4,7 +4,11 @@ title: LeGO-LOAM Line by Line - 2. ImageProjection (1)
 subtitle: Range Image Projection & Ground Removal
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
-
+description: LeGO-LOAM imageProjection.cpp의 range image projection과 ground removal 단계를 line-by-line으로 분석한다. rangeMat/groundMat/labelMat의 의미와 inter-ring gradient 기반 ground 판별 로직을 정리한다.
+image: /img/lego_loam_relTime.png
+permalink: /2022/03/27/lego-loam-line-by-line-02a-image-projection/
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM Line by Line - 2. ImageProjection (1)/'
 ---
 
 # ImageProjection in LeGO-LOAM (1) Range Image Projection & Ground Removal
@@ -139,7 +143,7 @@ void findStartEndAngle(){
 
 그런데, 여기서 **왜 '-'atan2()로 구하지???**라는 의문이 들텐데, 이는 Velodyne Puck의 경우 ROS 상에서 point cloud를 입력으로 받았을 때, 0~N개의 point들이 아래와 같이 시계 방향 순으로 (clock-wise) vector에 담겨있기 때문이다.   
 
-![](/img/lego_loam_relTime.png)
+![Velodyne point cloud relTime 순서](/img/lego_loam_relTime.png)
 
 이렇게 세팅된 변수들은 아래와 같이 `featureAssociation.cpp`에서 각 포인트의 상대적인 시간, i.e. 위 그림 상의 `relTime`,을 계산할 때 사용된다. 아래와 같이 N개의 points 중 n번 째의 point와 가장 처음 취득한 포인트와의 차이각 대비 총 차이각의 비율을 구하여 `relTime`을 구할 수 있는데,
 
@@ -208,7 +212,7 @@ void projectPointCloud(){
 
 다른 부분들은 [Introduction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-%EC%83%81%EC%84%B8-%EC%84%A4%EB%AA%85-1.-Introduction/)의 3D LiDAR sensor의 특성을 이해하면 다 자명한데, columIdn 부분이 다소 헷갈리게 되어있다. 왜냐하면 C++에서 `atan2`는 (y, x)로 사용하게 되어 있는데 range image의 `columnIdn`을 구할 때는 `atan2(x, y)`로 사용하기 때문이다. 좀 더 이해를 돕기 위해, 각 각도에 따라 대응하는 값들을 아래와 같이 정리해보았다.
 
-![](/img/lego_loam_columnIdn.png) 
+![range image columnIdn 매핑](/img/lego_loam_columnIdn.png) 
 
 여기서 뒷쪽의 index를 0으로 둔 원저자 Tixiao님의 디테일이 보인다. LeGO-LOAM에서 feature를 추출하는 과정에서 0과 1799 index가 서로 붙어 있음에도 피쳐를 추출하지 않는데, feature로서 사용이 안 될 수도 있는 부분을 뒷쪽으로 둚으로써 양옆과 앞쪽에서는 feature를 잘 뽑을 수 있게 세팅해둔 것이다. 모바일 로봇의 경우에는 주로 pilot이 뒤쪽에서 조종을 하다보니, 뒷쪽 point cloud를 버리는 경우가 많고, 자율차의 경우에도 보닛이 point cloud의 뒷쪽에 찍혀서 앞의 180도만 쓰는 경우가 있는데, 이 관점에서 봤을 때 index의 시작점을 motion direction의 뒤쪽에 두는 것은 나름 효율적인 선택인 것 같다 (100% 저의 주관적인 견해입니다).
 
@@ -275,7 +279,7 @@ void groundRemoval(){
 ```
 
 
-![](/img/lego_loam_ground_procedure.png)
+![ground removal 과정 도식](/img/lego_loam_ground_procedure.png)
 
 
 정리하자면, ground removal은 크게 아래의 세 단계로 이루어진다.
@@ -337,7 +341,7 @@ for (size_t i = 0; i < N_SCAN; ++i){
 
 따라서, ground segmentation 자체에 관심이 있는 것이라면 [Patchwork](https://github.com/LimHyungTae/patchwork)를 추천한다! 아래 그림은 빨간색이 estimated non-ground points, 초록색이 estimated ground points를 의미한다.
 
-![](/img/lego_loam_ground_comparison.PNG) 
+![LeGO-LOAM과 Patchwork ground segmentation 비교](/img/lego_loam_ground_comparison.PNG) 
 
 ---
 

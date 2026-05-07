@@ -4,6 +4,10 @@ title: Python Numpy npz 쉽게 저장하고 불러오는 법
 subtitle: Easy Explanation & Examples of Conditional Algorithms
 tags: [C++, Eigen, Robotics]
 comments: true
+description: Python dictionary와 ** 키워드 언패킹을 활용해 numpy의 np.savez/np.load로 여러 array를 npz 한 파일에 깔끔하게 저장하고 불러오는 방법을 정리한다.
+permalink: /2024/05/26/python-numpy-npz-save-load/
+redirect_from:
+  - '/2024-05-26-Python Numpy npz 쉽게 저장하고 불러오는 법/'
 ---
 
 ChatGPT가 다 알려주는 마당에 무슨 의미가 있겠냐만은, 쉽게 npz로 저장하고 불러오는 방법을 알아보자.

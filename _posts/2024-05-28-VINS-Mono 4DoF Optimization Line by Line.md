@@ -4,6 +4,10 @@ title: VINS-Mono 4 DoF Optimization Line by Line
 subtitle: Easy Explanation of 4 DoF optimization in VINS-Mono
 tags: [C++, Ceres, VIO]
 comments: true
+description: VINS-Mono/VINS-Fusion의 optimize4DoF 함수를 line-by-line으로 분석한다. R2ypr 변환, FourDOFError/FourDOFWeightError cost function, Ceres residual block 구성을 코드 레벨에서 풀어본다.
+permalink: /2024/05/28/vins-mono-4dof-optimization-line-by-line/
+redirect_from:
+  - '/2024-05-28-VINS-Mono 4DoF Optimization Line by Line/'
 ---
 
 일을 하다가 4 DoF pose graph optimization (PGO)에 대한 얘기가 나와서, '오, VINS-Mono에서는 roll이랑 pitch는 고정한 채 4 DoF optimization하는 부분이 있다'라고 내가 코멘트를 해주었다. 

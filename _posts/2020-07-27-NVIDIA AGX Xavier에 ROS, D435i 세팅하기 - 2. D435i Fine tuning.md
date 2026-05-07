@@ -4,7 +4,11 @@ title: NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 2. D435i Fine tuning
 subtitle: NVIDIA AGX Xavier with Interl Realsense D435i
 tags: [NVIDIA, Jetson, AGX, Xavier, ROS, D435i]
 comments: true
-
+description: Jetson Xavier의 max clock 모드 설정과 ROS rs_camera.launch에서 post-processing filter, High Accuracy preset을 적용해 D435i depth pointcloud 품질을 끌어올리는 방법을 정리한다.
+image: /img/d435i_img.jpg
+permalink: /2020/07/27/nvidia-xavier-d435i-setup-02-fine-tuning/
+redirect_from:
+  - '/2020-07-27-NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 2. D435i Fine tuning/'
 ---
 
 본 페이지는 모바일 플랫폼에서 D435i를 사용하기 위해 세팅한 결과를 정리하기 위한 포스트입니다.

@@ -4,6 +4,11 @@ title: ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (1) sha
 subtitle: PCL의 Ptr의 typedef를 구성하는 shared_ptr 살펴보기
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
+description: PCL의 PointCloud<T>::Ptr이 boost::shared_ptr로 typedef된 이유와 vector memory leak 문제, 그리고 shared_ptr을 new와 *로 올바르게 다루는 방법을 정리한다.
+image: /img/pcl_point_cloud_h.png
+permalink: /2021/09/09/pcl-tutorial-01-ptr-shared-ptr/
+redirect_from:
+  - '/2021-09-09-ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (1) shared_ptr/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

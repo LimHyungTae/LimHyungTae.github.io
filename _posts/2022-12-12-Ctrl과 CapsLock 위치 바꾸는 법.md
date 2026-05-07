@@ -4,6 +4,11 @@ title: Ctrl과 CapsLock 위치 바꾸는 법
 subtitle: Clion + Vim (IdeaVim) 세팅 (1)
 tags: [Clion, Pycharm, IntelliJ, Vim]
 comments: true
+description: 사용 빈도가 높은 Ctrl 키와 거의 안 쓰는 CapsLock 위치를 swap해, 손목 부담을 줄이고 Vim 단축키 접근성을 높이는 키보드 세팅 방법을 정리한다.
+image: /img/tweaks_installation.png
+permalink: /2022/12/12/swap-ctrl-capslock/
+redirect_from:
+  - '/2022-12-12-Ctrl과 CapsLock 위치 바꾸는 법/'
 ---
 
 # Introduction

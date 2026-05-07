@@ -4,6 +4,10 @@ title: SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (3)
 subtitle: 3. Extrinsic 및 pose 추정의 기준 frame을 명시하자
 tags: [SLAM, Robotics, ROS]
 comments: true
+description: LIO-SAM과 FAST-LIO의 extrinsic 설정이 서로 정반대 의미인데도 이름이 같아 혼란을 주는 사례를 통해, pose 추정의 기준 frame을 config와 코드에 명시하는 습관의 중요성을 정리한다.
+permalink: /2022/09/04/slam-robotics-coding-tips-03/
+redirect_from:
+  - '/2022-09-04-SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (3)/'
 ---
 
 (Cont'd)

@@ -4,6 +4,10 @@ title: Ubuntu terminal 다른 곳 클릭시 꺼짐 현상 해결 방법
 subtitle:
 tags: [Ubuntu, GitHub]
 comments: true
+description: Ubuntu에서 Ctrl+Alt+T로 켠 Terminator가 포커스를 잃을 때 꺼지는 현상을 Preferences의 Always on top 토글로 해결한 과정을 기록한다.
+permalink: /2024/10/24/ubuntu-terminal-disappear-on-click-fix/
+redirect_from:
+  - '/2024-10-24-Ubuntu terminal 다른 곳 클릭시 꺼짐 현상 해결 방법/'
 ---
 
 ## Introduction

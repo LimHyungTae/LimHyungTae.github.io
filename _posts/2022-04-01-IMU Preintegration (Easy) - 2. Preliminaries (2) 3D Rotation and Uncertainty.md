@@ -4,6 +4,11 @@ title: IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertai
 subtitle: Uncertainty Description in SO(3)
 tags: [SLAM, LIO, VIO, IMU, Preintegration]
 comments: true
+description: 3D rotation을 SO(3)와 angle-axis로 parametrize하는 이유와, exponential map을 통해 rotation의 uncertainty를 가우시안으로 표현하여 graph SLAM optimization에 활용하는 방법을 설명한다.
+image: /img/rotation/overview_v2.png
+permalink: /2022/04/01/imu-preintegration-02b-preliminaries-rotation-uncertainty/
+redirect_from:
+  - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty/'
 
 ---
 
@@ -21,7 +26,7 @@ Visual-Inertial Odometry"인만큼 preintegration을 이해하기 위해서는 m
   
 를 떠올릴 것이다. 이 세 가지에 대해 친숙하지 않더라도 괜찮다. 사실 우리는 교육과정에서 2D 공간 상의 회전에 대한 여러 표현 방식에 대해 알게 모르게 배웠는데, 개인적인 생각으로는 2D 상의 회전을 표현하는 방식과 3차원 공간 상에서 회전을 표현하는 방식은 아래와 같은 대응관계를 지닌다고 생각하고, 각각의 특징 또한 간략히 적어두었다.
 
-![](/img/rotation/overview_v2.png)
+![2D와 3D rotation 표현 비교](/img/rotation/overview_v2.png)
 
 Rotation에 대해 자세히 설명하면 글이 너무 길어지기 때문에 자세한 설명글은 **여기(TBU)** 에서 다룬다.
 

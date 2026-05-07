@@ -4,6 +4,11 @@ title: ROS Point Cloud Library (PCL) - 3. Transformation
 subtitle: PCL Transformation
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
+description: 로봇 시스템의 global/body/sensor frame 사이의 변환이 필요한 이유와, PCL pcl::transformPointCloud로 sensor frame의 pointcloud를 body frame으로 옮기는 방법을 정리한다.
+image: /img/pcl_robot_sensor.PNG
+permalink: /2021/09/10/pcl-tutorial-03-transformation/
+redirect_from:
+  - '/2021-09-10-ROS Point Cloud Library (PCL) - 3. Transformation/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

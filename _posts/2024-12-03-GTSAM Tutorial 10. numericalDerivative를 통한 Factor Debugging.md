@@ -4,6 +4,11 @@ title: GTSAM Tutorial 10. numericalDerivative를 통한 Factor Debugging
 subtitle: Understanding numericalDerivative
 tags: [Jacobian, GTSAM]
 comments: true
+description: GTSAM의 numericalDerivative21/22로 손으로 계산한 H1, H2 Jacobian이 수치 미분 결과와 일치하는지 자동으로 검증하는 evaluateFactor 헬퍼와 활용 예제를 정리한다.
+image: /img/0206_evaluateError.png
+permalink: /2024/12/03/gtsam-tutorial-10-numerical-derivative-debugging/
+redirect_from:
+  - '/2024-12-03-GTSAM Tutorial 10. numericalDerivative를 통한 Factor Debugging/'
 ---
 
 ## Introduction 

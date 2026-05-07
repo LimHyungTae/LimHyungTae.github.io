@@ -4,7 +4,10 @@ title: ROS Point Cloud Library (PCL) - 12. Generalized Iterative Closest Point (
 subtitle: G-ICP 내부 설명 
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL]
 comments: true
-
+description: PCL Generalized ICP가 point-to-point ICP와 달리 source/target의 normal로 추정한 uncertainty를 활용해 정합 정확도를 높이는 원리와, setInputSource/Target 내부에서 일어나는 일을 정리한다.
+permalink: /2021/09/14/pcl-tutorial-12-generalized-icp/
+redirect_from:
+  - '/2021-09-14-ROS Point Cloud Library (PCL) - 12. Generalized Iterative Closest Point (G-ICP)/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

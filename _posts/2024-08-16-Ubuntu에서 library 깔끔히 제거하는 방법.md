@@ -4,6 +4,10 @@ title: Ubuntu에서 library 깔끔히 제거하는 방법
 subtitle: 라이브러리는 꼬이지 않는다. 잘 제거하지 못 했을 뿐
 tags: [Ubuntu, filesystem, library]
 comments: true
+description: Ubuntu에서 sudo find로 /usr/local/ 아래 설치된 library 파일을 찾아 sudo rm과 sudo make uninstall로 깔끔히 제거하는 방법을 정리한다.
+permalink: /2024/08/16/ubuntu-library-clean-uninstall/
+redirect_from:
+  - '/2024-08-16-Ubuntu에서 library 깔끔히 제거하는 방법/'
 ---
 
 석사 때는 Ubuntu를 사용하면서 라이브러리를 깔끔히 제거하는 방법을 잘 몰랐다보니, 뭔가 막히면 컴퓨터를 울면서 포맷했었던 기억이 난다.

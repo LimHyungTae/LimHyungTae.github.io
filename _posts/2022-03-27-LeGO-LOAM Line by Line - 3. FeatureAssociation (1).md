@@ -4,6 +4,11 @@ title: LeGO-LOAM Line by Line - 3. FeatureAssociation (1)
 subtitle: Ready for Feature Extraction
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
+description: LeGO-LOAM featureAssociation.cpp의 feature extraction 직전 preprocessing을 line-by-line으로 분석한다. adjustDistortion의 좌표축 변환과 relTime 계산, calculateSmoothness의 curvature, markOccludedPoints의 마스킹 기준을 정리한다.
+image: /img/lego_loam_lidar_coordinate.png
+permalink: /2022/03/27/lego-loam-line-by-line-03a-feature-association/
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM Line by Line - 3. FeatureAssociation (1)/'
 ---
 
 # FeatureAssociation in LeGO-LOAM (1) Ready for Feature Extraction
@@ -175,13 +180,13 @@ void adjustDistortion()
 
 여기서 아래와 같이 point cloud의 좌표 축을 변환되는데 **별 이유 없다** ~~이 좌표축 변환은 후대의 많은 연구자들을 혼란에 빠뜨리고 마는데...~~ 
 
-![](/img/lego_loam_lidar_coordinate.png)
+![LiDAR 좌표축 변환 도식](/img/lego_loam_lidar_coordinate.png)
 
 [혹자](https://zhuanlan.zhihu.com/p/242559124)는 이렇게 변환하는 이유가 manual 상의 Velodyne sensor의 좌표축 때문이라고 그러는데, 이 것은 절대 아니다. 왜냐하면 Velodyne ROS driver를 통해 출력된 raw point cloud를 visualization하면 이미 아래와 같이 앞-왼쪽-윗쪽을 XYZ로 사용하고 있기 때문이다.
 
 Point cloud at time t       |  Accumulated point cloud
 :-------------------------:|:-------------------------:
-![](/img/lego_loam_pc_at_t.png) |  ![](/img/lego_loam_pc_accum.png)
+![시간 t의 point cloud](/img/lego_loam_pc_at_t.png) |  ![누적된 point cloud](/img/lego_loam_pc_accum.png)
 
 주변 SLAM 고수들에게 자문을 구한 결과, 이 행위는 LOAM 저자인 Ji Zhang씨가 LOAM 코드를 설계할 때 초기부터 camera와의 sensor fusion을 염두해두고 짠 것이어서 이렇게 좌표축 변환의 흔적이 남아있다고 한다 (진화적 퇴행과 같이 LOAM 계열 LiDAR odometry 코드에는 이런 좌표축 변환이 계속 남아있다). 그 증거를 코드 내부에서 확인할 수 있는데, 가장 대표적인 건 LiDAR odometry 코드임에도 불구하고 아래와 같이 visualization을 할 때 frame_id를 `/camera`로 사용하고 있다는 것이다.
 
@@ -256,7 +261,7 @@ float relTime = (ori - segInfo.startOrientation) / segInfo.orientationDiff;
 Tixiao님께는 죄송하지만, 이 부분은 수정되어야할 필요가 있다. 실제로 cout을 출력해보면 `relTime`이 0보다 작거나 1보다 큰 경우가 발생하게 된다 (**NOTE:** `relTime`은 첫 점과 끝 점이 관측된 시간을 기준으로 해당 point가 측정된 시간의 ratio를 나타내기 때문에 무조건 0과 1사이의 값이여야 함). 왜 이런 현상이 일어나나 했더니, 현재 ImageProjection 과정에서 range image로 projection -> image 평면에서 인덱스 순으로 `segmentedCloud`를 할당했기 때문에 현재 for문의 순서를 통해 `halfPassed`인지 아닌 지 판별하는게 말이 안 된다 ([이전](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)에 이미 설명했듯이, `segmentedCloud`의 순서는 (0, 0)->(0, 1)->…->(0, 1799)->(1, 0)->…->(15, 1799)순으로 서치하면서 유효한 points만 push_back하는 식으로 되어있음). 즉 아래의 그림과 같이 original data는 빨간 화살표의 방향을 따라 획득되었으나 현재 `segmentedCloud` 방향은 image projection->unprojection 과정으로 인해 초록색 화살표를 따라서 진행되기 때문에 `halfPassed`를 판별할 수 없다.
 
 
-![](/img/lego_loam_angle_ambiguity.png)
+![halfPassed 판별 모호성](/img/lego_loam_angle_ambiguity.png)
 
 따라서, 본 `relTime`은 아래와 같이 구해져야 한다고 생각한다 (100% 저의 주관적 해석입니다).
 
@@ -314,7 +319,7 @@ void calculateSmoothness()
 
 Curvature 값은 아래와 같이 기하학적으로 해석할 수 있는데, 양 근처의 points들간의 거리의 합이 0에 가까운 경우에는 해당 포인트가 평평하다고 해석할 수 있고 (`cloudCurvature[i]`가 작음) 양 근처의 point들간의 거리의 합이 0이 안 되는 경우에는 얖 옆이 다른 경사로 이루어져 있거나 아래 그림과 같이 돌출되어 있다고 해석할 수 있다 (`cloudCurvature[i]`가 큼).
 
-![](/img/lego_loam_curvatures_v2.png)
+![curvature 기하학적 해석](/img/lego_loam_curvatures_v2.png)
 
 추가적으로, 이 글을 정리하다가 새롭게 안 사실인데, 현재 코드 상에서 i-k와 i+k는 (k=1, 2, 3, 4, 5)는 **인접한 픽셀 값이 아니다!**. 앞에서도 말했듯이 [ImageProjection](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)의 `cloudSegmentation()` 함수에서 유효한 point들만 range image의 인덱스 순으로 아래와 같이 차곡차곡 `segmentedCloud`가 할당되는데, 
 
@@ -352,7 +357,7 @@ for (size_t j = 0; j < Horizon_SCAN; ++j) {
 
 그 결과, 아래의 그림과 같이 i-k와 i+k는 **가장 가까운 유효한 pixel**를 가리킨다는 것을 아래와 같이 나타낼 수 있다. 심지어는 우리의 생각과는 다르게 range image 끝 쪽에서는 위/아래쪽 채널이 비교가 된다 (근데 후의 `extractFeatures()`에서 각 channel 별 가장 앞/뒤 5개는 feature로 선별하지 않게 되어있어 문제 없긴 하다 ~~그럼 여기서도 그냥 뽑지 말지~~). 
 
-![](/img/lego_loam_calc_smoothness_v2.png)
+![인접 valid pixel 비교](/img/lego_loam_calc_smoothness_v2.png)
 
 향후 implementation을 개선해야할 일이 있으면 i-k과 i+k가 i 기준으로 충분히 가까이 있어야 한다는 조건을 추가해야할 것 같다 (하지만 clustering으로 인해 대체로 valid segments들은 붙어있기 때문에, 기존 코드 상의 방식대로 smoothness를 평가해도 말이 됨).
 
@@ -407,7 +412,7 @@ void markOccludedPoints()
 * **Case2**: i번째 point를 기준으로 양 옆의 가장 가까운 valid segments와 상대적 거리차가 어느정도 나는지 확인한다. 그래서 i-1번째와 i+1번 째 모두 다 i를 기준으로 상대적 거리가 꽤 차이나게 위치하고 있으면, i.e. range * 1.02 초과거나 range * 0.98 미만이면, i 번째 point를 feature 후보군으로 여기지 않는다 (아래 그림의 Case 2).
  
  
-![](/img/lego_loam_mark_occlusion.png)
+![occlusion 마스킹 두 케이스](/img/lego_loam_mark_occlusion.png)
 
 ---
 

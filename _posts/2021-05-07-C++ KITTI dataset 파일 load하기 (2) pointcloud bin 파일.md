@@ -4,6 +4,10 @@ title: C++ KITTI dataset 파일 load하기 (2) pointcloud bin 파일
 subtitle: KITTI data Load하기
 tags: [C++, Text, Eigen]
 comments: true
+description: KITTI velodyne 시퀀스의 bin 형식 pointcloud를 C++에서 파싱해 PCL 포인트 클라우드로 변환하는 kittiloader.hpp 사용 예시와 인덱스로 프레임을 불러오는 방법을 정리한다.
+permalink: /2021/05/07/cpp-kitti-dataset-load-02-pointcloud-bin/
+redirect_from:
+  - '/2021-05-07-C++ KITTI dataset 파일 load하기 (2) pointcloud bin 파일/'
 ---
 
 # KITTI Dataset pointcloud 불러오기

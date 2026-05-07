@@ -4,20 +4,25 @@ title: LeGO-LOAM Line by Line - 3. FeatureAssociation (3)
 subtitle: Relative Pose Estimation via Two-stage Optimization
 tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
+description: LeGO-LOAM의 two-stage Levenberg-Marquardt optimization을 line-by-line으로 분석한다. point-to-line/plane distance와 chain rule 기반 Jacobian, degeneracy check까지 relative pose 추정 흐름을 수식과 함께 정리한다.
+image: /img/lego_loam_fa3.png
+permalink: /2022/03/27/lego-loam-line-by-line-03c-pose-estimation/
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM Line by Line - 3. FeatureAssociation (3)/'
 ---
 
 # FeatureAssociation in LeGO-LOAM (3) Relative Pose Estimation via Two-stage Optimization
 
 (cont'd)
 
-![](/img/lego_loam_fa3.png)
+![pose estimation 단계 도식](/img/lego_loam_fa3.png)
 
 
 ## Overview
 
 최종적으로 t-1과 t의 feature를 구했으면, 주어진 feature들을 바탕으로 relative pose를 구한다. 흔히 알고 있듯이 planar feature를 통해 z, roll, pitch가 optimize하고 edge feature를 통해 x, y, yaw가 optimize하는, two-stage optimization 방식을 따른다.
 
-![](/img/lego_loam_two_stage_optimization.PNG)
+![two-stage optimization 개요](/img/lego_loam_two_stage_optimization.PNG)
 
 
 다른 section과 다르게 이 부분에서는 Levenberg-Marquardt (LM) optimization을 하는 부분에 대한 코드 설명이 필요하다보니 좀 많이 수학수학해졌다 :(. 아래의 링크들이 도움이 되리라 생각된다.
@@ -255,7 +260,7 @@ void TransformToStart(PointType const * const pi, PointType * const po)
 
 위의 계산은 아래 수식과 동일하다 (변수 머리 위의 ~ 표시는 현재 deskwed되었음을 의미한다).
 
-![](/img/lego_loam_transform_v2.png)
+![TransformToStart 수식](/img/lego_loam_transform_v2.png)
 (Q. 왜 음의 방향인가?: 실제로 t-1와 t를 푼 결과를 출력해보면 로봇이 앞쪽 방향으로 움직이고 있을 때 tz (ZXY좌표계에서 앞쪽 방향) 값이 음수로 도출된다. 즉 -1 * (음수)로 결론적으로는 양수값이 되어 상관 없긴 하다~~상관없으면 그냥 양수로 표현해주지ㅠㅜ~~.) 
 
 
@@ -277,7 +282,7 @@ pointSearchCornerInd2[i] = minPointInd2;
 
 먼저 point-to-line distacne (아래의 `ld2`)가 계산된다. 엄밀히 말하자면, 외적(cross product)를 통해 두 line이 일치하는 정도를 측정한다. 외적을 하게 되면 크기x크기xsin(사잇각)이 되는데, 따라서 time t 상의 타겟 포인트와 t-1 상에서 타겟 포인트와 가장 가까운점과 그 다음 가까운 점을 각각 이은 두 선이 일치하는 쪽으로 향후에 optimize되는 것이다. 즉, 한 세 점이 한 직선 위에 놓여졌을 때 distance가 0이 된다. 수식을 전개하기 위해 아래 그림으로 대체한다.
 
-![](/img/lego_loam_fa_point_to_line.png)
+![point-to-line distance 수식](/img/lego_loam_fa_point_to_line.png)
 (위의 수식에서 k+1이 본 글의 t와 대응되고, *L*은 LiDAR sensor frame임을 나타낸다.)
 
 **2) Jacobian term**
@@ -286,12 +291,12 @@ pointSearchCornerInd2[i] = minPointInd2;
 
 정리하자면 아래와 같고, 한 줄 요약하자면 optimization을 하려면 jacobian matrix J가 필요하다는 것을 알 수 있다.
 
-![](/img/lego_loam_fa_solve.png)
+![non-linear 최적화 전개](/img/lego_loam_fa_solve.png)
 
 Corner feature 같은 경우에는 아래와 같이 yaw, x, y (하지만 좌표축이 ZXY로 변했음을 기억하자. 따라서 ry (yaw 회전), tx (왼쪽), tz (앞쪽)으로 표현되고, 이 변수들의 미소 변화량을 구하는 것이 매 iterative estimation의 목표이다)의 변화량이 우리가 구하고자 하는 파라미터, i.e. △,가 된다. 하지만 현재 우리가 계산한 point-to-line distance는 deskewed point에 대한 함수로 표현될 뿐 ry, tx, tz로 직접적으로 표현되지 않는다. 따라서 point-to-line distance를 구하는 수식을 **f**라 표현했을 때, jacobian matrix의 각 term을 chain rule을 통해 아래와 같이 표현해주어야 한다 (아래의 1, 2, and 3).
 
 
-![](/img/lego_loam_fa_la_lb_lc_v2.png)
+![chain rule Jacobian 유도](/img/lego_loam_fa_la_lb_lc_v2.png)
 
 정리하자면, ry, tx, tz에 대한 **f**의 partial derivative를 직접적으로 구할 수 없기 때문에 deskwed point의 x, y, z를 매개변수 삼아 상관관계를 표현하는 것이 가능해진다.
 
@@ -431,9 +436,9 @@ bool calculateTransformationCorner(int iterCount){
 
 **i) jacobian matrix 계산**: 이전에 구해둔 `la`, `lb`, `lc`와 현재 n번째 point에 대한 partial derivative를 활용해서 jacobian matrix의 각 요소에 대해서 계산한다. 증명은 아래와 같고, 수식과 대응되는 부분은 사각형으로 표시해두었다. 
 
-![](/img/lego_loam_derivative1.png)
+![partial derivative 유도 1](/img/lego_loam_derivative1.png)
 
-![](/img/lego_loam_derivative_2.png)
+![partial derivative 유도 2](/img/lego_loam_derivative_2.png)
 
 **ii) Ax=b 꼴 matrix least square로 풀기**: 그 후, 위에서 말했던 Ax=b 꼴의 J△=-b를 풀면 최적의 미소 변화량에 대해 구할 수 있다. 위의 코드에서 -b에 0.05가 곱해져 있는 것은 J△=-b을 통해 optimization할 때 그 변화의 폭이 너무 크지 않게 하기 위함이다. Iterative method는 현재 변수에 대해서 locally linear하다는 가정 하에 진행되는데, 변화량이 너무 크게 되면 가정과 맞지 않게 되기 때문에 이를 방지해주어야 한다. 
 

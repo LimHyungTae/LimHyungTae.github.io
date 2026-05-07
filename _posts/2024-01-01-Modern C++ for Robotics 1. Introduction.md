@@ -4,6 +4,10 @@ title: Modern C++ for Robotics 1. Introduction
 subtitle: Towards Modern C++ for Robotics
 tags: [C++, Eigen, Robotics]
 comments: true
+description: 로보틱스 연구자/개발자를 위한 Modern C++ 시리즈를 시작하며, STL 알고리즘과 Eigen, TBB 등 C++17 기반 코딩 스타일을 소개하는 동기와 방향을 정리한다.
+permalink: /2024/01/01/modern-cpp-robotics-01-introduction/
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 1. Introduction/'
 ---
 
 이 시리즈에서는 C++ 코드를 작성하면서 새롭게 알게 된 사실들에 대해 메모하기 시작하려 한다.

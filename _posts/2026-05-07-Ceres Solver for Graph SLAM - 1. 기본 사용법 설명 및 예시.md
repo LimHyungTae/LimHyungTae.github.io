@@ -4,6 +4,11 @@ title: Ceres Solver for Graph SLAM - 1. 기본 사용법 설명 및 예시
 subtitle: Hello World와 Cost function 여러 개 다루기
 tags: [SLAM, Optimization, Ceres Solver, C++]
 comments: true
+description: Ceres Solver의 가장 기본적인 사용법을 Hello World와 multiple residual 예제로 정리한다. Cost functor 정의, AddResidualBlock, Solve의 세 단계로 SLAM optimization의 출발선을 짚는다.
+image: /img/ceres_intro.png
+permalink: /2026/05/07/ceres-graph-slam-01-basic-usage/
+redirect_from:
+  - '/2026-05-07-Ceres Solver for Graph SLAM - 1. 기본 사용법 설명 및 예시/'
 ---
 
 ## Introduction
