@@ -217,8 +217,8 @@ permalink: /slam/
 }
 
 /* Show only the active language.
-   Each translatable element is written twice — once with .lang-ko, once with .lang-en —
-   sitting next to each other in the markup. CSS hides whichever isn't currently selected.
+   Each translatable element is written twice, once with .lang-ko, once with .lang-en, sitting
+   next to each other in the markup. CSS hides whichever isn't currently selected.
    To add new content: paste both language variants side-by-side; no JS edits needed. */
 body[data-lang="ko"] .lang-en { display: none !important; }
 body[data-lang="en"] .lang-ko { display: none !important; }
@@ -245,8 +245,8 @@ body[data-lang="en"] .btn-video { display: none !important; }
   <span>
     <strong><span class="lang-ko">통합 뷰어로 보기</span><span class="lang-en">Open in unified viewer</span></strong>
     <span style="opacity:0.7;">
-      <span class="lang-ko"> — 사이드바로 강의 간 빠르게 이동하며 슬라이드 PDF를 바로 읽을 수 있어요</span>
-      <span class="lang-en"> — browse all lecture slides with sidebar navigation in one place</span>
+      <span class="lang-ko">, 사이드바로 강의 간 빠르게 이동하며 슬라이드 PDF를 바로 읽을 수 있어요</span>
+      <span class="lang-en">, browse all lecture slides with sidebar navigation in one place</span>
     </span>
   </span>
   <span class="arrow">→</span>
@@ -505,7 +505,7 @@ The materials will be updated sequentially. </span>
   <li>
     <span class="lecture-title"><span class="lecture-num">6-6.</span>
       <span class="lang-ko">결론: Filtering vs. Smoothing, 어느 쪽이 나은가?</span>
-      <span class="lang-en">Conclusion: filtering vs. smoothing — which is better?</span>
+      <span class="lang-en">Conclusion: filtering vs. smoothing, which is better?</span>
     </span>
   </li>
 </ul>

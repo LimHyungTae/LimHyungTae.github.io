@@ -6,7 +6,7 @@ permalink: /slam/viewer/
 
 <style>
 /* Full-bleed two-pane layout that fills the viewport below the navbar.
-   80px is a conservative estimate of the Beautiful Jekyll navbar height —
+   80px is a conservative estimate of the Beautiful Jekyll navbar height,
    slightly off doesn't break anything since the inner panes scroll. */
 .slam-viewer-root {
     --sidebar-w: 280px;
@@ -20,7 +20,7 @@ permalink: /slam/viewer/
     margin: 0;
 }
 
-/* hide the page footer on the viewer route — it would otherwise sit just
+/* hide the page footer on the viewer route, it would otherwise sit just
    below the 100vh layout and force a tiny scroll on every load */
 body.slam-viewer-page footer { display: none; }
 
@@ -270,8 +270,7 @@ body.slam-viewer-page footer { display: none; }
     transition: width .15s;
 }
 
-/* Each translatable element is written twice — once with .lang-ko, once with .lang-en —
-   matching the slam.md pattern so the language toggle works without per-element JS. */
+/* Each translatable element is written twice, once with .lang-ko, once with .lang-en, matching the slam.md pattern so the language toggle works without per-element JS. */
 body[data-lang="ko"] .lang-en { display: none !important; }
 body[data-lang="en"] .lang-ko { display: none !important; }
 
@@ -340,8 +339,8 @@ body[data-lang="en"] .lang-ko { display: none !important; }
       </div>
 
       <div class="sidebar-item" data-id="lec05" data-pdf="/slam_slides/Lec05_SLAM_for_everyone.pdf"
-           data-title-ko="Lec 05 · Filtering vs. Smoothing (1) — Kalman Filter"
-           data-title-en="Lec 05 · Filtering vs. Smoothing (1) — Kalman Filter">
+           data-title-ko="Lec 05 · Filtering vs. Smoothing (1), Kalman Filter"
+           data-title-en="Lec 05 · Filtering vs. Smoothing (1), Kalman Filter">
         <span class="icon">📊</span>
         <span><span class="lang-ko">Lec 05 · Kalman Filter from MAP</span><span class="lang-en">Lec 05 · Kalman Filter from MAP</span></span>
       </div>
@@ -353,8 +352,8 @@ body[data-lang="en"] .lang-ko { display: none !important; }
       </div>
 
       <div class="sidebar-item" data-id="lec06" data-pdf="/slam_slides/Lec06_SLAM_for_everyone.pdf"
-           data-title-ko="Lec 06 · Filtering vs. Smoothing (2) — Graph Optimization"
-           data-title-en="Lec 06 · Filtering vs. Smoothing (2) — Graph Optimization">
+           data-title-ko="Lec 06 · Filtering vs. Smoothing (2), Graph Optimization"
+           data-title-en="Lec 06 · Filtering vs. Smoothing (2), Graph Optimization">
         <span class="icon">📊</span>
         <span><span class="lang-ko">Lec 06 · Graph Optimization from MAP</span><span class="lang-en">Lec 06 · Graph Optimization from MAP</span></span>
       </div>
@@ -426,7 +425,7 @@ body[data-lang="en"] .lang-ko { display: none !important; }
 
 <script>
 (function () {
-    // language toggle — same storage key as the main /slam/ page so the
+    // language toggle, same storage key as the main /slam/ page so the
     // user's preference carries across navigation
     var STORAGE_KEY = 'slam-lang';
     var supported   = ['ko', 'en'];

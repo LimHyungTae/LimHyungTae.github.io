@@ -1,14 +1,14 @@
 ---
 layout: post
 title: Ceres Solver for Graph SLAM - 2. Pose Error를 정의하는 법
-subtitle: From 2D pose to 3D quaternion — SLAM-friendly residual의 첫걸음
+subtitle: From 2D pose to 3D quaternion, SLAM-friendly residual의 첫걸음
 tags: [SLAM, Optimization, Ceres Solver, Pose Graph, SE(2), SE(3)]
 comments: true
 ---
 
 ## Introduction
 
-[1편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-1.-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%84%A4%EB%AA%85-%EB%B0%8F-%EC%98%88%EC%8B%9C/)에서는 *스칼라 변수 한 개*에 대한 Ceres의 가장 기본적인 사용법 — Hello World와 multiple residual — 을 다뤘다. 그런데 SLAM에서 다루는 변수는 단순한 스칼라가 아니라 **pose**, 즉 robot의 위치와 자세이다. Pose는 SE(2)나 SE(3) 같은 *rigid body transformation manifold*에 살고 있어서, *그냥 빼기로 residual을 만드는* 1편의 패턴을 그대로 적용할 수가 없다.
+[1편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-1.-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%84%A4%EB%AA%85-%EB%B0%8F-%EC%98%88%EC%8B%9C/)에서는 *스칼라 변수 한 개*에 대한 Ceres의 가장 기본적인 사용법, Hello World와 multiple residual, 을 다뤘다. 그런데 SLAM에서 다루는 변수는 단순한 스칼라가 아니라 **pose**, 즉 robot의 위치와 자세이다. Pose는 SE(2)나 SE(3) 같은 *rigid body transformation manifold*에 살고 있어서, *그냥 빼기로 residual을 만드는* 1편의 패턴을 그대로 적용할 수가 없다.
 
 이 글에서는 그 다리를 놓는다. 즉 SLAM optimization에서 흔히 말하는 *"pose error"*가 정확히 무엇이고, 그걸 어떻게 코드에 옮기는지를 *2D부터 3D까지* 차근차근 짚어본다. 이 글의 목표는 다음과 같다.
 
@@ -26,8 +26,8 @@ comments: true
 
 먼저 용어부터. SLAM에서 *pose*는 robot의 *위치 + 자세*를 함께 묶은 표현이다.
 
-* 2D: pose $$\mathbf{x} = (x, y, \theta)$$ — 평면 위의 위치 $$(x, y)$$와 yaw $$\theta$$.
-* 3D: pose $$\mathbf{x} = (\mathbf{p}, \mathbf{q})$$ — 3D position $$\mathbf{p}$$와 unit quaternion $$\mathbf{q}$$ (또는 SO(3) rotation).
+* 2D: pose $$\mathbf{x} = (x, y, \theta)$$, 평면 위의 위치 $$(x, y)$$와 yaw $$\theta$$.
+* 3D: pose $$\mathbf{x} = (\mathbf{p}, \mathbf{q})$$, 3D position $$\mathbf{p}$$와 unit quaternion $$\mathbf{q}$$ (또는 SO(3) rotation).
 
 Pose graph SLAM에서는 *두 pose 사이의 상대 변환* 측정값(measurement)이 주어지고, 우리는 *현재 추정 pose가 그 measurement와 얼마나 잘 맞는지*를 cost로 만들고 싶다. 이게 *pose error*이다.
 
@@ -41,7 +41,7 @@ $$
 * $$\hat{\mathbf{T}}_{ab}$$: sensor가 *측정한* 상대 변환.
 * $$\ominus$$: pose 사이의 *어떤 의미에서의 차이*. 이 정의가 manifold에 따라 다르다는 게 이 글의 핵심이다.
 
-스칼라 또는 vector라면 $$\ominus$$는 단순한 빼기이다. 하지만 angle이나 quaternion이 들어오면 빼기로는 부족하다 — 이 부분이 SLAM에서 *pose error를 정의하는 게* SLAM 입문자에게 까다로운 이유이기도 하다.
+스칼라 또는 vector라면 $$\ominus$$는 단순한 빼기이다. 하지만 angle이나 quaternion이 들어오면 빼기로는 부족하다, 이 부분이 SLAM에서 *pose error를 정의하는 게* SLAM 입문자에게 까다로운 이유이기도 하다.
 
 ---
 
@@ -111,17 +111,17 @@ T angle_error = NormalizeAngle(theta_estimated - theta_measured);
 
 본격적으로 수식을 풀어내기 전에, 앞으로 자주 등장할 *표기법*을 한 번 정리하고 가자. 이후 글의 모든 수식은 이 약속을 따른다.
 
-* **Subscript $$_a$$, $$_b$$ — 어느 frame/pose의 양인지 가리키는 index.**  
+* **Subscript $$_a$$, $$_b$$**: 어느 frame/pose의 양인지 가리키는 index.  
   예: $$\mathbf{p}_a, \mathbf{q}_a$$는 "pose A의 position과 orientation". $$\mathbf{p}_b, \mathbf{q}_b$$는 마찬가지로 pose B의 것.
-* **Subscript $$_{ab}$$ — "A에서 B로의 *상대* 변환".**  
+* **Subscript $$_{ab}$$**: "A에서 B로의 *상대* 변환".  
   예: $$\mathbf{p}_{ab}$$는 *A frame 좌표계에서 표현된 B의 위치 벡터*, $$\mathbf{q}_{ab}$$는 *A에서 B로 가는 회전*.
-* **Tilde $$\tilde{\cdot}$$ — 현재 추정 pose로부터 *계산한 (estimated)* 값.**  
+* **Tilde $$\tilde{\cdot}$$**: 현재 추정 pose로부터 *계산한 (estimated)* 값.  
   예: $$\tilde{\mathbf{q}}_{ab}$$는 "현재 추정값 $$\mathbf{q}_a, \mathbf{q}_b$$로부터 *계산한* 상대 회전".
-* **Hat $$\hat{\cdot}$$ — sensor가 *측정한 (measured)* 값.**  
+* **Hat $$\hat{\cdot}$$**: sensor가 *측정한 (measured)* 값.  
   예: $$\hat{\mathbf{q}}_{ab}$$는 "A frame에서 B의 상대 회전을 *sensor가 측정해준* 값". 이 글에서 ~~hat~~을 단 변수는 모두 measurement이다.
-* **Conjugate $$\mathbf{q}^{*}$$ — quaternion의 conjugate.**  
-  Quaternion $$\mathbf{q} = (\mathbf{v}, w)$$ (vector part $$\mathbf{v} \in \mathbb{R}^3$$, scalar part $$w \in \mathbb{R}$$)에 대해 $$\mathbf{q}^{*} = (-\mathbf{v}, w)$$. *Unit quaternion에서는 conjugate가 곧 inverse*이다 — 즉 $$\mathbf{q}^{*} \otimes \mathbf{q} = (\mathbf{0}, 1)$$이 identity quaternion이 되며, *반대 방향의 회전*을 의미한다.
-* **Quaternion product $$\otimes$$ — 두 quaternion의 곱.**  
+* **Conjugate $$\mathbf{q}^{*}$$**: quaternion의 conjugate.  
+  Quaternion $$\mathbf{q} = (\mathbf{v}, w)$$ (vector part $$\mathbf{v} \in \mathbb{R}^3$$, scalar part $$w \in \mathbb{R}$$)에 대해 $$\mathbf{q}^{*} = (-\mathbf{v}, w)$$. *Unit quaternion에서는 conjugate가 곧 inverse*이다, 즉 $$\mathbf{q}^{*} \otimes \mathbf{q} = (\mathbf{0}, 1)$$이 identity quaternion이 되며, *반대 방향의 회전*을 의미한다.
+* **Quaternion product $$\otimes$$**: 두 quaternion의 곱.  
   단순한 element-wise 곱이 아니라 *회전의 합성 (composition)* 에 대응한다. 즉 $$\mathbf{q}_a \otimes \mathbf{q}_b$$를 회전 행렬로 옮기면 $$\mathbf{R}(\mathbf{q}_a) \mathbf{R}(\mathbf{q}_b)$$가 된다.
 
 > 요약: *"hat($$\hat{\cdot}$$)은 measurement, tilde($$\tilde{\cdot}$$)는 estimate, $$_{ab}$$는 A→B의 상대"*. 그리고 $$\otimes$$는 quaternion 곱, $$^{*}$$는 conjugate(=inverse). 이 약속을 머릿속에 넣어두면 이 시리즈의 모든 수식을 같은 안경으로 읽을 수 있다.
@@ -161,7 +161,7 @@ $$
 \delta \mathbf{q} = \hat{\mathbf{q}}_{ab} \otimes \tilde{\mathbf{q}}_{ab}^{*}
 $$
 
-추정과 measurement가 일치할 때 $$\delta \mathbf{q} = (1, 0, 0, 0)$$ — identity quaternion이 된다. 이게 우리가 원하는 *zero residual*의 의미이다.
+추정과 measurement가 일치할 때 $$\delta \mathbf{q} = (0, 0, 0, 1)$$ ([x, y, z, w] order에서 *identity quaternion*)이 된다. 이게 우리가 원하는 *zero residual*의 의미이다.
 
 그리고 identity 근처에서 quaternion의 vector part가 axis-angle의 *절반*이라는 사실 (4편에서 자세히 유도)을 이용해서, rotation residual을 다음과 같이 *3D vector*로 끌어내릴 수 있다.
 
@@ -171,7 +171,7 @@ $$
 
 이로써 (translation 3 + rotation 3) = **6차원 residual**이 만들어진다. 이게 [3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)부터 다루는 `PoseGraph3dErrorTerm` 코드에 정확히 들어있는 형태이다.
 
-문제 (2) — *manifold-aware update* — 는 Ceres의 `Manifold` API로 해결되며, 이건 [5편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-5.-BuildOptimizationProblem%EA%B3%BC-Manifold-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 본격적으로 다룬다. 핵심 idea만 미리 말하자면 — *update를 4D quaternion에 직접 더하지 않고, 3D tangent space (axis-angle)에서 받아서 manifold로 retract*시키는 방법이다.
+문제 (2), *manifold-aware update*, 는 Ceres의 `Manifold` API로 해결되며, 이건 [5편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-5.-BuildOptimizationProblem%EA%B3%BC-Manifold-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 본격적으로 다룬다. 핵심 idea만 미리 말하자면, *update를 4D quaternion에 직접 더하지 않고, 3D tangent space (axis-angle)에서 받아서 manifold로 retract*시키는 방법이다.
 
 ---
 
@@ -185,9 +185,9 @@ $$
 | 2D 위치 ($$x, y$$) | 2 | element-wise 빼기 | 2 | 불필요 |
 | 각도 ($$\theta$$) | 1 | wrapped subtraction | 1 | (간단한) wrapping |
 | 3D 위치 ($$\mathbf{p}$$) | 3 | element-wise 빼기 | 3 | 불필요 |
-| Quaternion ($$\mathbf{q}$$) | 4 | $$2 \cdot \text{Vec}(\hat{\mathbf{q}} \otimes \tilde{\mathbf{q}}^{*})$$ | 3 | 필요 |
+| Quaternion ($$\mathbf{q}$$) | 4 | $$2 \cdot \text{Vec}(\hat{\mathbf{q}} \otimes \tilde{\mathbf{q}}^{*})$$ | 3 | **필요** |
 | 2D pose | 3 | (위치 빼기, 각도 wrapping) | 3 | (간단) |
-| 3D pose | 7 (3+4) | (위치 빼기, multiplicative quaternion) | 6 | 필요 |
+| 3D pose | 7 (3+4) | (위치 빼기, multiplicative quaternion) | 6 | **필요** |
 
 표가 보여주는 핵심은:
 
@@ -202,11 +202,11 @@ $$
 
 ## 결론
 
-이 글에서는 SLAM의 *pose error*가 무엇인지 — *추정 상대 변환과 측정 상대 변환의 차이*임 — 그리고 그 정의가 *2D에서 3D로 갈 때 어떻게 점점 까다로워지는지*를 살펴봤다. 핵심은 한 줄로 요약된다.
+이 글에서는 SLAM의 *pose error*가 무엇인지, *추정 상대 변환과 측정 상대 변환의 차이*임, 그리고 그 정의가 *2D에서 3D로 갈 때 어떻게 점점 까다로워지는지*를 살펴봤다. 핵심은 한 줄로 요약된다.
 
 > *Translation은 vector space라 그냥 빼면 되는데, rotation은 manifold라서 multiplicative error로 정의해야 한다.*
 
-다음 [3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)부터는 이 idea가 실제로 구현된 *Ceres pose_graph_3d 공식 example*을 line-by-line으로 분석한다. 두 파일 (`pose_graph_3d.cc`, `pose_graph_3d_error_term.h`)이 이 글에서 짚은 모든 idea를 어떻게 코드로 풀어내는지 — 그게 이 시리즈의 본론이다.
+다음 [3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)부터는 이 idea가 실제로 구현된 *Ceres pose_graph_3d 공식 example*을 line-by-line으로 분석한다. 두 파일 (`pose_graph_3d.cc`, `pose_graph_3d_error_term.h`)이 이 글에서 짚은 모든 idea를 어떻게 코드로 풀어내는지, 그게 이 시리즈의 본론이다.
 
 ---
 

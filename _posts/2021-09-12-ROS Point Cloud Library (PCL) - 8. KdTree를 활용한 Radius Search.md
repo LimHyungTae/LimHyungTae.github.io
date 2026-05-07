@@ -8,7 +8,7 @@ comments: true
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">
-🚀 <strong>Interactive Demo (26.May.07)</strong> — 본 포스트의 PCL 코드들을 브라우저에서 바로 실행해볼 수 있는 <a href="https://limhyungtae.github.io/pcl_tutorial/#/" target="_blank">interactive demo 사이트</a>를 추가했습니다.
+🚀 <strong>Interactive Demo (26.May.07)</strong>: 본 포스트의 PCL 코드들을 브라우저에서 바로 실행해볼 수 있는 <a href="https://limhyungtae.github.io/pcl_tutorial/#/" target="_blank">interactive demo 사이트</a>를 추가했습니다.
 </div>
 
 # Search in Pointcloud
