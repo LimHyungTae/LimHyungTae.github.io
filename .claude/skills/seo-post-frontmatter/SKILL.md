@@ -30,6 +30,7 @@ If the user wants you to apply this to MANY files at once (e.g., a series), stil
     permalink: /YYYY/MM/DD/<english-slug>/
     redirect_from:
       - '/YYYY-MM-DD-<filename-stem>/'
+      - '/YYYY-MM-DD-<filename-stem-slugified>/'  # only if it differs from the line above
     ```
 4. **Improve image alt text in the body**: replace any `![](path)` (empty alt) with `![<short Korean alt>](path)`. Don't change images that already have alt text. Don't modify other markdown.
 5. **Write the file back.**
@@ -85,21 +86,33 @@ Examples:
 | `2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (1) Keyframe.md` | `/2022/04/01/imu-preintegration-02a-keyframe/` |
 
 ### `redirect_from`
-The OLD default URL the post served at. Default permalink in `_config.yml` is `/:year-:month-:day-:title/`, so for a file with date prefix the URL is `/<filename without .md>/`:
 
-| Filename | redirect_from |
+There are TWO URL forms a post may have served at, and external/internal links can use either. Add BOTH (when they differ) so legacy URLs don't 404:
+
+1. **Spaces-form** — Jekyll's default permalink resolved with the filename: `/<filename without .md>/`. Used when someone hardcodes the URL with spaces or `%20` encoding.
+2. **Slugified-form** — Jekyll's `:title` slugify: spaces → dashes, multiple dashes collapsed. Used when someone copies the URL from the rendered HTML or follows an old default Jekyll URL.
+
+| Filename | redirect_from entries |
 |----------|---------------|
-| `2021-09-12-ROS Point Cloud Library (PCL) - 5. Voxelization.md` | `'/2021-09-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'` |
-| `2024-12-01-GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기.md` | `'/2024-12-01-GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기/'` |
+| `2021-09-12-ROS Point Cloud Library (PCL) - 5. Voxelization.md` | `'/2021-09-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'`<br>`'/2021-09-12-ROS-Point-Cloud-Library-(PCL)-5.-Voxelization/'` |
+| `2024-12-01-GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기.md` | `'/2024-12-01-GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기/'`<br>`'/2024-12-01-GTSAM-Tutorial-1.-SLAM을-위한-Between-Factor-쉽게-이해하기/'` |
+| `2024-01-01-Modern C++ for Robotics 1. Introduction.md` | `'/2024-01-01-Modern C++ for Robotics 1. Introduction/'`<br>`'/2024-01-01-Modern-C++-for-Robotics-1.-Introduction/'` |
 
-For files WITHOUT a date prefix (e.g., `LIO-SAM Line by Line - 1. Introduction.md`), use the `date:` from frontmatter and the filename stem:
+**Slugify algorithm**: replace any whitespace with `-`, then collapse consecutive dashes. Don't touch dots, parens, Korean chars, or other punctuation — Jekyll keeps them as-is. The two forms are identical (so omit the slugified line) when the filename has no spaces (e.g., `2025-01-01-some-already-hyphenated-name.md`).
+
+For files WITHOUT a date prefix (e.g., `LIO-SAM Line by Line - 1. Introduction.md`), use the `date:` from frontmatter and the filename stem for both forms:
 
 ```yaml
 redirect_from:
   - '/2022-04-07-LIO-SAM Line by Line - 1. Introduction/'
+  - '/2022-04-07-LIO-SAM-Line-by-Line-1.-Introduction/'
 ```
 
-ALWAYS single-quote the URL string — parens and special chars need quoting.
+**ALWAYS single-quote** the URL string. If the URL itself contains a single quote (apostrophe), escape it by doubling: `'foo''bar'` (YAML rule). Parens, dots, and Korean chars are fine inside single quotes without escaping.
+
+#### When the post's filename is being renamed
+
+If you're renaming an existing post (not adding a brand-new one), keep the OLD filename's spaces-form AND slugified-form in `redirect_from` too, on top of the new ones. Future-you with external backlinks will thank you. Walk back the rename chain if there are multiple prior names.
 
 ### Image alt text
 Find `![](path)` patterns and add a short Korean alt:
