@@ -8,6 +8,7 @@ description: Ubuntu 20.04 RViz에서 topic/frame 이름 앞의 forward slash가 
 permalink: /2024/06/17/ros1-topic-leading-slash-fix/
 redirect_from:
   - '/2024-06-17-ROS1 Topic 이름 앞 slash 문제 해결 방법/'
+  - '/2024-06-17-ROS1-Topic-이름-앞-slash-문제-해결-방법/'
 ---
 
 ROS1에서 rviz를 사용하던 도중, 언제부터인가 '/robot/velodyne_link'라고 기입하면 'robot/velodyne_link'로 인식하는 문제가 발생했다. 

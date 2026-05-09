@@ -9,6 +9,7 @@ image: /img/output-long-sinc.gif
 permalink: /2024/07/29/ubuntu-ffmpeg-mp4-to-gif/
 redirect_from:
   - '/2024-07-29-Ubuntu에서 ffmpeg 명령어를 활용한 gif 만드는 법/'
+  - '/2024-07-29-Ubuntu에서-ffmpeg-명령어를-활용한-gif-만드는-법/'
 ---
 
 이번 글에서는 `ffmpeg`를 통해 **효과적으로** gif를 만드는 방법에 대해 알아보자.

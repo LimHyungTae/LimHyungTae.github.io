@@ -9,6 +9,7 @@ image: /img/pcl_viz.png
 permalink: /2021/09/10/pcl-tutorial-04-visualization-viewer/
 redirect_from:
   - '/2021-09-10-ROS Point Cloud Library (PCL) - 4. Viewer로 visualization하는 법/'
+  - '/2021-09-10-ROS-Point-Cloud-Library-(PCL)-4.-Viewer로-visualization하는-법/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

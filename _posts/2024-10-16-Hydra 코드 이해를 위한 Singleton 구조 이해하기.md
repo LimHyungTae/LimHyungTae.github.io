@@ -8,6 +8,7 @@ description: MIT-SPARK Hydra 코드에서 GlobalInfo::instance()와 PipelineQueu
 permalink: /2024/10/16/hydra-singleton-pattern-understanding/
 redirect_from:
   - '/2024-10-16-Hydra 코드 이해를 위한 Singleton 구조 이해하기/'
+  - '/2024-10-16-Hydra-코드-이해를-위한-Singleton-구조-이해하기/'
 ---
 
 ## Introduction

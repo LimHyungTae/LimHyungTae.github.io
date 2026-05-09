@@ -8,9 +8,9 @@ description: C++ 코드를 pybind11로 묶어 PyPI에 배포하는 전 과정을
 image: /img/publishing_key.png
 permalink: /2023/12/14/pybind11-line-by-line-03-pyproject-pypi-upload/
 redirect_from:
-  - '/2023-12-14-Pybind11 Line by Line - 3. pyproject.toml와 Github Actions을 통한 Pypi에 코드 업로드하기/'
-redirect_from:
   - '/2023-12-14-Pybind11 Line by Line - 3. pyproject.toml을 통한 pip3 install 지원하기/'
+  - '/2023-12-14-Pybind11-Line-by-Line-3.-pyproject.toml와-Github-Actions을-통한-Pypi에-코드-업로드하기/'
+  - '/2023-12-14-Pybind11-Line-by-Line-3.-pyproject.toml을-통한-pip3-install-지원하기/'
 ---
 
 이제 Pybinding이 잘 된다는 가정 하에, 어떻게 하면 우리의 연구 코드를 `pip3 install`로 설치하게 할 수 있을까?

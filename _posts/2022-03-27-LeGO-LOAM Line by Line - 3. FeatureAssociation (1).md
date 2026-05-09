@@ -9,6 +9,7 @@ image: /img/lego_loam_lidar_coordinate.png
 permalink: /2022/03/27/lego-loam-line-by-line-03a-feature-association/
 redirect_from:
   - '/2022-03-27-LeGO-LOAM Line by Line - 3. FeatureAssociation (1)/'
+  - '/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1)/'
 ---
 
 # FeatureAssociation in LeGO-LOAM (1) Ready for Feature Extraction

@@ -9,6 +9,7 @@ image: /img/pycharm_excluded.png
 permalink: /2023/12/16/pycharm-exclude-folder-indexing/
 redirect_from:
   - '/2023-12-16-Pycharm 특정 폴더 Indexing 제외하는 방법/'
+  - '/2023-12-16-Pycharm-특정-폴더-Indexing-제외하는-방법/'
 ---
 
 Pycharm을 이용해서 어떤 프로젝트를 작업할 때, 특정 폴더를 indexing에서 제외하고 싶을 때가 있다.

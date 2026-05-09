@@ -7,7 +7,8 @@ comments: true
 description: Kimera-Multi 빌드 시 발생하는 "something wrong with flag 'logtostderr'" 에러를 시스템에 중복 설치된 glog 라이브러리를 제거해 해결하는 방법을 정리한다.
 permalink: /2024/08/17/kimera-multi-logtostderr-error-fix/
 redirect_from:
-  - "/2024-08-17-Kimera-Multi 빌드 시 something wrong with flag 'logtostderr' 해결 방법/"
+  - '/2024-08-17-Kimera-Multi 빌드 시 something wrong with flag ''logtostderr'' 해결 방법/'
+  - '/2024-08-17-Kimera-Multi-빌드-시-something-wrong-with-flag-''logtostderr''-해결-방법/'
 ---
 
 현재 Kimera-Multi 레포지토리를 빌드하면서 다음과 같은 에러가 발생했다: 

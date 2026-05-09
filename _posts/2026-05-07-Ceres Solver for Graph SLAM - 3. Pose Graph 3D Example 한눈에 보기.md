@@ -8,6 +8,7 @@ description: Ceres 공식 pose_graph_3d example의 두 파일이 어떻게 맞�
 permalink: /2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/
 redirect_from:
   - '/2026-05-07-Ceres Solver for Graph SLAM - 3. Pose Graph 3D Example 한눈에 보기/'
+  - '/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-한눈에-보기/'
 ---
 
 ## Introduction

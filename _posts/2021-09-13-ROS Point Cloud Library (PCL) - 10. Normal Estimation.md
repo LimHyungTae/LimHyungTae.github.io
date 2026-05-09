@@ -9,6 +9,7 @@ image: /img/normal_vector1.png
 permalink: /2021/09/13/pcl-tutorial-10-normal-estimation/
 redirect_from:
   - '/2021-09-13-ROS Point Cloud Library (PCL) - 10. Normal Estimation/'
+  - '/2021-09-13-ROS-Point-Cloud-Library-(PCL)-10.-Normal-Estimation/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

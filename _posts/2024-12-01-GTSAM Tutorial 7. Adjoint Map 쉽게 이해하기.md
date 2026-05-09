@@ -8,6 +8,7 @@ description: BetweenFactor의 H1에 등장하는 AdjointMap이 p1 좌표계의 �
 permalink: /2024/12/01/gtsam-tutorial-07-adjoint-map/
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 7. Adjoint Map 쉽게 이해하기/'
+  - '/2024-12-01-GTSAM-Tutorial-7.-Adjoint-Map-쉽게-이해하기/'
 ---
 
 ## Adjoint Map의 의미?

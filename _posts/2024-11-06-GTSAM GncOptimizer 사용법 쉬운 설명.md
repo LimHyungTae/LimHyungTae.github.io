@@ -8,6 +8,7 @@ description: GTSAM의 GncOptimizer를 활용해 graduated non-convexity 기반 r
 permalink: /2024/11/06/gtsam-gnc-optimizer-usage/
 redirect_from:
   - '/2024-11-06-GTSAM GncOptimizer 사용법 쉬운 설명/'
+  - '/2024-11-06-GTSAM-GncOptimizer-사용법-쉬운-설명/'
 ---
 
 ## Introduction

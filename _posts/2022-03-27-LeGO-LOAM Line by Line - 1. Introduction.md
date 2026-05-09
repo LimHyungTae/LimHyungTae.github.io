@@ -7,11 +7,13 @@ comments: true
 description: LeGO-LOAM 코드를 line-by-line으로 분석하는 시리즈의 introduction. 전체 파이프라인 구조와 3D LiDAR sensor의 ring/channel 등 하드웨어 특성에 기반한 파라미터 세팅 방법을 정리합니다.
 image: /img/lego_loam_w_robot.PNG
 permalink: /2022/03/27/lego-loam-line-by-line-01-introduction/
-redirect_from:
-  - '/2022-03-27-LeGO-LOAM Line by Line - 1. Introduction/'
-redirect_from:
-  - '/2022-03-27-LeGO-LOAM 완벽 설명 - 1. Introduction/'
   - '/2022-03-27-LeGO-LOAM 완벽설명 - 1. Introduction/'
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM 완벽설명 - 1. Introduction/'
+  - '/2022-03-27-LeGO-LOAM 완벽 설명 - 1. Introduction/'
+  - '/2022-03-27-LeGO-LOAM-Line-by-Line-1.-Introduction/'
+  - '/2022-03-27-LeGO-LOAM-완벽-설명-1.-Introduction/'
+  - '/2022-03-27-LeGO-LOAM-완벽설명-1.-Introduction/'
 ---
 
 # LeGO-LOAM

@@ -9,6 +9,7 @@ image: /img/texify_how_to_install.png
 permalink: /2023/12/15/pycharm-texify-latex/
 redirect_from:
   - '/2023-12-15-Overleaf, TexStudio 말고 Pycharm의 Texify를 활용한 효율적인 LaTex 작성/'
+  - '/2023-12-15-Overleaf,-TexStudio-말고-Pycharm의-Texify를-활용한-효율적인-LaTex-작성/'
 ---
 
 갑자기 SLAM을 다루는 블로그에서 웬 `TeXiFy`라는 듣보잡(?) 툴을 다루는 게 이상해 보이나, 

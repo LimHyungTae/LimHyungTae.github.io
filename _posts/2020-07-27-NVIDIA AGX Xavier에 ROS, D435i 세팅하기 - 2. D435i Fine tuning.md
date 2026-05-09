@@ -9,6 +9,7 @@ image: /img/d435i_img.jpg
 permalink: /2020/07/27/nvidia-xavier-d435i-setup-02-fine-tuning/
 redirect_from:
   - '/2020-07-27-NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 2. D435i Fine tuning/'
+  - '/2020-07-27-NVIDIA-AGX-Xavier에-ROS,-D435i-세팅하기-2.-D435i-Fine-tuning/'
 ---
 
 본 페이지는 모바일 플랫폼에서 D435i를 사용하기 위해 세팅한 결과를 정리하기 위한 포스트입니다.

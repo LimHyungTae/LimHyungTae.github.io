@@ -9,6 +9,7 @@ image: /img/keymapping.png
 permalink: /2023/03/13/ubuntu-capslock-hjkl-arrow-keys/
 redirect_from:
   - '/2023-03-13-Ubuntu에서 CapsLock + hjkl를 통한 방향키 세팅하는 법/'
+  - '/2023-03-13-Ubuntu에서-CapsLock-+-hjkl를-통한-방향키-세팅하는-법/'
 ---
 
 ## CapsLock + hjkl를 통한 방향키 세팅

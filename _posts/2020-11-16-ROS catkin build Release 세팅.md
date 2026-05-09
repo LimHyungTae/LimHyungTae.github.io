@@ -9,6 +9,7 @@ image: /img/catkinbuild_release.png
 permalink: /2020/11/16/ros-catkin-build-release-setup/
 redirect_from:
   - '/2020-11-16-ROS catkin build Release 세팅/'
+  - '/2020-11-16-ROS-catkin-build-Release-세팅/'
 ---
 
 # Release로 설정해야 하는 이유

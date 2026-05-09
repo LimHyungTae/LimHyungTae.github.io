@@ -8,6 +8,7 @@ description: PCL의 getVector3fMap()으로 point의 x, y, z를 Eigen::Vector3f�
 permalink: /2021/09/14/pcl-tutorial-13-getvector3fmap/
 redirect_from:
   - '/2021-09-14-ROS Point Cloud Library (PCL) - 13. getVector3fMap()을 통한 효율적인 복사/'
+  - '/2021-09-14-ROS-Point-Cloud-Library-(PCL)-13.-getVector3fMap()을-통한-효율적인-복사/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

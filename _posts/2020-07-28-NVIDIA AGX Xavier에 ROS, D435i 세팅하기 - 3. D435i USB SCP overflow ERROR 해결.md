@@ -8,6 +8,7 @@ description: D435i를 1280x720 30fps로 돌릴 때 발생하는 "USB SCP overflo
 permalink: /2020/07/28/nvidia-xavier-d435i-setup-03-usb-overflow-fix/
 redirect_from:
   - '/2020-07-28-NVIDIA AGX Xavier에 ROS, D435i 세팅하기 - 3. D435i USB SCP overflow ERROR 해결/'
+  - '/2020-07-28-NVIDIA-AGX-Xavier에-ROS,-D435i-세팅하기-3.-D435i-USB-SCP-overflow-ERROR-해결/'
 ---
 
 USB SCP 에러가 뜨는 원인은 [여기](https://community.intel.com/t5/Items-with-no-label/D435-Windows-10-USB-SCP-overflow-depends-on-resolution-no/td-p/572017) 참조

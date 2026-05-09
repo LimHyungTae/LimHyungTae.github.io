@@ -7,8 +7,10 @@ comments: true
 description: LIO-SAM mapOptimization의 후반부를 line-by-line으로 정리한다. extractSurroundingKeyFrames, scan-to-map optimization, factor graph keyframe 저장까지 흐름을 살펴본다.
 image: /img/lego_loam_w_robot.PNG
 permalink: /2022/04/07/lio-sam-line-by-line-05b-map-optimization-keyframes/
+  - '/LIO-SAM-Line-by-Line-5.-MapOptimization-(2)/'
 redirect_from:
   - '/2022-04-07-LIO-SAM Line by Line - 5. MapOptimization (2)/'
+  - '/2022-04-07-LIO-SAM-Line-by-Line-5.-MapOptimization-(2)/'
 ---
 
 # LIO-SAM

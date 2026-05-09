@@ -8,6 +8,7 @@ description: Eigen은 WXYZ, ROS tf는 XYZW 등 라이브러리마다 quaternion 
 permalink: /2022/09/04/slam-robotics-coding-tips-02/
 redirect_from:
   - '/2022-09-04-SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (2)/'
+  - '/2022-09-04-SLAM,-Robotics-프로그래밍을-위한-3가지-코딩-꿀팁-(2)/'
 ---
 
 (Cont'd)

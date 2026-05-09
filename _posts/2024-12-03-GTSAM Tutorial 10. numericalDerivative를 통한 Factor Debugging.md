@@ -9,6 +9,7 @@ image: /img/0206_evaluateError.png
 permalink: /2024/12/03/gtsam-tutorial-10-numerical-derivative-debugging/
 redirect_from:
   - '/2024-12-03-GTSAM Tutorial 10. numericalDerivative를 통한 Factor Debugging/'
+  - '/2024-12-03-GTSAM-Tutorial-10.-numericalDerivative를-통한-Factor-Debugging/'
 ---
 
 ## Introduction 

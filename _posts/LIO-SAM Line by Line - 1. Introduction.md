@@ -7,8 +7,10 @@ comments: true
 description: LIO-SAM/LeGO-LOAM line-by-line 시리즈의 시작. 전체 파이프라인 개요와 Velodyne, Ouster 등 3D LiDAR의 N_SCAN, ang_res 같은 하드웨어 파라미터를 정리한다.
 image: /img/lego_loam_w_robot.PNG
 permalink: /2022/04/07/lio-sam-line-by-line-01-introduction/
+  - '/LIO-SAM-Line-by-Line-1.-Introduction/'
 redirect_from:
   - '/2022-04-07-LIO-SAM Line by Line - 1. Introduction/'
+  - '/2022-04-07-LIO-SAM-Line-by-Line-1.-Introduction/'
 ---
 
 # LIO-SAM

@@ -9,6 +9,7 @@ image: /img/jsk_viz.png
 permalink: /2020/09/05/ros-jsk-visualization-installation/
 redirect_from:
   - '/2020-09-05-ROS jsk_visualization 설치하는 법/'
+  - '/2020-09-05-ROS-jsk_visualization-설치하는-법/'
 ---
 ## Introduction
 

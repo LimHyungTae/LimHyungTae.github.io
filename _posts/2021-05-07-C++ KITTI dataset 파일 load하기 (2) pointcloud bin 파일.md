@@ -8,6 +8,7 @@ description: KITTI velodyne 시퀀스의 bin 형식 pointcloud를 C++에서 파�
 permalink: /2021/05/07/cpp-kitti-dataset-load-02-pointcloud-bin/
 redirect_from:
   - '/2021-05-07-C++ KITTI dataset 파일 load하기 (2) pointcloud bin 파일/'
+  - '/2021-05-07-C++-KITTI-dataset-파일-load하기-(2)-pointcloud-bin-파일/'
 ---
 
 # KITTI Dataset pointcloud 불러오기

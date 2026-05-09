@@ -8,6 +8,7 @@ description: std::move가 객체를 실제로 옮기지 않고 rvalue 참조로 
 permalink: /2024/01/01/modern-cpp-robotics-06-std-move/
 redirect_from:
   - '/2024-01-01-Modern C++ for Robotics 6. std::move() 쉬운 설명/'
+  - '/2024-01-01-Modern-C++-for-Robotics-6.-std::move()-쉬운-설명/'
 ---
 
 ## std::move

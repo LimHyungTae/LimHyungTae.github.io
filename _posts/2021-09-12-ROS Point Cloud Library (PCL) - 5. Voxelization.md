@@ -7,12 +7,13 @@ comments: true
 description: PCL VoxelGrid와 setLeafSize로 pointcloud를 leaf 단위로 다운샘플링해 메모리와 NDT 같은 registration 연산량을 줄이는 방법, 그리고 voxel 크기 선택 시 주의점을 정리한다.
 image: /img/pcl_centroid.PNG
 permalink: /2021/09/12/pcl-tutorial-05-voxelization/
-redirect_from:
-  - '/2021-09-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'
-  - '/2019-11-29-ROS Point Cloud Library (PCL) - 3. Voxelization/'
+  - '/2019-9-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'
 redirect_from:
   - '/2019-11-29-ROS Point Cloud Library (PCL) - 4. Voxelization/'
   - '/2019-9-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'
+  - '/2019-11-29-ROS-Point-Cloud-Library-(PCL)-4.-Voxelization/'
+  - '/2019-9-12-ROS-Point-Cloud-Library-(PCL)-5.-Voxelization/'
+  - '/2021-09-12-ROS-Point-Cloud-Library-(PCL)-5.-Voxelization/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

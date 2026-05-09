@@ -9,6 +9,7 @@ image: /img/tweaks_installation.png
 permalink: /2022/12/12/swap-ctrl-capslock/
 redirect_from:
   - '/2022-12-12-Ctrl과 CapsLock 위치 바꾸는 법/'
+  - '/2022-12-12-Ctrl과-CapsLock-위치-바꾸는-법/'
 ---
 
 # Introduction

@@ -9,6 +9,7 @@ image: /img/pcl_contents.JPG
 permalink: /2021/09/09/pcl-tutorial-00-basic-usage/
 redirect_from:
   - '/2021-09-09-ROS Point Cloud Library (PCL) - 0. Tutorial 및 기본 사용법/'
+  - '/2021-09-09-ROS-Point-Cloud-Library-(PCL)-0.-Tutorial-및-기본-사용법/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

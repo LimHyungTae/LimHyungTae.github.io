@@ -8,6 +8,7 @@ description: 도커 컨테이너 안의 demo.py 같은 GUI 프로그램을 호�
 permalink: /2021/08/08/docker-gui-display-setup/
 redirect_from:
   - '/2021-08-08-Docker GUI 연동하는 법/'
+  - '/2021-08-08-Docker-GUI-연동하는-법/'
 ---
 
 # Docker에서 gui 연동하게 하는 법

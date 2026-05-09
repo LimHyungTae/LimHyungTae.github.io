@@ -7,9 +7,9 @@ comments: true
 description: Azure Kinect의 depth 이미지를 png로 저장할 때 CV_32FC1을 그대로 imwrite하면 8UC1로 강제 변환되는 문제를 해결하기 위해 CV_16UC1로 변환해 저장하는 방법을 정리한다.
 permalink: /2020/10/26/opencv-azure-kinect-depth-png-save/
 redirect_from:
-  - '/2020-10-26-OpenCV를 활용한 Azure Kinect RGB-D 카메라의 depth data png로 저장하기/'
-redirect_from:
   - '/2020-10-26-OpenCV를 활용해서 RGB-D 카메라의 depth data png로 저장하기/'
+  - '/2020-10-26-OpenCV를-활용한-Azure-Kinect-RGB-D-카메라의-depth-data-png로-저장하기/'
+  - '/2020-10-26-OpenCV를-활용해서-RGB-D-카메라의-depth-data-png로-저장하기/'
 ---
 ## Introduction
 

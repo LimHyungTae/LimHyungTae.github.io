@@ -8,6 +8,7 @@ description: pcl::fromROSMsg와 pcl::toROSMsg로 sensor_msgs::PointCloud2와 pcl
 permalink: /2021/09/10/pcl-tutorial-02-toros-fromros-msg/
 redirect_from:
   - '/2021-09-10-ROS Point Cloud Library (PCL) - 2. 형변환 - toROSMsg, fromROSMsg/'
+  - '/2021-09-10-ROS-Point-Cloud-Library-(PCL)-2.-형변환-toROSMsg,-fromROSMsg/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

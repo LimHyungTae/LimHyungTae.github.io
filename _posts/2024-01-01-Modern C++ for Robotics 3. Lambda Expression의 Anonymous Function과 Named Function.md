@@ -8,6 +8,7 @@ description: Lambda expression의 anonymous function과 named function 차이를
 permalink: /2024/01/01/modern-cpp-robotics-03-anonymous-named-function/
 redirect_from:
   - '/2024-01-01-Modern C++ for Robotics 3. Lambda Expression의 Anonymous Function과 Named Function/'
+  - '/2024-01-01-Modern-C++-for-Robotics-3.-Lambda-Expression의-Anonymous-Function과-Named-Function/'
 ---
 
 ## Anonymous Function과 Named Function

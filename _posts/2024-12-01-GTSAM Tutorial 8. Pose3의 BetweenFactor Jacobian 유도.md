@@ -8,6 +8,7 @@ description: Pose3의 BetweenFactor에서 H1, H2를 직접 유도해 보도록 u
 permalink: /2024/12/01/gtsam-tutorial-08-pose3-between-factor-jacobian/
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 8. Pose3의 BetweenFactor Jacobian 유도/'
+  - '/2024-12-01-GTSAM-Tutorial-8.-Pose3의-BetweenFactor-Jacobian-유도/'
 ---
 
 ## Pose3의 Jacobian 구하기

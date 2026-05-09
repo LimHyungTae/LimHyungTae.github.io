@@ -9,6 +9,7 @@ image: /img/gtsam_solving.png
 permalink: /2024/12/01/gtsam-tutorial-01-between-factor/
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 1. SLAM을 위한 Between Factor 쉽게 이해하기/'
+  - '/2024-12-01-GTSAM-Tutorial-1.-SLAM을-위한-Between-Factor-쉽게-이해하기/'
 ---
 
 ## Introduction 

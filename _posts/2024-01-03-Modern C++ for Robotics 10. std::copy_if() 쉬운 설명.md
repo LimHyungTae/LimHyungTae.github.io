@@ -8,6 +8,7 @@ description: std::copy_if로 vector와 set 등 다른 컨테이너 사이에서 
 permalink: /2024/01/03/modern-cpp-robotics-10-std-copy-if/
 redirect_from:
   - '/2024-01-03-Modern C++ for Robotics 10. std::copy_if() 쉬운 설명/'
+  - '/2024-01-03-Modern-C++-for-Robotics-10.-std::copy_if()-쉬운-설명/'
 ---
 
 이번 글부터 [여기](https://limhyungtae.github.io/2024-01-03-Modern-C++-for-Robotics-13.-std-replace_if()-%EC%89%AC%EC%9A%B4-%EC%84%A4%EB%AA%85-&-%EC%98%88%EC%A0%9C/)까지는 함수 이름 끝에 `_if`가 달려 있는 STL의 조건부 알고리즘(conditional algorithms)에 대해 알아본다.

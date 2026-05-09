@@ -9,6 +9,7 @@ image: /img/gtsam_solving.png
 permalink: /2024/12/01/gtsam-tutorial-04-unary-factor-jacobian/
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 4. Unary Factor를 통한 Lie Group 클래스의 Jacobian 유도하기/'
+  - '/2024-12-01-GTSAM-Tutorial-4.-Unary-Factor를-통한-Lie-Group-클래스의-Jacobian-유도하기/'
 ---
 
 ## Unary Factor를 통한 GTSAM 내 Lie Group 클래스의 Jacobian 유도하기

@@ -8,6 +8,7 @@ description: std::find_if와 std::find의 차이, lambda 캡쳐 목록(capture c
 permalink: /2024/01/03/modern-cpp-robotics-11-std-find-if/
 redirect_from:
   - '/2024-01-03-Modern C++ for Robotics 11. std::find_if() 쉬운 설명/'
+  - '/2024-01-03-Modern-C++-for-Robotics-11.-std::find_if()-쉬운-설명/'
 ---
 
 

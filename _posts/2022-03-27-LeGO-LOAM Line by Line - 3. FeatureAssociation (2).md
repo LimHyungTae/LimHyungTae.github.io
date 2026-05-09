@@ -9,6 +9,7 @@ image: /img/lego_loam_fa2.png
 permalink: /2022/03/27/lego-loam-line-by-line-03b-feature-extraction/
 redirect_from:
   - '/2022-03-27-LeGO-LOAM Line by Line - 3. FeatureAssociation (2)/'
+  - '/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2)/'
 ---
 
 # FeatureAssociation in LeGO-LOAM (2) Edge and Planar Feature Extraction

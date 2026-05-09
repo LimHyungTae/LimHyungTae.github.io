@@ -8,6 +8,7 @@ description: Kimera-Multi 빌드 중 voxblox, dpgo_ros, kimera_distributed에서
 permalink: /2024/08/18/kimera-multi-glog-error-fix/
 redirect_from:
   - '/2024-08-18-Kimera-Multi 빌드 시 glog 관련 에러 해결 방법/'
+  - '/2024-08-18-Kimera-Multi-빌드-시-glog-관련-에러-해결-방법/'
 ---
 
 이전 글에서 무사히 glog 이슈를 해결한 줄 알았더니, 이번에는 `voxblox`나 `dpgo_ros`에서 glog를 찾을 수 없다고 에러가 발생했다.

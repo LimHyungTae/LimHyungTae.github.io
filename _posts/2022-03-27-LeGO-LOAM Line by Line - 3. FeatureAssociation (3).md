@@ -9,6 +9,7 @@ image: /img/lego_loam_fa3.png
 permalink: /2022/03/27/lego-loam-line-by-line-03c-pose-estimation/
 redirect_from:
   - '/2022-03-27-LeGO-LOAM Line by Line - 3. FeatureAssociation (3)/'
+  - '/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3)/'
 ---
 
 # FeatureAssociation in LeGO-LOAM (3) Relative Pose Estimation via Two-stage Optimization

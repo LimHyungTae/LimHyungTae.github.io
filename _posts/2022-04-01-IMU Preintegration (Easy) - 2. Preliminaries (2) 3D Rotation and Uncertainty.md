@@ -8,8 +8,12 @@ description: 3D rotation을 SO(3)와 angle-axis로 parametrize하는 이유와, 
 image: /img/rotation/overview_v2.png
 permalink: /2022/04/01/imu-preintegration-02b-preliminaries-rotation-uncertainty/
 redirect_from:
-  - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty/'
+  - '/2022-04-01-IMU Preintegration Derivation - 3. Preintegrated Measurements/'
   - '/2022-04-01-IMU Preintegration Derivation - 2. Preliminaries copy/'
+  - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty/'
+  - '/2022-04-01-IMU-Preintegration-(Easy)-2.-Preliminaries-(2)-3D-Rotation-and-Uncertainty/'
+  - '/2022-04-01-IMU-Preintegration-Derivation-2.-Preliminaries-copy/'
+  - '/2022-04-01-IMU-Preintegration-Derivation-3.-Preintegrated-Measurements/'
   - '/2022-04-01-IMU Preintegration Derivation - 3. Preintegrated Measurements/'
 ---
 

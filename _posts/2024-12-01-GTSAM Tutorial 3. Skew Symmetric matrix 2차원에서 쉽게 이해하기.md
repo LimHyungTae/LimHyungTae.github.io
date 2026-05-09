@@ -7,11 +7,13 @@ comments: true
 description: 2D rotation matrix 미분에서 skew-symmetric matrix가 자연스럽게 등장하는 과정과, small angle approximation으로 회전 증분을 덧셈처럼 다루는 원리, 그리고 3차원 확장과 angular velocity로서의 물리적 의미까지 짚는다.
 image: /img/circular_motion.png
 permalink: /2024/12/01/gtsam-tutorial-03-skew-symmetric-matrix-2d/
-redirect_from:
-  - '/2024-12-01-GTSAM Tutorial 3. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
-redirect_from:
-  - '/2024-12-01-GTSAM Tutorial 1. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
   - '/2024-12-01-GTSAM Tutorial 2. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 2. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
+  - '/2024-12-01-GTSAM Tutorial 1. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
+  - '/2024-12-01-GTSAM-Tutorial-1.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/'
+  - '/2024-12-01-GTSAM-Tutorial-2.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/'
+  - '/2024-12-01-GTSAM-Tutorial-3.-Skew-Symmetric-matrix-2차원에서-쉽게-이해하기/'
 ---
 
 ## Introduction 

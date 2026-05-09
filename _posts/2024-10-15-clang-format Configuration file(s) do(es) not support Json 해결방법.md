@@ -8,6 +8,7 @@ description: clang-format에서 발생하는 "Configuration file(s) do(es) not s
 permalink: /2024/10/15/clang-format-json-not-supported-fix/
 redirect_from:
   - '/2024-10-15-clang-format Configuration file(s) do(es) not support Json 해결방법/'
+  - '/2024-10-15-clang-format-Configuration-file(s)-do(es)-not-support-Json-해결방법/'
 ---
 
 ## 문제점

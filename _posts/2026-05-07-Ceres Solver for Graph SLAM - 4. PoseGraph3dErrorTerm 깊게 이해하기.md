@@ -8,6 +8,7 @@ description: Ceres의 pose_graph_3d_error_term.h를 line-by-line 분석한다. 6
 permalink: /2026/05/07/ceres-graph-slam-04-posegraph3d-error-term/
 redirect_from:
   - '/2026-05-07-Ceres Solver for Graph SLAM - 4. PoseGraph3dErrorTerm 깊게 이해하기/'
+  - '/2026-05-07-Ceres-Solver-for-Graph-SLAM-4.-PoseGraph3dErrorTerm-깊게-이해하기/'
 ---
 
 ## Introduction

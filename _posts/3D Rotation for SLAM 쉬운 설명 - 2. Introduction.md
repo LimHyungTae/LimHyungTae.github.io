@@ -7,8 +7,10 @@ comments: true
 description: SLAM과 robotics 관점에서 Euler angle과 quaternion을 비교하고 gimbal lock에 대한 흔한 오해를 짚으며 회전 표현의 직관을 잡는다.
 image: /img/rotation/gimbal_lock.jpeg
 permalink: /2022/04/10/3d-rotation-for-slam-02-introduction/
+  - '/3D-Rotation-for-SLAM-쉬운-설명-2.-Introduction/'
 redirect_from:
   - '/2022-04-10-3D Rotation for SLAM 쉬운 설명 - 2. Introduction/'
+  - '/2022-04-10-3D-Rotation-for-SLAM-쉬운-설명-2.-Introduction/'
 ---
 
 # Rotation의 for Robotics 쉬운 설명

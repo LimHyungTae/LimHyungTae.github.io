@@ -9,6 +9,7 @@ image: /img/pre-commit-example.png
 permalink: /2024/10/14/clang-format-pre-commit-setup/
 redirect_from:
   - '/2024-10-14-clang-format과 pre-commit을 통한 코드 유지 보수 쉽게 하기/'
+  - '/2024-10-14-clang-format과-pre-commit을-통한-코드-유지-보수-쉽게-하기/'
 ---
 
 ## Why `pre-commit` needs?

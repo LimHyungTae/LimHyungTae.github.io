@@ -9,6 +9,7 @@ image: /img/pybinding_cmake_example_results.png
 permalink: /2023/12/14/pybind11-line-by-line-02-package-understanding/
 redirect_from:
   - '/2023-12-14-Pybind11 Line by Line - 2. Package에 대한 이해/'
+  - '/2023-12-14-Pybind11-Line-by-Line-2.-Package에-대한-이해/'
 ---
 
 2편에서는 실제로 좀더 작은 예제를 빌드해 볼겸, 이렇게 pybinding을 가능하게 하는 `.so` 파일에 대해 알아본다.

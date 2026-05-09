@@ -8,6 +8,7 @@ description: std::replace_if로 컨테이너 크기를 유지하며 유효하지
 permalink: /2024/01/03/modern-cpp-robotics-13-std-replace-if/
 redirect_from:
   - '/2024-01-03-Modern C++ for Robotics 13. std::replace_if() 쉬운 설명/'
+  - '/2024-01-03-Modern-C++-for-Robotics-13.-std::replace_if()-쉬운-설명/'
 ---
 
 

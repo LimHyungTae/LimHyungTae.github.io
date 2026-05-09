@@ -9,6 +9,7 @@ image: /img/3dtree.png
 permalink: /2021/09/12/pcl-tutorial-09-kdtree-knn-search/
 redirect_from:
   - '/2021-09-12-ROS Point Cloud Library (PCL) - 9. KdTree를 활용한 K-nearest Neighbor Search (KNN)/'
+  - '/2021-09-12-ROS-Point-Cloud-Library-(PCL)-9.-KdTree를-활용한-K-nearest-Neighbor-Search-(KNN)/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

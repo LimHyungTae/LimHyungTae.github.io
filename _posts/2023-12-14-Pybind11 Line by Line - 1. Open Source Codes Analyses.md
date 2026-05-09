@@ -9,6 +9,7 @@ image: /img/pybinding_cmake_example_results.png
 permalink: /2023/12/14/pybind11-line-by-line-01-open-source-analysis/
 redirect_from:
   - '/2023-12-14-Pybind11 Line by Line - 1. Open Source Codes Analyses/'
+  - '/2023-12-14-Pybind11-Line-by-Line-1.-Open-Source-Codes-Analyses/'
 ---
 
 ## Motivation

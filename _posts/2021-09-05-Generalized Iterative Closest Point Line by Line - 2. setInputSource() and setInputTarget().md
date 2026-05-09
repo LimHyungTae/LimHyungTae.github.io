@@ -7,11 +7,13 @@ comments: true
 description: PCL G-ICP의 setInputSource()와 setInputTarget() 내부에서 어떤 일이 일어나는지 IterativeClosestPoint, Registration, PCLBase까지 상속 구조를 따라 line-by-line으로 분석한다.
 image: /img/gicp_hierarchy.png
 permalink: /2021/09/05/gicp-line-by-line-02-set-input-source-target/
-redirect_from:
-  - '/2021-09-05-Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
-redirect_from:
-  - '/2022-07-01-Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
   - '/Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
+redirect_from:
+  - '/Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
+  - '/2022-07-01-Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
+  - '/2021-09-05-Generalized-Iterative-Closest-Point-Line-by-Line-2.-setInputSource()-and-setInputTarget()/'
+  - '/2022-07-01-Generalized-Iterative-Closest-Point-Line-by-Line-2.-setInputSource()-and-setInputTarget()/'
+  - '/Generalized-Iterative-Closest-Point-Line-by-Line-2.-setInputSource()-and-setInputTarget()/'
 ---
 
 # Generalized Iterative Closest Point (G-ICP)

@@ -9,6 +9,7 @@ image: /img/pcl_ptr_viz.png
 permalink: /2021/09/10/pcl-tutorial-01-ptr-in-pcl/
 redirect_from:
   - '/2021-09-10-ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (2) Ptr in PCL/'
+  - '/2021-09-10-ROS-Point-Cloud-Library-(PCL)-1.-Ptr,-ConstPtr의-완벽-이해-(2)-Ptr-in-PCL/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

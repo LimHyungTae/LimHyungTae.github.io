@@ -9,6 +9,7 @@ image: /img/semantic_kitti.png
 permalink: /2024/11/03/kitti-360-dataset-structure-analysis/
 redirect_from:
   - '/2024-11-03-KITTI-360 dataset 구성 분석/'
+  - '/2024-11-03-KITTI-360-dataset-구성-분석/'
 ---
 
 ## Introduction

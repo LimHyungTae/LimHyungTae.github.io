@@ -7,8 +7,10 @@ comments: true
 description: LIO-SAM mapOptimization의 laserCloudInfoHandler와 updateInitialGuess를 분석한다. IMU pre-integration과 incremental rotation으로 pose 초기값을 어떻게 잡는지 정리한다.
 image: /img/lego_loam_w_robot.PNG
 permalink: /2022/04/07/lio-sam-line-by-line-05a-map-optimization/
+  - '/LIO-SAM-Line-by-Line-5.-MapOptimization-(1)/'
 redirect_from:
   - '/2022-04-07-LIO-SAM Line by Line - 5. MapOptimization (1)/'
+  - '/2022-04-07-LIO-SAM-Line-by-Line-5.-MapOptimization-(1)/'
 ---
 
 # LIO-SAM

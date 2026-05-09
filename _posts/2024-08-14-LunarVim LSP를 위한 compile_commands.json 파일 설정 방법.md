@@ -9,6 +9,7 @@ image: /img/lspinfo.png
 permalink: /2024/08/14/lunarvim-lsp-compile-commands-json-setup/
 redirect_from:
   - '/2024-08-14-LunarVim LSP를 위한 compile_commands.json 파일 설정 방법/'
+  - '/2024-08-14-LunarVim-LSP를-위한-compile_commands.json-파일-설정-방법/'
 ---
 
 ## Introduction

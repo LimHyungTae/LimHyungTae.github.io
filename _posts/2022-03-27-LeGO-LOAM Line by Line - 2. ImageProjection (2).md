@@ -9,6 +9,7 @@ image: /img/lego_loam_ip_contd.png
 permalink: /2022/03/27/lego-loam-line-by-line-02b-cloud-segmentation/
 redirect_from:
   - '/2022-03-27-LeGO-LOAM Line by Line - 2. ImageProjection (2)/'
+  - '/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/'
 ---
 
 # ImageProjection in LeGO-LOAM (2) Cloud Segmentation using Clustering

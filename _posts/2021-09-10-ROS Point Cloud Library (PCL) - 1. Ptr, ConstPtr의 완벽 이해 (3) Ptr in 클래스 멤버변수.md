@@ -9,6 +9,7 @@ image: /img/pcl_class_wo_init.png
 permalink: /2021/09/10/pcl-tutorial-01-ptr-in-class-member/
 redirect_from:
   - '/2021-09-10-ROS Point Cloud Library (PCL) - 1. Ptr, ConstPtr의 완벽 이해 (3) Ptr in 클래스 멤버변수/'
+  - '/2021-09-10-ROS-Point-Cloud-Library-(PCL)-1.-Ptr,-ConstPtr의-완벽-이해-(3)-Ptr-in-클래스-멤버변수/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

@@ -9,7 +9,7 @@ image: /img/preintegration/k_to_k_plus_1.png
 permalink: /2022/04/01/imu-preintegration-03-imu-model-motion-integration/
 redirect_from:
   - '/2022-04-01-IMU Preintegration (Easy) - 3. Derivation of  IMU Model and Motion Integration/'
-
+  - '/2022-04-01-IMU-Preintegration-(Easy)-3.-Derivation-of-IMU-Model-and-Motion-Integration/'
 ---
 
 # Derivation of IMU Model and Motion Integration

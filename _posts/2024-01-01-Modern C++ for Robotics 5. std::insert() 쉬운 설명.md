@@ -8,6 +8,7 @@ description: std::insert로 vector, set, map에 요소를 삽입하고 여러 �
 permalink: /2024/01/01/modern-cpp-robotics-05-std-insert/
 redirect_from:
   - '/2024-01-01-Modern C++ for Robotics 5. std::insert() 쉬운 설명/'
+  - '/2024-01-01-Modern-C++-for-Robotics-5.-std::insert()-쉬운-설명/'
 ---
 
 ## std::insert

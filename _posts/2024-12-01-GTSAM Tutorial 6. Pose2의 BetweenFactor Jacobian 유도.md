@@ -9,6 +9,7 @@ image: /img/gtsam_solving.png
 permalink: /2024/12/01/gtsam-tutorial-06-pose2-between-factor-jacobian/
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 6. Pose2의 BetweenFactor Jacobian 유도/'
+  - '/2024-12-01-GTSAM-Tutorial-6.-Pose2의-BetweenFactor-Jacobian-유도/'
 ---
 
 ## Pose2의 Jacobian 구하기

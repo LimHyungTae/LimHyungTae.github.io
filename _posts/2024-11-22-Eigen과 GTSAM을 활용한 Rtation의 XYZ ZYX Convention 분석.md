@@ -9,6 +9,7 @@ image: /img/rotation_eigen_xyz.png
 permalink: /2024/11/22/rotation-xyz-zyx-convention-analysis/
 redirect_from:
   - '/2024-11-22-Eigen과 GTSAM을 활용한 Rtation의 XYZ ZYX Convention 분석/'
+  - '/2024-11-22-Eigen과-GTSAM을-활용한-Rtation의-XYZ-ZYX-Convention-분석/'
 ---
 
 ## Introduction: XYZ? ZYX?

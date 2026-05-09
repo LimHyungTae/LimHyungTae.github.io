@@ -7,8 +7,10 @@ comments: true
 description: LIO-SAM IMU preintegration 노드의 전체 구조를 살펴본다. GTSAM 기반 IMU factor와 LiDAR odometry factor가 결합되어 high-rate pose 추정에 어떻게 쓰이는지 정리한다.
 image: /img/lego_loam_w_robot.PNG
 permalink: /2022/04/07/lio-sam-line-by-line-06-imu-preintegration/
+  - '/LIO-SAM-Line-by-Line-6.-IMUPreintegration/'
 redirect_from:
   - '/2022-04-07-LIO-SAM Line by Line - 6. IMUPreintegration/'
+  - '/2022-04-07-LIO-SAM-Line-by-Line-6.-IMUPreintegration/'
 ---
 
 # LIO-SAM
