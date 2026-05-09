@@ -9,7 +9,9 @@ image: /img/preintegration/final_i_j_v2.png
 permalink: /2022/04/01/imu-preintegration-04-preintegrated-measurements/
 redirect_from:
   - '/2022-04-01-IMU Preintegration (Easy) - 4. Derivation of Preintegrated IMU Measurements/'
-
+  - '/2022-04-01-IMU Preintegration (Easy) - 3. Preintegrated Measurements/'
+  - '/2022-04-01-IMU Preintegration Derivation - 2. Preliminaries/'
+  - '/2022-04-01-IMU Preintegration Derivation - 3. Preliminaries/'
 ---
 
 

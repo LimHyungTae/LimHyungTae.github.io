@@ -8,6 +8,8 @@ description: PCL Generalized ICP가 point-to-point ICP와 달리 source/target�
 permalink: /2021/09/14/pcl-tutorial-12-generalized-icp/
 redirect_from:
   - '/2021-09-14-ROS Point Cloud Library (PCL) - 12. Generalized Iterative Closest Point (G-ICP)/'
+redirect_from:
+  - '/2021-09-13-ROS Point Cloud Library (PCL) - 12. Generalized Iterative Closest Point (G-ICP)/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

@@ -9,6 +9,9 @@ image: /img/lego_loam_w_robot.PNG
 permalink: /2022/03/27/lego-loam-line-by-line-01-introduction/
 redirect_from:
   - '/2022-03-27-LeGO-LOAM Line by Line - 1. Introduction/'
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM 완벽 설명 - 1. Introduction/'
+  - '/2022-03-27-LeGO-LOAM 완벽설명 - 1. Introduction/'
 ---
 
 # LeGO-LOAM

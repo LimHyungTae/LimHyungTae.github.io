@@ -8,6 +8,9 @@ description: PCL G-ICP의 align() 함수 내부 동작을 line-by-line으로 살
 permalink: /2021/09/05/gicp-line-by-line-03-align/
 redirect_from:
   - '/2021-09-05-Generalized Iterative Closest Point Line by Line - 3. align()/'
+redirect_from:
+  - '/2022-07-01-Generalized Iterative Closest Point Line by Line - 3. align()/'
+  - '/Generalized Iterative Closest Point Line by Line - 3. align()/'
 ---
 
 # Generalized Iterative Closest Point (G-ICP)

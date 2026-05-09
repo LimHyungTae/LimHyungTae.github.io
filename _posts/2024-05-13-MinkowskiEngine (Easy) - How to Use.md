@@ -8,6 +8,8 @@ description: MinkowskiEngine을 최신 PyTorch/CUDA로 Docker 빌드하고, Spar
 permalink: /2024/05/13/minkowski-engine-easy-usage/
 redirect_from:
   - '/2024-05-13-MinkowskiEngine (Easy) - How to Use/'
+redirect_from:
+  - '/2024-01-03-MinkowskiEngine (Easy) - How to Use/'
 ---
 
 ## MinkowskiEngine 설치

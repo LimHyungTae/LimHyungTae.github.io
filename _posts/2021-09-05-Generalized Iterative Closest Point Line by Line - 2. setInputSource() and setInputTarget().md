@@ -9,6 +9,9 @@ image: /img/gicp_hierarchy.png
 permalink: /2021/09/05/gicp-line-by-line-02-set-input-source-target/
 redirect_from:
   - '/2021-09-05-Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
+redirect_from:
+  - '/2022-07-01-Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
+  - '/Generalized Iterative Closest Point Line by Line - 2. setInputSource() and setInputTarget()/'
 ---
 
 # Generalized Iterative Closest Point (G-ICP)

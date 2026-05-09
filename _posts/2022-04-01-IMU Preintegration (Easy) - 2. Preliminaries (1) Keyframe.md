@@ -9,7 +9,8 @@ image: /img/preintegration/keyframe.png
 permalink: /2022/04/01/imu-preintegration-02a-preliminaries-keyframe/
 redirect_from:
   - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (1) Keyframe/'
-
+  - '/2022-04-01-IMU Preintegration Derivation - 2. Preliminaries/'
+  - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (1) Keyframe copy/'
 ---
 
 # Preliminaries of IMU Preintegration (1) Definition of Keyframe

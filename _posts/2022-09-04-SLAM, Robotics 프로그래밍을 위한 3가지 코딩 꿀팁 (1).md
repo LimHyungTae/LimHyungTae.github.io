@@ -9,6 +9,8 @@ image: /img/wft_p_minute.jpeg
 permalink: /2022/09/04/slam-robotics-coding-tips-01/
 redirect_from:
   - '/2022-09-04-SLAM, Robotics 프로그래밍을 위한 3가지 코딩 꿀팁 (1)/'
+redirect_from:
+  - '/2022-09-04-SLAM, Robotics 프로그래밍을 위한 3가지 코딩꿀팁/'
 ---
 
 # 서론

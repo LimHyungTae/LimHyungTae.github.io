@@ -9,6 +9,9 @@ image: /img/circular_motion.png
 permalink: /2024/12/01/gtsam-tutorial-03-skew-symmetric-matrix-2d/
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 3. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
+redirect_from:
+  - '/2024-12-01-GTSAM Tutorial 1. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
+  - '/2024-12-01-GTSAM Tutorial 2. Skew Symmetric matrix 2차원에서 쉽게 이해하기/'
 ---
 
 ## Introduction 

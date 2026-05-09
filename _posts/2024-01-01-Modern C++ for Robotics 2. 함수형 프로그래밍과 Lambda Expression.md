@@ -9,6 +9,8 @@ image: /img/lambda_expression.png
 permalink: /2024/01/01/modern-cpp-robotics-02-functional-programming-lambda/
 redirect_from:
   - '/2024-01-01-Modern C++ for Robotics 2. 함수형 프로그래밍과 Lambda Expression/'
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics (2) lambda expression/'
 ---
 
 ## Introduction 

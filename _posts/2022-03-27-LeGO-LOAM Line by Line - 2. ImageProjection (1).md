@@ -9,6 +9,8 @@ image: /img/lego_loam_relTime.png
 permalink: /2022/03/27/lego-loam-line-by-line-02a-image-projection/
 redirect_from:
   - '/2022-03-27-LeGO-LOAM Line by Line - 2. ImageProjection (1)/'
+redirect_from:
+  - '/2022-03-27-LeGO-LOAM Line-by-Line - 2. ImageProjection (1)/'
 ---
 
 # ImageProjection in LeGO-LOAM (1) Range Image Projection & Ground Removal

@@ -9,6 +9,10 @@ image: /img/icp_result.png
 permalink: /2021/09/14/pcl-tutorial-11-icp/
 redirect_from:
   - '/2021-09-14-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)/'
+redirect_from:
+  - '/2021-09-12-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)/'
+  - '/2021-09-13-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)/'
+  - '/2021-09-14-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

@@ -8,6 +8,8 @@ description: std::transform으로 컨테이너 요소에 함수를 매핑하는 
 permalink: /2024/01/01/modern-cpp-robotics-07-std-transform/
 redirect_from:
   - '/2024-01-01-Modern C++ for Robotics 7. std::transform() 쉬운 설명/'
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics 4. std::transform() 쉬운 설명 & 예제/'
 ---
 
 ## std::transform

@@ -1,9 +1,11 @@
 ---
-layout: page
 title: Hyungtae Lim
+permalink: /hyungtae-lim/
+redirect_to: /
+redirect_from:
+  - /aboutme/
+  - /aboutme.html
+  - /aboutme
+  - /about/
+  - /about
 ---
-
-<meta http-equiv="refresh" content="0; url=/">
-<script>window.location.href = "/";</script>
-
-Redirecting to [homepage](/)...

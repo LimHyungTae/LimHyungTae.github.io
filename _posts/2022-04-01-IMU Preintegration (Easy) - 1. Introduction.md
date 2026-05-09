@@ -9,7 +9,8 @@ image: /img/preintegration/imu_characteristics_cut2.png
 permalink: /2022/04/01/imu-preintegration-01-introduction/
 redirect_from:
   - '/2022-04-01-IMU Preintegration (Easy) - 1. Introduction/'
-
+  - '/2022-04-01-IMU Preintegration Derivation - 1. Introduction/'
+  - '/IMU Preintegration Derivation - 1. Introduction/'
 ---
 
 # IMU Preintegration for Beginners

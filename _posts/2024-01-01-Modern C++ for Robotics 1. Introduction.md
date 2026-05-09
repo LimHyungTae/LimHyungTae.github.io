@@ -8,6 +8,8 @@ description: 로보틱스 연구자/개발자를 위한 Modern C++ 시리즈를 
 permalink: /2024/01/01/modern-cpp-robotics-01-introduction/
 redirect_from:
   - '/2024-01-01-Modern C++ for Robotics 1. Introduction/'
+redirect_from:
+  - '/2024-01-01-Modern C++ for Robotics (1) Introduction/'
 ---
 
 이 시리즈에서는 C++ 코드를 작성하면서 새롭게 알게 된 사실들에 대해 메모하기 시작하려 한다.

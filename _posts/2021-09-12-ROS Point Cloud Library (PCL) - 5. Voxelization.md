@@ -9,6 +9,10 @@ image: /img/pcl_centroid.PNG
 permalink: /2021/09/12/pcl-tutorial-05-voxelization/
 redirect_from:
   - '/2021-09-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'
+  - '/2019-11-29-ROS Point Cloud Library (PCL) - 3. Voxelization/'
+redirect_from:
+  - '/2019-11-29-ROS Point Cloud Library (PCL) - 4. Voxelization/'
+  - '/2019-9-12-ROS Point Cloud Library (PCL) - 5. Voxelization/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

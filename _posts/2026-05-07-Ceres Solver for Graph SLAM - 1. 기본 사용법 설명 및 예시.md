@@ -9,6 +9,9 @@ image: /img/ceres_intro.png
 permalink: /2026/05/07/ceres-graph-slam-01-basic-usage/
 redirect_from:
   - '/2026-05-07-Ceres Solver for Graph SLAM - 1. 기본 사용법 설명 및 예시/'
+redirect_from:
+  - '/2019-11-14-Ceres Solver for SLAM (1) /'
+  - '/2019-12-1-Ceres Solver for Graph SLAM - 1. 기본 사용법 설명 및 예시/'
 ---
 
 ## Introduction

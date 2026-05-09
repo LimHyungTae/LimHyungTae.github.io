@@ -8,6 +8,8 @@ description: Azure Kinect의 depth 이미지를 png로 저장할 때 CV_32FC1을
 permalink: /2020/10/26/opencv-azure-kinect-depth-png-save/
 redirect_from:
   - '/2020-10-26-OpenCV를 활용한 Azure Kinect RGB-D 카메라의 depth data png로 저장하기/'
+redirect_from:
+  - '/2020-10-26-OpenCV를 활용해서 RGB-D 카메라의 depth data png로 저장하기/'
 ---
 ## Introduction
 

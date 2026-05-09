@@ -9,6 +9,9 @@ image: /img/latexdiff_before_command.png
 permalink: /2022/10/19/latexdiff-latexpand-paper-review/
 redirect_from:
   - '/2022-10-19-대학원생을 위한 latexdiff와 latexpand를 활용한 논문 검토/'
+redirect_from:
+  - '/2022-10-19-latexdiff와 latexpand를 활용한 검토/'
+  - '/2023-01-15-Hello latexdiff/'
 ---
 
 # Latexdiff과 latexpand를 활용한 효과적인 논문 검토

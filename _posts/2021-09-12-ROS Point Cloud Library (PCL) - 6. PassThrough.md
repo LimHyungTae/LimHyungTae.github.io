@@ -9,6 +9,8 @@ image: /img/pass_through_v2.svg
 permalink: /2021/09/12/pcl-tutorial-06-passthrough/
 redirect_from:
   - '/2021-09-12-ROS Point Cloud Library (PCL) - 6. PassThrough/'
+redirect_from:
+  - '/2019-11-29-ROS Point Cloud Library (PCL) - 5. PassThrough/'
 ---
 
 <div style="background:#f0f7ff; border-left:3px solid #1B2C8F; padding:10px 16px; margin:16px 0 28px; border-radius:4px; font-size:14px;">

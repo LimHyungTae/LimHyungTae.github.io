@@ -9,7 +9,8 @@ image: /img/rotation/overview_v2.png
 permalink: /2022/04/01/imu-preintegration-02b-preliminaries-rotation-uncertainty/
 redirect_from:
   - '/2022-04-01-IMU Preintegration (Easy) - 2. Preliminaries (2) 3D Rotation and Uncertainty/'
-
+  - '/2022-04-01-IMU Preintegration Derivation - 2. Preliminaries copy/'
+  - '/2022-04-01-IMU Preintegration Derivation - 3. Preintegrated Measurements/'
 ---
 
 # Preliminaries of IMU Preintegration (2) Uncertainty Description in SO(3)

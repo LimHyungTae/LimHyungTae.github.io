@@ -8,6 +8,9 @@ description: SLAM의 pose error가 무엇이고, 2D SE(2)에서 3D SE(3) quatern
 permalink: /2026/05/07/ceres-graph-slam-02-pose-error/
 redirect_from:
   - '/2026-05-07-Ceres Solver for Graph SLAM - 2. Pose Error를 정의하는 법/'
+redirect_from:
+  - '/2019-11-14-Ceres Solver for SLAM (2) /'
+  - '/2019-12-1-Ceres Solver for Graph SLAM - 2. Pose Error를/'
 ---
 
 ## Introduction

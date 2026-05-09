@@ -9,6 +9,9 @@ image: /img/gicp_SE3.png
 permalink: /2021/09/05/gicp-line-by-line-01-introduction/
 redirect_from:
   - '/2021-09-05-Generalized Iterative Closest Point Line by Line - 1. Introduction/'
+redirect_from:
+  - '/2022-07-01-Generalized Iterative Closest Point Line by Line - 1. Introduction/'
+  - '/Generalized Iterative Closest Point Line by Line - 1. Introduction/'
 ---
 
 # Generalized Iterative Closest Point (G-ICP)
