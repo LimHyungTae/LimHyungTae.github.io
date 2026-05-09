@@ -20,7 +20,7 @@ redirect_from:
 
 Ceres Solver는 Google에서 개발한 non-linear optimization library이다. 처음 Graph SLAM을 시작하는 사람이라면 한 번쯤 [Cartographer](https://opensource.googleblog.com/2016/10/introducing-cartographer.html)를 들어보았을 텐데, Cartographer 내부를 들여다보면 결국 Ceres Solver로 optimization을 하고 있는 것을 볼 수 있다. 이처럼 비선형 cost function을 *Ceres에 던져 넣고 알아서 최적화시키는 형태*로 SLAM을 짤 수 있어서, *어떻게 optimization을 푸는가*보다는 *무엇을 optimize할 것인가*에 집중할 수 있게 만드는 게 Ceres의 가장 큰 장점이다.
 
-이 글은 Ceres에 처음 입문하는 사람을 대상으로 한다. 즉 1편에서는 SLAM 같은 응용은 잠시 잊고, *Ceres가 어떤 모양의 입출력을 가진 library인지*만 깔끔하게 정리한다. SLAM에서의 본격적인 활용은 [3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)부터 다룰 예정이다.
+이 글은 Ceres에 처음 입문하는 사람을 대상으로 한다. 즉 1편에서는 SLAM 같은 응용은 잠시 잊고, *Ceres가 어떤 모양의 입출력을 가진 library인지*만 깔끔하게 정리한다. SLAM에서의 본격적인 활용은 [3편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/)부터 다룰 예정이다.
 
 > 본래 이 시리즈는 2019년에 1편을 쓰고 멈춰있었다. 시간이 한참 지나는 동안 Ceres도 2.x로 올라가면서 API가 일부 바뀌었고 (대표적으로 `LocalParameterization` → `Manifold`), 모던 C++ 컴파일러 환경에서 빌드 방법도 달라졌다. 이 글은 그 변화들을 반영해 *2026년 기준*으로 다시 정리한 버전이다.
 
@@ -142,7 +142,7 @@ struct CostFunctor {
 
 Residual을 계산하는 *함수 객체(functor)*를 정의한다. `operator()`가 입력 parameter `x`를 받아 residual을 채우면 된다. 핵심 디테일은 두 가지이다.
 
-* **`template <typename T>`**: AutoDiff가 동작하려면 functor가 `double` 외에 `ceres::Jet<double, N>`도 받아들일 수 있어야 한다. 자세한 원리는 [4편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-4.-PoseGraph3dErrorTerm-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 다룬다.
+* **`template <typename T>`**: AutoDiff가 동작하려면 functor가 `double` 외에 `ceres::Jet<double, N>`도 받아들일 수 있어야 한다. 자세한 원리는 [4편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-04-posegraph3d-error-term/)에서 다룬다.
 * **`return true`**: residual 계산이 정상적으로 이뤄졌다는 신호. NaN/Inf가 나오는 등 실패한 경우엔 `false`를 리턴해서 LM이 step size를 줄이게 만들 수 있다.
 
 ### (ii) Optimization 변수
@@ -267,7 +267,7 @@ Ceres Solver Report: Iterations: 2, ...
 x = 7.5
 ```
 
-직관적으로 두 측정값의 *가중 평균*에 해당하는 값이 나왔다. 지금은 가중치가 모두 1이므로 단순 평균이다. 만약 `CostA`의 신뢰도가 더 높다면 (= information이 크면) 답이 10쪽으로 끌려가는 형태가 될 것이다. 이 *information weighting* 부분은 [4편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-4.-PoseGraph3dErrorTerm-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 sqrt-information matrix와 함께 다룰 예정이다.
+직관적으로 두 측정값의 *가중 평균*에 해당하는 값이 나왔다. 지금은 가중치가 모두 1이므로 단순 평균이다. 만약 `CostA`의 신뢰도가 더 높다면 (= information이 크면) 답이 10쪽으로 끌려가는 형태가 될 것이다. 이 *information weighting* 부분은 [4편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-04-posegraph3d-error-term/)에서 sqrt-information matrix와 함께 다룰 예정이다.
 
 ---
 
@@ -281,7 +281,7 @@ x = 7.5
 
 이게 전부이다. SLAM이든 curve fitting이든 robust regression이든 사용 패턴은 동일하다. *우리가 신경 쓸 부분은 (1) 단계의 residual을 어떻게 정의하느냐*뿐이다.
 
-다음 [2편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-2.-Pose-Error%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%98%EB%8A%94-%EB%B2%95/)에서는 SLAM의 본격적인 시작점인 *pose error*를 어떻게 정의하는지를 다룬다. 2D pose부터 시작해서 3D quaternion까지 천천히 살펴볼 예정이다.
+다음 [2편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-02-pose-error/)에서는 SLAM의 본격적인 시작점인 *pose error*를 어떻게 정의하는지를 다룬다. 2D pose부터 시작해서 3D quaternion까지 천천히 살펴볼 예정이다.
 
 ---
 

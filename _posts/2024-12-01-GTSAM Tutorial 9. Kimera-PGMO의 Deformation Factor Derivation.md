@@ -84,7 +84,7 @@ class DeformationEdgeFactor
 
 ### Step 1. Update Function 정의
 
-앞서 [Pose3 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-8.-Pose3%EC%9D%98-BetweenFactor-Jacobian-%EC%9C%A0%EB%8F%84/)에서 살펴보았듯이(잘 이해가 안되면 6번째 글부터 차근차근 다시 읽어보자), 3차원 상에서의 Pose를 vector form인 $$\boldsymbol{\xi} \in \mathbb{R}^6$$으로 표현하면,
+앞서 [Pose3 글](https://limhyungtae.github.io/2024/12/01/gtsam-tutorial-08-pose3-between-factor-jacobian/)에서 살펴보았듯이(잘 이해가 안되면 6번째 글부터 차근차근 다시 읽어보자), 3차원 상에서의 Pose를 vector form인 $$\boldsymbol{\xi} \in \mathbb{R}^6$$으로 표현하면,
 update function $$\boldsymbol{\xi} \oplus \boldsymbol{\delta}$$는 다음과 같이 정의된다:
 
 $$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =  

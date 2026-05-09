@@ -15,7 +15,7 @@ redirect_from:
 
 ## Introduction 
 
-Jacobian matrix를 알잘딱으로 구해주는 Ceres solver와는 다르게, GTSAM을 잘 활용하기 위해서는 Jacobian matrix가 어떻게 도출되는 것인지에 대해서도 정확히 알아야 한다(i.e., 즉, [이전 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-1.-SLAM%EC%9D%84-%EC%9C%84%ED%95%9C-Between-Factor-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 제대로 설명하지 않고 넘어간, 아래의 `H1`과 `H2`가 어떻게 구해지는 지에 대해서도 이해를 해야 함):
+Jacobian matrix를 알잘딱으로 구해주는 Ceres solver와는 다르게, GTSAM을 잘 활용하기 위해서는 Jacobian matrix가 어떻게 도출되는 것인지에 대해서도 정확히 알아야 한다(i.e., 즉, [이전 글](https://limhyungtae.github.io/2024/12/01/gtsam-tutorial-01-between-factor/)에서 제대로 설명하지 않고 넘어간, 아래의 `H1`과 `H2`가 어떻게 구해지는 지에 대해서도 이해를 해야 함):
 
 ```cpp
  /// evaluate error, returns vector of errors size of tangent space
@@ -37,7 +37,7 @@ Vector evaluateError(const T& p1, const T& p2,
 
 사실 이러한 Jacobian 매트릭스는 이미 기존에 짜있는 factor를 이용할 경우에는 깊은 생각 없이 그냥 가져다 쓰면 된다. 하지만 자신이 새로운 factor를 만들어 optimization을 하고자 할 때는 이 Jacobian들도 적절히 유도를 해주어야 한다(개인적으로 이러한 이유 때문에 사용자 입장에서는 GTSAM이 Ceres에 비해 진입 장벽이 좀 높다고 생각된다~~옆집 Ceres Solver는 아묻따 `autodiff`로 Jacobian 알아서 구해줌~~)).
 
-하지만 GTSAM의 `H` Jacobian들은 우리가 예상하는 것과 조금 다르게 동작한다. 그래서 이 글에는 바로 Jacobian 구하기 전에 필요한 개념에 대해 미리 설명하고자 한다(`H` 매트릭스에 대해서는 [네 번째 글](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-4.-Unary-Factor%EB%A5%BC-%ED%86%B5%ED%95%9C-Lie-Group-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9D%98-Jacobian-%EC%9C%A0%EB%8F%84%ED%95%98%EA%B8%B0/)부터 다룰 직접 다룰 예정이다).
+하지만 GTSAM의 `H` Jacobian들은 우리가 예상하는 것과 조금 다르게 동작한다. 그래서 이 글에는 바로 Jacobian 구하기 전에 필요한 개념에 대해 미리 설명하고자 한다(`H` 매트릭스에 대해서는 [네 번째 글](https://limhyungtae.github.io/2024/12/01/gtsam-tutorial-04-unary-factor-jacobian/)부터 다룰 직접 다룰 예정이다).
 
 ## SE(2) Transformation
 

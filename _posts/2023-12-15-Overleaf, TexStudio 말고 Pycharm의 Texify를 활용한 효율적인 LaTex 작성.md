@@ -27,7 +27,7 @@ redirect_from:
 - 이 경험을 기반으로 필자가 [작년과 올해 두 컬럼 26페이지 짜리 저널](https://journals.sagepub.com/doi/full/10.1177/02783649231207654)을 리비전할 때도 로컬에서 작업을 했는데,  한 번 build 할 때 수십 초가 드는 Overleaf에서 벗어나니, 너어어어어ㅓㅓㅓ무 편했음...ㄹㅇ 신세계. 
   - Long journal을 필연적으로 써야하는 한국 연구 문화에서 Overleaf은 한국을 품기에는(?) 속도가 너무 느림을 다시금 느낌...  
 - 가슴에 손을 얹고, **공저자들과 반드시 동시에 논문을 작성해야 하는가?**에 질문을 했을 때 No임. Overleaf의 가장 큰 장점은 real-time으로 공동으로 논문을 작성할 수 있다는 것인데, 과연 컴파일의 느린 속도 <<< real-time 수정가능인가?라고 스스로 질문했을 때, 차라리 v1을 빠르게 다 완성한 후 offline으로 업무 분담을 잘 하고 Git pull/push로 주거니 받거니 하는 게 더 효율적임
-- 교수님이 코멘트 주신 부분을 반영해서 어디가 수정되었는지 효과적으로 보여드리기 위해 [Latexdiff](https://limhyungtae.github.io/2022-10-19-%EB%8C%80%ED%95%99%EC%9B%90%EC%83%9D%EC%9D%84-%EC%9C%84%ED%95%9C-latexdiff%EC%99%80-latexpand%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%85%BC%EB%AC%B8-%EA%B2%80%ED%86%A0/_)를 쓰는데, 로컬 커맨드 창에서 즉각적으로 파일을 입력으로 받고 싶었는데, 그 부분을 해소할 수 있었음.  
+- 교수님이 코멘트 주신 부분을 반영해서 어디가 수정되었는지 효과적으로 보여드리기 위해 [Latexdiff](https://limhyungtae.github.io/2022/10/19/latexdiff-latexpand-paper-review/_)를 쓰는데, 로컬 커맨드 창에서 즉각적으로 파일을 입력으로 받고 싶었는데, 그 부분을 해소할 수 있었음.  
 
 ## Why Not TeXstudio? 한글 입력의 에러로 인한 의도치 않은 Typo 
 

@@ -15,7 +15,7 @@ redirect_from:
 
 ## Introduction
 
-[1편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-1.-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%84%A4%EB%AA%85-%EB%B0%8F-%EC%98%88%EC%8B%9C/)에서는 *스칼라 변수 한 개*에 대한 Ceres의 가장 기본적인 사용법, Hello World와 multiple residual, 을 다뤘다. 그런데 SLAM에서 다루는 변수는 단순한 스칼라가 아니라 **pose**, 즉 robot의 위치와 자세이다. Pose는 SE(2)나 SE(3) 같은 *rigid body transformation manifold*에 살고 있어서, *그냥 빼기로 residual을 만드는* 1편의 패턴을 그대로 적용할 수가 없다.
+[1편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-01-basic-usage/)에서는 *스칼라 변수 한 개*에 대한 Ceres의 가장 기본적인 사용법, Hello World와 multiple residual, 을 다뤘다. 그런데 SLAM에서 다루는 변수는 단순한 스칼라가 아니라 **pose**, 즉 robot의 위치와 자세이다. Pose는 SE(2)나 SE(3) 같은 *rigid body transformation manifold*에 살고 있어서, *그냥 빼기로 residual을 만드는* 1편의 패턴을 그대로 적용할 수가 없다.
 
 이 글에서는 그 다리를 놓는다. 즉 SLAM optimization에서 흔히 말하는 *"pose error"*가 정확히 무엇이고, 그걸 어떻게 코드에 옮기는지를 *2D부터 3D까지* 차근차근 짚어본다. 이 글의 목표는 다음과 같다.
 
@@ -23,7 +23,7 @@ redirect_from:
 * **2D에서 손으로 따라가보기**: SE(2)에서는 angle wrapping만 신경쓰면 비교적 단순하다는 것을 확인.
 * **3D로 가면 왜 어려워지는가**: rotation을 quaternion으로 표현할 때 *manifold가 등장하는 이유* 미리 보기.
 
-여기서 다루는 내용은 [4편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-4.-PoseGraph3dErrorTerm-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)의 더 깊은 분석을 위한 워밍업이다. 사실 진짜 어려운 건 4편에서 시작되는데, 이 글이 그 입구가 된다.
+여기서 다루는 내용은 [4편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-04-posegraph3d-error-term/)의 더 깊은 분석을 위한 워밍업이다. 사실 진짜 어려운 건 4편에서 시작되는데, 이 글이 그 입구가 된다.
 
 각설하고, 출발해보자.
 
@@ -176,9 +176,9 @@ $$
 \mathbf{e}_{\theta} = 2 \cdot \text{Vec}(\delta \mathbf{q}) \in \mathbb{R}^3
 $$
 
-이로써 (translation 3 + rotation 3) = **6차원 residual**이 만들어진다. 이게 [3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)부터 다루는 `PoseGraph3dErrorTerm` 코드에 정확히 들어있는 형태이다.
+이로써 (translation 3 + rotation 3) = **6차원 residual**이 만들어진다. 이게 [3편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/)부터 다루는 `PoseGraph3dErrorTerm` 코드에 정확히 들어있는 형태이다.
 
-문제 (2), *manifold-aware update*, 는 Ceres의 `Manifold` API로 해결되며, 이건 [5편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-5.-BuildOptimizationProblem%EA%B3%BC-Manifold-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서 본격적으로 다룬다. 핵심 idea만 미리 말하자면, *update를 4D quaternion에 직접 더하지 않고, 3D tangent space (axis-angle)에서 받아서 manifold로 retract*시키는 방법이다.
+문제 (2), *manifold-aware update*, 는 Ceres의 `Manifold` API로 해결되며, 이건 [5편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-05-optimization-problem-manifold/)에서 본격적으로 다룬다. 핵심 idea만 미리 말하자면, *update를 4D quaternion에 직접 더하지 않고, 3D tangent space (axis-angle)에서 받아서 manifold로 retract*시키는 방법이다.
 
 ---
 
@@ -213,7 +213,7 @@ $$
 
 > *Translation은 vector space라 그냥 빼면 되는데, rotation은 manifold라서 multiplicative error로 정의해야 한다.*
 
-다음 [3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)부터는 이 idea가 실제로 구현된 *Ceres pose_graph_3d 공식 example*을 line-by-line으로 분석한다. 두 파일 (`pose_graph_3d.cc`, `pose_graph_3d_error_term.h`)이 이 글에서 짚은 모든 idea를 어떻게 코드로 풀어내는지, 그게 이 시리즈의 본론이다.
+다음 [3편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/)부터는 이 idea가 실제로 구현된 *Ceres pose_graph_3d 공식 example*을 line-by-line으로 분석한다. 두 파일 (`pose_graph_3d.cc`, `pose_graph_3d_error_term.h`)이 이 글에서 짚은 모든 idea를 어떻게 코드로 풀어내는지, 그게 이 시리즈의 본론이다.
 
 ---
 

@@ -12,11 +12,11 @@ redirect_from:
 
 ## Introduction
 
-[3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)에서는 `pose_graph_3d.cc`의 `main()` 흐름과, 두 파일이 *수학 정의*와 *Ceres engineering*으로 역할이 나뉜다는 점을 살펴봤다. 이번 편에서는 그 중 *수학 정의*를 담당하는 `pose_graph_3d_error_term.h`만 한 파일을 깊게 뜯어본다.
+[3편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/)에서는 `pose_graph_3d.cc`의 `main()` 흐름과, 두 파일이 *수학 정의*와 *Ceres engineering*으로 역할이 나뉜다는 점을 살펴봤다. 이번 편에서는 그 중 *수학 정의*를 담당하는 `pose_graph_3d_error_term.h`만 한 파일을 깊게 뜯어본다.
 
 이 파일이 하는 일은 단 하나이다. *"두 pose A, B와 그 사이의 measurement가 주어졌을 때, 6차원 residual을 어떻게 계산하는지"* 를 정의하는 것. 그런데 그 6차원이 정확히 무엇으로 채워지고, 왜 quaternion에서 vector part에 2를 곱하며, 왜 information matrix를 LLT로 쪼개는지, 이 모든 게 사실 깊게 들여다볼 만한 주제이다. 한 마디로 이번 글은 "60줄짜리 functor 하나에 박힌 SLAM optimization의 수학"을 푸는 글이다.
 
-`evaluateError()`에서 Jacobian `H1`, `H2`를 직접 채워줘야 하는 GTSAM과 다르게 ([GTSAM Tutorial 1편](https://limhyungtae.github.io/2024-12-01-GTSAM-Tutorial-1.-SLAM%EC%9D%84-%EC%9C%84%ED%95%9C-Between-Factor-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/) 참고), Ceres에서는 ~~아묻따~~ AutoDiff로 Jacobian을 자동으로 구해준다. 그래서 이 파일에는 Jacobian 코드가 한 줄도 없다. 대신 `template <typename T>`로 시작하는 한 줄이 그 마법을 가능하게 만든다. 이 마법의 원리도 글 후반에서 짚어볼 것이다.
+`evaluateError()`에서 Jacobian `H1`, `H2`를 직접 채워줘야 하는 GTSAM과 다르게 ([GTSAM Tutorial 1편](https://limhyungtae.github.io/2024/12/01/gtsam-tutorial-01-between-factor/) 참고), Ceres에서는 ~~아묻따~~ AutoDiff로 Jacobian을 자동으로 구해준다. 그래서 이 파일에는 Jacobian 코드가 한 줄도 없다. 대신 `template <typename T>`로 시작하는 한 줄이 그 마법을 가능하게 만든다. 이 마법의 원리도 글 후반에서 짚어볼 것이다.
 
 각설하고, 이 파일을 한 줄 한 줄 따라가보자.
 
@@ -24,7 +24,7 @@ redirect_from:
 
 ## Notation 정리
 
-본격적으로 들어가기 전에, 이번 글에서 사용할 notation을 정리한다 (`.h` 파일 상단의 주석 표기와 동일하게 맞췄고, [2편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-2.-Pose-Error%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%98%EB%8A%94-%EB%B2%95/)의 약속과도 일관된다). 글 중간에 다시 돌아오지 않아도 되도록 *self-contained* 하게 적어둔다.
+본격적으로 들어가기 전에, 이번 글에서 사용할 notation을 정리한다 (`.h` 파일 상단의 주석 표기와 동일하게 맞췄고, [2편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-02-pose-error/)의 약속과도 일관된다). 글 중간에 다시 돌아오지 않아도 되도록 *self-contained* 하게 적어둔다.
 
 * **Subscript $$_a$$, $$_b$$**: 어느 frame/pose의 양인지 가리키는 index.  
   예: $$\mathbf{p}_a, \mathbf{q}_a$$는 "pose A의 position과 orientation". $$\mathbf{p}_b, \mathbf{q}_b$$는 마찬가지로 pose B의 것. $$\mathbf{q}$$는 모두 Hamilton quaternion이다.
@@ -372,7 +372,7 @@ AutoDiff가 만능은 아니다. 다음과 같은 경우에는 AutoDiff 대신 a
 
 ChatGPT에 먹혀버린 시대일수록 *우리가 정확히 무엇을 optimize하고 있는지*를 손으로 따라가보는 게 중요하지 않나 싶다. Pose graph optimization의 `cost = 0.5 ||residual||^2` 안에 들어있는 60줄짜리 functor가, 사실은 SE(3) manifold의 multiplicative error와 Mahalanobis weighting을 다 구현한 코드라는 것, 이것이 이 글에서 전달하고 싶었던 핵심이다.
 
-다음 [5편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-5.-BuildOptimizationProblem%EA%B3%BC-Manifold-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서는 `pose_graph_3d.cc`의 `BuildOptimizationProblem()`을 분석한다. 이 functor가 `AddResidualBlock`으로 어떻게 등록되는지, quaternion의 manifold 처리는 어떻게 이뤄지는지, gauge freedom은 어떻게 fix되는지, Ceres API를 활용하는 *engineering* 레이어를 다룰 예정이다.
+다음 [5편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-05-optimization-problem-manifold/)에서는 `pose_graph_3d.cc`의 `BuildOptimizationProblem()`을 분석한다. 이 functor가 `AddResidualBlock`으로 어떻게 등록되는지, quaternion의 manifold 처리는 어떻게 이뤄지는지, gauge freedom은 어떻게 fix되는지, Ceres API를 활용하는 *engineering* 레이어를 다룰 예정이다.
 
 ---
 

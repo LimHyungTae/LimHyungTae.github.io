@@ -212,7 +212,7 @@ void projectPointCloud(){
 }
 ```
 
-다른 부분들은 [Introduction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-%EC%83%81%EC%84%B8-%EC%84%A4%EB%AA%85-1.-Introduction/)의 3D LiDAR sensor의 특성을 이해하면 다 자명한데, columIdn 부분이 다소 헷갈리게 되어있다. 왜냐하면 C++에서 `atan2`는 (y, x)로 사용하게 되어 있는데 range image의 `columnIdn`을 구할 때는 `atan2(x, y)`로 사용하기 때문이다. 좀 더 이해를 돕기 위해, 각 각도에 따라 대응하는 값들을 아래와 같이 정리해보았다.
+다른 부분들은 [Introduction](https://limhyungtae.github.io/2022/03/27/lego-loam-line-by-line-01-introduction/)의 3D LiDAR sensor의 특성을 이해하면 다 자명한데, columIdn 부분이 다소 헷갈리게 되어있다. 왜냐하면 C++에서 `atan2`는 (y, x)로 사용하게 되어 있는데 range image의 `columnIdn`을 구할 때는 `atan2(x, y)`로 사용하기 때문이다. 좀 더 이해를 돕기 위해, 각 각도에 따라 대응하는 값들을 아래와 같이 정리해보았다.
 
 ![range image columnIdn 매핑](/img/lego_loam_columnIdn.png) 
 
@@ -350,7 +350,7 @@ for (size_t i = 0; i < N_SCAN; ++i){
 LeGO-LOAM의 line-by-line 설명 시리즈입니다.
 
 
-1. [LeGO-LOAM-Line-by-Line-1.-Introduction: Preview and Preliminaries](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-1.-Introduction/)
+1. [LeGO-LOAM-Line-by-Line-1.-Introduction: Preview and Preliminaries](https://limhyungtae.github.io/2022/03/27/lego-loam-line-by-line-01-introduction/)
 2. [LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1): Range Image Projection & Ground Removal](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(1)/)
 3. [LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2): Cloud Segmentation using Clustering](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-2.-ImageProjection-(2)/)
 4. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1): Ready for Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1)/)

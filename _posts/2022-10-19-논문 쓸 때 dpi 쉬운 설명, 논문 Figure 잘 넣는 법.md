@@ -10,7 +10,7 @@ redirect_from:
   - '/2022-10-19-논문 쓸 때 dpi 쉬운 설명, 논문 Figure 잘 넣는 법/'
 ---
 
-[이전 글](https://limhyungtae.github.io/2022-10-19-pdf-%ED%8C%8C%EC%9D%BC-eps%EB%A1%9C-%EB%B3%80%ED%99%98%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/)의 연장선으로, pdf 파일을 eps나 png 파일로 변환하다가 문득 '그럼 어느 정도 해상도를 지녀야 png더라도 안 깨져 보이지?'라고 궁금해졌다.
+[이전 글](https://limhyungtae.github.io/2022/10/19/pdf-to-eps-conversion/)의 연장선으로, pdf 파일을 eps나 png 파일로 변환하다가 문득 '그럼 어느 정도 해상도를 지녀야 png더라도 안 깨져 보이지?'라고 궁금해졌다.
 
 이것에 대해서 알려면 dpi에 대해 잘 이해해야 한다.
 

@@ -12,7 +12,7 @@ redirect_from:
 
 ## Introduction
 
-[3편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-3.-Pose-Graph-3D-Example-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0/)에서 두 파일의 역할 분담을 잡았고, [4편](https://limhyungtae.github.io/2026-05-07-Ceres-Solver-for-Graph-SLAM-4.-PoseGraph3dErrorTerm-%EA%B9%8A%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/)에서는 `.h` 파일의 residual 수학을 깊게 봤다. 이번 5편에서는 `.cc` 쪽, 즉 `BuildOptimizationProblem()`을 다룬다. 이 함수가 사실상 *우리가 정의한 residual functor를 어떻게 Ceres `Problem` 객체에 끼워넣어 실제 optimizer가 돌아가게 만드는지*를 담고 있다.
+[3편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-03-pose-graph-3d-overview/)에서 두 파일의 역할 분담을 잡았고, [4편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-04-posegraph3d-error-term/)에서는 `.h` 파일의 residual 수학을 깊게 봤다. 이번 5편에서는 `.cc` 쪽, 즉 `BuildOptimizationProblem()`을 다룬다. 이 함수가 사실상 *우리가 정의한 residual functor를 어떻게 Ceres `Problem` 객체에 끼워넣어 실제 optimizer가 돌아가게 만드는지*를 담고 있다.
 
 언뜻 보면 이 함수는 단순히 *for loop으로 constraint마다 residual block을 추가하는 게 전부*인 것 같지만, 안을 들여다보면 4가지 디테일이 모두 들어있다.
 

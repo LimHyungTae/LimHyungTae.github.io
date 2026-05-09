@@ -2,12 +2,166 @@
 layout: default
 title: 404 - Page not found
 permalink: /404.html
+sitemap: false
 ---
 
-<div class="text-center">
-  <h1>Whoops, this page doesn't exist.</h1>
-  <h1>Move along. (404 error)</h1>
-  <br/>
+<style>
+.notfound-wrap {
+    text-align: center;
+    padding: 40px 20px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+.notfound-wrap h1 {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    color: #1B2C8F;
+}
+.notfound-wrap .lead {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 32px;
+}
+.notfound-wrap .img404 {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 32px;
+    display: block;
+    opacity: 0.85;
+}
+.notfound-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 0 auto 32px;
+    max-width: 600px;
+}
+.notfound-links a {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1B2C8F;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    background: #fff;
+}
+.notfound-links a:hover {
+    background: #1B2C8F;
+    color: #fff;
+    border-color: #1B2C8F;
+    text-decoration: none;
+}
+.notfound-hint {
+    color: #777;
+    font-size: 0.95rem;
+    margin-top: 24px;
+    line-height: 1.6;
+}
+.notfound-hint code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
 
-  <img src="{{ 'img/404-southpark.jpg' | relative_url }}" />
+/* --- Language toggle --- */
+.lang-toggle {
+    display: inline-flex;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+.lang-toggle button {
+    padding: 6px 14px;
+    background: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    transition: all 0.15s ease;
+}
+.lang-toggle button + button {
+    border-left: 1px solid #dee2e6;
+}
+.lang-toggle button:hover {
+    background: #e9ecef;
+}
+.lang-toggle button.active {
+    background: #1B2C8F;
+    color: #fff;
+}
+
+body[data-lang="ko"] .lang-en { display: none !important; }
+body[data-lang="en"] .lang-ko { display: none !important; }
+</style>
+
+<div class="notfound-wrap">
+  <div class="lang-toggle" role="group" aria-label="Language toggle">
+    <button type="button" data-lang="en" class="active">English</button>
+    <button type="button" data-lang="ko">Korean (한국어)</button>
+  </div>
+
+  <h1>
+    <span class="lang-en">Page not found</span>
+    <span class="lang-ko">찾으시는 페이지가 없어요</span>
+  </h1>
+  <p class="lead">
+    <span class="lang-en">The URL may have changed, or the post might have been merged or removed. Try one of the links below.</span>
+    <span class="lang-ko">URL이 바뀌었거나 글이 통합/삭제됐을 수 있어요. 아래에서 원하시는 곳으로 가보세요.</span>
+  </p>
+
+  <img class="img404" src="{{ '/img/404-southpark.jpg' | relative_url }}" alt="404 not found"/>
+
+  <div class="notfound-links">
+    <a href="{{ '/' | relative_url }}">
+      🏠 <span class="lang-en">Home</span><span class="lang-ko">홈</span>
+    </a>
+    <a href="{{ '/posts/' | relative_url }}">
+      📝 <span class="lang-en">All Posts</span><span class="lang-ko">모든 글 보기</span>
+    </a>
+    <a href="{{ '/slam/' | relative_url }}">
+      🤖 <span class="lang-en">SLAM Lectures</span><span class="lang-ko">SLAM 강의</span>
+    </a>
+    <a href="{{ '/publications/' | relative_url }}">
+      📄 Publications
+    </a>
+  </div>
+
+  <p class="notfound-hint">
+    <span class="lang-en">
+      Looking for a specific post? Try the <a href="{{ '/posts/' | relative_url }}">post list</a>, which has title search.<br>
+      If you arrived here from an external link, it's likely an old <code>limhyungtae.github.io</code> URL that has been retired.
+    </span>
+    <span class="lang-ko">
+      글을 찾고 계신 거라면 <a href="{{ '/posts/' | relative_url }}">전체 글 목록</a>에서 제목 검색이 가능해요.<br>
+      외부 링크로 들어오셨다면 <code>limhyungtae.github.io</code>의 옛날 URL일 가능성이 높습니다.
+    </span>
+  </p>
 </div>
+
+<script>
+(function () {
+    var STORAGE_KEY = 'slam-lang';
+    var supported = ['en', 'ko'];
+    var initial = localStorage.getItem(STORAGE_KEY);
+    if (supported.indexOf(initial) === -1) initial = 'en';
+
+    var buttons = document.querySelectorAll('.lang-toggle button[data-lang]');
+    function setActive(lang) {
+        document.body.setAttribute('data-lang', lang);
+        localStorage.setItem(STORAGE_KEY, lang);
+        buttons.forEach(function (btn) {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+    setActive(initial);
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () { setActive(btn.dataset.lang); });
+    });
+})();
+</script>

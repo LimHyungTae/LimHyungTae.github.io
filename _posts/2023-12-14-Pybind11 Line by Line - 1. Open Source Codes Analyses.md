@@ -212,8 +212,8 @@ target_compile_definitions(cmake_example
 
 Pybinding line-by-line 설명 시리즈입니다.
 
-1. [Pybind11 Line by Line - 1. Open Source Codes Analyses](https://limhyungtae.github.io/2023-12-14-Pybind11-Line-by-Line-1.-Open-Source-Codes-Analyses/)
-2. [Pybind11 Line by Line - 2. Package에 대한 이해](https://limhyungtae.github.io/2023-12-14-Pybind11-Line-by-Line-2.-Package%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/)
+1. [Pybind11 Line by Line - 1. Open Source Codes Analyses](https://limhyungtae.github.io/2023/12/14/pybind11-line-by-line-01-open-source-analysis/)
+2. [Pybind11 Line by Line - 2. Package에 대한 이해](https://limhyungtae.github.io/2023/12/14/pybind11-line-by-line-02-package-understanding/)
 
 
 
