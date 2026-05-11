@@ -84,13 +84,13 @@ Hyungtae Lim is a Postdoctoral Associate in the Laboratory for Information and D
 ## Selected Honors
 
 * Associate Editor, [*IEEE Robotics and Automation Letters* (RA-L)](https://www.ieee-ras.org/publications/ra-l), 2024–
-* [RSS Pioneers 2024](https://sites.google.com/view/rsspioneers2024/participants) (30 young researchers selected worldwide)
-* [2022 IEEE RA-L Best Paper Award](https://www.ieee-ras.org/publications/ra-l/ra-l-paper-awards) (5 papers selected among 1,100)
 * [IEEE ICRA 2025 Outstanding Reviewer Award](https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/icra-ceb-awards) (5 selected among 7,641 reviewers)
-* 1st prize in the [HILTI SLAM Challenge](https://hilti-challenge.com/) at IEEE ICRA 2023 and 2024 (2nd cash prize, 4th overall in 2022)
+* [RSS Pioneers 2024](https://sites.google.com/view/rsspioneers2024/participants) (30 young researchers selected worldwide)
+* 1st prize in the [Nothing Stands Still (NSS) Challenge](https://www.nothing-stands-still.com/challenge_2024) at IEEE ICRA 2024
+* 1st prize in the [HILTI SLAM Challenge](https://hilti-challenge.com/leaderboard-2023) at IEEE ICRA 2023
+* 2nd cash prize, 4th overall in the [HILTI SLAM Challenge](https://hilti-challenge.com/) at IEEE ICRA 2022
+* [2022 IEEE RA-L Best Paper Award](https://www.ieee-ras.org/publications/ra-l/ra-l-paper-awards/) (5 papers selected among 1,100)
 * [CES 2023 Innovation Award](https://www.ces.tech/innovation-awards/honorees/2023/honorees/h/hi-bot-hologram-image-guide-robot.aspx) via tech transfer on SLAM (with HILLS Robotics)
-* Best Paper Award, International Conference on Robot Intelligence Technology and Applications (RiTA) 2023
-* Student Best Paper Award, International Conference on Control, Automation and Systems (ICCAS) 2020
 * 1st Prize, Hitachi-LG Data Storage LiDAR Application Competition (Korea, 2019)
 
 ---
