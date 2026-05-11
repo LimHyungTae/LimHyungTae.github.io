@@ -5,9 +5,13 @@ subtitle: SLAM for Everyone
 permalink: /slam/
 redirect_from:
   - '/2020-07-08-수식없이 이해하는 Graph SLAM (1)/'
+  - '/2020-07-08-수식없이-이해하는-Graph-SLAM-(1)/'
   - '/2020-07-08-수식없이 이해하는 Graph SLAM (2)-확률론적==가중치/'
+  - '/2020-07-08-수식없이-이해하는-Graph-SLAM-(2)-확률론적==가중치/'
   - '/2020-07-08-수식없이 이해하는 Graph SLAM (3)-Covariance의 이해/'
+  - '/2020-07-08-수식없이-이해하는-Graph-SLAM-(3)-Covariance의-이해/'
   - '/2020-07-08-수식없이 이해하는 Graph SLAM (4)-pose/'
+  - '/2020-07-08-수식없이-이해하는-Graph-SLAM-(4)-pose/'
 ---
 
 <style>

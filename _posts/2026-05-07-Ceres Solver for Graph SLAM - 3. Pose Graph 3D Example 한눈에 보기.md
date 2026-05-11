@@ -17,7 +17,7 @@ redirect_from:
 
 우리가 분석할 [Pose Graph 3D 예제](https://github.com/ceres-solver/ceres-solver/tree/master/examples/slam/pose_graph_3d)는 코드 자체는 200줄도 안 되는 두 파일 ([`pose_graph_3d.cc`](https://github.com/ceres-solver/ceres-solver/blob/master/examples/slam/pose_graph_3d/pose_graph_3d.cc), [`pose_graph_3d_error_term.h`](https://github.com/ceres-solver/ceres-solver/blob/master/examples/slam/pose_graph_3d/pose_graph_3d_error_term.h)) 이지만, Ceres가 SLAM optimization을 푸는 방식의 모든 핵심이 이 안에 들어있다. 한 번에 읽으면 부담스러우니 *overview → residual의 수학 → API 활용*의 세 단계로 쪼갠다.
 
-이 글은 Graph SLAM의 기본 개념은 이미 어느 정도 알고 있다는 가정하에 작성하였다. 만약 Graph SLAM이라는 개념 자체가 처음이라면, 이 시리즈를 읽기 전에 [수식없이 이해하는 Graph SLAM (1)](https://limhyungtae.github.io/2020-07-08-%EC%88%98%EC%8B%9D%EC%97%86%EC%9D%B4-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8A%94-Graph-SLAM-(1)/) 시리즈를 먼저 읽어보길 권장한다. 또, Lie group / SE(3) / Hamilton quaternion에 대한 기본 지식도 어느 정도 있다는 전제로 진행한다 (만약 SE(3)가 익숙하지 않다면 [모두를 위한 SLAM](https://limhyungtae.github.io/slam/) Lecture 07에서 먼저 다지고 오는 걸 추천한다).
+이 글은 Graph SLAM의 기본 개념은 이미 어느 정도 알고 있다는 가정하에 작성하였다. Lie group / SE(3) / Hamilton quaternion에 대한 기본 지식도 어느 정도 있다는 전제로 진행한다. Graph SLAM 자체가 처음이거나 SE(3)가 익숙하지 않다면, [모두를 위한 SLAM](https://limhyungtae.github.io/slam/) Lecture 07에서 먼저 개념을 다지고 오는 걸 추천한다.
 
 이번 sub-series는 총 세 편으로 진행한다.
 
