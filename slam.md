@@ -252,10 +252,10 @@ body[data-lang="en"] .btn-video { display: none !important; }
 <a class="viewer-banner" href="/slam/viewer/">
   <span class="icon">📚</span>
   <span>
-    <strong><span class="lang-ko">통합 뷰어로 보기</span><span class="lang-en">Open in unified viewer</span></strong>
+    <strong><span class="lang-ko">통합 뷰어로 보기:</span><span class="lang-en">Open in unified viewer:</span></strong>
     <span style="opacity:0.7;">
-      <span class="lang-ko">, 사이드바로 강의 간 빠르게 이동하며 슬라이드 PDF를 바로 읽을 수 있어요</span>
-      <span class="lang-en">, browse all lecture slides with sidebar navigation in one place</span>
+      <span class="lang-ko">사이드바로 강의 간 빠르게 이동하며 슬라이드 PDF를 바로 읽을 수 있어요</span>
+      <span class="lang-en">Browse all lecture slides with sidebar navigation in one place</span>
     </span>
   </span>
   <span class="arrow">→</span>
