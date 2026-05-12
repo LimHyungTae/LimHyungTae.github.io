@@ -177,7 +177,7 @@ residuals.template block<3, 1>(3, 0) = T(2.0) * delta_q.vec();
 
 다시 말해, `2 * delta_q.vec()`은 **SO(3) Lie algebra에서의 rotation error vector** $$\log(\delta \mathbf{R})$$의 small-angle approximation이다. 결국 우리는 multiplicative quaternion error를 vector space로 끌어내려서 NLLS의 residual로 사용하고 있는 셈이다.
 
-> 사실은, 정확한 Lie algebra residual은 $$\log(\delta \mathbf{R}) = \theta \mathbf{u}$$이고, $$2 \cdot \text{Vec}(\delta \mathbf{q})$$는 그 small-angle approximation이다. 둘의 차이는 $$O(\theta^3)$$ 정도이며, optimization이 수렴함에 따라 $$\theta \to 0$$이 되므로 사실상 정확해진다. 큰 각도에서는 약간의 부정확성이 있지만, LM이 iterative하게 가까워지면서 자연히 해결된다. 그래서 이 정도의 approximation은 SLAM 문헌에서도 표준적으로 통용된다.
+> 정확한 Lie algebra residual은 $$\log(\delta \mathbf{R}) = \theta \mathbf{u}$$이고, $$2 \cdot \text{Vec}(\delta \mathbf{q})$$는 그 small-angle approximation이다. 둘의 차이는 $$O(\theta^3)$$이라 LM이 수렴해 $$\theta \to 0$$이 되는 영역에서는 사실상 정확하다. SLAM 문헌에서 표준적으로 통용되는 이유이다.
 
 ---
 
@@ -220,7 +220,7 @@ $$
 \mathbf{r} = \mathbf{L}^T \mathbf{e} \quad \Rightarrow \quad \frac{1}{2} \|\mathbf{r}\|^2 = \frac{1}{2} \mathbf{e}^T \boldsymbol{\Omega} \mathbf{e}
 $$
 
-이게 `sqrt_information`이라는 변수의 정체이다 (`L^T`가 곱해지는데 보통 통칭해서 sqrt-information이라고 부른다). 코드에서는 line 110에서 한 줄로 처리된다.
+이게 `sqrt_information`이라는 변수의 정체이다. 코드에서는 line 110에서 한 줄로 처리된다.
 
 ```cpp
 residuals.applyOnTheLeft(sqrt_information_.template cast<T>());
@@ -228,7 +228,7 @@ residuals.applyOnTheLeft(sqrt_information_.template cast<T>());
 
 `applyOnTheLeft`는 in-place로 좌측 곱셈을 수행한다. 즉 `residuals = sqrt_information * residuals`. 이로써 Mahalanobis cost가 자동으로 L2 cost로 변환된다.
 
-> 참고: `sqrt_information`이 어디서 만들어지는지는 5편에서 다룰 `BuildOptimizationProblem`에서 확인할 수 있다. 거기서 `constraint.information.llt().matrixL()`이 호출된다. Eigen의 `matrixL()`은 lower-triangular factor `L`을 반환하므로, 코드에서는 사실상 `L`을 곱하는 형태인데, $$\boldsymbol{\Omega}$$가 symmetric이라 `L`로 곱해도 cost 측면에서는 동일하다 (계산해보면 $$\|\mathbf{L} \mathbf{e}\|^2 = \mathbf{e}^T \mathbf{L}^T \mathbf{L} \mathbf{e}$$이고, 만약 $$\boldsymbol{\Omega} = \mathbf{L}\mathbf{L}^T$$라면 좀 다르지만, Ceres example의 관행적 사용에서는 이렇게 처리한다, *operator의 일관성*이 더 중요하므로 그대로 따라가자).
+> 참고: `sqrt_information`이 어디서 만들어지는지는 5편의 `BuildOptimizationProblem`에서 다룬다. 거기서 `constraint.information.llt().matrixL()`로 lower-triangular `L`을 뽑는다. 엄밀히는 위 유도대로 $$\mathbf{L}^T$$를 곱해야 하지만, Ceres example은 그냥 `L`을 곱한다. SLAM에서 information matrix가 대부분 (블록) 대각에 가까워 $$\mathbf{L} \approx \mathbf{L}^T$$이기 때문이다.
 
 ---
 
