@@ -101,7 +101,7 @@ PowerPoint를 열고 다음 순서대로 진행한다.
 ### Preamble 등록
 
 논문에서 쓰던 `\newcommand`, `\usepackage`를 슬라이드 수식에서도 그대로 쓰고 싶다면 IguanaTex의 `Settings` → `LaTeX Preamble`에 본인 preamble을 등록해두면 된다.
-한번 등록해두면 그 PowerPoint 파일 안의 모든 IguanaTex 수식이 같은 preamble을 공유한다.
+한 번 등록해두면 그 PowerPoint 파일 안의 모든 IguanaTex 수식이 같은 preamble을 공유한다.
 (`\newcommand`를 잘 활용하는 방법은 [LaTex을 통한 심화 논문 작성법 - 4. newcommand 활용하기](https://limhyungtae.github.io/2024/11/23/latex-paper-writing-04-newcommand/)에 따로 정리해뒀다.)
 
 ---

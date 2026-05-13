@@ -29,10 +29,10 @@ $$\left[\begin{array}{cc}
 
 따라서, update function $$\boldsymbol{\xi} \oplus \boldsymbol{\delta}$$는 다음과 같이 정의된다:
 
-$$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =  
+$$\boldsymbol{\xi} \oplus \boldsymbol{\delta} =
 \left[\begin{array}{c}
-\mathrm{Log}\left( \mathbf{R} \left(\mathbf{I} + [\boldsymbol{w}]_\times\right) \right) \\ 
-\mathbf{t} + \mathbf{R} \boldsymbol{v} 
+\mathrm{Log}\left( \mathbf{R} \left(\mathbf{I} + [\boldsymbol{w}]_\times\right) \right) \\
+\mathbf{t} + \mathbf{R} \boldsymbol{v}
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(2)}$$
 
 여기서 $$\mathrm{Log}\left( \cdot \right)$$는 우리가 2차원에서 $$\mathrm{Rot}(\theta)$$을 $$\theta$$로 간단히 표현했던 것 처럼, 3차원 rotation matrix을 3차원 rotation vector로 변환해주는 함수라 받아들이면 된다.
@@ -49,30 +49,30 @@ $$\left(\mathbf{T}^{w}_1\right)^{-1} \mathbf{T}^{w}_2 =
 \end{array}\right]^{-1}\left[\begin{array}{cc}
 \mathbf{R}_2 & \mathbf{t}_2 \\
 \mathbf{0} & 1
-\end{array}\right] \\ = 
+\end{array}\right] \\ =
 \left[\begin{array}{cc}
 \mathbf{R}^{\intercal}_1 & -\mathbf{R}^{\intercal}_1\mathbf{t}_1 \\
 \mathbf{0} & 1
 \end{array}\right]\left[\begin{array}{cc}
 \mathbf{R}_2 & \mathbf{t}_2 \\
 \mathbf{0} & 1
-\end{array}\right] = 
+\end{array}\right] =
 \left[\begin{array}{cc}
 \mathbf{R}^{\intercal}_1\mathbf{R}_2 & \mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) \\
 \mathbf{0} & 1
 \end{array}\right] \; \; \; \; \text{(3)}$$
 
-따라서 두 pose의 차이에 대한 함수를 vector화 해서 나타내면 
+따라서 두 pose의 차이에 대한 함수를 vector화 해서 나타내면
 
-$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) = 
+$$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 \left[\begin{array}{c}
 \mathrm{Log}\left(\mathbf{R}^{\intercal}_1 \mathbf{R}_2) \right) \\
-\mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1) 
+\mathbf{R}^{\intercal}_1(\mathbf{t}_2 - \mathbf{t}_1)
 \end{array}\right] \in \mathbb{R}^6 \; \; \; \; \text{(4)}$$
 
 로 표현할 수 있다. 2D에서 $$\theta_2 - \theta_1$$로 뺄셈으로 손쉽게 표현할 수 있었던 rotation이 차원이 증가해서 $$\mathrm{Log}\left(\mathbf{R}^{\intercal}_1 \mathbf{R}_2\right)$$라는 조금 복잡한 형태가 되었을 뿐, rotation의 차이를 표현하고자 하는 기저 원리는 같다.
 
-### Step 3. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$와 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기 
+### Step 3. $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$와 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$ 전개하기
 
 자, 여기서부터는 스스로 한 번 해보는 것으로 하자!
 
@@ -85,12 +85,12 @@ $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) =
 
 ### Step 4. 수식 전개해서 `H1`, `H2`에 대응되는 값 유도
 
-이제 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$와 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$의 translation/rotation 요소가 각각 같다고 하고 풀면 된다. 
+이제 $$h(\boldsymbol{\xi}_1 \oplus \boldsymbol{\delta}_1, \boldsymbol{\xi}_2 \oplus \boldsymbol{\delta}_2)$$와 $$h(\boldsymbol{\xi}_1, \boldsymbol{\xi}_2) \oplus \boldsymbol{\delta}$$의 translation/rotation 요소가 각각 같다고 하고 풀면 된다.
 
 **Hints**
 
 * $$\mathrm{Log}\left(A\right) = \mathrm{Log}\left(B\right)$$이면 $$A=B$$.
-* 미소 변화량 두개가 곱해지면 해당 term이 무시 가능해진다는 것을 활용하자. 즉, $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_1$$, 
+* 미소 변화량 두 개가 곱해지면 해당 term이 무시 가능해진다는 것을 활용하자. 즉, $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_1$$,
  혹은 $$[\boldsymbol{w}_1]_\times$$과 $$\boldsymbol{v}_2$$가 함께 곱해져 있는 term은 그 크기가 다른 term보다 월등히 작아지므로 무시 가능함.
 * $$\mathbf{R}[\boldsymbol{w}]_\times \mathbf{R}^\intercal = [\mathbf{R} \boldsymbol{w}]_\times$$, $$\mathbf{R}^\intercal[\boldsymbol{w}]_\times \mathbf{R} = [\mathbf{R}^\intercal \boldsymbol{w}]_\times$$.
 * $$[\boldsymbol{w}]_\times \boldsymbol{v} = - [\boldsymbol{v}]_\times \boldsymbol{w}$$. 여기서 $$\boldsymbol{v}$$와 $$\boldsymbol{w}$$는 임의의 3차원 vector를 의미함.

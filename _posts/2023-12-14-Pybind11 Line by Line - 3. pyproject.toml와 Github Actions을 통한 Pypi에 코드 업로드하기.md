@@ -15,8 +15,8 @@ redirect_from:
 
 이제 Pybinding이 잘 된다는 가정 하에, 어떻게 하면 우리의 연구 코드를 `pip3 install`로 설치하게 할 수 있을까?
 사실 이 과정은 어어어엄청 엔지니어링이어서, 1) 주변에 이 C++ 코드 pybinding 후, 2) Pypi에 올려보기를 **해본 이가 없다면, 도전하지 않는 것을 추천**한다.
-왜냐하면 생각보다 직관적이지 않고, 경험적인 부분이 많기 때문이다. 그리고 C++이 어떻게 빌드되어서 어떻게 동작하는 것인지에 대한 이해도 약간 필요하기 때문에, 
-도움을 청할 수 있는 이가 있다면 힘껏 도움을 청해보자. 참고로 나도 이 과정을 100% 이해하진 못 해서, 틀린 설명이 있을 수도 있다(하지만 잘 돌아가긴 함). 
+왜냐하면 생각보다 직관적이지 않고, 경험적인 부분이 많기 때문이다. 그리고 C++이 어떻게 빌드되어서 어떻게 동작하는 것인지에 대한 이해도 약간 필요하기 때문에,
+도움을 청할 수 있는 이가 있다면 힘껏 도움을 청해보자. 참고로 나도 이 과정을 100% 이해하진 못 해서, 틀린 설명이 있을 수도 있다(하지만 잘 돌아가긴 함).
 
 추천하는 예제 코드는 아래와 같다:
 
@@ -56,7 +56,7 @@ PROJECT_BINARY_DIR: /home/shapelim/git/cmake_auto_include_study/build
 
 ### Dependency
 
-그리고 기초적으로, 아래의 package들이 필요하다: 
+그리고 기초적으로, 아래의 package들이 필요하다:
 
 ```bash
 sudo apt-get install gcc g++ build-essential libeigen3-dev cmake python3-pip python3-dev git ninja-build -y
@@ -153,9 +153,9 @@ scikit-build-core는 Python 빌드 시스템(Python build 라이브러리)과 C+
 대부분 블로그 글을 보면 `hatchling`을 통해 Pypi에 올리는 법을 적어두었는데, 이 경우에는 **Pure Python 코드만 가능**하다.
 우리같은 로봇쟁이들의 C++ 코드를 Pybinding한 후, Pypi에 올리려면 묻지도 따지지도 말고 반드시 `scikit-build-core`을 사용해야 한다.
 
-## Step 3. Build 
+## Step 3. Build
 
-위와 같이 코드를 작성한 Patchwork++ repository에서 
+위와 같이 코드를 작성한 Patchwork++ repository에서
 
 `pip3 install python/`을 해보면 빌드가 되는 것을 확인할 수 있다!
 
@@ -193,7 +193,7 @@ scikit-build-core는 Python 빌드 시스템(Python build 라이브러리)과 C+
 ...
 ```
 
-먼저 우리가 `mkdir build && cd build`하던 과정을 이 scikit-build-core가 자동으로 시행해준다. 
+먼저 우리가 `mkdir build && cd build`하던 과정을 이 scikit-build-core가 자동으로 시행해준다.
 그래서 위에 보면 `/tmp/tmpvcokejo2/build`라는 주소가 임시적으로 생성한 `build` directory의 주소인 것을 알 수 있다.
 
 그리고 ROBIN에서는
@@ -335,7 +335,7 @@ Successfully installed spark_robin-1.2.0
 
 그 후, 위처럼 Installation 후 wheel 파일을 생성하는 것을 볼 수있다!
 `CMakelist.txt`에서 `install(TARGETS pypatchworkpp DESTINATION .)`라고 하는 부분에서 저 . 때문에 `/tmp/tmpvcokejo2/wheel/platlib/./spark_robin.cpython-310-x86_64-linux-gnu.so`
-사이에 .이 있는 것이다. 
+사이에 .이 있는 것이다.
 저 주소를 통해 `.so` 파일이 처음 생성되는 위치를 지정할 수 있고, 그 줄 뒤의 ""라고 되어 있는 부분은 `pyproject.toml` 내에서
 
 ```commandline
@@ -349,9 +349,9 @@ cmake.args = ["-DCMAKE_INSTALL_RPATH=${DESINATION}"]
 Set runtime path of "/tmp/tmpvcokejo2/wheel/platlib/./spark_robin.cpython-310-x86_64-linux-gnu.so" to "${DESINATION}"
 ```
 
-## Step 4. Git Actions 설정 
+## Step 4. Git Actions 설정
 
-그 후, 여기 [pypi.yml](https://github.com/url-kaist/patchwork-plusplus/blob/master/.github/workflows/pypi.yml)처럼 Action을 설정하면 된다! 
+그 후, 여기 [pypi.yml](https://github.com/url-kaist/patchwork-plusplus/blob/master/.github/workflows/pypi.yml)처럼 Action을 설정하면 된다!
 
 ```angular2html
 name: Publish to PyPI.org
@@ -432,10 +432,10 @@ jobs:
 * github.event_name == 'release'로 되어 있으므로, repository 우측에 보는 Tags를 눌러서 release인 태그를 생성한다
 * 레포지토리의 `secrets.PYPI_API_TOKEN`을 설정
 
-## Step 5. Pypi 가입하기 & PYPI_API_TOKEN 설정하기 
+## Step 5. Pypi 가입하기 & PYPI_API_TOKEN 설정하기
 
-3. [Pypi.org](https://pypi.org/)에 가서 ID를 가입하자(가입 절차는 알잘딱 따라가기만 하면 되니 설명은 생략한다). 
-4. 가입 후, 해야할 것이 있는데, GitHub의 SSH key를 등록하듯이, Pypi에도 토큰을 등록해야 한다. 등록하는 방법 절차는 아래와 같다 (ChatGPT 선생님이 알려줬다).
+3. [Pypi.org](https://pypi.org/)에 가서 ID를 가입하자(가입 절차는 알잘딱 따라가기만 하면 되니 설명은 생략한다).
+4. 가입 후, 해야 할 것이 있는데, GitHub의 SSH key를 등록하듯이, PyPI에도 토큰을 등록해야 한다. 등록 절차는 아래와 같다 (ChatGPT 선생님이 알려줬다).
 
     1. 로그인 후 오른쪽 상단의 계정 아이콘을 클릭하여 **"Account settings"**로 이동
     2. "API tokens" 섹션에서 "Add API token" 버튼을 클릭
@@ -450,10 +450,10 @@ username = __token__
 password = pypi-${FOLLOWING PASSWORD}
 ```
 
-로컬 환경에서 Pypi로 파일을 업로드할 수 있게 된다. 
+로컬 환경에서 Pypi로 파일을 업로드할 수 있게 된다.
 만약 로컬 컴퓨터에서 우리가 위의 과정을 거치지 않은채 manual로 wheel file을 Pypi로 업로드하면 `Enter your API token:` 라고 되물을 것이지만, 우리는 token을 컴퓨터 상에 등록했으므로 token을 치지 않아도 된다.
 
-근데 우리는 **Actions이 대신해주기 때문**에, 우리의 repository로 가서 `Settings -> Secrets and variables -> Actions -> Repository secrets`에 `New repository secret`을 누른 후, `PYPI_API_TOKEN`라는 이름으로 변수 추가해주면 된다. 
+근데 우리는 **Actions이 대신해주기 때문**에, 우리의 repository로 가서 `Settings -> Secrets and variables -> Actions -> Repository secrets`에 `New repository secret`을 누른 후, `PYPI_API_TOKEN`라는 이름으로 변수 추가해주면 된다.
 
 ---
 
@@ -463,16 +463,16 @@ password = pypi-${FOLLOWING PASSWORD}
 
 ![PyPI Publishing 설정 화면](/img/publishing_key.png)
 
-자세한 사항은 [여기 블로그](https://velog.io/@bailando/github-actions-%EC%9C%BC%EB%A1%9C-pypi-%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%98%EA%B8%B0)를 참고하면 된다(이 부분은 그리 어렵지 않음). 
+자세한 사항은 [여기 블로그](https://velog.io/@bailando/github-actions-%EC%9C%BC%EB%A1%9C-pypi-%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%98%EA%B8%B0)를 참고하면 된다(이 부분은 그리 어렵지 않음).
 
 위의 과정을 거치면 "Pending Publisher"과 같이 되어 있을텐데, 그 상태에서 Actions을 실행하면 코드들이 자동으로 wheel 파일로 변경되어서 Pypi에 업로드가 된다!
 
 
-# 마치며 
+# 마치며
 
-처음에는 잘 몰라서 `python3 -m build`, `python3 -m twine upload dist/*` 등으로 수작업으로 한 번 진행해보려고 했는데, 이 것을 **불가능**하다.
-Wheel 파일을 Ubuntu에서 생성하면 tag가 `-linux`와 같이 생기는데, Pypi에는 `-manilinux`와 같이 다양한 linux type에 지원할 수 있는 wheel 파일만 업로드 가능하기 때문.
-그러나 이러한 번거로운 과정도 위의 Actions이 다 해결해준다. 
+처음에는 잘 몰라서 `python3 -m build`, `python3 -m twine upload dist/*` 등으로 수작업으로 한 번 진행해보려고 했는데, 이것은 **불가능**하다.
+Wheel 파일을 Ubuntu에서 생성하면 tag가 `-linux`와 같이 생기는데, Pypi에는 `-manylinux`와 같이 다양한 linux type에 지원할 수 있는 wheel 파일만 업로드 가능하기 때문.
+그러나 이러한 번거로운 과정도 위의 Actions이 다 해결해준다.
 
-이 과정을 거치면서 '아직 ChatGPT가 멀었구나...'를 많이 느꼈다. 아무래도 소수의 개발자만 할 짓이다보니, 자료가 많이 없는 것 같다. 
+이 과정을 거치면서 '아직 ChatGPT가 멀었구나...'를 많이 느꼈다. 아무래도 소수의 개발자만 할 짓이다보니, 자료가 많이 없는 것 같다.
 모쪼록 이 글을 읽는 이는 자기 스스로 자신의 연구를 널리널리 스스로 알릴 수 있는 역량을 잘 기르길!

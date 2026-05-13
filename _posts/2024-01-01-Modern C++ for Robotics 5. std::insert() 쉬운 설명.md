@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Modern C++ for Robotics 5. std::insert() 쉬운 설명
-subtitle: Easy Explanation & Examples of std::insert() 
+subtitle: Easy Explanation & Examples of std::insert()
 tags: [C++, Eigen, Robotics]
 comments: true
 description: std::insert로 vector, set, map에 요소를 삽입하고 여러 컨테이너를 합치는 방법, std::make_move_iterator를 활용한 효율적인 이동 삽입을 KISS-ICP 예제와 함께 정리한다.
@@ -13,14 +13,14 @@ redirect_from:
 
 ## std::insert
 
-std::insert는 C++ 표준 라이브러리의 컨테이너 클래스에서 사용할 수 있는 멤버 함수로, 특정 위치에 하나 이상의 요소를 삽입하는 데 사용된다. 
-std::insert의 장점은, 다양한 컨테이너 타입(e.g., std::vector, std::unordered_set 등등)에 쉽게 사용 가능하다는 것이다. 물론 각각의 컨테이너 타입에 따라 약간씩 다를 수 있다. 
+std::insert는 C++ 표준 라이브러리의 컨테이너 클래스에서 사용할 수 있는 멤버 함수로, 특정 위치에 하나 이상의 요소를 삽입하는 데 사용된다.
+std::insert의 장점은, 다양한 컨테이너 타입(e.g., std::vector, std::unordered_set 등등)에 쉽게 사용 가능하다는 것이다. 물론 각각의 컨테이너 타입에 따라 약간씩 다를 수 있다.
 
 
 ### std::vector에서의 std::insert 사용법
 
-std::vector에서 std::insert 함수는 주어진 위치에 요소를 삽입하는데 사용된다. 
-삽입 위치는 반복자로 지정하고, 삽입할 값도 함께 아래와 같이 제공되어야 한다. 
+std::vector에서 std::insert 함수는 주어진 위치에 요소를 삽입하는데 사용된다.
+삽입 위치는 반복자로 지정하고, 삽입할 값도 함께 아래와 같이 제공되어야 한다.
 또한, 특정 횟수만큼 값을 반복해서 삽입하는 것도 가능하다:
 
 ```cpp
@@ -40,7 +40,7 @@ int main() {
     }
     std::cout << "\n";
 
-    // 100을 vec[0] 위치에 3번 삽입 
+    // 100을 vec[0] 위치에 3번 삽입
     vec.insert(vec.begin(), 3, 100);
 
     // Output: 100 100 100 1 2 3 4 5
@@ -55,7 +55,7 @@ int main() {
 ```
 
 하지만 std::vector의 경우, 요소를 삽입할 때마다 컨테이너의 기존 요소들을 뒤로 밀어내야 하므로 큰 벡터에서는 성능상 비용이 클 수 있다.
-그 대신, std::vector에서는 여러 std::vector를 하나로 합칠 때 std::insert를 활용하면 편리하다. 
+그 대신, std::vector에서는 여러 std::vector를 하나로 합칠 때 std::insert를 활용하면 편리하다.
 아래 예제는 네 개의 std::vector를 합치는 방법을 보여준다:
 
 ```cpp
@@ -96,7 +96,7 @@ int main() {
 }
 ```
 
-이를 통해 두 가지를 알 수 있는데, 첫 번째는 아래와 같이 for 문을 돌며 요소를 각각 타겟 vector `vec1`에 담아주던 행위를: 
+이를 통해 두 가지를 알 수 있는데, 첫 번째는 아래와 같이 for 문을 돌며 요소를 각각 타겟 vector `vec1`에 담아주던 행위를:
 
 ```cpp
 for (const auto& elem : vec4) {
@@ -151,7 +151,7 @@ for (const auto& elem : set2) {
 ```
 
 
-로보틱스의 경우에는 이를 통해 keyframes의 id를 다루거나, 혹은 multi-robot 상황에서 landmark들의 id를 unique하게 관리해야하는 상황에서 활용할 수 있다.
+로보틱스의 경우에는 이를 통해 keyframes의 id를 다루거나, 혹은 multi-robot 상황에서 landmark들의 id를 unique하게 관리해야 하는 상황에서 활용할 수 있다.
 
 
 ## 로보틱스에서 활용 사례
@@ -162,12 +162,12 @@ for (const auto& elem : set2) {
 
 
 tbb::parallel_reduce가 무엇인지 자세히 알 필요는 없더라도 찬찬히 코드를 보면 이해할 수 있다.
-1) 각 thread가 '1st lambda' function을 통해 각 thread들이 첫 번째로 `Correspondence` type의 `res`를 리턴하고, 
-2) 이렇게 각 thread에서 리턴한 `res1`, `res2`, `res3`, ...들을 (`tbb::block_range`를 통해 각각의 thread가 독립적으로 1st lambda function을 수행해서 임의의 값을 리턴함) 
+1) 각 thread가 '1st lambda' function을 통해 각 thread들이 첫 번째로 `Correspondence` type의 `res`를 리턴하고,
+2) 이렇게 각 thread에서 리턴한 `res1`, `res2`, `res3`, ...들을 (`tbb::block_range`를 통해 각각의 thread가 독립적으로 1st lambda function을 수행해서 임의의 값을 리턴함)
 3) '2nd lambda' function을 통해 임이의 두 `res_a`와 `res_b`를 효율적으로 병합하는 예제이다.
 
 
-## 결론 
+## 결론
 
 Lambda expression과 STL에서 제공하는 algorithm을 사용하면 코드를 간결하게 작성할 수 있고, 병렬 처리를 할 때도 효율적으로 코드를 작성할 수 있다는 것을 확인할 수 있다.
 

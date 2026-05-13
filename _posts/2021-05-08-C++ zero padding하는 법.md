@@ -13,9 +13,9 @@ redirect_from:
 
 # C++ Zero padding하는 법
 
-파일 시스템을 관리하다보면 zero padding을 꼭해야할 때가 있다.
+파일 시스템을 관리하다 보면 zero padding을 꼭 해야 할 때가 있다.
 
-만약 Sort를 해야하는 상황이나 sequence 순서대로 데이터를 저장/불러오기 할때에는 zero padding을 꼭 해야 한다.
+만약 Sort를 해야 하는 상황이나 sequence 순서대로 데이터를 저장/불러오기 할 때에는 zero padding을 꼭 해야 한다.
 
 그렇지 않으면, 파일 순서가 섞일 수도 있기 때문이다, e.g. 10.pcd와 100.pcd같이 같은 1로 시작하는 데이터들이 오름차순으로 위치하게 되면 순서가 뒤죽박죽된다.
 

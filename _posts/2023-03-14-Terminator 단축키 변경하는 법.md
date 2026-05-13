@@ -15,7 +15,7 @@ redirect_from:
 
 현재 나의 세팅은 아래와 같다
 
-* Jetbrain의 InterlliJ 상에서 각 탭 별 움직이는 키를 `Shift + Ctrl` + `h/j/k/l`로 세팅해두었다. 따라서 나눠진 창에서도 똑같이 움직일 수 있도록 세팅했다.
+* Jetbrain의 IntelliJ 상에서 각 탭 별 움직이는 키를 `Shift + Ctrl` + `h/j/k/l`로 세팅해두었다. 따라서 나눠진 창에서도 똑같이 움직일 수 있도록 세팅했다.
     * `go_down`: `Shift + Ctrl + J`
     * `go_left`: `Shift + Ctrl + H`
     * `go_right`: `Shift + Ctrl + L`
@@ -25,6 +25,6 @@ redirect_from:
     * `page_up`: `Ctrl + U`
     * `page_down`: `Ctrl + D`
 
-* 그 외 (빈도수가 위에 비해는 높지 않지만 자주 쓰는 기능들. 주로 default로 켜둬야하는 것들, i.e. IDE나 roscore 등등,을 terminal의 다른 탭에 두어서 공간을 절약한다)
+* 그 외 (빈도수가 위에 비해는 높지 않지만 자주 쓰는 기능들. 주로 default로 켜둬야 하는 것들, i.e. IDE나 roscore 등등,을 terminal의 다른 탭에 두어서 공간을 절약한다)
     * `next_tab`: `Ctrl + Alt + L`
     * `prev_tab`: `Ctrl + Alt + H`

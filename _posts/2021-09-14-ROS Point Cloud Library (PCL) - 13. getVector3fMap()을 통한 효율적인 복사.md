@@ -19,7 +19,7 @@ redirect_from:
 
 이번에는 getVector3fMap()의 사용에 대해 알아보겠습니다.
 
-굉장히 간단하지만, 알아 두면 굉장히 좋은, point cloud를 다룰 때 알고리즘의 속도를 implementation level에서 어느정도 올릴 수 있는 techinque입니다.
+굉장히 간단하지만, 알아 두면 굉장히 좋은, point cloud를 다룰 때 알고리즘의 속도를 implementation level에서 어느정도 올릴 수 있는 technique입니다.
 
 아래와 같이 `tmp`와 `tmp2`에 각각 x, y, z 값을 Eigen::Vector3f를 넣을 때,
 
@@ -56,7 +56,7 @@ Taken: 0.00210314 sec (naive version)
 Taken: 0.00142921 sec (via `getVector3fMap()`)
 ```
 
-즉, 속도가 1.5배 정도 빨라진 것을 확인할 수 있습니다. 성능 차이의 주요 이유는 다음과 같은데, 
+즉, 속도가 1.5배 정도 빨라진 것을 확인할 수 있습니다. 성능 차이의 주요 이유는 다음과 같은데,
 
 **1. 객체 생성 비용 감소:** 첫 번째 방법에서는 각 반복마다 새로운 `Eigen::Vector3f` 객체를 생성합니다. 이는 메모리 할당과 초기화에 추가적인 시간을 필요로 합니다.
 반면, `getVector3fMap()`은 기존 객체에 대한 참조만을 반환하기 때문에 이러한 추가 비용이 발생하지 않습니다.
@@ -74,7 +74,7 @@ Taken: 0.000885237 sec (naive version)
 Taken: 0.000787708 sec (via `getVector3fMap()`)
 ```
 
-~~reserve(src->points.size() 짱짱~~ 속도의 차이가 많이 줄기는 하지만, 그래도 속도가 약 1.12배 정도 빨라지는 것을 볼 수 있습니. 
+~~reserve(src->points.size() 짱짱~~ 속도의 차이가 많이 줄기는 하지만, 그래도 속도가 약 1.12배 정도 빨라지는 것을 볼 수 있습니.
 
 결론: 동일한 행위를 하는데 속도가 빨라지는 것이니, 꼭 활용하면 좋을 듯하다.
 
@@ -85,4 +85,3 @@ Point Cloud Library Tutorial 시리즈입니다.
 모든 코드는 이 [**레포지토리**](https://github.com/LimHyungTae/pcl_tutorial)에 있고, ros package로 구성되어 있어 build하여 직접 돌려보실 수 있습니다
 
 {% include post_links_pcl.html %}
-

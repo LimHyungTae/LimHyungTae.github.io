@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GTSAM Tutorial 2. SE(2) Transformation matrix, Jacobian, 그리고 Block Operation
-subtitle: Transformation matrix, Jacobian, and Block Operation 
+subtitle: Transformation matrix, Jacobian, and Block Operation
 tags: [Jacobian, GTSAM]
 comments: true
 description: SE(2) transformation matrix를 기준으로 Jacobian을 직접 전개하고, Frank Dellaert식 block operation 표기법으로 같은 Jacobian을 간결하게 다시 쓰는 과정을 정리한다.
@@ -15,9 +15,9 @@ redirect_from:
   - '/2024-12-01-GTSAM-Tutorial-2.-SE(2)-Transformation-matrix,-Jacobian,-그리고-Block-Operation/'
 ---
 
-## Introduction 
+## Introduction
 
-Jacobian matrix를 알잘딱으로 구해주는 Ceres solver와는 다르게, GTSAM을 잘 활용하기 위해서는 Jacobian matrix가 어떻게 도출되는 것인지에 대해서도 정확히 알아야 한다(i.e., 즉, [이전 글](https://limhyungtae.github.io/2024/12/01/gtsam-tutorial-01-between-factor/)에서 제대로 설명하지 않고 넘어간, 아래의 `H1`과 `H2`가 어떻게 구해지는 지에 대해서도 이해를 해야 함):
+Jacobian matrix를 알잘딱으로 구해주는 Ceres solver와는 다르게, GTSAM을 잘 활용하기 위해서는 Jacobian matrix가 어떻게 도출되는 것인지에 대해서도 정확히 알아야 한다(i.e., 즉, [이전 글](https://limhyungtae.github.io/2024/12/01/gtsam-tutorial-01-between-factor/)에서 제대로 설명하지 않고 넘어간, 아래의 `H1`과 `H2`가 어떻게 구해지는지에 대해서도 이해를 해야 함):
 
 ```cpp
  /// evaluate error, returns vector of errors size of tangent space
@@ -68,7 +68,7 @@ y \\
 0 & 1
 \end{array}\right]$$의 꼴로 구성되어 있는 것을 볼 수 있다(note: IEEE format에서는 matrix나 vector는 bold체로 써야한다. 이해를 할 때 참고).
 
-그리고 이를 전개하면 아래와 같다: 
+그리고 이를 전개하면 아래와 같다:
 
 
 $$\left[\begin{array}{c}
@@ -99,12 +99,12 @@ $$\mathbf{J}=\left[\begin{array}{ccc}
 
 $$\mathbf{J}$$의 가로축(row)에는 관계에 대한 표현식의 갯수, 세로축(column)에는 우리가 풀고자 하는 다 변수를 구성하는 요소의 개수로 구성되어 있는 것을 알 수 있다.
 
---- 
+---
 
 ## Block Operation
 
 그런데 Frank Dellaert 교수님 자료를 보면 위의 식을 좀더 섹시(?)하게 block operation으로 기입하는 것을 볼 수 있다.
-수식 (1)을 좀더 간결히 쓰면 아래와 같이 쓸 수 있는데: 
+수식 (1)을 좀더 간결히 쓰면 아래와 같이 쓸 수 있는데:
 
 $$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t} \; \; \; \; \text{(3)}$$
 
@@ -113,17 +113,17 @@ $$\mathbf{x}^{\prime} = T(\mathbf{x}) = \mathbf{R}\mathbf{x} + \mathbf{t} \; \; 
 $$\mathbf{J}=\left[\begin{array}{ll}
 \frac{\partial T(\mathbf{x})}{\partial \mathbf{t}} & \frac{\partial T(\mathbf{x})}{\partial \theta} \end{array}\right] \; \; \; \; \text{(4)}$$
 
-위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 크기가 2인 vector($$t_x$$와 $$t_y$$로 구성되어 있으므로)에 대한 partial derivative이므로 $$2\times2$$의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 partial derivative이기 때문에 $$2\times1$$의 matrix가 된다. 
+위에서 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 크기가 2인 vector($$t_x$$와 $$t_y$$로 구성되어 있으므로)에 대한 partial derivative이므로 $$2\times2$$의 크기가 되고, $$\frac{\partial T}{\partial \theta}$$는 2개의 수식에 대한 1개의 변수의 partial derivative이기 때문에 $$2\times1$$의 matrix가 된다.
 
 이제 수식 (3)을 scalar로 구성된 equation처럼 여겨서 수식 (4)를 풀어 보자. 그러면 $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$의 경우 $$T(\mathbf{x})$$ (i.e., (3))에서의 $$\mathbf{t}$$가 상수마냥 존재하기 때문에 원래 scalar의 세계에서는 1이 될 것이다.
 하지만 우리는 현재 matrix의 세계에 있으므로, 이 partial derivative $$\frac{\partial T(\mathbf{x})}{\partial \mathbf{t}}$$는 identity matrix $$\mathbf{I}_{2\times2}$$가 된다. 그리고 이는 수식 (2)의 앞쪽 $$2\times2$$ 구간과 일치한다.
 
-그리고 뒤의 $$2\times1$$ 구간은 
+그리고 뒤의 $$2\times1$$ 구간은
 
 $$\frac{\partial T(\mathbf{x})}{\partial \theta} = \frac{\partial \mathbf{R}}{\partial \theta}\mathbf{x}  \; \; \; \; \text{(5)}$$
 
-가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까? 
-이를 위해서는 skew symmetric에 대한 이해가 필요한데, 이는 다음 글에서 살펴보자. 
+가 될 것이다. 그럼 여기서, $$\frac{\partial \mathbf{R}}{\partial \theta}$$는 어떻게 구할 수 있을까?
+이를 위해서는 skew symmetric에 대한 이해가 필요한데, 이는 다음 글에서 살펴보자.
 
 ---
 

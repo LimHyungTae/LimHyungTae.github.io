@@ -20,7 +20,7 @@ redirect_from:
 
 이번 시간에는 아래의 예시를 통해 어떻게 쓰면 될지 하나하나 알아가보도록 하겠습니다.
 
-Line-by-line으로 주석을 달아두었으니 한번 살펴보시길 바랍니다 :)
+Line-by-line으로 주석을 달아두었으니 한 번 살펴보시길 바랍니다 :)
 
 <script src="https://gist.github.com/LimHyungTae/8a1f2259aadd7a7d96aa672259a80788.js"></script>
 
@@ -28,7 +28,7 @@ Line-by-line으로 주석을 달아두었으니 한번 살펴보시길 바랍니
 
 ## 스스로 잘 이해했는지 테스트
 
-Q1. `Ptr`을 new를 통해 선언한 `pcl::PointCloud<pcl::PointXYZ>::Ptr`, `Cloud`를 `pcl::PointCloud<pcl::PointXYZ>`로 선언한 pointcloud라 간략히 표현했을 때, 
+Q1. `Ptr`을 new를 통해 선언한 `pcl::PointCloud<pcl::PointXYZ>::Ptr`, `Cloud`를 `pcl::PointCloud<pcl::PointXYZ>`로 선언한 pointcloud라 간략히 표현했을 때,
 * `Ptr` = `Ptr`
 * `*Ptr` = `*Ptr`
 * `*Ptr` = `Cloud`

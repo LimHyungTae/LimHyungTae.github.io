@@ -85,7 +85,7 @@ void updateInitialGuess()
     static Eigen::Affine3f lastImuPreTransformation;
     if (cloudInfo.odomAvailable == true)
     {
-        Eigen::Affine3f transBack = pcl::getTransformation(cloudInfo.initialGuessX,    cloudInfo.initialGuessY,     cloudInfo.initialGuessZ, 
+        Eigen::Affine3f transBack = pcl::getTransformation(cloudInfo.initialGuessX,    cloudInfo.initialGuessY,     cloudInfo.initialGuessZ,
                                                            cloudInfo.initialGuessRoll, cloudInfo.initialGuessPitch, cloudInfo.initialGuessYaw);
         if (lastImuPreTransAvailable == false)
         {
@@ -95,7 +95,7 @@ void updateInitialGuess()
             Eigen::Affine3f transIncre = lastImuPreTransformation.inverse() * transBack;
             Eigen::Affine3f transTobe = trans2Affine3f(transformTobeMapped);
             Eigen::Affine3f transFinal = transTobe * transIncre;
-            pcl::getTranslationAndEulerAngles(transFinal, transformTobeMapped[3], transformTobeMapped[4], transformTobeMapped[5], 
+            pcl::getTranslationAndEulerAngles(transFinal, transformTobeMapped[3], transformTobeMapped[4], transformTobeMapped[5],
                                                           transformTobeMapped[0], transformTobeMapped[1], transformTobeMapped[2]);
 
             lastImuPreTransformation = transBack;
@@ -113,7 +113,7 @@ void updateInitialGuess()
 
         Eigen::Affine3f transTobe = trans2Affine3f(transformTobeMapped);
         Eigen::Affine3f transFinal = transTobe * transIncre;
-        pcl::getTranslationAndEulerAngles(transFinal, transformTobeMapped[3], transformTobeMapped[4], transformTobeMapped[5], 
+        pcl::getTranslationAndEulerAngles(transFinal, transformTobeMapped[3], transformTobeMapped[4], transformTobeMapped[5],
                                                       transformTobeMapped[0], transformTobeMapped[1], transformTobeMapped[2]);
 
         lastImuTransformation = pcl::getTransformation(0, 0, 0, cloudInfo.imuRollInit, cloudInfo.imuPitchInit, cloudInfo.imuYawInit); // save imu before return;
@@ -142,9 +142,9 @@ void updateInitialGuess()
 그래서 제가 이해한 것을 바탕으로 line-by-line으로, 초심자도 LeGO-LOAM 코드를 잘 이해할 수 있게 정리해보고자 이렇게 글을 쓰게 되었습니다.
 
 LOAM과 LeGO-LOAM의 지식이 전혀 없으신 분은 진용이 형이 예전에 발표하셨던 [SLAM KR youtube 영상](https://www.youtube.com/watch?v=snPzNmcbCCQ&t=1589s)을 한 번 보고 읽어보시는 걸 추천드립니다.
- 
-* 그림들 내부는 혹시 모를 다른 나라의 외국인분들을 위해 영어로 작성하기로 했습니다. 저도 중국인 분의 글을 구글 번역을 돌려서 참고 했는데, 그림은 번역이 안돼서 힘들었습니다 😅 이 점 양지 부탁드립니다. 
- 
+
+* 그림들 내부는 혹시 모를 다른 나라의 외국인분들을 위해 영어로 작성하기로 했습니다. 저도 중국인 분의 글을 구글 번역을 돌려서 참고 했는데, 그림은 번역이 안돼서 힘들었습니다 😅 이 점 양지 부탁드립니다.
+
 ## Preview
 
 LeGO-LOAM의 전반적인 파이프라인은 아래와 같고,
@@ -163,7 +163,7 @@ LeGO-LOAM의 전반적인 파이프라인은 아래와 같고,
 ![ROS rqt 노드 그래프](/img/lego_loam_overview.png)
 
 
-향후 각각의 요소에 대해서 설명할 예정입니다 
+향후 각각의 요소에 대해서 설명할 예정입니다
 
 (22.03.07: 현재 작성자의 interest는 `featureAssociation.cpp`까지입니다...헤헿...)
 
@@ -182,13 +182,13 @@ extern const float ang_bottom = 15.0+0.1;
 extern const int groundScanInd = 7;
 ```
 
-이를 잘 이해하려면 LiDAR Odometry를 돌리기 이전에 **센서의 datasheet를 꼭 확인**해야 합니다. 예를 들어 Velodyne Puck같은 경우에는 [스펙](https://www.amtechs.co.jp/product/VLP-16-Puck.pdf)과 [메뉴얼](https://velodynelidar.com/wp-content/uploads/2019/12/63-9243-Rev-E-VLP-16-User-Manual.pdf)을 확인하시면 변수의 의미를 파악할 수 있습니다. 아래는 코드의 변수에 대응되는 부분을 제가 간단히 표현해보았습니다.
+이를 잘 이해하려면 LiDAR Odometry를 돌리기 이전에 **센서의 datasheet를 꼭 확인**해야 합니다. 예를 들어 Velodyne Puck같은 경우에는 [스펙](https://www.amtechs.co.jp/product/VLP-16-Puck.pdf)과 [매뉴얼](https://velodynelidar.com/wp-content/uploads/2019/12/63-9243-Rev-E-VLP-16-User-Manual.pdf)을 확인하시면 변수의 의미를 파악할 수 있습니다. 아래는 코드의 변수에 대응되는 부분을 제가 간단히 표현해보았습니다.
 
 ![Velodyne VLP-16 파라미터 대응도](/img/lego_loam_vel_16.png)
 
 
 
-만약 다른 센서(e.g Ouster OS1-64)로 LOAM 계열 코드를 돌려야하는 경우에는 하드웨어의 특성에 맞게 아래와 같이 파라미터들이 수정되어야 합니다.
+만약 다른 센서(e.g Ouster OS1-64)로 LOAM 계열 코드를 돌려야 하는 경우에는 하드웨어의 특성에 맞게 아래와 같이 파라미터들이 수정되어야 합니다.
 (**중요**:Ouster 같은 경우는 Velodyne 사의 3D LiDAR와 측정 방식이 달라 추가적으로 코드 내부를 더 수정해주어야 할 수도 있습니다. 간략히 예시를 들자면 아래와 같이 하드웨어에 맞게 파라미터들을 잘 수정해주어야 합니다. 자세한 것은 기섭이가 정리해둔 [레포지토리](https://github.com/irapkaist/SC-LeGO-LOAM) 참조)
 
 ```cpp
@@ -215,7 +215,7 @@ LeGO-LOAM의 line-by-line 설명 시리즈입니다.
 4. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1): Ready for Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1)/)
 5. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2): Corner and Planar Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2)/)
 6. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3): Relative Pose Estimation via Two-stage Optimization](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3)/)
- 
+
 ---
 
 참고자료

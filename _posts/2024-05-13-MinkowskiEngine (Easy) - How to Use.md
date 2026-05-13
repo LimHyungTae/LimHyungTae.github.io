@@ -63,20 +63,20 @@ docker build -t minkowski_engine docker
 
 ## MinkowskiEngine Operation에 대한 배경지식
 
-기억해야할 것은, 이 SparseTensor는 Pytorch의 Tensor와는 다르게, `features`와 `coordinates`로 구성되어 있는 점이다.
+기억해야 할 것은, 이 SparseTensor는 Pytorch의 Tensor와는 다르게, `features`와 `coordinates`로 구성되어 있는 점이다.
 왜냐하면 2D image와는 다르게 point cloud는 sparse(군데군데 비어있음)하다보니, 이를 잘 표현하기 위해 데이터를 coordinates를 통해 저장하고,
 그에 대응하는 features(2D image 상에서 channel이라고 이해하면 쉬울듯)로 나누어서 저장하는 것이다.
 
 이는 사실 그래프 이론에서 graph를 표현할 때 compressed sparse row (CSR) 표현방식 비슷하다 (하지만 원작자의 의도가 아닌 저의 뇌피셜).
-CSR 형식은 희소 행렬이나 그래프를 저장하는 효율적인 방법인데, 
-이 형식은 행의 시작 위치와 non-zero 값들, 그리고 해당 값들의 열 인덱스를 별도로 저장한다. 
+CSR 형식은 희소 행렬이나 그래프를 저장하는 효율적인 방법인데,
+이 형식은 행의 시작 위치와 non-zero 값들, 그리고 해당 값들의 열 인덱스를 별도로 저장한다.
 CSR은 메모리를 절약하고, 행 기반의 연산을 빠르게 수행할 수 있게 해줘서 논문에 'fast graph-theoretic approach'라는 표현이 있으면 거진 이 CSR을 내부적으로 활용하고 있다고 생각하면 편하다.
 
 
 
 ## MinkowskiEngine 더 쉬운 예제 코드
 
-공식 홈페이지 예제코드를 수정해서 어떻게 MinkowskiEngine을 사용하는는지 작성해보았다.
+공식 홈페이지 예제코드를 수정해서 어떻게 MinkowskiEngine을 사용하는지 작성해보았다.
 
 
 ```python
@@ -179,11 +179,10 @@ print("Done")
 - `ME.utils.sparse_collate`를 통해 여러 sparse tensor를 하나로 합치면, 자연스레 batch에 대한 관리를 할 수 있다
 - In-place operation을 하려면 위와 같이 `coordinate_manager`와 `coordinate_map_key`를 같이 입력으로 주어야 한다.
   - 이는 내부적으로 두 sparse tensor가 같은 key를 사용하고 있는지 빠르게 판단한 후 각 key에 대응하는 value에 대해 연산을 하려고 하는 것이 아닌가로 유추된다.
- 
+
 
 ## 결론
 
 MinkowskiEngine을 보다 잘 이용하려면 C++의 unordered_map과 같이 key-value로 이뤄져 있는 자료구조를 이해하고 있으면 좋다.
 왜냐하면 위의 코드에서 뜬금 없이 `coordinate_manager=tensor.coordinate_manager`, `coordinate_map_key=tensor.coordinate_map_key`와 같이 값을 받고 있는데,
 현실적으로 이는 key-value로 이뤄진 자료구조를 이해하고 있어야만 이해할 수 있는 부분이다.
-

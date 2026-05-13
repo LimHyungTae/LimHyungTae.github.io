@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kimera-Multi 빌드 시 glog 관련 에러 해결 방법
-subtitle: 
+subtitle:
 tags: [Ubuntu, filesystem, library]
 comments: true
 description: Kimera-Multi 빌드 중 voxblox, dpgo_ros, kimera_distributed에서 발생하는 glog 관련 에러와 CHECK_NOTNULL 컴파일 에러를 해결한 과정을 정리한다.
@@ -35,7 +35,7 @@ git clone https://github.com/TimSchneider42/glog_catkin.git
 
 ---
 
-### 2. Glog error in `dpgo_ros` 해결하기 
+### 2. Glog error in `dpgo_ros` 해결하기
 
 그 후, `dpgo_ros`를 빌드하려고 하니 다음과 같은 에러가 발생했다:
 
@@ -48,7 +48,7 @@ make: *** [Makefile:146: all] Error 2
 ```
 
 이는 `dpgo_ros`에서 `glog::glog`를 찾지 못해서 발생하는 문제인데, 다른 레포지토리에서는 `catkin_simple`을 사용해서 현재 workspace 내의 `glog_catkin`를 link한 반면,
-이 레포지토리에서는 또 local 컴퓨터에 설치하고자 하는 glog를 사용하고 있는 것 같다 (그리고 안타깝게도 local에 glog가 깔려있으면 현재 MIT-SPARK 시스템은 어느 glog를 가르켜야하는지에 대한 에러가 발생한다...진퇴양난임).
+이 레포지토리에서는 또 local 컴퓨터에 설치하고자 하는 glog를 사용하고 있는 것 같다 (그리고 안타깝게도 local에 glog가 깔려있으면 현재 MIT-SPARK 시스템은 어느 glog를 가리켜야 하는지에 대한 에러가 발생한다...진퇴양난임).
 
 그런데 그냥 `CMakeLists.txt`에 아래와 같이 한 줄 추가해줬더니 해결됐다:
 
@@ -95,11 +95,11 @@ In file included from /home/shapelim/kimera_multi_ws/src/kimera_distributed/src/
 
 `CHECK_NOTNULL` 에러는 왜 내 컴퓨터에서만 뜨는지는 모르겠으나, pointer 뒤에 `get()`을 추가해서 받으면 해결된다.
 
---- 
+---
 
 ## Case 1. glog를 지우고 다시 설치했을 때 (성공)
 
-처음에는 glog가 여러 개 설치되어 있어서 발생한 문제라고 생각했는데, [이전 글](https://limhyungtae.github.io/2024-08-17-Kimera-Multi-%EB%B9%8C%EB%93%9C-%EC%8B%9C-something-wrong-with-flag-'logtostderr'-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95/)과 같이 아래와 같이 `glog`를 완전히 지우고 
+처음에는 glog가 여러 개 설치되어 있어서 발생한 문제라고 생각했는데, [이전 글](https://limhyungtae.github.io/2024-08-17-Kimera-Multi-%EB%B9%8C%EB%93%9C-%EC%8B%9C-something-wrong-with-flag-'logtostderr'-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95/)과 같이 아래와 같이 `glog`를 완전히 지우고
 
 ```angular2html
 sudo apt-get install libgoogle-glog-dev
@@ -113,7 +113,7 @@ sudo apt-get install libgoogle-glog-dev
 주로 `CHECK_NOTNULL` 관련 에러가 발생하는데:
 
 ```angular2html
-rrors     << kimera_vio:make /home/shapelim/kimera_multi_ws/logs/kimera_vio/build.make.001.log                                                               
+rrors     << kimera_vio:make /home/shapelim/kimera_multi_ws/logs/kimera_vio/build.make.001.log
 In file included from /home/shapelim/kimera_multi_ws/src/kimera_vio/include/kimera-vio/backend/RegularVioBackendParams.h:27,
                  from /home/shapelim/kimera_multi_ws/src/kimera_vio/include/kimera-vio/pipeline/Pipeline-definitions.h:19,
                  from /home/shapelim/kimera_multi_ws/src/kimera_vio/include/kimera-vio/visualizer/OpenCvDisplay.h:19,
@@ -146,7 +146,7 @@ make: *** [Makefile:146: all] Error 2
 이를 통해 `voxblox_ros`와 `kimera_vio`는 해결했는데, `kimera_distributed`에서는 여전히 `CHECK_NOTNULL` 관련 에러가 아래와 같이 발생한다:
 
 ```
-Errors     << kimera_distributed:make /home/shapelim/kimera_multi_ws/logs/kimera_distributed/build.make.006.log                                               
+Errors     << kimera_distributed:make /home/shapelim/kimera_multi_ws/logs/kimera_distributed/build.make.006.log
 In file included from /home/shapelim/kimera_multi_ws/src/kimera_distributed/src/SubmapAtlas.cpp:6:
 /home/shapelim/kimera_multi_ws/src/kimera_distributed/src/SubmapAtlas.cpp: In member function ‘std::shared_ptr<kimera_distributed::Keyframe> kimera_distributed::SubmapAtlas::getLatestKeyframe()’:
 /home/shapelim/kimera_multi_ws/devel/.private/glog_catkin/include/glog/logging.h:776:23: error: could not convert ‘google::CheckNotNull<kimera_distributed::Keyframe>(((const char*)"/home/shapelim/kimera_multi_ws/src/kimera_distributed/src/SubmapAtlas.cpp"), 88, ((const char*)"\'getKeyframe(keyframe_id).get()\' Must be non NULL"), kimera_distributed::SubmapAtlas::getKeyframe(int)(keyframe_id).std::shared_ptr<kimera_distributed::Keyframe>::<anonymous>.std::__shared_ptr<kimera_distributed::Keyframe, __gnu_cxx::_S_atomic>::get())’ from ‘kimera_distributed::Keyframe*’ to ‘std::shared_ptr<kimera_distributed::Keyframe>’

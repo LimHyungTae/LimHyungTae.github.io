@@ -27,17 +27,17 @@ redirect_from:
 
 본격적으로 들어가기 전에, 이번 글에서 사용할 notation을 정리한다 (`.h` 파일 상단의 주석 표기와 동일하게 맞췄고, [2편](https://limhyungtae.github.io/2026/05/07/ceres-graph-slam-02-pose-error/)의 약속과도 일관된다). 글 중간에 다시 돌아오지 않아도 되도록 *self-contained* 하게 적어둔다.
 
-* **Subscript $$_a$$, $$_b$$**: 어느 frame/pose의 양인지 가리키는 index.  
+* **Subscript $$_a$$, $$_b$$**: 어느 frame/pose의 양인지 가리키는 index.
   예: $$\mathbf{p}_a, \mathbf{q}_a$$는 "pose A의 position과 orientation". $$\mathbf{p}_b, \mathbf{q}_b$$는 마찬가지로 pose B의 것. $$\mathbf{q}$$는 모두 Hamilton quaternion이다.
-* **Subscript $$_{ab}$$**: "A에서 B로의 *상대* 변환".  
+* **Subscript $$_{ab}$$**: "A에서 B로의 *상대* 변환".
   예: $$\mathbf{p}_{ab}$$는 *A frame 좌표계에서 표현된 B의 위치*, $$\mathbf{q}_{ab}$$는 *A에서 B로 가는 회전*.
-* **Tilde $$\tilde{\cdot}$$**: 현재 추정 pose로부터 *계산한 (estimated)* 값.  
+* **Tilde $$\tilde{\cdot}$$**: 현재 추정 pose로부터 *계산한 (estimated)* 값.
   예: $$\tilde{\mathbf{q}}_{ab}$$는 "현재 추정값 $$\mathbf{q}_a, \mathbf{q}_b$$로부터 *계산한* 상대 회전", 즉 $$\tilde{\mathbf{q}}_{ab} = \mathbf{q}_a^{*} \otimes \mathbf{q}_b$$.
-* **Hat $$\hat{\cdot}$$**: sensor가 *측정한 (measured)* 값.  
+* **Hat $$\hat{\cdot}$$**: sensor가 *측정한 (measured)* 값.
   예: $$\hat{\mathbf{q}}_{ab}$$는 "A frame에서 B의 상대 회전을 *sensor가 측정해준* 값". ~~hat~~을 단 변수는 모두 measurement로 약속한다.
-* **Conjugate $$\mathbf{q}^{*}$$**: quaternion의 conjugate.  
+* **Conjugate $$\mathbf{q}^{*}$$**: quaternion의 conjugate.
   Quaternion $$\mathbf{q} = (\mathbf{v}, w)$$ (vector part $$\mathbf{v} \in \mathbb{R}^3$$, scalar part $$w \in \mathbb{R}$$)에 대해 $$\mathbf{q}^{*} = (-\mathbf{v}, w)$$. *Unit quaternion에서는 conjugate가 곧 inverse*이다, 즉 $$\mathbf{q}^{*} \otimes \mathbf{q} = (\mathbf{0}, 1)$$이 identity quaternion이 되며, *반대 방향의 회전*을 의미한다.
-* **Quaternion product $$\otimes$$**: 두 quaternion의 곱.  
+* **Quaternion product $$\otimes$$**: 두 quaternion의 곱.
   단순한 element-wise 곱이 아니라 *회전의 합성 (composition)* 에 대응한다. 즉 $$\mathbf{q}_a \otimes \mathbf{q}_b$$를 회전 행렬로 옮기면 $$\mathbf{R}(\mathbf{q}_a) \mathbf{R}(\mathbf{q}_b)$$가 된다.
 * **Coefficient ordering**: `[x, y, z, w]` (Eigen / Hamilton convention; `w`가 scalar part). 코드의 `q.coeffs()`가 정확히 이 order의 4-element array를 돌려준다.
 
@@ -135,7 +135,7 @@ $$
 \end{bmatrix}
 $$
 
-(Eigen convention: vector part가 위 3개, scalar part `w`가 마지막.) 
+(Eigen convention: vector part가 위 3개, scalar part `w`가 마지막.)
 
 여기서 $$\theta$$가 작을 때 ($$\theta \approx 0$$) Taylor 전개를 하면:
 
@@ -354,7 +354,7 @@ $$
 
 AutoDiff가 만능은 아니다. 다음과 같은 경우에는 AutoDiff 대신 analytic Jacobian을 직접 짜는 게 나을 수도 있다.
 
-* **성능 cricitcal**: AutoDiff는 (대략) Jacobian이 추가될 때마다 계산량이 N배 늘어나므로, parameter block이 굉장히 클 때는 직접 짜는 게 더 빠를 수 있다.
+* **성능 critical**: AutoDiff는 (대략) Jacobian이 추가될 때마다 계산량이 N배 늘어나므로, parameter block이 굉장히 클 때는 직접 짜는 게 더 빠를 수 있다.
 * **수치적 안정성**: 어떤 함수는 직접 derivative를 적으면 나눗셈/특이점을 우회할 수 있는데, AutoDiff가 그걸 못 따라가면 NaN이 나올 수 있다.
 * **외부 함수 호출**: template으로 instantiate할 수 없는 외부 library 함수를 부르면 AutoDiff가 통하지 않는다.
 

@@ -19,8 +19,8 @@ redirect_from:
 Configuration file(s) do(es) not support Json: /home/shapelim/git/kiss-matcher/.clang-format Configuration file(s) do(es) not support Json:
 ```
 
-내 workspace에 `compile_commands.json` 파일이 존재한다. 
-이 파일을 검사해야 하는데(사실 검사 안해도 됨...자동 완성을 위한 파일이기 때문에) clang-format에는 json 파일에 대해서 어떻게 뭘 검토해야하는지 명시되어 있지 않아서 에러가 난 듯 하다.
+내 workspace에 `compile_commands.json` 파일이 존재한다.
+이 파일을 검사해야 하는데(사실 검사 안 해도 됨...자동 완성을 위한 파일이기 때문에) clang-format에는 json 파일에 대해서 어떻게 뭘 검토해야 하는지 명시되어 있지 않아서 에러가 난 듯하다.
 
 ## 해결 방법
 
@@ -90,5 +90,4 @@ repos:
           ]
         exclude: 'cpp/kiss_matcher/3rdparty|cpp/kiss_matcher/core/kiss_matcher/kdtree|cpp/kiss_matcher/core/kiss_matcher/tsl|cpp/kiss_matcher/core/kiss_matcher/points'
 ```
-
 

@@ -98,7 +98,7 @@ for (size_t i = 0; i < N_SCAN; ++i)
            labelComponents(i, j);
 ```
 
-위의 결과로, `labelMat`의 전체 값은 
+위의 결과로, `labelMat`의 전체 값은
 * -1 (range measurement가 없음)
 * 999999 (segment의 point 수가 적음. sub-cluster로 간주하여 유효하지 않다고 판단)
 * 0보다 큰 1 이상의 어떤 값으로 할당되게 된다.
@@ -108,7 +108,7 @@ for (size_t i = 0; i < N_SCAN; ++i)
 
 #### labelComponents(i, j)
 
-Segmentation의 핵심은 이 `labelComponents(i, j)` 함수이다. 이 함수를 통해서 `labelMat.at<int>(i,j)`이 0으로 할당되어 있는 pixels들을 Breadth-First Search (BFS) 기반으로 clustering을 하는데, 이 방법은 아래 IROS 2016 논문의 object clustering method를 활용했다. 
+Segmentation의 핵심은 이 `labelComponents(i, j)` 함수이다. 이 함수를 통해서 `labelMat.at<int>(i,j)`이 0으로 할당되어 있는 pixels들을 Breadth-First Search (BFS) 기반으로 clustering을 하는데, 이 방법은 아래 IROS 2016 논문의 object clustering method를 활용했다.
 
 ![BFS 기반 cloud segmentation](/img/lego_loam_segmentation.png)
 
@@ -155,7 +155,7 @@ queueIndY = new uint16_t[N_SCAN*Horizon_SCAN];
 void labelComponents(int row, int col){
     // use std::queue std::vector std::deque will slow the program down greatly
     float d1, d2, alpha, angle;
-    int fromIndX, fromIndY, thisIndX, thisIndY; 
+    int fromIndX, fromIndY, thisIndX, thisIndY;
     bool lineCountFlag[N_SCAN] = {false};
 
     queueIndX[0] = row;
@@ -183,7 +183,7 @@ void labelComponents(int row, int col){
             thisIndY = fromIndY + (*iter).second;
             // index should be within the boundary
             // 해석: thisIndX와 thisIndY가 range image 범위 안에 있어야 함
-            // i.e. row: 0 ~ N_SCAN - 1, column: 0 ~ Horizon_SCAN - 1 
+            // i.e. row: 0 ~ N_SCAN - 1, column: 0 ~ Horizon_SCAN - 1
             if (thisIndX < 0 || thisIndX >= N_SCAN)
                 continue;
             // at range image margin (left or right side)
@@ -194,29 +194,29 @@ void labelComponents(int row, int col){
             // prevent infinite loop (caused by put already examined point back)
             // 해석: 이미 살펴본 곳이면 제외한다. 이미 살펴본 곳에는 `labelCount`가 할당되는데,
             // 이 `labelCount`는 전체 point cloud에 대한 유효한 segment 수를 센다.
-            // 따라서, 오직 0만 아직 확인해보지 않은 pixel을 나타내며, 
+            // 따라서, 오직 0만 아직 확인해보지 않은 pixel을 나타내며,
             // -1: ground로 처리되었거나 point가 projection되지 않은 pixel (in Step 4. `groundRemoval()`)
             // 1 ~: 현재 유효한 segment로 이미 처리된 pixel
             if (labelMat.at<int>(thisIndX, thisIndY) != 0)
                 continue;
-            
+
             // 해석: 위의 수식에서 긴쪽이 d1, 짧은 쪽이 d2가 되어야 함. 위의 그림 참조
-            d1 = std::max(rangeMat.at<float>(fromIndX, fromIndY), 
+            d1 = std::max(rangeMat.at<float>(fromIndX, fromIndY),
                           rangeMat.at<float>(thisIndX, thisIndY));
-            d2 = std::min(rangeMat.at<float>(fromIndX, fromIndY), 
+            d2 = std::min(rangeMat.at<float>(fromIndX, fromIndY),
                           rangeMat.at<float>(thisIndX, thisIndY));
             // 해석: 이미 range image의 한 픽셀 사이의 간격이 정해져 있기 때문에,
             // extern const float segmentAlphaX = ang_res_x / 180.0 * M_PI; (X축, 즉 horizontal한 방향)
             // extern const float segmentAlphaY = ang_res_y / 180.0 * M_PI; (Y축, 즉 vertical한 방향)로 미리 정의된 segmentAlpha 사용
             // 근데 변수명이 아주 헷갈리게 되어 있음...`segmentAlphaX`와 `segmentAlphaY`는 generic한 image 평면 상의 XY 좌표계를 따름(i.e. X: left->right, Y: upper->below)
-            // 반면, thisIndX와 thisIndY의 XY는 X: below->upper, Y: left->right  
+            // 반면, thisIndX와 thisIndY의 XY는 X: below->upper, Y: left->right
             if ((*iter).first == 0)
                 alpha = segmentAlphaX;
             else
                 alpha = segmentAlphaY;
             // 해석: angle은 위의 그림의 beta를 나타낸다
             angle = atan2(d2*sin(alpha), (d1 -d2*cos(alpha)));
-            
+
             // 해석: angle (beta)가 segmentTheta보다 충분히 크면, 이 것은 이어져있는 cluster라고 판별할 수 있으며,
             // 현재 index를 `queueInd`와 `allPushedInd`에 넣어둔다.
             if (angle > segmentTheta){
@@ -251,7 +251,7 @@ void labelComponents(int row, int col){
                 ++lineCount;
         // 해석: 그 중 vertical한 방향으로 valide points들이 segmentValidLineNum (default: 3)보다 많을 때
         if (lineCount >= segmentValidLineNum)
-            feasibleSegment = true;            
+            feasibleSegment = true;
     }
     // segment is valid, mark these points
     if (feasibleSegment == true){
@@ -272,9 +272,9 @@ void labelComponents(int row, int col){
 
 
 그 후, `featureAssociation.cpp`의 입력값인 `outlierCloud`, `segmentedCloud`, `segMsg`를 세팅한다. 각각의 의미는 아래와 같다
-* `outlierCloud`: sub-cluster로 간주된 (`labelMat`의 값이 999999) points들을 5개 간격으로 하여 하나씩 넣음. 주의해야할 것은 `groundScanInd` 이상의 channel에서만 outlier를 추출함.
+* `outlierCloud`: sub-cluster로 간주된 (`labelMat`의 값이 999999) points들을 5개 간격으로 하여 하나씩 넣음. 주의해야 할 것은 `groundScanInd` 이상의 channel에서만 outlier를 추출함.
 * `segmentedCloud`: 여기서의 `segmented`의 의미는 i) ground 중 5칸 당 1개씩,  ii) clustering이 유효한 non-ground points를 의미한다.
-* `segMsg`: 각각에 해당하는 추가적인 정보들이 저장된다. 여기서 주의해야할 것은 `segMsg`의 데이터 순서는 (0, 0)->(0, 1)->...->(0, 1799)->(1, 0)->...->(15, 1799)순으로 `segmentedCloud`에 해당하는 point가 저장된다.
+* `segMsg`: 각각에 해당하는 추가적인 정보들이 저장된다. 여기서 주의해야 할 것은 `segMsg`의 데이터 순서는 (0, 0)->(0, 1)->...->(0, 1799)->(1, 0)->...->(15, 1799)순으로 `segmentedCloud`에 해당하는 point가 저장된다.
 
 아래의 값 `5`가 의미하는 것이 명확하지는 않으나 아마 margin을 뜻하는 게 아닌가 싶다. Horizontal 방향으로 5개 마다 1개씩 sampling을 함으로써 points의 숫자를 줄여준다.
 
@@ -323,7 +323,7 @@ for (size_t i = 0; i < N_SCAN; ++i) {
 
 그 후, `segMsg`와 visualization을 위해 ground, non-ground points가 publish되고 내부 변수들은 다음 frame의 point cloud를 다시 preprocessing하기 위해 파라미터들이 reset된됩니다. 자명하므로 생략.
 
- 
+
 ---
 
 LeGO-LOAM의 line-by-line 설명 시리즈입니다.
@@ -335,4 +335,4 @@ LeGO-LOAM의 line-by-line 설명 시리즈입니다.
 4. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1): Ready for Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(1)/)
 5. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2): Corner and Planar Feature Extraction](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(2)/)
 6. [LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3): Relative Pose Estimation via Two-stage Optimization](https://limhyungtae.github.io/2022-03-27-LeGO-LOAM-Line-by-Line-3.-FeatureAssociation-(3)/)
- 
+
