@@ -1,10 +1,10 @@
 ---
 layout: post
 title: GitHub README에 타이핑 애니메이션 넣기
-subtitle: readme-typing-svg와 vhs로 hello world를 타닥타닥 치게 만들기
+subtitle: readme-typing-svg와 vhs로 README 첫 화면을 타닥타닥 살리기
 tags: [GitHub, README, SVG, Productivity, Open Source]
 comments: true
-description: GitHub README는 JavaScript를 못 돌리는데도 어떻게 "hello world"가 타닥타닥 쳐지는 타이핑 애니메이션을 넣을 수 있는지, readme-typing-svg와 vhs를 중심으로 정리하고 실제 사용 예시까지 보인다.
+description: GitHub README는 JavaScript를 못 돌리는데도 어떻게 타이핑 애니메이션을 넣을 수 있는지, readme-typing-svg와 vhs를 중심으로 정리하고 KISS-Matcher와 TRAVEL에 적용한 예시까지 보인다.
 permalink: /2026/05/19/github-readme-typing-animation/
 redirect_from:
   - '/2026-05-19-GitHub README에 타이핑 애니메이션 넣기/'
@@ -20,7 +20,7 @@ redirect_from:
 
 이게 의외로 강력하다.
 방문자가 README 상단을 열었을 때 시선이 먼저 닿는 곳은 움직이는 영역이기 때문이다.
-"이 레포는 pip로 깔린다", "이 레포는 한 줄 명령으로 실행된다" 같은 메시지를 가장 빠르게 박아 넣는 트릭인 셈이다.
+"이 레포는 pip로 깔린다", "이 레포는 한 줄 명령으로 실행된다", "이 프로젝트는 어떤 정체성을 가진다" 같은 메시지를 가장 빠르게 박아 넣는 트릭인 셈이다.
 
 문제는 GitHub README에서는 JavaScript를 못 돌린다는 점이다.
 `<script>` 태그는 sanitize 되어서 사라진다.
@@ -45,15 +45,15 @@ redirect_from:
 
 ### 가장 짧은 예시
 
-![Typing SVG](https://readme-typing-svg.demolab.com?lines=hello+pioneer+statement)
+![Typing SVG](https://readme-typing-svg.demolab.com?lines=Hyungtae%27s+blog)
 
 위 결과를 만드는 한 줄은 이게 전부다.
 
 ```markdown
-![Typing SVG](https://readme-typing-svg.demolab.com?lines=hello+pioneer+statement)
+![Typing SVG](https://readme-typing-svg.demolab.com?lines=Hyungtae%27s+blog)
 ```
 
-이거 한 줄만 넣어도 `hello pioneer statement`가 한 글자씩 타이핑되는 SVG가 README에 박힌다.
+이거 한 줄만 넣어도 `Hyungtae's blog`가 한 글자씩 타이핑되는 SVG가 README에 박힌다.
 GitHub은 이걸 그냥 일반 이미지처럼 취급하기 때문에 별도 설정이 필요 없다.
 
 ### 가운데 정렬해서 좀 더 예쁘게
@@ -62,7 +62,7 @@ GitHub은 이걸 그냥 일반 이미지처럼 취급하기 때문에 별도 설
 
 <p align="center">
   <a href="https://github.com/DenverCoder1/readme-typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=800&color=22C55E&center=true&vCenter=true&width=600&lines=hello+pioneer+statement" alt="Typing SVG"/>
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=800&color=22C55E&center=true&vCenter=true&width=600&lines=Hyungtae%27s+blog" alt="Typing SVG"/>
   </a>
 </p>
 
@@ -71,13 +71,13 @@ GitHub은 이걸 그냥 일반 이미지처럼 취급하기 때문에 별도 설
 ```markdown
 <p align="center">
   <a href="https://github.com/DenverCoder1/readme-typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=800&color=22C55E&center=true&vCenter=true&width=600&lines=hello+pioneer+statement" alt="Typing SVG"/>
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=800&color=22C55E&center=true&vCenter=true&width=600&lines=Hyungtae%27s+blog" alt="Typing SVG"/>
   </a>
 </p>
 ```
 
-이게 내가 실제로 쓰는 형태이다.
-앵커로 한 번 감싸는 이유는 방문자가 SVG를 클릭했을 때 어떤 서비스를 쓴 건지 보여주기 위함이다.
+README의 제목 바로 아래에 두기 좋은 형태이다.
+앵커로 한 번 감싸는 이유는 방문자가 SVG를 클릭했을 때 어떤 서비스를 쓴 건지 바로 확인할 수 있게 하기 위함이다.
 
 ### URL 파라미터 정리
 
@@ -313,12 +313,12 @@ Set Width 900
 Set Height 300
 Set Theme "Dracula"
 
-Type "pip install pioneer-statements"
+Type "echo \"Hyungtae's blog\""
 Sleep 500ms
 Enter
 Sleep 2s
 
-Type "python -c 'import pioneer_statements; pioneer_statements.hello()'"
+Type "python -c \"print('README animation works')\""
 Sleep 500ms
 Enter
 Sleep 2s
@@ -373,8 +373,38 @@ README 상단이 무거워지면 모바일에서 첫 화면 로딩이 느려질 
 
 ## 실제로 적용해 본 예시
 
-내가 다른 dummy 레포 README 상단에 박아 둔 한 줄은 위 (1) 기본형의 변주(`color=22C55E`로 네온 그린만 입힌 정도)이다.
-딱 한 줄 추가했을 뿐인데 GitHub에서 페이지를 열 때마다 `hello pioneer statement`가 초록색으로 한 글자씩 타이핑돼서 페이지 인상이 꽤 달라진다.
+이 글의 예시 문구는 블로그용으로 `Hyungtae's blog`를 썼지만, 실제 research repo에서는 프로젝트 이름과 핵심 메시지를 바로 보여주는 게 더 낫다.
+내가 실제로 적용해 본 예시는 아래 두 레포이다.
+
+- [KISS-Matcher](https://github.com/MIT-SPARK/KISS-Matcher): fast and robust point cloud registration library.
+- [TRAVEL](https://github.com/url-kaist/TRAVEL): traversable ground and above-ground object segmentation for 3D LiDAR scans.
+
+README 상단에 이런 식으로 넣어두면 방문자가 레포를 열자마자 프로젝트 이름, 핵심 기능, GitHub 주소를 순서대로 보게 된다.
+대놓고 광고 문구를 쓰지 않아도, 움직이는 첫 줄이 자연스럽게 프로젝트를 한 번 더 각인시키는 셈이다.
+
+KISS-Matcher에는 이런 식으로 적용했다.
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=900&color=22C55E&center=true&vCenter=true&width=760&lines=KISS-Matcher;Fast+and+Robust+Point+Cloud+Registration;github.com%2FMIT-SPARK%2FKISS-Matcher" alt="KISS-Matcher Typing SVG"/>
+</p>
+
+```markdown
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=900&color=22C55E&center=true&vCenter=true&width=760&lines=KISS-Matcher;Fast+and+Robust+Point+Cloud+Registration;github.com%2FMIT-SPARK%2FKISS-Matcher" alt="KISS-Matcher Typing SVG"/>
+</p>
+```
+
+TRAVEL은 논문 제목이 길기 때문에, README 상단에서는 조금 줄여서 적용했다.
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=900&color=2563EB&center=true&vCenter=true&width=760&lines=TRAVEL;Traversable+Ground+%26+Object+Segmentation;github.com%2Furl-kaist%2FTRAVEL" alt="TRAVEL Typing SVG"/>
+</p>
+
+```markdown
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2500&pause=900&color=2563EB&center=true&vCenter=true&width=760&lines=TRAVEL;Traversable+Ground+%26+Object+Segmentation;github.com%2Furl-kaist%2FTRAVEL" alt="TRAVEL Typing SVG"/>
+</p>
+```
 
 처음 시도하는 거라면 README 상단에 그냥 자기 레포 이름이나 자기 소개 문구 한 줄을 넣어보는 걸 추천한다.
 그래야 나중에 `pip install your-lib` 같은 실제 메시지로 바꿔 끼울 때도 부담이 적다.
