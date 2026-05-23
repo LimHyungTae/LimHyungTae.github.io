@@ -11,8 +11,9 @@ redirect_from:
 
 ## 들어가며
 
-요즘 [Patchwork++](https://github.com/url-kaist/patchwork-plusplus) 코드를 읽고 있다.
-이번에는 plane fitting에서 쓰는 `Eigen::JacobiSVD`가 눈에 들어왔다.
+요즘 [Patchwork++](https://github.com/url-kaist/patchwork-plusplus) 코드를 리팩토링하고 있고,
+최근에는 `pip install pypatchworkpp`가 되게끔 코드도 업데이트했다.
+그러던 와중 Claude/Codex가 없던 시절에 짰던 plane fitting 코드의 `Eigen::JacobiSVD`가 눈에 들어왔다.
 
 Patchwork++의 `estimate_plane()`에는 대략 이런 코드가 있다.
 
@@ -72,6 +73,7 @@ patch point cloud
 cov: 3 x 3 symmetric PSD matrix
 ```
 
+covariance matrix는 patch point들이 중심점, 즉 mean point를 기준으로 각 방향으로 얼마나 퍼져 있는지를 나타낸다.
 PSD는 positive semi-definite라는 뜻이다.
 즉 모든 eigenvalue가 0 이상인 symmetric matrix이다.
 covariance matrix는 수치 오차를 제외하면 이 조건을 만족한다.
