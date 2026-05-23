@@ -221,51 +221,14 @@ Eigen 문서 기준으로 `computeDirect()`는 compile-time size를 아는 2x2, 
 일반 iterative QR algorithm보다 보통 훨씬 빠르지만, 경우에 따라 정확도는 조금 떨어질 수 있다고 설명되어 있다.
 3x3 float에서는 eigenvalue worst-case relative error가 더 커질 수 있다는 caveat도 있다.
 
-그래도 Patchwork++의 plane fitting에서는 보통 이 trade-off가 받아들일 만하다.
-eigenvalue가 거의 같은 degenerate patch라면 어차피 normal 자체가 안정적이지 않다.
-반대로 잘 정의된 plane patch에서는 가장 작은 eigenvector가 normal이라는 구조가 명확하다.
 
 ---
 
 ## Migration Convention: Scale, Order, Normal Sign
 
-solver를 바꾸는 것보다 더 위험한 부분은 output convention을 실수로 바꾸는 것이다.
-Patchwork++의 downstream 코드는 `singular_values_`의 scale과 order, 그리고 normal 방향을 암묵적으로 기대하고 있다.
-
-### Output Scale: Singular Value와 Eigenvalue
-
-여기서 가장 헷갈리기 쉬운 부분이 singular value와 eigenvalue의 관계이다.
-특히 "covariance의 eigenvalue는 singular value의 제곱이다"라는 말을 그대로 가져오면 Patchwork++ 코드에서는 오해가 생길 수 있다.
-정확히는 **어떤 matrix에 SVD를 거는지**에 따라 관계가 달라진다.
-
-#### 1. 원본 centered data matrix `X`에 SVD를 걸면
-
-$$
-X = U \Sigma V^T
-$$
-
-covariance는 다음이다.
-
-$$
-C = \frac{X^T X}{N - 1}
-$$
-
-이 경우 covariance eigenvalue는 원본 data matrix `X`의 singular value 제곱에 비례한다.
-
-$$
-\lambda_i(C) = \frac{\sigma_i(X)^2}{N - 1}
-$$
-
-#### 2. 하지만 Patchwork++는 covariance `C`에 SVD를 건다
-
-Patchwork++의 입력은 이미 `C`이다.
-
-```cpp
-Eigen::JacobiSVD<Eigen::Matrix3f> svd(cov, Eigen::ComputeFullU);
-```
-
-그리고 `C`는 symmetric PSD이다.
-이 경우 SVD singular value는 eigenvalue와 같다.
+solver를 바꿀 때 가장 조심할 부분은 output convention이다.
+Patchwork++ 현재 코드는 원본 centered point matrix `X`가 아니라 covariance matrix `C`에 SVD를 건다.
+이 전제에서는 covariance의 singular value와 eigenvalue가 같은 scale이다.
 
 $$
 \sigma_i(C) = \lambda_i(C)
@@ -284,9 +247,9 @@ SelfAdjointEigenSolver eigenvalues(): 작은 값 -> 큰 값
 
 이 order 차이가 실제 코드 변경에서 가장 중요하다.
 
-### Normal Direction and Value Order
+### Caution About Convention
 
-기존 SVD 코드는 이렇게 읽힌다.
+Implementation-wise로는 아래 기존 SVD 코드를:
 
 ```cpp
 Eigen::JacobiSVD<Eigen::Matrix3f> svd(cov, Eigen::ComputeFullU);
@@ -296,7 +259,7 @@ Eigen::Vector3f principal       = svd.matrixU().col(0);  // largest direction
 Eigen::Vector3f normal          = svd.matrixU().col(2);  // smallest direction
 ```
 
-`SelfAdjointEigenSolver`로 바꾸면 order가 반대이다.
+`SelfAdjointEigenSolver`로 바꾸면 order가 반대이므로 주의해야 한다.
 
 ```cpp
 Eigen::SelfAdjointEigenSolver<Eigen::Matrix3f> eig;
@@ -322,7 +285,7 @@ out.normal_    = eig.eigenvectors().col(0);
 ```
 
 `cwiseMax(0.0f)`는 작은 수치 오차로 인해 `-1e-8` 같은 eigenvalue가 나오는 경우를 방어하는 용도이다.
-covariance는 이론적으로 PSD이므로 음수 eigenvalue는 의미가 없다.
+covariance는 이론적으로 PSD이므로 음수 eigenvalue이면 안 된다.
 
 normal sign 처리는 기존처럼 유지해야 한다.
 
@@ -335,6 +298,7 @@ if (out.normal_(2) < 0.0f) {
 SVD든 eigendecomposition이든 eigenvector/singular vector의 sign은 원래 ambiguous하다.
 즉 `n`과 `-n`은 같은 plane normal이다.
 Patchwork++처럼 z 방향이 양수가 되게 맞추는 post-processing은 계속 필요하다.
+
 
 ---
 
@@ -412,57 +376,20 @@ per-plane decomposition: 꽤 빨라질 수 있음
 전체 Patchwork++ runtime: modest improvement일 가능성이 큼
 ```
 
-즉 이 변경은 "맞는 solver를 쓰는 코드 품질 개선 + hot path의 작은 성능 개선"으로 보는 게 좋다.
-큰 구조 최적화와는 별개의 층위이다.
+실제로 현재 버전에서 `JacobiSVD`를 eigen decomposition 쪽으로 바꾸는 `eigh only` 변경만 적용해 보면,
+속도는 아래 정도로 나왔다.
+여기서 `eigh only`는 per-call allocation 구조는 그대로 두고,
+plane fitting의 decomposition만 바꾼 단계라고 보면 된다.
 
-### Migration Checklist
+| Stage | patchwork++ | Δ vs baseline | patchwork | Δ vs baseline |
+| --- | ---: | ---: | ---: | ---: |
+| With `JacobiSVD`  | 10.26 ms / 97.5 Hz | - | 4.26 ms / 234.7 Hz | - |
+| With `SelfAdjointEigenSolver` | 9.94 ms / 100.6 Hz | +3.2% Hz | 4.30 ms / 232.8 Hz | noise |
 
-바로 SVD를 eigen solver로 바꾸기 전에 다음을 확인하겠다.
-
-1. `singular_values_`가 어디에서 쓰이는지 grep한다.
-2. `singular_values_(0)`이 largest라는 convention을 유지한다.
-3. `normal_` sign convention을 유지한다.
-4. SVD version과 eigen version의 normal 방향이 sign을 제외하고 거의 같은지 test한다.
-5. `linearity_`, `planarity_`, `ground_flatness`, `line_variable` 값이 기존과 같은 scale인지 확인한다.
-
-특히 이 부분이 중요하다.
-
-```cpp
-const double ground_flatness = singular_values_.minCoeff();
-const double line_variable =
-    singular_values_(1) != 0
-        ? singular_values_(0) / singular_values_(1)
-        : std::numeric_limits<double>::max();
-```
-
-여기서 `singular_values_`의 scale이나 order가 바뀌면 behavior가 바뀐다.
-하지만 covariance matrix에 대한 SVD를 self-adjoint eigen decomposition으로 바꾸는 경우,
-scale은 그대로 두고 order만 descending으로 맞추면 된다.
-sqrt를 넣으면 오히려 기존 threshold 의미가 바뀐다.
-
-이 부분은 특히 헷갈리기 쉽다.
-문제는 $$\sigma$$라는 기호가 어떤 matrix의 singular value를 뜻하는지에 따라 말이 달라진다는 점이다.
-
-```text
-Case A: centered point matrix X를 SVD
-  X = U Σ V^T
-  C = X^T X / (N - 1)
-  eigenvalue(C) = singular_value(X)^2 / (N - 1)
-
-Case B: covariance matrix C를 SVD
-  C = U Σ V^T
-  C가 symmetric PSD이면
-  singular_value(C) = eigenvalue(C)
-```
-
-Patchwork++ 현재 코드는 Case B이다.
-즉 `JacobiSVD(cov).singularValues()`를 쓰고 있다.
-따라서 `SelfAdjointEigenSolver(cov).eigenvalues()`로 바꿀 때는 sqrt를 추가하지 않는 것이 기존 scale을 보존하는 길이다.
-
-만약 코드를 완전히 바꿔서 `centered` matrix 자체에 SVD를 걸기로 한다면 이야기가 달라진다.
-그 경우에는 normal이 `U`가 아니라 right singular vector 쪽, 즉 `V`에서 나오고,
-singular value scale도 covariance eigenvalue와 달라진다.
-하지만 그건 지금 Patchwork++ 코드의 작은 solver 교체가 아니라 plane fitting 구현 자체를 다른 convention으로 바꾸는 일에 가깝다.
+이 결과만 보면 patchwork++에서는 실제로 약간 빨라졌다.
+다만 patchwork 쪽에서는 오히려 아주 조금 느려진 것처럼 보이는데,
+이 정도 차이는 benchmark noise로 보는 게 맞다.
+즉 eigensolver 변경은 "분명히 맞는 방향이지만, 전체 runtime을 크게 뒤집는 최적화는 아니다" 정도로 해석하는 것이 안전하다.
 
 ---
 
