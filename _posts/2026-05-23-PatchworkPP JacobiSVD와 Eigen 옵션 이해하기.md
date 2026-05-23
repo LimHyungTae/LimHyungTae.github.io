@@ -29,36 +29,17 @@ singular_values_ = svd.singularValues();
 normal_ = svd.matrixU().col(2);
 ```
 
-`cpp/common/src/plane_fit.cpp`에도 비슷한 구조가 있다.
 
-```cpp
-const Eigen::Matrix3f cov =
-    (centered.adjoint() * centered) / std::max<float>(1.0f, static_cast<float>(pts.rows() - 1));
-
-Eigen::JacobiSVD<Eigen::Matrix3f> svd(cov, Eigen::ComputeFullU);
-Eigen::Vector3f normal = svd.matrixU().col(2);
-
-out.principal_       = svd.matrixU().col(0);
-out.singular_values_ = svd.singularValues();
-```
-
-질문은 이것이다.
-
-> 여기서 `ComputeFullU`는 성능에 어떤 영향을 주는가? 더 좋은 Eigen option이 있는가?
-
-결론부터 말하면, option만 바꾸는 것보다 solver family를 바꾸는 게 더 중요하다.
-이 코드는 일반적인 rectangular matrix SVD 문제가 아니라, **3x3 symmetric positive semi-definite covariance matrix**를 분해하는 문제이기 때문이다.
+예전부터 궁금했던 것인데, 이 부분을 좀 더 공부해서 개선할 순 없을까 궁금증이 들었다.
 
 이 글은 크게 4개의 흐름으로 읽으면 된다.
-`ComputeThinU`, `BDCSVD`, eigenvalue order 같은 이야기는 모두 이 4개 흐름 안에 들어가는 세부 항목이다.
 
 - **Preliminaries: Plane Fitting With Covariance**
-  Patchwork++가 plane fitting을 할 때, 원본 point matrix가 아니라 3x3 covariance matrix를 분해한다는 점을 먼저 확인한다.
 - **Solver Choice: option보다 solver family**
-  `ComputeFullU`/`ComputeThinU`, `JacobiSVD`/`BDCSVD`, `SelfAdjointEigenSolver::computeDirect()`를 비교해서 어디에 성능 개선 여지가 있는지 본다.
+  `ComputeFullU` vs. `ComputeThinU`, `JacobiSVD` vs. `BDCSVD`, vs. `SelfAdjointEigenSolver::computeDirect()`를 비교해서 어디에 성능 개선 여지가 있는지 본다.
 - **Migration Convention: scale, order, normal sign**
   solver를 바꿀 때 singular value scale, eigenvalue 정렬 순서, normal 방향 convention을 어떻게 보존할지 정리한다.
-- **Recommendation: Patchwork++에서는 무엇을 바꿀까**
+- **Experimental Results: Patchwork++에서는 무엇을 바꿀까**
   실제로 어떤 변경이 합리적인지, 성능 기대치는 어느 정도인지, 변경 전에 무엇을 체크해야 하는지 정리한다.
 
 ---
