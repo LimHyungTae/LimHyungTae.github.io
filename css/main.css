@@ -434,16 +434,6 @@ footer .theme-by {
   }
 }
 
-/* --- Sidebars --- */
-.sidebar {
-  width: 250px;
-  position: fixed;
-  right: 0;
-  top: 50px;
-  background-color: #f9f9f9;
-  padding: 20px;
-}
-
 /* --- Post and page headers --- */
 
 .intro-header {
