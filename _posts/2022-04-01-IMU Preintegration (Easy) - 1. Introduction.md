@@ -14,7 +14,6 @@ redirect_from:
   - '/2022-04-01-IMU-Preintegration-(Easy)-1.-Introduction/'
   - '/2022-04-01-IMU-Preintegration-Derivation-1.-Introduction/'
   - '/IMU-Preintegration-Derivation-1.-Introduction/'
-  - '/IMU Preintegration Derivation - 1. Introduction/'
 ---
 
 # IMU Preintegration for Beginners
