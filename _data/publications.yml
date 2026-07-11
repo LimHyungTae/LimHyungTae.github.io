@@ -18,6 +18,7 @@
   authors: "Hyungtae Lim*, Minkyun Seo*, Luca Carlone, and Jaesik Park"
   my_name: "Hyungtae Lim"
   venue_key: "arxiv"
+  venue_type: "conference"
   year: 2026
   type: "journal"
   image: "/img/publications/BUFFER-X-TPAMI.png"
@@ -41,24 +42,27 @@
   news_template: "📝🦾 Our DreamWaQ++ has been accepted in T-RO"
   video_link: "https://www.youtube.com/watch?v=Img5a_yKjMs"
 
-
-# 2025 Publications
 - id: "multi_mapcher_2025"
   title: "Multi-Mapcher: Loop Closure Detection-Free Heterogeneous LiDAR Multi-Session SLAM Leveraging Outlier-Robust Registration for Autonomous Vehicles"
   authors: "Hyungtae Lim, Daebeom Kim, and Hyun Myung"
   my_name: "Hyungtae Lim"
   venue_key: "tiv"
   venue_type: "journal"
-  status: "accepted"
-  year: 2025
+  status: "published"
+  year: 2026
   type: "journal"
+  volume: "11"
+  number: "2"
+  pages: "338-351"
+  doi: "10.1109/TIV.2025.3635064"
   github: "https://github.com/url-kaist/multi-mapcher"
   image: "/img/publications/multi_mapcher.png"
-  arxiv: "https://arxiv.org/abs/2409.15615"
+  arxiv: "https://arxiv.org/abs/2511.00635"
   generate_news: true
   news_date: "Dec. 10, 2025"
   news_template: "📝🦾 <a href='{github}'>Multi-Mapcher</a> is accepted to T-IV"
 
+# 2025 Publications
 - id: "vggtslam_2025"
   title: "VGGT-SLAM: Dense RGB SLAM Optimized on the SL(4) Manifold"
   authors: "Dominic Maggio*, Hyungtae Lim*, and Luca Carlone"
@@ -248,7 +252,7 @@
   project_page: "https://sites.google.com/view/helimos"
   generate_news: true
   news_date: "Jul. 24"
-  news_template: "📝🦾 HeLiMOS is accepted to IROS 2024"
+  news_template: "📝🦾 <a href='{arxiv}'>HeLiMOS</a> is accepted to IROS 2024"
 
 - id: "contextrast_2024"
   title: "Contextrast: Contextual Contrastive Learning for Semantic Segmentation"

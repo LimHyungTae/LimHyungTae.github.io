@@ -4,7 +4,7 @@ title: Publications
 ---
 
 
-I rarely update this page. Please refer to my [Google Scholar](https://scholar.google.com/citations?user=S1A3nbIAAAAJ&hl=en&oi=ao) and [CV](https://github.com/LimHyungTae/LimHyungTae.github.io/blob/master/cv_and_research_statement/cv.pdf).
+For the complete publication list and citation metrics, see my [Google Scholar](https://scholar.google.com/citations?user=S1A3nbIAAAAJ&hl=en&oi=ao).
 
 ## Selected Publications
 
