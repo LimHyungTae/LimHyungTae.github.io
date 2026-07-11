@@ -782,6 +782,119 @@ pre.highlight, .highlight > pre, td.code pre {
   font-size: 16px;
 }
 
+/* --- Home introduction and profile links --- */
+
+.home-intro {
+  margin: 0 0 34px;
+  text-align: center;
+}
+
+.home-intro-label {
+  margin: 0 0 8px;
+  color: #1B2C8F;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-mission {
+  max-width: 700px;
+  margin: 0 auto 22px;
+  color: #24304f;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.home-cta-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.home-cta {
+  display: inline-flex;
+  min-width: 132px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid #1B2C8F;
+  border-radius: 7px;
+  background-color: #fff;
+  color: #1B2C8F;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              color 0.15s ease, transform 0.15s ease;
+}
+
+.home-cta:hover,
+.home-cta:focus {
+  border-color: #142373;
+  background-color: #f4f6fc;
+  color: #142373;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.home-cta--primary,
+.home-cta--primary:focus {
+  border-color: #1B2C8F;
+  background-color: #1B2C8F;
+  color: #fff;
+}
+
+.home-cta--primary:hover {
+  border-color: #142373;
+  background-color: #142373;
+  color: #fff;
+}
+
+.home-cta:focus-visible {
+  outline: 3px solid rgba(27, 44, 143, 0.3);
+  outline-offset: 3px;
+}
+
+@media only screen and (max-width: 480px) {
+  .home-intro {
+    margin-bottom: 26px;
+  }
+
+  .home-mission {
+    font-size: 19px;
+  }
+
+  .home-cta-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .home-cta {
+    width: 100%;
+    min-width: 0;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cta {
+    transition: none;
+  }
+
+  .home-cta:hover,
+  .home-cta:focus {
+    transform: none;
+  }
+}
+
 /* --- Publications page --- */
 
 .publications-container {
