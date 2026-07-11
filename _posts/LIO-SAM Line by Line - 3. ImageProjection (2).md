@@ -6,8 +6,8 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 description: LIO-SAM imageProjection의 projectPointCloud, deskewPoint, cloudExtraction 함수를 분석한다. range image 변환과 IMU 기반 motion compensation 과정을 line-by-line으로 정리한다.
 permalink: /2022/04/07/lio-sam-line-by-line-03b-image-projection-deskew/
-  - '/LIO-SAM-Line-by-Line-3.-ImageProjection-(2)/'
 redirect_from:
+  - '/LIO-SAM-Line-by-Line-3.-ImageProjection-(2)/'
   - '/2022-04-07-LIO-SAM Line by Line - 3. ImageProjection (2)/'
   - '/2022-04-07-LIO-SAM-Line-by-Line-3.-ImageProjection-(2)/'
 ---

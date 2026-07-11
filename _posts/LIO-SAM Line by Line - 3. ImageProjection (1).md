@@ -6,8 +6,8 @@ tags: [SLAM, LiDAR, Pointcloud, ROS, PCL, LeGO-LOAM]
 comments: true
 description: LIO-SAM imageProjection 모듈의 cloudHandler, cachePointCloud, deskewInfo 콜백을 line-by-line으로 따라가며 IMU와 odometry 큐가 어떻게 동기화되는지 분석한다.
 permalink: /2022/04/07/lio-sam-line-by-line-03a-image-projection/
-  - '/LIO-SAM-Line-by-Line-3.-ImageProjection-(1)/'
 redirect_from:
+  - '/LIO-SAM-Line-by-Line-3.-ImageProjection-(1)/'
   - '/2022-04-07-LIO-SAM Line by Line - 3. ImageProjection (1)/'
   - '/2022-04-07-LIO-SAM-Line-by-Line-3.-ImageProjection-(1)/'
 ---

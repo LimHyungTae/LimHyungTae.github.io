@@ -7,7 +7,6 @@ comments: true
 description: PCL StatisticalOutlierRemoval(SOR)로 인접 k개 이웃의 평균/분산 통계를 이용해 LiDAR pointcloud의 난반사 noise를 제거하는 방법과, 3D 대비 2D LiDAR에서 더 유용한 이유를 정리한다.
 image: /img/pcl_sor.PNG
 permalink: /2021/09/12/pcl-tutorial-07-statistical-outlier-removal/
-  - '/2019-11-29-ROS Point Cloud Library (PCL) - 6. Statistical Outlier Removal/'
 redirect_from:
   - '/2019-11-29-ROS Point Cloud Library (PCL) - 5. Statistical Outlier Removal/'
   - '/2019-11-29-ROS Point Cloud Library (PCL) - 6. Statistical Outlier Removal/'

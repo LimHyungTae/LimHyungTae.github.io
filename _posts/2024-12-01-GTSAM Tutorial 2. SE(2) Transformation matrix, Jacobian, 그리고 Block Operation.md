@@ -6,7 +6,6 @@ tags: [Jacobian, GTSAM]
 comments: true
 description: SE(2) transformation matrix를 기준으로 Jacobian을 직접 전개하고, Frank Dellaert식 block operation 표기법으로 같은 Jacobian을 간결하게 다시 쓰는 과정을 정리한다.
 permalink: /2024/12/01/gtsam-tutorial-02-se2-jacobian-block-operation/
-  - '/2024-12-01-GTSAM Tutorial 2. Block Operation in Matrix/'
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 1. SE(2) Transformation matrix와 Jacobian 쉽게 이해하기/'
   - '/2024-12-01-GTSAM Tutorial 2. Block Operation in Matrix/'

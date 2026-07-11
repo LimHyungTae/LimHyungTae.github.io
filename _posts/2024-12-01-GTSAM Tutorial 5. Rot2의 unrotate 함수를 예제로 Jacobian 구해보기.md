@@ -6,7 +6,6 @@ tags: [Jacobian, GTSAM]
 comments: true
 description: GTSAM Rot2::unrotate 함수의 H1, H2 Jacobian이 어떻게 도출되는지 small angle approximation과 skew-symmetric matrix 항등식을 이용해 step-by-step으로 유도한다.
 permalink: /2024/12/01/gtsam-tutorial-05-rot2-unrotate-jacobian/
-  - '/2024-12-01-GTSAM Tutorial 4. Pose2의 unrotate 함수를 통한 Jacobian 이해하기/'
 redirect_from:
   - '/2024-12-01-GTSAM Tutorial 3. Pose2의 unrotate Jacobian 이해하기/'
   - '/2024-12-01-GTSAM Tutorial 4. Pose2의 unrotate 함수를 통한 Jacobian 이해하기/'

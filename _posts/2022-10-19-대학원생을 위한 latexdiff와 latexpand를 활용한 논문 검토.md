@@ -7,7 +7,6 @@ comments: true
 description: latexpand로 여러 tex 파일을 하나로 합친 뒤 latexdiff로 수정 부분을 자동 highlight해, 공동 저자와 논문 버전 비교를 손쉽게 하는 방법을 정리한다.
 image: /img/latexdiff_before_command.png
 permalink: /2022/10/19/latexdiff-latexpand-paper-review/
-  - '/2023-01-15-Hello latexdiff/'
 redirect_from:
   - '/2023-01-15-Hello latexdiff/'
   - '/2022-10-19-latexdiff와 latexpand를 활용한 검토/'

@@ -7,7 +7,6 @@ comments: true
 description: PCL ICP로 source-target pointcloud를 정합하는 절차와 setMaxCorrespondenceDistance/Epsilon/MaximumIterations 같은 핵심 파라미터, hasConverged와 getFitnessScore의 함정을 정리한다.
 image: /img/icp_result.png
 permalink: /2021/09/14/pcl-tutorial-11-icp/
-  - '/2021-09-14-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point/'
 redirect_from:
   - '/2021-09-12-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point (ICP)/'
   - '/2021-09-14-ROS Point Cloud Library (PCL) - 11. Iterative Closest Point/'
