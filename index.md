@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Hyungtae Lim
-description: "Building spatial intelligence that keeps robots reliable in a changing world—from real-time state estimation to lifelong map adaptation."
+description: "Building spatial AI for robots."
 ---
 
 <div class="home-intro">
