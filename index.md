@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Hyungtae Lim
-description: "Building spatial AI for robots."
+description: "Building spatial AI for robots"
 ---
 
 <div class="home-intro">
