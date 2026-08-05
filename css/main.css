@@ -800,11 +800,34 @@ pre.highlight, .highlight > pre, td.code pre {
 
 .home-mission {
   max-width: 700px;
-  margin: 0 auto 22px;
+  margin: 0 auto 12px;
   color: #24304f;
   font-size: 22px;
   font-weight: 600;
   line-height: 1.45;
+}
+
+.home-current-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 22px;
+  padding: 7px 13px;
+  border: 1px solid #d9def2;
+  border-radius: 999px;
+  background-color: #f4f6fc;
+  color: #435071;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.home-current-role i,
+.home-current-role a {
+  color: #1B2C8F;
+}
+
+.home-current-role a {
+  font-weight: 700;
 }
 
 .home-cta-list {
@@ -868,6 +891,10 @@ pre.highlight, .highlight > pre, td.code pre {
 
   .home-mission {
     font-size: 19px;
+  }
+
+  .home-current-role {
+    font-size: 14px;
   }
 
   .home-cta-list {
