@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hyungtae Lim
+title: Hyungtae (Hugo) Lim
 description: "Building spatial AI for robots"
 ---
 
