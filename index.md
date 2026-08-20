@@ -121,4 +121,15 @@ Hyungtae Lim is a Software Engineer at Zoox. Before joining Zoox, he was a Postd
 
 ## Contact
 
-shapelim `at` mit `dot` edu
+<span id="contact-email">hyungtaelim [dot] us [at] gmail [dot] com</span>
+<script>
+  (function () {
+    var codes = [104, 121, 117, 110, 103, 116, 97, 101, 108, 105, 109, 46, 117, 115, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109];
+    var email = codes.map(function (code) { return String.fromCharCode(code); }).join("");
+    var contact = document.getElementById("contact-email");
+    var link = document.createElement("a");
+    link.href = "mailto:" + email;
+    link.textContent = email.replace("@", " [at] ").replace(/\./g, " [dot] ");
+    contact.replaceChildren(link);
+  })();
+</script>
