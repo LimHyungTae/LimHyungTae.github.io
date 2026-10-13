@@ -218,3 +218,73 @@ B 경로에서 latent를 `detach()`하면 B의 loss가 encoder를 바꾸지 못�
 
 Weighting은 task의 영향력을, PCGrad는 충돌하는 방향을, branch 분리는 공유 구조를 조정한다.
 이 역할을 구분해 두면, 성능이 떨어졌을 때 기법을 무작정 추가하기보다 관찰에 맞는 실험을 선택할 수 있다.
+
+---
+
+## 최근 방법론: PCGrad 이후의 접근
+
+그렇다면 PCGrad나 GradNorm 이후에는 어떤 방법들이 나왔을까?
+여기서는 2023~2025년에 발표된 세 가지를 소개한다.
+확인한 논문들의 결과만으로 모든 task 조합에서 통하는 하나의 표준 해법을 고르기는 어렵다.
+아래 방법들은 각 논문의 benchmark에서 좋은 결과를 보고한 비교 후보로 이해하면 된다.
+
+### FAMO: 계산 부담을 줄인 Task 균형 조정
+
+**FAMO(Fast Adaptive Multitask Optimization, NeurIPS 2023)**는 task별 loss가 균형 있게 감소하도록 가중치를 조절한다.
+핵심은 모든 task의 parameter gradient를 별도로 계산하고 저장하는 부담을 줄인다는 점이다.
+
+PCGrad처럼 task별 gradient를 직접 다루면 task 수가 많아질수록 비용이 커진다.
+FAMO는 loss의 변화 정보를 활용해 weight를 업데이트하므로, 이런 비용이 부담인 상황에서 비교할 만하다.
+논문은 supervised learning과 multi-task RL에서 기존 gradient 조정 기법과 비슷하거나 더 좋은 성능을 보고한다.
+물론 전체 모델의 계산량이 task 수와 무관해진다는 뜻은 아니다.
+Task별 head와 loss 계산은 여전히 필요하다.
+([FAMO 논문](https://arxiv.org/abs/2306.03792), [공식 구현](https://github.com/Cranial-XIX/FAMO))
+
+두 head만 쓰는 현재 상황에서는 task가 수십 개인 경우보다 비용상의 이점이 작을 수 있다.
+그래도 **구조 변경 없이 loss 균형을 조절하는 비교 실험**으로 고려할 만하다.
+
+### FairGrad: Task별 개선량을 고려한 Gradient 조합
+
+**FairGrad(ICML 2024)**는 task 사이에 업데이트의 이득을 어떻게 배분할지에 주목한다.
+PCGrad가 충돌하는 성분을 제거하는 방식이라면, FairGrad는 task별 loss 감소량을 바탕으로 전체 update 방향을 결정하는 최적화 문제를 만든다.
+
+직관적으로는 다음과 같은 질문이다.
+
+> 전체 성능을 개선하면서, 일부 task만 계속 뒤처지지 않도록 업데이트를 배분할 수 있을까?
+
+여기서 fairness는 서로 단위가 다른 accuracy와 depth error를 같은 숫자로 맞춘다는 뜻이 아니다.
+Task별 개선량을 어떤 기준으로 평가하고 배분할지에 관한 것이다.
+논문은 supervised learning과 RL benchmark에서 gradient 조정 방법들 대비 우수한 결과를 보고한다.
+([FairGrad 논문](https://proceedings.mlr.press/v235/ban24a.html), [공식 구현](https://github.com/OptMN-Lab/fairgrad))
+
+현재 실험에서 **한 task는 좋아지는데 다른 task가 계속 희생되는 양상**이라면 비교 후보가 된다.
+Task별 gradient와 가중치 계산이 필요하므로 성능뿐 아니라 학습 비용도 함께 봐야 한다.
+
+### ConsMTL: Head가 만드는 Gradient 자체의 조정
+
+**ConsMTL(CVPR 2025)**은 이 글의 질문과 특히 잘 연결된다.
+출발점은 **task-specific head도 shared encoder로 전달되는 gradient의 방향에 영향을 준다**는 것이다.
+
+지금까지의 설명에서는 head가 gradient를 보내면 shared parameter 쪽에서 이를 조정했다.
+ConsMTL은 한 단계 더 나아가, head를 학습하는 방식에도 추가적인 목표를 준다.
+Shared parameter에서는 공동 update 방향을 구하고,
+task-specific parameter에는 각 task가 보내는 gradient가 그 방향에 가까워지도록 추가 loss를 적용한다.
+논문은 이를 두 수준의 최적화, 즉 bi-level optimization으로 구성한다.
+([ConsMTL 논문](https://openaccess.thecvf.com/content/CVPR2025/papers/Qin_Towards_Consistent_Multi-Task_Learning_Unlocking_the_Potential_of_Task-Specific_Parameters_CVPR_2025_paper.pdf), [공식 구현](https://github.com/jianke0604/MTLLib))
+
+쉽게 말하면 **도착한 gradient를 조정하는 것에 더해, 서로 협력하기 좋은 gradient를 보내도록 head도 학습하는 방식**이다.
+따라서 단순히 head를 더 깊게 만드는 것과는 다르며, 추가 loss와 학습 절차를 구현해야 한다.
+Shared latent에 여러 head를 붙인 상황에서 gradient 간섭이 반복적으로 관찰된다면 읽어볼 만하다.
+
+### 현재 문제에서의 비교 후보
+
+| 관찰 또는 제약 | 비교해 볼 방법 |
+|---|---|
+| Task별 gradient 계산 비용이 부담 | FAMO |
+| 일부 task만 좋아지고 다른 task가 뒤처짐 | FairGrad |
+| Head가 encoder로 보내는 gradient의 간섭이 반복됨 | ConsMTL |
+
+이 표는 각 방법의 목적을 바탕으로 한 실험 제안이며, 성능 순위는 아니다.
+지금처럼 두 task를 다루는 상황이라면 기존 weighted-sum과 PCGrad를 기준으로 두고,
+관찰된 문제에 맞는 방법을 하나씩 추가해 비교하는 편이 결과를 해석하기 좋다.
+평균 점수뿐 아니라 **각 task가 single-task baseline 대비 얼마나 좋아지거나 나빠졌는지**까지 확인해야 한다.
