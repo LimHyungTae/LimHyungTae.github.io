@@ -229,21 +229,63 @@ for each token:
 
 LLM 쪽에서는 chunk가 또 다른 의미로도 쓰인다.
 
-긴 prompt를 한 번에 넣기 어렵거나,
-streaming/prefill을 효율적으로 처리하고 싶을 때 token sequence를 chunk 단위로 나눠 처리한다.
+### 사전 지식: KV Cache
+
+LLM이 다음 token을 생성하려면 앞서 나온 token의 정보를 참고해야 한다.
+이때 attention에서는 각 token의 표현으로부터 **Query(Q), Key(K), Value(V)**라는 벡터를 만든다.
+이름은 낯설지만, 역할은 다음처럼 이해하면 된다.
+
+| 벡터 | Attention에서의 역할 |
+|---|---|
+| Query | 현재 token이 어떤 정보를 찾을지 나타내는 벡터 |
+| Key | Query와 비교해 얼마나 참고할지 결정하는 벡터 |
+| Value | 그 비중에 따라 실제로 모아오는 정보 |
+
+즉 Query와 각 Key를 비교해 attention weight를 구하고, 그 weight로 Value들을 가중합한다.
+여기서 **KV cache는 이전 token들의 Key와 Value를 각 attention layer별로 저장해 두는 메모리**이다.
+원문이나 완성된 답변을 저장하는 캐시가 아니라, attention 계산에 다시 사용할 중간 결과를 저장한다.
+
+일반적인 autoregressive LLM은 미래 token을 보지 않는 **causal attention**을 사용한다.
+따라서 뒤에 새 token이 붙어도 이전 token의 Key와 Value를 다시 계산할 필요가 없다.
+새 token을 처리할 때는 그 token의 Q, K, V를 계산하고,
+저장해 둔 과거 K, V를 함께 사용하면 된다.
 
 ```text
-prompt tokens
-  -> chunk 0
-  -> chunk 1
-  -> chunk 2
-  -> KV cache에 누적
+기존 cache: [t1의 K,V] [t2의 K,V] [t3의 K,V]
+
+t4 처리:
+  1. t4의 Q, K, V 계산
+  2. t4의 Q로 t1~t4의 K를 비교하고, V를 가중합
+  3. t4의 K, V를 cache에 추가해 다음 step에서 재사용
+```
+
+이렇게 하면 과거 token의 중간 결과를 매번 다시 계산하는 비용을 줄일 수 있다.
+다만 과거 K, V를 읽어 attention하는 계산은 여전히 필요하고,
+저장하는 token이 많아질수록 cache의 메모리 사용량도 커진다.
+
+### Chunked Prefill: Prompt를 나눠 처리하는 방식
+
+LLM이 답변 생성을 시작하기 전에 입력 prompt를 처리하는 단계를 **prefill**이라고 한다.
+이 과정에서 prompt token들의 K, V도 계산해 cache에 저장한다.
+긴 prompt를 한 번에 처리하기 부담스럽다면, 이를 여러 chunk로 나눌 수 있다.
+
+```text
+chunk 0 처리 -> 해당 token들의 K,V 저장
+chunk 1 처리 -> chunk 0의 K,V를 참고하고, 새 K,V 추가
+chunk 2 처리 -> chunk 0~1의 K,V를 참고하고, 새 K,V 추가
+             -> prompt 처리 완료, 답변 생성에 cache 재사용
 ```
 
 이때 chunk는 "모델이 이해하는 의미 단위"라기보다,
 GPU memory와 throughput을 맞추기 위한 처리 단위이다.
+**이전 chunk의 K, V를 유지한다면, chunk를 나눴다고 이전 내용을 못 보는 것은 아니다.**
+Full causal attention을 유지하는 chunked prefill은 앞서 설명한 window attention과 이 점에서 다르다.
+또한 한 번에 처리하는 작업량은 줄여도, 전체 prompt의 K, V를 저장하는 데 필요한 메모리까지 없어지는 것은 아니다.
 
-RAG에서도 chunk라는 말을 많이 쓴다.
+### RAG Chunk: 검색을 위한 문서 분할
+
+RAG는 질문과 관련된 문서를 검색해 LLM의 입력에 함께 넣는 방식이다.
+여기서도 chunk라는 말을 많이 쓴다.
 문서를 적당한 길이로 잘라 embedding하고 검색하는 그 chunk이다.
 다만 이건 Transformer 내부 구조라기보다는 retrieval pipeline의 단위이다.
 
