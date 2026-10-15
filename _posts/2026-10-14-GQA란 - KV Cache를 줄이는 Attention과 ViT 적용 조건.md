@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GQA란? KV Cache를 줄이는 Attention과 ViT 적용 조건
+title: MHA, MQA, GQA 차이 정리 - Attention Head 공유와 KV Cache 메모리 절감
 subtitle: Query는 여러 개 유지하면서 Key와 Value를 공유하는 방법
 tags: [GQA, Attention, KV Cache, LLM, Vision Transformer]
 comments: true

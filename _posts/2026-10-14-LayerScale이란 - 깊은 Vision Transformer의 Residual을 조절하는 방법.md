@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LayerScale이란? 깊은 Vision Transformer의 Residual을 조절하는 방법
+title: DINOv3의 LayerScale 이해하기 - Residual Scaling과 LayerNorm의 차이
 subtitle: DINOv3 코드에 숨어 있는 channel별 learnable scale
 tags: [LayerScale, Residual, Vision Transformer, DINOv3, Training Stability]
 comments: true

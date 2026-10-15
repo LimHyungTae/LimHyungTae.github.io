@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Gated Attention이란? Qwen의 Attention Gate를 ViT에 적용한다면
+title: Qwen의 Gated Attention 구조 - Sigmoid Gate와 Attention Sink 완화
 subtitle: Attention이 모아온 정보를 입력에 따라 한 번 더 조절하는 방법
 tags: [Gated Attention, Qwen, Transformer, Vision Transformer, Research Note]
 comments: true

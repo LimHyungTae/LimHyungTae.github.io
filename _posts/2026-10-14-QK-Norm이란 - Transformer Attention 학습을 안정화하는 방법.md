@@ -1,6 +1,6 @@
 ---
 layout: post
-title: QK-Norm이란? Transformer Attention 학습을 안정화하는 방법
+title: QK-Norm으로 Transformer 학습 안정화 - Query와 Key 정규화의 역할
 subtitle: LLM과 ViT에서 Query와 Key를 한 번 더 정규화하는 이유
 tags: [Transformer, QK-Norm, Attention, Vision Transformer, LLM]
 comments: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2D RoPE란? LLM의 위치 정보를 Vision Transformer에 적용하기
+title: RoPE 원리와 2D 확장 - LLM의 Positional Encoding을 ViT에 적용하기
 subtitle: Token의 위치를 Q와 K의 회전으로 표현하는 방법
 tags: [RoPE, Positional Encoding, Vision Transformer, DINOv3, LLM]
 comments: true

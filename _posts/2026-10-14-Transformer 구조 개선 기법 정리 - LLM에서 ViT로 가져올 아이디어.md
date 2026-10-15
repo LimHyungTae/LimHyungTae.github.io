@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Transformer 구조 개선 기법 정리 - LLM에서 ViT로 가져올 아이디어
+title: Vision Transformer 구조 개선 기법 6가지 - LLM에서 가져올 설계와 적용 조건
 subtitle: QK-Norm, 2D RoPE, SwiGLU부터 Gated Attention까지
 tags: [Transformer, Vision Transformer, LLM, Architecture, Research Note]
 comments: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SwiGLU란? Transformer FFN에 Gate를 넣는 이유
+title: SwiGLU와 GELU FFN 비교 - Transformer의 Gate 구조와 파라미터 수
 subtitle: LLM에서 익숙한 gated FFN을 ViT로 가져올 때의 판단 기준
 tags: [SwiGLU, FFN, Transformer, Vision Transformer, LLM]
 comments: true
