@@ -1,0 +1,181 @@
+<div id="mtl-gradient-lab">
+  <h3>Multi-task gradient 비교</h3>
+  <div class="viz-controls">
+    <label class="form-label">Case
+      <select class="form-select" id="mtl-case">
+        <option value="imbalance">A. 충돌 없음 · 학습 속도 차이</option>
+        <option value="conflict" selected>B. 충돌 · 작은 task가 손해</option>
+        <option value="balanced">C. 음수 cosine · 둘 다 개선</option>
+        <option value="three">D. 세 task · 공동 개선 불가능</option>
+      </select>
+    </label>
+    <label class="form-label">방법
+      <select class="form-select" id="mtl-method">
+        <option value="mean">단순 평균</option>
+        <option value="gradnorm">GradNorm</option>
+        <option value="pcgrad" selected>PCGrad</option>
+        <option value="cagrad">CAGrad</option>
+        <option value="upgrad">UPGrad</option>
+      </select>
+    </label>
+  </div>
+  <div id="mtl-gn-controls" hidden>
+    <div class="viz-controls">
+      <label class="form-label"><span>Weight 업데이트: <output id="mtl-steps-value">30</output>회</span>
+        <input class="form-range" id="mtl-steps" type="range" min="0" max="100" value="30">
+      </label>
+      <label class="form-label"><span>Alpha: <output id="mtl-alpha-value">1.0</output></span>
+        <input class="form-range" id="mtl-alpha" type="range" min="0" max="2" step="0.1" value="1">
+      </label>
+    </div>
+  </div>
+  <div id="mtl-ca-controls" hidden>
+    <label class="form-label"><span>CAGrad c: <output id="mtl-c-value">0.50</output></span>
+      <input class="form-range" id="mtl-c" type="range" min="0" max="0.95" step="0.05" value="0.5">
+    </label>
+  </div>
+  <div class="viz-row text-small" id="mtl-legend">
+    <span><span class="swatch" style="background:var(--viz-series-1)"></span>Task 1</span>
+    <span><span class="swatch" style="background:var(--viz-series-2)"></span>Task 2</span>
+    <span id="mtl-third"><span class="swatch" style="background:var(--viz-series-3)"></span>Task 3</span>
+    <span>실선: 원본 · 점선: 수정</span>
+    <span><span class="swatch" style="background:var(--foreground)"></span>굵은 화살표: d</span>
+  </div>
+  <svg id="mtl-plot" role="img" aria-label="원본 gradient, 수정된 gradient와 최종 descent vector 비교"></svg>
+  <div class="text-small tabular-nums" id="mtl-detail" aria-live="polite"></div>
+  <div class="table-responsive">
+    <table class="table table-sm tabular-nums">
+      <thead><tr><th>Task</th><th>Loss 비율</th><th>Weight</th><th>평균의 개선량</th><th>선택 방법의 개선량</th></tr></thead>
+      <tbody id="mtl-values"></tbody>
+    </table>
+  </div>
+</div>
+<style>
+  #mtl-gradient-lab { color:var(--foreground); }
+  #mtl-gradient-lab .swatch { display:inline-block; width:12px; height:3px; vertical-align:middle; margin-right:4px; }
+  #mtl-plot { display:block; width:100%; height:310px; }
+  #mtl-plot text { fill:var(--foreground); font-size:12px; }
+  #mtl-detail { min-height:2.5em; overflow-wrap:anywhere; }
+</style>
+<script>
+(() => {
+  const dot = (a,b) => a[0]*b[0]+a[1]*b[1];
+  const add = (a,b) => [a[0]+b[0],a[1]+b[1]];
+  const mul = (a,k) => [a[0]*k,a[1]*k];
+  const norm = a => Math.hypot(...a);
+  const mean = gs => mul(gs.reduce(add,[0,0]),1/gs.length);
+  const cases = {
+    imbalance:{g:[[3,0],[0.5,1]],loss:[0.3,0.9]},
+    conflict:{g:[[3,0],[-1,1]],loss:[0.5,0.5]},
+    balanced:{g:[[1,0],[-0.5,Math.sqrt(3)/2]],loss:[0.5,0.5]},
+    three:{g:[[1,0],[0,1],[-0.5,-1]],loss:[0.5,0.5,0.5]}
+  };
+  function pcgrad(gs) {
+    return gs.map((g,i) => {
+      let v = g.slice();
+      gs.forEach((h,j) => {
+        if(i!==j && dot(v,h)<0 && dot(h,h)>1e-16) v=add(v,mul(h,-dot(v,h)/dot(h,h)));
+      });
+      return v;
+    });
+  }
+  // Exact cone projection in 2D: interior, one active boundary, or the origin.
+  function project(v,gs) {
+    const feasible = p => gs.every(g => dot(g,p)>=-1e-9);
+    if(feasible(v)) return v.slice();
+    const candidates = [[0,0]];
+    gs.forEach(g => {
+      if(dot(g,g)>1e-16) {
+        const p=add(v,mul(g,-dot(v,g)/dot(g,g)));
+        if(feasible(p)) candidates.push(p);
+      }
+    });
+    return candidates.reduce((a,b) => norm(add(a,mul(v,-1)))<norm(add(b,mul(v,-1)))?a:b);
+  }
+  // Exact 2D candidates for max_d min_i g_i.d on a disk around the mean.
+  function cagrad(gs,c) {
+    const m=mean(gs),r=c*norm(m);
+    if(r<1e-12) return m;
+    const candidates=[m];
+    gs.forEach(g => {if(norm(g)>0) candidates.push(add(m,mul(g,r/norm(g))));});
+    for(let i=0;i<gs.length;i++) for(let j=i+1;j<gs.length;j++) {
+      const v=add(gs[i],mul(gs[j],-1)),a=norm(v);
+      if(a<1e-12) continue;
+      const t=-dot(v,m)/(r*a);
+      if(Math.abs(t)<=1+1e-10) {
+        const phi=Math.atan2(v[1],v[0]),delta=Math.acos(Math.max(-1,Math.min(1,t)));
+        for(const angle of [phi+delta,phi-delta]) candidates.push(add(m,[r*Math.cos(angle),r*Math.sin(angle)]));
+      }
+    }
+    if(norm(m)<=r) candidates.push([0,0]);
+    const score = v => Math.min(...gs.map(g=>dot(g,v)));
+    return candidates.reduce((a,b)=>score(a)>score(b)?a:b);
+  }
+  function gradnorm(gs,loss,steps,alpha) {
+    let w=gs.map(()=>1);
+    const norms=gs.map(norm),avgLoss=loss.reduce((a,b)=>a+b,0)/gs.length;
+    for(let k=0;k<steps;k++) {
+      const G=w.map((x,i)=>x*norms[i]),avgG=G.reduce((a,b)=>a+b,0)/gs.length;
+      const targets=loss.map(x=>avgG*Math.pow(x/avgLoss,alpha));
+      w=w.map((x,i)=>Math.max(1e-6,x-0.01*Math.sign(G[i]-targets[i])*norms[i]));
+      const total=w.reduce((a,b)=>a+b,0);
+      w=w.map(x=>x*gs.length/total);
+    }
+    return w;
+  }
+  window.mtlMath={dot,mean,pcgrad,project,cagrad,gradnorm,cases};
+  const root=document.getElementById('mtl-gradient-lab');
+  const q = id=>root.querySelector('#mtl-'+id);
+  let state={case:'conflict',method:'pcgrad',steps:30,alpha:1,c:0.5};
+  const fmt = x=>(Math.abs(x)<0.0005?0:x).toFixed(3);
+  function render() {
+    const item=cases[state.case],gs=item.g,m=mean(gs),mode=state.method;
+    let corrected=[],w=gs.map(()=>1),d=m;
+    if(mode==='pcgrad') {corrected=pcgrad(gs);d=mean(corrected);}
+    if(mode==='upgrad') {corrected=gs.map(g=>project(g,gs));d=mean(corrected);}
+    if(mode==='gradnorm') {w=gradnorm(gs,item.loss,state.steps,state.alpha);corrected=gs.map((g,i)=>mul(g,w[i]));d=mean(corrected);}
+    if(mode==='cagrad') d=cagrad(gs,state.c);
+    q('gn-controls').hidden=mode!=='gradnorm';q('ca-controls').hidden=mode!=='cagrad';
+    q('third').hidden=gs.length<3;
+    q('steps-value').value=state.steps;q('alpha-value').value=state.alpha.toFixed(1);q('c-value').value=state.c.toFixed(2);
+    const svg=q('plot'),width=Math.max(280,svg.getBoundingClientRect().width),height=310;
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    const all=[...gs,...corrected,m,d],extent=Math.max(0.2,...all.flatMap(g=>g.map(Math.abs)))*1.28;
+    const left=64,right=width-20,top=24,bottom=height-44;
+    const scale=Math.min((right-left)/2,(bottom-top)/2)/extent;
+    const cx=(left+right)/2,cy=(top+bottom)/2;
+    const X=x=>cx+x*scale,Y=y=>cy-y*scale;
+    let html=`<title>${state.case}: ${mode}</title><rect data-chart-frame x="${left}" y="${top}" width="${right-left}" height="${bottom-top}" fill="none" stroke="var(--border)"/><path d="M${left},${cy}H${right}M${cx},${top}V${bottom}" stroke="var(--border)"/><text class="axis-title" data-axis="x" x="${right}" y="${height-10}" text-anchor="end">θ₁ gradient</text><text class="axis-title" data-axis="y" x="${left}" y="15">θ₂ gradient</text>`;
+    function arrow(v,color,dashed,thick,label) {
+      const x=X(v[0]),y=Y(v[1]),dx=x-cx,dy=y-cy,len=Math.hypot(dx,dy);
+      if(len<0.5) {html+=`<circle cx="${cx}" cy="${cy}" r="${thick?5:3}" fill="${color}"/>`;return;}
+      const ux=dx/len,uy=dy/len,size=thick?9:7;
+      html+=`<g><title>${label}: (${fmt(v[0])}, ${fmt(v[1])})</title><path d="M${cx},${cy}L${x},${y}" fill="none" stroke="${color}" stroke-width="${thick?3:2}" ${dashed?'stroke-dasharray="5 4"':''}/><path d="M${x},${y}L${x-size*ux+size*0.4*uy},${y-size*uy-size*0.4*ux}L${x-size*ux-size*0.4*uy},${y-size*uy+size*0.4*ux}Z" fill="${color}"/></g>`;
+    }
+    gs.forEach((g,i)=>arrow(g,`var(--viz-series-${i+1})`,false,false,`g${i+1}`));
+    corrected.forEach((g,i)=>arrow(g,`var(--viz-series-${i+1})`,true,false,`수정 g${i+1}`));
+    arrow(d,'var(--foreground)',false,true,'d');
+    svg.innerHTML=html;
+    const cos=dot(gs[0],gs[1])/(norm(gs[0])*norm(gs[1]));
+    q('detail').textContent=`cos(g₁,g₂) = ${fmt(cos)} · d = (${fmt(d[0])}, ${fmt(d[1])})`;
+    q('values').innerHTML=gs.map((g,i)=>`<tr><th>Task ${i+1}</th><td>${item.loss[i].toFixed(2)}</td><td>${mode==='gradnorm'?fmt(w[i]):'1.000'}</td><td>${fmt(dot(g,m))}</td><td>${fmt(dot(g,d))}</td></tr>`).join('');
+  }
+  function restore(saved) {
+    const s=saved?.privateContent;
+    if(!s) return;
+    if(cases[s.case]) state.case=s.case;
+    if(['mean','gradnorm','pcgrad','cagrad','upgrad'].includes(s.method)) state.method=s.method;
+    for(const [k,min,max] of [['steps',0,100],['alpha',0,2],['c',0,0.95]]) if(Number.isFinite(s[k])) state[k]=Math.max(min,Math.min(max,s[k]));
+  }
+  function sync() {for(const k of ['case','method','steps','alpha','c']) q(k).value=state[k];render();}
+  restore(window.openai?.widgetState);
+  for(const k of ['case','method','steps','alpha','c']) q(k).addEventListener('input',()=>{
+    state[k]=['case','method'].includes(k)?q(k).value:Number(q(k).value);
+    render();
+    window.openai?.setWidgetState({modelContent:{case:state.case,method:state.method},privateContent:state})?.catch(()=>{});
+  });
+  window.addEventListener('openai:set_globals',event=>{restore(event.detail?.globals?.widgetState);sync();});
+  new ResizeObserver(render).observe(q('plot'));
+  sync();
+})();
+</script>
