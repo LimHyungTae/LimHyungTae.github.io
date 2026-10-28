@@ -185,8 +185,8 @@ Case D에서는 공동으로 개선할 수 있는 방향이 없고, 제약을 �
 
 원 논문 표기에서는 PCGrad가 합, UPGrad가 평균이라 크기 차이가 있지만, 방향은 같다.
 위 예제는 둘 다 평균을 사용하므로 Case A~C에서 결과가 일치한다.
-따라서 vector loss와 segmentation loss를 **두 objective로 묶어** 학습한다면, UPGrad로 바꾼다고 다른 방향이 생기는 것은 아니다.
-반면 classification, point regression, segmentation 등을 각각 별도 objective로 취급하면 task 수가 달라진다.
+따라서 task A와 task B의 loss를 **두 objective로 묶어** 학습한다면, UPGrad로 바꾼다고 다른 방향이 생기는 것은 아니다.
+반면 각 task의 loss를 구성하는 항들을 별도 objective로 취급하면 objective 수가 달라진다.
 ([원 논문 Appendix B.4](https://arxiv.org/html/2406.16232v2))
 
 ---
@@ -229,7 +229,7 @@ CAGrad와 UPGrad에는 추가적인 최적화 문제를 푸는 비용도 있다.
 ([CAGrad](https://arxiv.org/abs/2110.14048), [Gramian-based Jacobian descent](https://arxiv.org/html/2406.16232v2))
 
 따라서 '뒤의 세 방법은 무조건 몇 배 느리다'보다, **어느 parameter에 적용하고 gradient와 graph를 어떻게 보관하는지**를 확인해야 한다.
-Shared BEV feature에서만 gradient를 조작하는 것은 parameter 공간에서 적용하는 것과도 다르다.
+Shared feature에서만 gradient를 조작하는 것은 parameter 공간에서 적용하는 것과도 다르다.
 특히 feature 공간에서 확보한 내적 관계가 encoder parameter 공간에서도 그대로 유지된다고 볼 수는 없다.
 
 ## 선택 기준: 무엇부터 적용할 것인가
@@ -243,12 +243,12 @@ Shared BEV feature에서만 gradient를 조작하는 것은 parameter 공간에�
 | 두 objective에서 PCGrad와 UPGrad 중 고민함 | 우선 PCGrad | 동일한 입력과 scale에서는 같은 결과 |
 | 음수 cosine만 있고 실제 성능 저하는 불명확함 | 기존 weighted sum 유지·진단 | 음수 cosine 자체는 교체 근거가 아님 |
 
-내가 BEV vector head와 segmentation head를 함께 학습한다면, 먼저 loss normalization과 GT 정합성을 확인하고,
+Task A와 task B를 함께 학습하는 상황이라면, 먼저 loss normalization과 GT 정합성을 확인하고,
 shared block에서 task별 norm, cosine, $$g_i^\top d$$를 기록할 것 같다.
 그다음 loss 감소율 차이가 문제인지, 업데이트 방향이 문제인지에 따라 GradNorm과 PCGrad를 각각 비교하겠다.
 
 또한 raw gradient에서의 비충돌 조건은 Adam의 preconditioning이나 momentum을 거친 **실제 parameter 이동**에 그대로 보장되지 않는다.
-진단값이 좋아졌다고 vector mAP와 segmentation mIoU가 반드시 좋아지는 것도 아니다.
+진단값이 좋아졌다고 task A와 task B의 평가 지표가 반드시 좋아지는 것도 아니다.
 동일한 학습 조건에서 validation 성능, 실행 시간, peak GPU memory를 함께 비교해야 한다.
 
 결국 '충돌이면 gradient surgery, 속도 차이면 GradNorm'은 유용한 출발점이다.
